@@ -31,4 +31,8 @@ class LedenRepository extends BaseRepository
                   ->orWhere('lastname', 'like', "%$name%");
         })->get();
     }
+    //TODO: Add search by phone number / emergency contact phone number
+
+    //TODO: Add search by address (city, streetname, postalcode)
+
 }
