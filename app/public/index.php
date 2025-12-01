@@ -34,6 +34,4 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         throw new Exception('Not implemented yet');
-
-        break;
 }
