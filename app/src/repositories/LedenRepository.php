@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\src\Repositories;
 
 use App\Models\Leden;
 use Illuminate\Database\Eloquent\Collection;
@@ -31,6 +31,29 @@ class LedenRepository extends BaseRepository
                   ->orWhere('lastname', 'like', "%$name%");
         })->get();
     }
+
+        /** Verify the password for the given user */
+    public function verifyPassword(Leden $user, string $password): bool{
+        return password_verify($password, $user->password);
+    }
+
+    /** Check if the user has any of the allowed roles */
+    public function checkRole(Leden $user, array $allowedRoles): bool {
+        return $user->hasAnyRole($allowedRoles);
+    }
+
+    /** Assign a role to the user */
+    public function assignRole(Leden $user, string $roleName) {
+        $role = Roles::firstOrCreate(['name' => $roleName]);
+        $user->roles()->syncWithoutDetaching([$role->id]);
+    }
+
+    /** Remove a role from the user */
+    public function removeRole(Leden $user, string $roleName){
+        $role = Roles::where('name', $roleName)->first();
+        if ($role) $user->roles()->detach($role->id);
+    }
+
     //TODO: Add search by phone number / emergency contact phone number
 
     //TODO: Add search by address (city, streetname, postalcode)

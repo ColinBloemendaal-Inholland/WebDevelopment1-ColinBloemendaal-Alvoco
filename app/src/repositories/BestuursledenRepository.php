@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\src\Repositories;
 
 use App\Models\Bestuursleden;
 use Illuminate\Database\Eloquent\Collection;

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Leden extends Model {
     use SoftDeletes;
     protected $table = "Leden";
+    protected $hidden = ['password', 'login_attempts'];
     protected $fillable = [
         'firstname',
         'middlename',
@@ -19,6 +20,8 @@ class Leden extends Model {
         'gender',
         'date_of_birth',
         'email',
+        'password',
+        'login_attempts',
         'phone',
         'streetname',
         'streetnumber',
@@ -29,6 +32,23 @@ class Leden extends Model {
         'emergency_contact_middlename',
         'emergency_contact_lastname',
         'emergency_contact_phone'];
+
+    //TODO: Add description of fields
+    public function roles(){
+        return $this->belongsToMany(Roles::class, 'leden_roles', 'leden_id', 'role_id');
+    }
+
+    // Check if the user has a role
+    public function hasRole(string $roleName): bool
+    {
+        return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    // Check if the user has any role in array
+    public function hasAnyRole(array $roleNames): bool
+    {
+        return $this->roles()->whereIn('name', $roleNames)->exists();
+    }
 
     /** Get full name of lid */
     public function getFullnameAttribute() {
@@ -44,6 +64,8 @@ class Leden extends Model {
     public function getAgeAttribute() {
         return $this->birthdate ? Carbon::parse($this->birthdate)->age : null;
     }
+
+    /** Get full name of emergency contact */
     public function getEmergency_contact_fullnameAttribute() {
         $fullname = $this->emergency_contact_firstname . ' ';
         if(!empty($this->emergency_contact_middlename)) {
