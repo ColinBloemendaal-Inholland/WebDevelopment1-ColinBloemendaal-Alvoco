@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\Repositories;
+namespace App\Repositories;
 
 use App\Models\Teams;
 use Illuminate\Database\Eloquent\Collection;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\Repositories;
+namespace App\Repositories;
 
 use App\Models\Leden;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,6 +18,11 @@ class LedenRepository extends BaseRepository
     public function getByEmail(string $email): ?Leden
     {
         return $this->model->where('email', $email)->first();
+    }
+
+    public function getById(int $id): ?Leden
+    {
+        return $this->model->find($id);
     }
 
     /**
