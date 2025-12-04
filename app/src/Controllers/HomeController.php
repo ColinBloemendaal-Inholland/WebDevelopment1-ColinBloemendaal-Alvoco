@@ -8,6 +8,6 @@ class HomeController
 {
     public function index($vars = [])
     {
-        return View::View('Dashboard.Home', );
+        return View::View('Dashboard.Home', 'Hello home');
     }
 }

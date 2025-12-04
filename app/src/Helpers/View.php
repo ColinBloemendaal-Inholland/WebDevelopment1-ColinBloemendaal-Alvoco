@@ -6,7 +6,7 @@ use App\Models\View\View as ViewModel;
 
 class View
 {
-    public static function View(string $viewPath, ?string $title = null , $data = [])
+    public static function View(string $viewPath, ?string $title = null, $data = [])
     {
         // Set default http code
         $http = 200;
@@ -16,31 +16,29 @@ class View
             $path = self::GetNormalizedPath('Errors.404');
         }
         $title = $title ? "{$title} - Alvoco" : "Alvoco";
-
-        $view = new ViewModel(200,$title, $data);
-        self::LoadView($viewPath);
-        return $view;
+        $view = new ViewModel($http, $title,$data)->toArray();
+        self::LoadView($path, $view);
     }
 
     public static function Include(string $viewPath) {
-        var_dump('including view: ' . $viewPath);
         $path = self::GetNormalizedPath($viewPath);
-        var_dump($path);
-        // self::LoadView($path);
+        self::LoadView($path);
     }
 
     private static function GetNormalizedPath(string $viewPath) {
         // normalize the view path to match folder structure
         // Explode the view path by dot, lowercase all parts and capitalize them, then implode back with slashes
         $normalizedPath = implode('/', array_map('ucfirst', array_map('strtolower', explode('.', $viewPath))));
-        var_dump($normalizedPath);
         return ROOT . 'src/Views/' . $normalizedPath . '.php';
     }
 
-    private static function LoadView(string $path) {
+    private static function LoadView(string $path, $data = []) {
         if(!$path)
             return;
+        extract($data);
+        require self::GetNormalizedPath('Layout.Header');
         require $path;
+        require self::GetNormalizedPath('Layout.Footer');
     }
 
     

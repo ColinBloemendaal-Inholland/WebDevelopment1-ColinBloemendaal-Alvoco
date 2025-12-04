@@ -4,7 +4,7 @@ namespace App\Models\View;
 
 class View
 {
-    public $title;
+    public string $title;
     private $httpcodes = [
             200 => '200 OK',
             201 => '201 Created',
@@ -15,8 +15,8 @@ class View
             404 => '404 Not Found',
             500 => '500 Internal Server Error',
     ];
-    public $http;
-    public $data;
+    public int $http;
+    public array $data;
 
     public function __construct(int $http, string $title, array $data = [])
     {
@@ -28,5 +28,14 @@ class View
         } else {
             $this->http = 500;
         }
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'title'=> $this->title,
+            'data'=> $this->data,
+            'http'=> $this->http,
+        ];
     }
 }
