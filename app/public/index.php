@@ -1,20 +1,11 @@
 <?php
-
-
-session_start();
-
-require __DIR__ . '/../vendor/autoload.php';
-session_start();
-require_once __DIR__ . '/../src/Helpers/auth.php';
-
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
+require __DIR__ . '/../vendor/autoload.php';
+define('ROOT', value: dirname(__DIR__) . '/'); // points to /app
 
-/**
- * Define the routes for the application.
- */
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
-    $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'home']);
+    $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
     $r->addRoute('GET', '/hello/{name}', ['App\Controllers\HelloController', 'greet']);
 });
 
@@ -33,5 +24,10 @@ switch ($routeInfo[0]) {
         echo 'Method Not Allowed';
         break;
     case FastRoute\Dispatcher::FOUND:
-        throw new Exception('Not implemented yet');
+        $controllername = $routeInfo[1][0];
+        $method = $routeInfo[1][1];
+        $params = $routeInfo[2];
+
+        $controller = new $controllername();
+        $controller->$method($params);
 }

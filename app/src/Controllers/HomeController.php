@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class HomeController
 {
-    public function home($vars = [])
+    public function index($vars = [])
     {
         // normally we don't want to echo from a controller method directly
         // but rather load a view template
