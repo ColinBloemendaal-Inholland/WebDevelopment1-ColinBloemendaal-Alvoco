@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Helpers\View;
+
 class HomeController
 {
     public function index($vars = [])
     {
-        // normally we don't want to echo from a controller method directly
-        // but rather load a view template
-        echo "Welcome home!";
+        return View::View('Dashboard/uome', );
     }
 }
