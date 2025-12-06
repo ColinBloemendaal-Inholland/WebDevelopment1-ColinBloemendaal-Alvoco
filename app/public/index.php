@@ -1,5 +1,4 @@
 <?php
-use App\Helpers\View;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Config;
 
