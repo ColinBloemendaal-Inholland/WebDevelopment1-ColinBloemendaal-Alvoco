@@ -13,4 +13,4 @@
     <title><?= $title; ?></title>
 </head>
 
-<body>
+<body class="vh-100 d-flex flex-column">
