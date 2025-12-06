@@ -1,8 +1,5 @@
 <?php 
 
-namespace App\Helpers;
-
-
 use App\Models\View\View as ViewModel;
 
 class View
@@ -22,6 +19,20 @@ class View
         self::LoadView($path, $view);
     }
 
+    private static function LoadView(string $path, $data = []) {
+        if(!$path)
+            return;
+        extract($data);
+        require self::GetNormalizedPath('Layout.Head');
+        require self::GetNormalizedPath('Layout.Nav');
+        // if(str_starts_with($path, ROOT . 'src/Views/Admin')) {
+        //     require self::GetNormalizedPath('Layout.HeaderAdmin');
+        // }
+        require $path;
+        require self::GetNormalizedPath('Layout.Footer');
+        exit;
+    }
+
     public static function Include(string $viewPath) {
         $path = self::GetNormalizedPath($viewPath);
         self::LoadView($path);
@@ -34,20 +45,26 @@ class View
         return ROOT . 'src/Views/' . $normalizedPath . '.php';
     }
 
-    private static function LoadView(string $path, $data = []) {
+    public static function Partial(string $viewPath, $data = []) {
+        $http = 200;
+        $path = self::GetNormalizedPath($viewPath);
+        if(!file_exists($path)) {
+            $http = 404;
+            $path = self::GetNormalizedPath('Errors.404');
+        }
+
+        self::LoadPartial($path, $data);
+    }
+
+    private static function LoadPartial(string $path, $data = []) {
         if(!$path)
             return;
         extract($data);
-        require self::GetNormalizedPath('Layout.Header');
         require $path;
-        require self::GetNormalizedPath('Layout.Footer');
-        exit;
     }
 
     public static function Redirect(string $uri) {
         header('location:'. $uri);
         exit;
-    }
-
-    
+    }    
 }
