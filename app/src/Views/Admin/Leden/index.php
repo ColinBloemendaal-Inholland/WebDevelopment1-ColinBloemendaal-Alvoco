@@ -27,11 +27,14 @@
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
                     <input type="tel" class="form-control" id="searchPhone" placeholder="Voer een telefoon nummer in:">
                 </div>
-                <div class="form-group col-md-6 d-flex align-items-end justify-content-end">
+                <div class="form-group col-md-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
                         <input class="form-check-input" type="checkbox" id="searchTrashed" value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
                     </div>
+                </div>
+                <div class="form-group col-md-3 d-flex align-items-end justify-content-end">
+                    <a href="/admin/leden/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>
             <table id="ledenTable" class="table table-striped table-hover"></table>
