@@ -1,53 +1,49 @@
 <?php
 
-namespace App\Helpers;
+use FastRoute\RouteCollector;
+use function FastRoute\simpleDispatcher;
+use Fastroute\Dispatcher;
 
 class Router {
-    private static array $routes = [];
+    public static $dispatcher;
+    public static function RegisterRoutes() {
+        self::$dispatcher = simpleDispatcher(function (RouteCollector $r) {
+            $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
+            
+            $r->addRoute('GET','/leden', ['App\Controllers\LedenController','index']);
 
-    /** Adds a route to the router */
-    public static function add(string $method, string $path, array $action, array $middleware = []): void {
-        self::$routes[] = [
-            'method' => $method,
-            'path' => trim($path, '/'),
-            'action' => $action,
-            'middleware' => $middleware,
-        ];
+            $r->addRoute('GET','/admin/leden', ['App\Controllers\AdminController','index']);
+            $r->addRoute('GET','/admin/leden/', ['App\Controllers\AdminController','index']);
+
+            $r->addRoute('GET','/api/leden', ['App\Controllers\LedenController','GetLeden']);
+
+            $r->addRoute('GET','/login', ['App\Controllers\LedenController','loginView']);
+            $r->addRoute('POST','/login', ['App\Controllers\LedenController','login']);
+        });
+        self::HandleRoutes();
     }
 
-    public static function dispatch(): void {
-        $requestUri    = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
+    protected static function HandleRoutes() {
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
+        $uri = strtok($_SERVER['REQUEST_URI'], '?');
+        $routeInfo = self::$dispatcher->dispatch($httpMethod, $uri);
 
-        foreach (self::$routes as $route) {
-            if ($route['method'] === $requestMethod && $route['path'] === $requestUri) {
+        switch ($routeInfo[0]) {
+            case Dispatcher::NOT_FOUND:
+                http_response_code(404);
+                View::View("errors.404");
+                break;
+            case Dispatcher::METHOD_NOT_ALLOWED:
+                http_response_code(405);
+                echo 'Method Not Allowed';
+                break;
+            case Dispatcher::FOUND:
+                $controllername = $routeInfo[1][0];
+                $method = $routeInfo[1][1];
+                $params = $routeInfo[2];
 
-                //TODO: do something for middleware here
-                self::callAction($route['action']);
-                return;
-            }
+                $controller = new $controllername();
+                $controller->$method($params);
         }
-
-        http_response_code(404);
-        echo 'Not Found';
-        exit;
     }
-
-    /** Call the controller action */
-    private static function callAction($action)
-    {
-        if (is_callable($action)) {
-            return $action();
-        }
-
-        if (is_array($action)) {
-            [$controller, $method] = $action;
-            var_dump($controller);
-            $controllerInstance = new $controller();
-            return $controllerInstance->$method();
-        }
-
-        throw new \Exception("Invalid route action");
-    }
-
 }
