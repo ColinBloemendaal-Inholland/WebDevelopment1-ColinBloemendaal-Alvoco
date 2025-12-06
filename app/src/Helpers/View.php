@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+
 use App\Models\View\View as ViewModel;
 
 class View
@@ -15,6 +16,7 @@ class View
             $http = 404;
             $path = self::GetNormalizedPath('Errors.404');
         }
+
         $title = $title ? "{$title} - Alvoco" : "Alvoco";
         $view = new ViewModel($http, $title,$data)->toArray();
         self::LoadView($path, $view);
@@ -39,6 +41,12 @@ class View
         require self::GetNormalizedPath('Layout.Header');
         require $path;
         require self::GetNormalizedPath('Layout.Footer');
+        exit;
+    }
+
+    public static function Redirect(string $uri) {
+        header('location:'. $uri);
+        exit;
     }
 
     

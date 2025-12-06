@@ -66,12 +66,16 @@ class Leden extends Model {
     }
 
     /** Get full name of emergency contact */
-    public function getEmergency_contact_fullnameAttribute() {
+    public function getEmergencycontactfullnameAttribute() {
         $fullname = $this->emergency_contact_firstname . ' ';
         if(!empty($this->emergency_contact_middlename)) {
             $fullname .= $this->emergency_contact_middlename . ' ';
         }
         $fullname .= $this->emergency_contact_lastname;
         return $fullname;
+    }
+
+    public function getAdresAttribute() {
+        return $this->streetname . ' ' . $this->streetnumber;
     }
 }
