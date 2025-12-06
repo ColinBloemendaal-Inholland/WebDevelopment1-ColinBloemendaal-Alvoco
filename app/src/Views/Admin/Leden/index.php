@@ -27,8 +27,13 @@
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
                     <input type="tel" class="form-control" id="searchPhone" placeholder="Voer een telefoon nummer in:">
                 </div>
+                <div class="form-group col-md-6 d-flex align-items-end justify-content-end">
+                    <div class="form-check form-switch float-right">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" value="1">
+                        <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
+                    </div>
+                </div>
             </div>
-
             <table id="ledenTable" class="table table-striped table-hover"></table>
         </div>
     </div>
@@ -51,6 +56,7 @@
                     d.adress = $('#searchAdress').val();
                     d.role = $('#searchRole').val() || [];
                     d.phone = $('#searchPhone').val();
+                    d.trashed = $('#searchTrashed').prop('checked') ? 1 : 0;
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -96,7 +102,8 @@
         $('#searchNameOrEmail, #searchAdress, #searchPhone').on('input', timeout);
 
         // Multi-select: reload immediately on change
-        $('#searchRole').on('change', function () {
+        $('#searchRole, #searchTrashed').on('change', function () {
+            console.log($('#searchTrashed').prop('checked'))
             ledenTable.ajax.reload();
         });
 

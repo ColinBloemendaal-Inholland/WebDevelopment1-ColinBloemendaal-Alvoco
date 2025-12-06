@@ -67,8 +67,7 @@ class LedenRepository extends BaseRepository
 
     public function getFilterdLeden(array $filter, int $start, int $length)
     {
-        $query = $this->model->newQuery();
-        $count = $query->count();
+        $query = Leden::query();
         // filter for name
         if (!empty($filter['name'])) {
             $name =  "%{$filter['name']}%";
@@ -104,8 +103,14 @@ class LedenRepository extends BaseRepository
             $phone = "%{$filter['phone']}%";
             $query->where('phone','like', $phone);
         }
+
+        //TODO: make this working
+        if (isset($filter['trashed']) && $filter['trashed'] == 1) {
+            $query->withTrashed();
+        }
         
         $filteredCount = $query->count();
+        $count = Leden::query()->count();
 
         $data = $query->skip($start)->take($length)->get();
 
@@ -115,9 +120,4 @@ class LedenRepository extends BaseRepository
             'recordsTotal'=> $count,
         ];
     }
-
-    //TODO: Add search by phone number / emergency contact phone number
-
-    //TODO: Add search by address (city, streetname, postalcode)
-
 }
