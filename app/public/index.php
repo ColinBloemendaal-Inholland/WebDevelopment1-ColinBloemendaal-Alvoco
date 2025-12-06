@@ -5,8 +5,11 @@ use App\Helpers\View;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Config;
 
-require __DIR__ . '/../vendor/autoload.php';
 define('ROOT', value: dirname(__DIR__) . '/'); // points to /app
+
+require __DIR__ . '/../vendor/autoload.php';
+
+Session::start();
 
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
