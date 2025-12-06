@@ -18,8 +18,6 @@ class LedenController
 
     public function index()
     {
-        $leden = $this->service->getAll();
-        return \View::View("leden.index", "Leden Overzicht", ['leden' => $leden]);
     }
 
     public function GetLeden()
