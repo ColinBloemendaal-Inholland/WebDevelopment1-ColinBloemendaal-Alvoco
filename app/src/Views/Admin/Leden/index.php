@@ -25,7 +25,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
-                    <input type="text" class="form-control" id="searchPhone" placeholder="Voer een telefoon nummer in:">
+                    <input type="tel" class="form-control" id="searchPhone" placeholder="Voer een telefoon nummer in:">
                 </div>
             </div>
 
@@ -50,6 +50,7 @@
                     d.name = $('#searchNameOrEmail').val();
                     d.adress = $('#searchAdress').val();
                     d.role = $('#searchRole').val() || [];
+                    d.phone = $('#searchPhone').val();
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -92,7 +93,7 @@
         };
 
         // Text inputs: reload after 1 second of inactivity
-        $('#searchNameOrEmail, #searchAdress').on('input', timeout);
+        $('#searchNameOrEmail, #searchAdress, #searchPhone').on('input', timeout);
 
         // Multi-select: reload immediately on change
         $('#searchRole').on('change', function () {

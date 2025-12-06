@@ -25,8 +25,10 @@ class LedenController {
         $filter = [
             'name'   => $_POST['name']   ?? '',
             'adress' => $_POST['adress'] ?? '',
-            'role'   => isset($_POST['roles']) ? (array)$_POST['roles'] : []
+            'role'   => isset($_POST['role']) ? (array)$_POST['role'] : [],
+            'phone'   => $_POST['phone'] ?? '',
         ];
+
         $draw = intval($_POST['draw'] ?? 1);
         $start  = intval($_POST['start']  ?? 0);
         $length = intval($_POST['length'] ?? 10);

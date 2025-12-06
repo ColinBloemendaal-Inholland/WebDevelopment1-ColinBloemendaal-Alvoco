@@ -82,7 +82,7 @@ class LedenRepository extends BaseRepository
 
         // Filter for adress
         if (!empty($filter['adress'])) {
-            $adress = '%' . $filter['adress'] . '%';
+            $adress = "%{$filter['adress']}%";
             $query->where(function($q) use ($adress) {
                 $q->where('streetname', 'like', $adress)
                 ->orWhere('streetnumber', 'like', $adress)
@@ -90,11 +90,19 @@ class LedenRepository extends BaseRepository
                 ->orWhere('city', 'like', $adress);
             });
         }
-        //TODO: fix this
+
+        // Filter for roles
         if (!empty($filter['role']) && is_array($filter['role'])) {
-            $query->whereHas('roles', function ($q) use ($filter) {
-                $q->whereIn('roles.id', $filter['role']);
+            $roleIds = array_map('intval', $filter['role']);
+            $query->whereHas('roles', function ($q) use ($roleIds) {
+                $q->whereIn('Roles.id', $roleIds);
             });
+        }
+
+        // Filter for phone
+        if (!empty($filter['phone'])) {
+            $phone = "%{$filter['phone']}%";
+            $query->where('phone','like', $phone);
         }
         
         $filteredCount = $query->count();
