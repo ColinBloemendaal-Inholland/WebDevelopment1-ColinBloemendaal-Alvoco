@@ -16,39 +16,35 @@ class LedenController {
 
     public function index() {
         $leden = $this->service->getAll();
-        return View::View("leden.index", "Leden Overzicht", ['leden' => $leden]);
+        return \View::View("leden.index", "Leden Overzicht", ['leden' => $leden]);
     }
 
     public function GetLeden( ) {
-        header('Content-Type: application/json');
-        $leden = $this->service->getAll();
+        // $leden = $this->service->getAll();
 
-        //TODO: place this logic in the right class > service > repo etc.
-        $data = [];
-        foreach ($leden as $l) {
-            $data[] = [
-                'id'=> $l->id,
-                'fullname'=> $l->fullname,
-                'email'=> $l->email,
-                'phone'=> $l->phone,
-                'adres'=> $l->adres,
-                'postal' => $l->postalcode,
-                'city'=> $l->city,
-                'emergencyFullname'=> $l->Emergencycontactfullname,
-                'emergencyNumber'=> $l->emergency_contact_phone,
-            ];
-        }
-        echo json_encode(['data' => $data]);
+        $filter = [
+            'name'   => $_POST['name']   ?? '',
+            'adress' => $_POST['adress'] ?? '',
+            'role'   => isset($_POST['roles']) ? (array)$_POST['roles'] : []
+        ];
+        $draw = intval($_POST['draw'] ?? 1);
+        $start  = intval($_POST['start']  ?? 0);
+        $length = intval($_POST['length'] ?? 10);
+
+        $result = $this->service->getLedenForDataTable( $filter, $start, $length, $draw );
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
         return;
     }
 
     public function loginView() {
-        return View::View("leden.login");
+        return \View::View("leden.login");
     }
 
     public function login() {
         if(!isset($_POST["email"]) && !isset($_POST["password"])) 
-            return View::Redirect("/login");
+            return \View::Redirect("/login");
         $email = $_POST["email"];
         $password = $_POST["password"];
 
@@ -62,7 +58,7 @@ class LedenController {
             return false;
         }
 
-        Auth::login($user->email, $user->id);
-        View::Redirect("/");
+        \Auth::login($user->email, $user->id);
+        \View::Redirect("/");
     }
 }

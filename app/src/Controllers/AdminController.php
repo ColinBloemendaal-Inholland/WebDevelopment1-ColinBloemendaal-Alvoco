@@ -3,14 +3,24 @@
 namespace App\Controllers;
 
 use App\Helpers\View;
+use App\Services\RolenServices;
 
 class AdminController {
+
+    private RolenServices $rolenServices;
+    public function __construct(?RolenServices $rolenServices = null) {
+        $this->rolenServices = $rolenServices ?? new RolenServices();
+    }
     public function index() {
         return \View::View("admin.index");
     }
 
     public function leden() {
-        return \View::View("admin.leden");
+        $roles = $this->rolenServices->getAll();
+        return \View::View("admin.leden.index", 'Manage leden', ['rolen'=> $roles]);
+    }
+    public function createLeden() {
+        return \View::View("admin.leden.create");
     }
 
     public function nieuwsberichten() {

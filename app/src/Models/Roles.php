@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roles extends Model
 {
-    protected $table = 'roles';
-    protected $fillable = ['name'];
+    protected $table = 'Roles';
+    protected $fillable = ['name', 'power'];
 
     public function leden()
     {

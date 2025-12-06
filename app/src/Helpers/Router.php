@@ -12,7 +12,7 @@ class Router {
             
             $r->addRoute('GET','/leden', ['App\Controllers\LedenController','index']);
 
-            $r->addRoute('GET','/api/leden', ['App\Controllers\LedenController','GetLeden']);
+            $r->addRoute('POST','/api/leden', ['App\Controllers\LedenController','GetLeden']);
 
             $r->addRoute('GET','/login', ['App\Controllers\LedenController','loginView']);
             $r->addRoute('POST','/login', ['App\Controllers\LedenController','login']);
@@ -25,6 +25,8 @@ class Router {
             // Admin > Leden routing
             $r->addRoute('GET','/admin/leden/', ['App\Controllers\AdminController','leden']);
             $r->addRoute('GET','/admin/leden', ['App\Controllers\AdminController','leden']);
+            $r->addRoute('GET','/admin/leden/create', ['App\Controllers\AdminController','createLeden']);
+            $r->addRoute('GET','/admin/leden/create/', ['App\Controllers\AdminController','createLeden']);
 
             // Admin > Nieuwsberichten routing
             $r->addRoute('GET','/admin/nieuwsberichten', ['App\Controllers\AdminController','nieuwsberichten']);

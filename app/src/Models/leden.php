@@ -76,6 +76,6 @@ class Leden extends Model {
     }
 
     public function getAdresAttribute() {
-        return $this->streetname . ' ' . $this->streetnumber;
+        return "{$this->streetname} {$this->streetnumber} {$this->postalcode} {$this->city}";
     }
 }
