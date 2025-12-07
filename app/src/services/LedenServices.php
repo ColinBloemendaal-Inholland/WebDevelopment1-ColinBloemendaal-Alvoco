@@ -5,13 +5,41 @@ namespace App\Services;
 use App\Repositories\LedenRepository;
 use App\Models\Leden;
 
-class LedenServices
+class LedenServices implements IServices
 {
     private LedenRepository $repository;
     public function __construct()
     {
         $this->repository = new LedenRepository(new Leden());
     }
+
+    public function get(int $id): array {
+        $lid = $this->repository->get($id);
+        return 
+    }
+    public function getAll(): array {
+
+    }
+    public function create(array $data): array {
+
+    }
+    public function update(int $id, array $data): array {
+
+    }
+    public function delete(int $id): array {
+
+    }
+    public function destroy(int $id): array {
+
+    }
+    public function datatables(array $filters, int $start, int $length, int $draw): array {
+
+    }
+    public function format(array $data): array {
+
+    }
+
+
 
     public function getByEmail(string $email)
     {

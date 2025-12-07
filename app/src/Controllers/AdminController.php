@@ -32,7 +32,7 @@ class AdminController
     public function getLid(array $params) {
         $lid = $this->ledenServices->getById(intval($params['id']));
         //TODO: fix the passing of the name
-        return \View::View('admin.leden.lid', 'Lid', ['lid'=> $lid]);
+        return \View::View('admin.leden.post', 'Lid', ['lid'=> $lid]);
     }
 
     public function createLeden()
