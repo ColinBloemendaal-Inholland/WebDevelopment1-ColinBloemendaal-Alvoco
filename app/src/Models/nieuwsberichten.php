@@ -20,6 +20,6 @@ class Nieuwsberichten extends Model {
 
     public function Authur(): BelongsTo
     {
-        return $this->belongsTo(Bestuursleden::class);
+        return $this->belongsTo(Bestuursleden::class, 'Bestuursleden_id');
     }
 }

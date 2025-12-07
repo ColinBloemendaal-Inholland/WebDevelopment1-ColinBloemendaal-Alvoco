@@ -19,6 +19,6 @@ class Bestuursleden extends Model {
     
     public function lid(): BelongsTo
     {
-        return $this->belongsTo(Leden::class);
+        return $this->belongsTo(Leden::class, 'Leden_id');
     }
 }
