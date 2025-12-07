@@ -17,9 +17,23 @@ class LedenServices
     {
         return $this->repository->getByEmail($email);
     }
-    public function getById(int $id)
+    public function getById(int $id): array
     {
-        return $this->repository->getById($id);
+        $lid = $this->repository->getById($id);
+
+        if (!$lid) {
+            throw new \Exception("Lid not found with ID $id");
+        }
+
+        $data = $lid->toArray();
+
+        $data['roles'] = $lid->roles instanceof \Illuminate\Support\Collection
+            ? $lid->roles->pluck('id')->toArray()
+            : (is_array($lid->roles) ? $lid->roles : []);
+
+        $data = array_map(fn($value) => $value === null ? '' : $value, $data);
+
+        return $data;
     }
     public function getAll()
     {
@@ -50,7 +64,8 @@ class LedenServices
         ];
     }
 
-    public function create(array $data) {
+    public function create(array $data)
+    {
         return $this->repository->create($data);
     }
 }

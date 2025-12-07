@@ -103,6 +103,13 @@ class AdminController
         }
     }
 
+    public function editLeden(array $params) {
+        $id = intval($params['id']);
+        $lid = $this->ledenServices->getById($id);
+        $roles = $this->rolenServices->getAll();
+        return \View::View("admin.leden.edit", 'Lid wijzigen', ['lid' => $lid, 'rolen'=> $roles]);
+    }
+
 
     public function nieuwsberichten()
     {
