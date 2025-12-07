@@ -36,7 +36,7 @@ class LedenController
 
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
-        $length = intval($_POST['length'] ?? 10);
+        $length = intval($_POST['length'] ?? 25);
 
         $result = $this->service->getLedenForDataTable($filter, $start, $length, $draw);
 
