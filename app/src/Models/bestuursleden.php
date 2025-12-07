@@ -13,7 +13,8 @@ class Bestuursleden extends Model {
         'Leden_id',
         'role',
         'start_date',
-        'end_date'];
+        'end_date'
+    ];
 
     
     public function lid(): BelongsTo
