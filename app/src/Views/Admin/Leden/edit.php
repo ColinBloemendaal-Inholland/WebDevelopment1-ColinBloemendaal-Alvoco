@@ -7,9 +7,8 @@
                     <h2 class="card-title text-center mb-4">Lid Bewerken</h2>
                     <form method="POST" action="/admin/leden/<?= $data['lid']['id'] ?? '' ?>">
                         <input type="hidden" name="_method" value="PUT">
-                        
                         <?php \View::Partial('Layout.errors'); ?>
-
+                        
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
                         <div class="row g-3 mb-3">
@@ -18,13 +17,11 @@
                                 <input type="text" class="form-control" name="firstname" required
                                     value="<?= htmlspecialchars($data['lid']['firstname'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Tussenvoegsel</label>
                                 <input type="text" class="form-control" name="middlename"
                                     value="<?= htmlspecialchars($data['lid']['middlename'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Achternaam</label>
                                 <input type="text" class="form-control" name="lastname" required
@@ -42,13 +39,11 @@
                                     <option value="O" <?= $data['lid']['gender'] ?? '' === 'O' ? 'selected' : '' ?>>Anders</option>
                                 </select>
                             </div>
-
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label">Geboortedatum</label>
                                 <input type="date" class="form-control" name="date_of_birth" required
                                     value="<?= htmlspecialchars($data['lid']['date_of_birth'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">E-mail</label>
                                 <input type="email" class="form-control" name="email" required
@@ -78,25 +73,21 @@
                                 <input type="text" class="form-control" name="streetname"
                                     value="<?= htmlspecialchars($data['lid']['streetname'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-4 col-md-1">
                                 <label class="form-label">Nummer</label>
                                 <input type="text" class="form-control" name="streetnumber"
                                     value="<?= htmlspecialchars($data['lid']['streetnumber'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label">Postcode</label>
                                 <input type="text" class="form-control" name="postalcode"
                                     value="<?= htmlspecialchars($data['lid']['postalcode'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label">Plaats</label>
                                 <input type="text" class="form-control" name="city"
                                     value="<?= htmlspecialchars($data['lid']['city'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-12 col-md-3">
                                 <label class="form-label">Land</label>
                                 <input type="text" class="form-control" id="Country" name="country"
@@ -112,31 +103,26 @@
                                 <input type="text" class="form-control" required name="emergency_contact_firstname"
                                     value="<?= htmlspecialchars($data['lid']['emergency_contact_firstname'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Tussenvoegsel</label>
                                 <input type="text" class="form-control" name="emergency_contact_middlename"
                                     value="<?= htmlspecialchars($data['lid']['emergency_contact_middlename'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Achternaam</label>
                                 <input type="text" class="form-control" required name="emergency_contact_lastname"
                                     value="<?= htmlspecialchars($data['lid']['emergency_contact_lastname'] ?? '') ?>">
                             </div>
-
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Telefoon</label>
                                 <input type="tel" class="form-control" required name="emergency_contact_phone"
                                     value="<?= htmlspecialchars($data['lid']['emergency_contact_phone'] ?? '') ?>">
                             </div>
                         </div>
-
                         <div class="text-center">
                             <button type="submit" class="btn btn-success btn-lg">Opslaan</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
