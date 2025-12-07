@@ -28,6 +28,7 @@ class LedenServices
         $data = $lid->toArray();
 
         $data['roles'] = $lid->roles()->get()->toArray();
+        $data['roleIds'] = array_column($data['roles'],'id');
 
         $data = array_map(fn($value) => $value === null ? '' : $value, $data);
 

@@ -55,7 +55,6 @@
                                     value="<?= htmlspecialchars($data['lid']['email'] ?? '') ?>">
                             </div>
                         </div>
-
                         <!-- Rollen -->
                         <h5 class="mb-3">Rollen</h5>
                         <div class="row g-3 mb-4">
@@ -63,7 +62,7 @@
                                 <label class="form-label" for="roles">Selecteer Rollen</label>
                                 <select name="role[]" id="roles" class="form-select" multiple>
                                     <?php foreach ($data['rolen'] as $rol): ?>
-                                        <option value="<?= $rol->id ?>" <?= in_array($rol->id, $data['lid']['roles'] ?? []) ? 'selected' : '' ?>>
+                                        <option value="<?= $rol->id ?>" <?= in_array($rol->id, $data['lid']['roleIds'] ?? []) ? 'selected' : '' ?>>
                                             <?= $rol->name ?>
                                         </option>
                                     <?php endforeach; ?>
