@@ -11,6 +11,7 @@ class AdminController {
     public function __construct(?RolenServices $rolenServices = null) {
         $this->rolenServices = $rolenServices ?? new RolenServices();
     }
+    
     public function index() {
         return \View::View("admin.index");
     }
@@ -19,6 +20,7 @@ class AdminController {
         $roles = $this->rolenServices->getAll();
         return \View::View("admin.leden.index", 'Manage leden', ['rolen'=> $roles]);
     }
+
     public function createLeden() {
         $roles = $this->rolenServices->getAll();
         return \View::View("admin.leden.create", 'Lid toevoegen', ['rolen'=> $roles]);
