@@ -3,13 +3,13 @@
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
             <div class="form-row">
-                <!-- Name or email search -->
+                <!-- Name of authur search -->
                 <div class="form-group col-md-4">
                     <label for="searchAuthur">Zoek op authur</label>
                     <input type="text" class="form-control" id="searchAuthur"
                         placeholder="Voer een naam in">
                 </div>
-                <!-- Adress search -->
+                <!-- Title search -->
                 <div class="form-group col-md-4">
                     <label for="searchTitle">Zoek op titel:</label>
                     <input type="text" class="form-control" id="searchTitle" placeholder="Voor een titel in:">
@@ -21,7 +21,7 @@
                     <label for="searchFrom">Vanaf:</label>
                     <input type="date" class="form-control" id="searchFrom">
                 </div>
-                <!-- To date search -->
+                <!-- Till date search -->
                 <div class="form-group col-md-3">
                     <label for="searchTill">Tot:</label>
                     <input type="date" class="form-control" id="searchTill">
