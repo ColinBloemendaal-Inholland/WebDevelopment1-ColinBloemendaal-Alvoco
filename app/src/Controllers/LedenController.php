@@ -26,8 +26,6 @@ class LedenController
 
     public function GetLeden()
     {
-        // $leden = $this->service->getAll();
-
         $filter = [
             'name' => $_POST['name'] ?? '',
             'adress' => $_POST['adress'] ?? '',
