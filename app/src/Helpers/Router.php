@@ -13,6 +13,7 @@ class Router {
             $r->addRoute('GET','/leden', ['App\Controllers\LedenController','index']);
 
             $r->addRoute('POST','/api/leden', ['App\Controllers\LedenController','GetLeden']);
+            $r->addRoute('POST','/api/nieuwsberichten', ['App\Controllers\NieuwsberichtenController','GetNieuwsberichten']);
 
             $r->addRoute('GET','/login', ['App\Controllers\LedenController','loginView']);
             $r->addRoute('POST','/login', ['App\Controllers\LedenController','login']);
