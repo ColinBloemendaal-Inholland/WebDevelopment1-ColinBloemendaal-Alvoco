@@ -26,9 +26,9 @@ class Router {
             // Admin > Leden routing
             $r->addRoute('GET','/admin/leden/', ['App\Controllers\AdminController','leden']);
             $r->addRoute('GET','/admin/leden', ['App\Controllers\AdminController','leden']);
-            $r->addRoute('GET','/admin/leden/create', ['App\Controllers\LedenController','create']);
-            $r->addRoute('GET','/admin/leden/create/', ['App\Controllers\LedenController','create']);
-
+            $r->addRoute('GET','/admin/leden/create', ['App\Controllers\AdminController','createLeden']);
+            $r->addRoute('GET','/admin/leden/create/', ['App\Controllers\AdminController','createLeden']);
+            $r->addRoute('POST','/admin/leden/create', ['App\Controllers\AdminController','storeLeden']);
             // Admin > Nieuwsberichten routing
             $r->addRoute('GET','/admin/nieuwsberichten', ['App\Controllers\AdminController','nieuwsberichten']);
             $r->addRoute('GET','/admin/nieuwsberichten/', ['App\Controllers\AdminController','nieuwsberichten']);

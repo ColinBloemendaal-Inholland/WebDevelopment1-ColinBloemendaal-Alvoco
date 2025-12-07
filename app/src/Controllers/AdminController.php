@@ -20,7 +20,8 @@ class AdminController {
         return \View::View("admin.leden.index", 'Manage leden', ['rolen'=> $roles]);
     }
     public function createLeden() {
-        return \View::View("admin.leden.create");
+        $roles = $this->rolenServices->getAll();
+        return \View::View("admin.leden.create", 'Lid toevoegen', ['rolen'=> $roles]);
     }
 
     public function nieuwsberichten() {
