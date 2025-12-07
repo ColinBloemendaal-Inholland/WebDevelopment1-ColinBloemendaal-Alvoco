@@ -1,14 +1,14 @@
 <div class="d-flex flex-grow-1">
     <?php \View::Partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
-        
         <div class="container-fluid m-0 py-5">
             <div class="card shadow-sm">
                 <div class="card-body">
-
                     <h2 class="card-title text-center mb-4">Lid Bewerken</h2>
-
-                    <form method="POST" action="/admin/leden/update/<?= $data['lid']['id'] ?? '' ?>">
+                    <form method="POST" action="/admin/leden/<?= $data['lid']['id'] ?? '' ?>">
+                        <input type="hidden" name="_method" value="PUT">
+                        
+                        <?php \View::Partial('Layout.errors'); ?>
 
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>

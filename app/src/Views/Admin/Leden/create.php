@@ -8,6 +8,9 @@
                     <form method="POST" action="/admin/leden/create">
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
+
+                        <?php \View::Partial('Layout.errors'); ?>
+                        
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Voornaam</label>

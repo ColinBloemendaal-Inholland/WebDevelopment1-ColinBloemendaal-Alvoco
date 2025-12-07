@@ -26,10 +26,12 @@ class Router {
             // Admin > Leden routing
             $r->addRoute('GET','/admin/leden/', ['App\Controllers\AdminController','leden']);
             $r->addRoute('GET','/admin/leden', ['App\Controllers\AdminController','leden']);
+            $r->addRoute('GET','/admin/leden/{id:\d+}', ['App\Controllers\AdminController','getLid']);
             $r->addRoute('GET','/admin/leden/create', ['App\Controllers\AdminController','createLeden']);
             $r->addRoute('GET','/admin/leden/create/', ['App\Controllers\AdminController','createLeden']);
             $r->addRoute('POST','/admin/leden/create', ['App\Controllers\AdminController','storeLeden']);
             $r->addRoute('GET','/admin/leden/{id:\d+}/edit', ['App\Controllers\AdminController','editLeden']);
+            $r->addRoute('PUT','/admin/leden/{id:\d+}', ['App\Controllers\AdminController','updateLeden']);
 
             // Admin > Nieuwsberichten routing
             $r->addRoute('GET','/admin/nieuwsberichten', ['App\Controllers\AdminController','nieuwsberichten']);
@@ -60,6 +62,9 @@ class Router {
 
     protected static function HandleRoutes() {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
+        if ($httpMethod === 'POST' && isset($_POST['_method'])) {
+            $httpMethod = strtoupper($_POST['_method']);
+        }
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $routeInfo = self::$dispatcher->dispatch($httpMethod, $uri);
 

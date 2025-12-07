@@ -27,9 +27,7 @@ class LedenServices
 
         $data = $lid->toArray();
 
-        $data['roles'] = $lid->roles instanceof \Illuminate\Support\Collection
-            ? $lid->roles->pluck('id')->toArray()
-            : (is_array($lid->roles) ? $lid->roles : []);
+        $data['roles'] = $lid->roles()->get()->toArray();
 
         $data = array_map(fn($value) => $value === null ? '' : $value, $data);
 
@@ -67,5 +65,13 @@ class LedenServices
     public function create(array $data)
     {
         return $this->repository->create($data);
+    }
+
+    public function update(int $id, array $data, array $roles)
+    {
+        $lid = $this->repository->getById($id);
+        $lid->update($data);
+        $lid->roles()->sync($roles);
+        return $lid;
     }
 }
