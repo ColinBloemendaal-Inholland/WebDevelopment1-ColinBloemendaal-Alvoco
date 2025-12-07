@@ -20,10 +20,6 @@ class LedenController
     {
     }
 
-    public function create() {
-        return \View::View("admin.leden.create");
-    }
-
     public function GetLeden()
     {
         $filter = [
