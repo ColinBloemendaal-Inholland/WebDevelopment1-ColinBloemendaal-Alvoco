@@ -49,4 +49,8 @@ class LedenServices
             'id' => $row['id'],
         ];
     }
+
+    public function create(array $data) {
+        return $this->repository->create($data);
+    }
 }
