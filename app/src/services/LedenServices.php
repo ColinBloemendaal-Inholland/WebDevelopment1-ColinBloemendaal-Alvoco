@@ -13,62 +13,40 @@ class LedenServices implements IServices
         $this->repository = new LedenRepository(new Leden());
     }
 
-    public function get(int $id): array {
+    public function get(int $id, bool $roles = false): array {
         $lid = $this->repository->get($id);
-        return 
+        $data = $lid->toArray();
+        if($lid && $roles) {
+            $data["roles"] = $lid->roles()->get()->toArray() ?? [];
+            $data["roleIds"] = array_column($data['roles'],'id') ?? [];
+        }
+        return $data ?? null;
     }
     public function getAll(): array {
-
+        return $this->repository->getAll()->toArray() ?? null;
     }
     public function create(array $data): array {
-
+        return $this->repository->create($data)->toArray() ?? null;
     }
-    public function update(int $id, array $data): array {
-
+    public function update(int $id, array $data, ?array $roles = null): array {
+        return $this->repository->update($id, $data, $roles)->toArray() ?? null;
     }
-    public function delete(int $id): array {
-
+    public function delete(int $id): bool {
+        return $this->repository->delete($id) ?? false;
     }
-    public function destroy(int $id): array {
-
+    public function destroy(int $id): bool {
+        return $this->repository->destroy($id) ?? false;
     }
-    public function datatables(array $filters, int $start, int $length, int $draw): array {
-
+    public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
+        return $this->repository->filter($filters, $start, $limit);
     }
-    public function format(array $data): array {
-
-    }
-
-
-
     public function getByEmail(string $email)
     {
         return $this->repository->getByEmail($email);
     }
-    public function getById(int $id): array
-    {
-        $lid = $this->repository->getById($id);
-
-        if (!$lid) {
-            throw new \Exception("Lid not found with ID $id");
-        }
-
-        $data = $lid->toArray();
-
-        $data['roles'] = $lid->roles()->get()->toArray();
-        $data['roleIds'] = array_column($data['roles'],'id');
-
-        $data = array_map(fn($value) => $value === null ? '' : $value, $data);
-
-        return $data;
-    }
-    public function getAll()
-    {
-        return $this->repository->getAll();
-    }
     public function getLedenForDataTable(array $filters, int $start, $length, int $draw): array
     {
-        $result = $this->repository->getFilterdLeden($filters, $start, $length);
+        $result = $this->filter($filters, $start, $length);
         $formattedResults = array_map([$this, 'formatLid'], $result['data']->toArray());
         return [
             "draw" => $draw,
@@ -89,18 +67,5 @@ class LedenServices implements IServices
             ),
             'id' => $row['id'],
         ];
-    }
-
-    public function create(array $data)
-    {
-        return $this->repository->create($data);
-    }
-
-    public function update(int $id, array $data, array $roles)
-    {
-        $lid = $this->repository->getById($id);
-        $lid->update($data);
-        $lid->roles()->sync($roles);
-        return $lid;
     }
 }

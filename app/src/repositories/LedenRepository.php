@@ -65,7 +65,7 @@ class LedenRepository extends BaseRepository
             $user->roles()->detach($role->id);
     }
 
-    public function getFilterdLeden(array $filter, int $start, int $length)
+    public function filter(array $filter, int $start, int $length): array
     {
         $query = Leden::query();
         // filter for name
