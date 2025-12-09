@@ -20,8 +20,8 @@ class TeamsServices implements IServices {
     public function create(array $data): array {
         return $this->repository->create($data)->toArray() ?? null;
     }
-    public function update(int $id, array $data, ?array $roles = null): array {
-        return $this->repository->update($id, $data, $roles)->toArray() ?? null;
+    public function update(int $id, array $data): array {
+        return $this->repository->update($id, $data)->toArray() ?? null;
     }
     public function delete(int $id): bool {
         return $this->repository->delete($id) ?? false;
