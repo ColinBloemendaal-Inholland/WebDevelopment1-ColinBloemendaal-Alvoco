@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Roles;
-use Illuminate\Database\Eloquent\Collection;
 
 class RolesRepository extends BaseRepository
 {
