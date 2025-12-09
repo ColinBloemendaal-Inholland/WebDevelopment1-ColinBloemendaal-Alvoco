@@ -101,7 +101,7 @@ class AdminController
 
         try {
             $lid = $this->ledenServices->create($lidData);
-            \View::Redirect("/admin/leden/{$lid->id}");
+            \View::Redirect("/admin/leden/{$lid['id']}");
         } catch (Exception $e) {
             $_SESSION["form_erros"] = $errors;
             $_SESSION["form_old"] = $data;
@@ -112,7 +112,7 @@ class AdminController
     public function editLeden(array $params)
     {
         $id = intval($params['id']);
-        $lid = $this->ledenServices->getById($id);
+        $lid = $this->ledenServices->get($id);
         $roles = $this->rolenServices->getAll();
         return \View::View("admin.leden.edit", 'Lid wijzigen', ['lid' => $lid, 'rolen' => $roles]);
     }
@@ -206,7 +206,7 @@ class AdminController
 
         try {
             $lid = $this->ledenServices->update($id, $lidData, $roles);
-            \View::Redirect("/admin/leden/{$lid->id}");
+            \View::Redirect("/admin/leden/{$lid['id']}");
         } catch (Exception $e) {
             $_SESSION["form_errors"] = ['exception' => $e->getMessage()];
             $_SESSION["form_old"] = $data;

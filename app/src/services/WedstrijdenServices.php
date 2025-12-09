@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Wedstrijden;
 use App\Repositories\WedstrijdenRepository;
-use App\Models\Teams;
 
 class WedstrijdenServices implements IServices {
     private WedstrijdenRepository $repository;
     public function __construct() {
-        $this->repository = new WedstrijdenRepository(new Teams());
+        $this->repository = new WedstrijdenRepository(new Wedstrijden());
     }
 
     public function get(int $id): array {
