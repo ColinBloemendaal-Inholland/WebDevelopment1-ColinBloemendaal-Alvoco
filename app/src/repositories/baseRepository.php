@@ -16,7 +16,7 @@ abstract class BaseRepository implements IBaseRepository
 
     public function get(int $id): ?Model
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
     public function getAll(): Collection
@@ -31,26 +31,20 @@ abstract class BaseRepository implements IBaseRepository
 
     public function update(int $id, array $data, ?array $roles = null): Model
     {
-        $record = $this->get($id);
-        if (!$record) 
-            return null;
+        $record = $this->model->findOrFail($id);
         $record->update($data);
-        if($record && $roles)
-            $record->roles()->sync($roles);
-        return $this->get($id);
+        return $record->refresh();
     }
 
     public function delete(int $id): bool
     {
-        $record = $this->get($id);
-        if (!$record) return false;
+        $record = $this->model->findOrFail($id);
         return $record->delete() ?? false;
     }
 
     public function destroy(int $id): bool
     {
-        $record = $this->get($id);
-        if (!$record) return false;
+        $record = $this->model->findOrFail($id);
         return $record->forceDelete() ?? false;
     }
 }
