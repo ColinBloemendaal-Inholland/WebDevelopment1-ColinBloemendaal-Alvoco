@@ -15,7 +15,7 @@ class BaseController {
         $user = null;
         if(\Auth::isLoggedIn() && \Auth::user()) {
             $id = \Auth::id();
-            $user = $this->ledenServices->getById($id);
+            $user = $this->ledenServices->get($id);
         }
         return $user;
     }
