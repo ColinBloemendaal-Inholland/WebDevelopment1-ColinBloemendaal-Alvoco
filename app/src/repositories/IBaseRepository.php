@@ -25,7 +25,7 @@ interface IBaseRepository
     /**
      * Update a record by ID with given data
      */
-    public function update(int $id, array $data): bool;
+    public function update(int $id, array $data): Model;
 
     /**
      * Soft delete a record by ID
@@ -35,5 +35,5 @@ interface IBaseRepository
     /**
      * Force delete a record by ID
      */
-    public function forceDelete(int $id): bool;
+    public function destroy(int $id): bool;
 }

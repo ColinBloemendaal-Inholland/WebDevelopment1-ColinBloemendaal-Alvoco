@@ -29,24 +29,28 @@ abstract class BaseRepository implements IBaseRepository
         return $this->model->create($data);
     }
 
-    public function update(int $id, array $data): bool
+    public function update(int $id, array $data, ?array $roles = null): Model
     {
         $record = $this->get($id);
-        if (!$record) return false;
-        return $record->update($data);
+        if (!$record) 
+            return null;
+        $record->update($data);
+        if($record && $roles)
+            $record->roles()->sync($roles);
+        return $this->get($id);
     }
 
     public function delete(int $id): bool
     {
         $record = $this->get($id);
         if (!$record) return false;
-        return $record->delete();
+        return $record->delete() ?? false;
     }
 
-    public function forceDelete(int $id): bool
+    public function destroy(int $id): bool
     {
         $record = $this->get($id);
         if (!$record) return false;
-        return $record->forceDelete();
+        return $record->forceDelete() ?? false;
     }
 }
