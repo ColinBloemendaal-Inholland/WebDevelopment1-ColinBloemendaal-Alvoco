@@ -3,18 +3,18 @@
 namespace App\Controllers;
 
 use App\Helpers\View;
-use App\Services\RolenServices;
+use App\Services\RolesServices;
 use App\Services\LedenServices;
 use Exception;
 
 class AdminController
 {
 
-    private RolenServices $rolenServices;
+    private RolesServices $rolenServices;
     private LedenServices $ledenServices;
-    public function __construct(?RolenServices $rolenServices = null, ?LedenServices $ledenServices = null)
+    public function __construct(?RolesServices $rolenServices = null, ?LedenServices $ledenServices = null)
     {
-        $this->rolenServices = $rolenServices ?? new RolenServices();
+        $this->rolenServices = $rolenServices ?? new RolesServices();
         $this->ledenServices = $ledenServices ?? new LedenServices();
     }
 
@@ -30,7 +30,7 @@ class AdminController
     }
 
     public function getLid(array $params) {
-        $lid = $this->ledenServices->getById(intval($params['id']));
+        $lid = $this->ledenServices->get(intval($params['id']));
         //TODO: fix the passing of the name
         return \View::View('admin.leden.post', 'Lid', ['lid'=> $lid]);
     }
