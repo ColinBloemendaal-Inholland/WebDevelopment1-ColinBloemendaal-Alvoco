@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Coaches extends Model {
     use SoftDeletes;
     protected $table = "Coaches";
+    protected $with = [ 'lid' ];
     protected $fillable = [
         'Leden_id',
         'role',
