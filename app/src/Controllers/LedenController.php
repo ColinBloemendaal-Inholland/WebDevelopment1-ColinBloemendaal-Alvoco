@@ -15,40 +15,40 @@ class LedenController extends BaseController implements IController
         $this->service = $ledenService ?? new LedenServices();
     }
 
-    public function index(): void {
+    public function index() {
         $data = $this->service->getAll();
         return \View::View("leden.index", 'Leden', ['leden' => $data]);
     }
-    public function show(array $params): void {
+    public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
         return \View::View('leden.post', $data['Title'], $data);
     }
-    public function Create(): void {
+    public function Create() {
         return \View::View('admin.leden.create', 'Lid aanmaken');
     }
-    public function store(): void {
+    public function store() {
         //TODO: Implement some validation
         $post = $this->service->create($_POST);
         return \View::Redirect("/admin/leden/{$post['id']}");
     }
 
-    public function edit(array $params): void {
+    public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.leden.edit", 'Wijzig lid', $post);
     }
 
-    public function update(): void {
+    public function update() {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/leden/{$post['id']}");
     }
 
-    public function delete(array $params): void {
+    public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/leden");
     }
 
-    public function destroy(array $params): void {
+    public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/leden");
     }
@@ -67,7 +67,7 @@ class LedenController extends BaseController implements IController
         $start = intval($_POST['start'] ?? 0);
         $length = intval($_POST['length'] ?? 25);
 
-        $result = $this->service->getLedenForDataTable($filter, $start, $length, $draw);
+        $result = $this->service->datatable($filter, $start, $length, $draw);
 
         header('Content-Type: application/json');
         echo json_encode($result);

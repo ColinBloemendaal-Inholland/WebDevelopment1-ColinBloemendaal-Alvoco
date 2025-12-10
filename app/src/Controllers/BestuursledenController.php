@@ -11,43 +11,43 @@ class BestuursledenController extends BaseController implements IController {
         $this->service = $service ?? new BestuursledenServices();
     }
 
-    public function index(): void {
+    public function index() {
         $data = $this->service->getAll();
         return \View::View("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
     }
 
-    public function show(array $params): void {
+    public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
         return \View::View('bestuursleden.post', $data['Title'], $data);
     }
 
-    public function Create(): void {
+    public function Create() {
         return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken');
     }
 
-    public function store(): void {
+    public function store() {
         //TODO: Implement some validation
         $post = $this->service->create($_POST);
         return \View::Redirect("/admin/bestuursleden/{$post['id']}");
     }
 
-    public function edit(array $params): void {
+    public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', $post);
     }
 
-    public function update(): void {
+    public function update() {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/bestuursleden/{$post['id']}");
     }
 
-    public function delete(array $params): void {
+    public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/bestuursleden");
     }
 
-    public function destroy(array $params): void {
+    public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/bestuursleden");
     }

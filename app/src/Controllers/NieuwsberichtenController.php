@@ -10,40 +10,40 @@ class NieuwsberichtenController extends BaseController implements IController {
         $this->service = $service ?? new NieuwsberichtenServices();
     }
 
-    public function index(): void {
+    public function index() {
         $data = $this->service->getAll();
         return \View::View("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
     }
-    public function show(array $params): void {
+    public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
         return \View::View('nieuwsberichten.post', $data['Titl'], $data);
     }
-    public function Create(): void {
+    public function Create() {
         return \View::View('admin.nieuwsberichten.create', 'Niewsbericht aanmaken');
     }
-    public function store(): void {
+    public function store() {
         //TODO: Implement some validation
         $post = $this->service->create($_POST);
         return \View::Redirect("/admin/nieuwsberichten/{$post['id']}");
     }
 
-    public function edit(array $params): void {
+    public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.nieuwsberichten.edit",'Wijzig nieuwsbericht', $post);
     }
 
-    public function update(): void {
+    public function update() {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/nieuwsberichten/{$post['id']}");
     }
 
-    public function delete(array $params): void {
+    public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/nieuwsberichten");
     }
 
-    public function destroy(array $params): void {
+    public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/nieuwsberichten");
     }
@@ -64,7 +64,7 @@ class NieuwsberichtenController extends BaseController implements IController {
         $start = $_POST['start'] ?? 0;
         $length = $_POST['length'] ?? 25;
 
-        $result = $this->service->getNieuwsberichtenForDatatable($filter, $start, $length, $draw);
+        $result = $this->service->datatable($filter, $start, $length, $draw);
 
         header('Content-Type: application/json');
         echo json_encode($result);

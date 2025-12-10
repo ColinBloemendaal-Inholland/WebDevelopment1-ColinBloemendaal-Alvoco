@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\View;
+use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
 use Exception;
@@ -12,10 +13,12 @@ class AdminController
 
     private RolesServices $rolenServices;
     private LedenServices $ledenServices;
-    public function __construct(?RolesServices $rolenServices = null, ?LedenServices $ledenServices = null)
+    private NieuwsberichtenServices $nieuwsberichtenServices;
+    public function __construct(?RolesServices $rolenServices = null, ?LedenServices $ledenServices = null, ?NieuwsberichtenServices $nieuwsberichtenServices = null)
     {
         $this->rolenServices = $rolenServices ?? new RolesServices();
         $this->ledenServices = $ledenServices ?? new LedenServices();
+        $this->nieuwsberichtenServices = $nieuwsberichtenServices ?? new NieuwsberichtenServices();
     }
 
     public function index()

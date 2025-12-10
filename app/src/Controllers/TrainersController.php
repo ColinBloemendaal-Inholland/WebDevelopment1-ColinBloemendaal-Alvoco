@@ -11,43 +11,43 @@ class TrainersController extends BaseController implements IController {
         $this->service = $ledenService ?? new TrainersServices();
     }
 
-    public function index(): void {
+    public function index() {
         $data = $this->service->getAll();
         return \View::View("trainers.index", 'Trainers', ['trainers' => $data]);
     }
 
-    public function show(array $params): void {
+    public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
         return \View::View('trainers.post', $data['Title'], $data);
     }
 
-    public function Create(): void {
+    public function Create() {
         return \View::View('admin.trainers.create', 'Trainer aanmaken');
     }
 
-    public function store(): void {
+    public function store() {
         //TODO: Implement some validation
         $post = $this->service->create($_POST);
         return \View::Redirect("/admin/trainers/{$post['id']}");
     }
 
-    public function edit(array $params): void {
+    public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.trainers.edit", 'Wijzig trainer', $post);
     }
 
-    public function update(): void {
+    public function update() {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/trainers/{$post['id']}");
     }
 
-    public function delete(array $params): void {
+    public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/trainers");
     }
 
-    public function destroy(array $params): void {
+    public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/trainers");
     }

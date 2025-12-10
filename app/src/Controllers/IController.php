@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 interface IController {
-    public function index(): void;
-    public function show(array $params): void;
-    public function create(): void;
-    public function store(): void;
-    public function edit(array $params): void;
-    public function update(): void;
-    public function delete(array $params): void;
-    public function destroy(array $params): void;
+    public function index();
+    public function show(array $params);
+    public function create();
+    public function store();
+    public function edit(array $params);
+    public function update();
+    public function delete(array $params);
+    public function destroy(array $params);
 
 }
