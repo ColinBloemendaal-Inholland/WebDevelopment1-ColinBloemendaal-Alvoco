@@ -4,51 +4,74 @@ namespace App\Controllers;
 
 use App\Helpers\Auth;
 use App\Services\LedenServices;
+use App\Requests\LedenStoreRequest;
+use App\Services\RolesServices;
+
 
 
 class LedenController extends BaseController implements IController
 {
 
+    private RolesServices $rolenServices;
     private LedenServices $service;
-    public function __construct(?LedenServices $ledenService = null)
+    public function __construct(?LedenServices $ledenService = null, ?RolesServices $rolesServices = null)
     {
         $this->service = $ledenService ?? new LedenServices();
+        $this->rolenServices = $rolesServices ?? new RolesServices();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = $this->service->getAll();
         return \View::View("leden.index", 'Leden', ['leden' => $data]);
     }
-    public function show(array $params) {
+    public function show(array $params)
+    {
         $data = $this->service->get(intval($params['id']));
         return \View::View('leden.post', $data['Title'], $data);
     }
-    public function Create() {
-        return \View::View('admin.leden.create', 'Lid aanmaken');
+    public function Create()
+    {
+        $data = $this->rolenServices->getAll();
+        return \View::View('admin.leden.create', 'Lid aanmaken', ['rolen'=> $data]);
     }
-    public function store() {
-        //TODO: Implement some validation
-        $post = $this->service->create($_POST);
+    public function store()
+    {
+        try {
+            $request = new LedenStoreRequest($_POST);
+            $validated = $request->validate();
+            
+            $post = $this->service->create($validated);
+        } catch (\Exception $e) {
+            $errors = json_decode($e->getMessage(), true);
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_old'] = $_POST;
+            return \View::Redirect("/admin/leden/create");
+        }
         return \View::Redirect("/admin/leden/{$post['id']}");
     }
 
-    public function edit(array $params) {
+    public function edit(array $params)
+    {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.leden.edit", 'Wijzig lid', $post);
     }
 
-    public function update() {
+    public function update()
+    {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/leden/{$post['id']}");
     }
 
-    public function delete(array $params) {
+    public function delete(array $params)
+    {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/leden");
     }
 
-    public function destroy(array $params) {
+    public function destroy(array $params)
+    {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/leden");
     }
