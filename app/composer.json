@@ -6,7 +6,8 @@
     "nesbot/carbon": "^3.10",
     "illuminate/database": "^12.40",
     "illuminate/events": "^12.40",
-    "illuminate/support": "^12.40"
+    "illuminate/support": "^12.40",
+    "rakit/validation": "^1.4"
   },
   "autoload": {
     "psr-4": {
