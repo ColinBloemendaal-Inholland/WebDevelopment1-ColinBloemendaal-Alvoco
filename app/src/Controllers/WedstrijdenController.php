@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Requests\WedstrijdenStoreRequest;
+use App\Models\Requests\WedstrijdenUpdateRequest;
 use App\Services\WedstrijdenServices;
 
 class WedstrijdenController extends BaseController implements IController {
@@ -25,21 +27,38 @@ class WedstrijdenController extends BaseController implements IController {
         return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken');
     }
 
-    public function store() {
-        //TODO: Implement some validation
-        $post = $this->service->create($_POST);
-        return \View::Redirect("/admin/bestuursleden/{$post['id']}");
+    public function store()
+    {
+        try {
+            $validated = new WedstrijdenStoreRequest($_POST)->validate();
+            $post = $this->service->create($validated);
+        } catch (\Exception $e) {
+            $errors = json_decode($e->getMessage(), true);
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_old'] = $_POST;
+            return \View::Redirect("/admin/wedstrijden/create");
+        }
+        return \View::Redirect("/admin/wedstrijden/{$post['id']}");
     }
 
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', $post);
+        return \View::View("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
     }
 
-    public function update(array $params) {
-        //TODO: Implement some validation
-        $post = $this->service->update(intval($_POST['id']), $_POST);
-        return \View::Redirect("/admin/bestuursleden/{$post['id']}");
+    public function update(array $params)
+    {
+        $id = intval($params['id']);
+        try {
+            $validated = new WedstrijdenUpdateRequest($_POST)->validate();
+            $this->service->update($id, $validated);
+            return \View::Redirect("/admin/wedstrijden/{$id}");
+        } catch (\Exception $e) {
+            $errors = json_decode($e->getMessage(), true);
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_old'] = $_POST;
+            return \View::Redirect("/admin/wedstrijden/{$id}");
+        }
     }
 
     public function delete(array $params) {
