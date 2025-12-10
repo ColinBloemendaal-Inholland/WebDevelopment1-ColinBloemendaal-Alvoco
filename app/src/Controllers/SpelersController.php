@@ -36,7 +36,7 @@ class SpelersController extends BaseController implements IController {
         return \View::View("admin.spelers.edit", 'Wijzig speler', $post);
     }
 
-    public function update() {
+    public function update(array $params) {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/spelers/{$post['id']}");

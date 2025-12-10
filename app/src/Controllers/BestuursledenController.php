@@ -36,7 +36,7 @@ class BestuursledenController extends BaseController implements IController {
         return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', $post);
     }
 
-    public function update() {
+    public function update(array $params) {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/bestuursleden/{$post['id']}");

@@ -32,7 +32,7 @@ class NieuwsberichtenController extends BaseController implements IController {
         return \View::View("admin.nieuwsberichten.edit",'Wijzig nieuwsbericht', $post);
     }
 
-    public function update() {
+    public function update(array $params) {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/nieuwsberichten/{$post['id']}");

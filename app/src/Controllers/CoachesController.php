@@ -36,7 +36,7 @@ class CoachesController extends BaseController implements IController {
         return \View::View("admin.coaches.edit", 'Wijzig coach', $post);
     }
 
-    public function update() {
+    public function update(array $params) {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/coaches/{$post['id']}");

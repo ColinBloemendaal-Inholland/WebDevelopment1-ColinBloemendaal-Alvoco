@@ -36,7 +36,7 @@ class TeamsController extends BaseController implements IController {
         return \View::View("admin.teams.edit", 'Wijzig team', $post);
     }
 
-    public function update() {
+    public function update(array $params) {
         //TODO: Implement some validation
         $post = $this->service->update(intval($_POST['id']), $_POST);
         return \View::Redirect("/admin/teams/{$post['id']}");
