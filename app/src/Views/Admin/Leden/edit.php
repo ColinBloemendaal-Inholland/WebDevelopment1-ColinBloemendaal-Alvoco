@@ -15,17 +15,17 @@
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Voornaam</label>
                                 <input type="text" class="form-control" name="firstname" required
-                                    value="<?= htmlspecialchars($data['lid']['firstname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['firstname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Tussenvoegsel</label>
                                 <input type="text" class="form-control" name="middlename"
-                                    value="<?= htmlspecialchars($data['lid']['middlename'] ?? '') ?>">
+                                    value="<?= e($data['lid']['middlename'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">Achternaam</label>
                                 <input type="text" class="form-control" name="lastname" required
-                                    value="<?= htmlspecialchars($data['lid']['lastname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['lastname'] ?? '') ?>">
                             </div>
                         </div>
 
@@ -42,12 +42,12 @@
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label">Geboortedatum</label>
                                 <input type="date" class="form-control" name="date_of_birth" required
-                                    value="<?= htmlspecialchars($data['lid']['date_of_birth'] ?? '') ?>">
+                                    value="<?= e($data['lid']['date_of_birth'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label">E-mail</label>
                                 <input type="email" class="form-control" name="email" required
-                                    value="<?= htmlspecialchars($data['lid']['email'] ?? '') ?>">
+                                    value="<?= e($data['lid']['email'] ?? '') ?>">
                             </div>
                         </div>
                         <!-- Rollen -->
@@ -71,27 +71,27 @@
                             <div class="col-sm-8 col-md-4">
                                 <label class="form-label">Straatnaam</label>
                                 <input type="text" class="form-control" name="streetname"
-                                    value="<?= htmlspecialchars($data['lid']['streetname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['streetname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-4 col-md-1">
                                 <label class="form-label">Nummer</label>
                                 <input type="text" class="form-control" name="streetnumber"
-                                    value="<?= htmlspecialchars($data['lid']['streetnumber'] ?? '') ?>">
+                                    value="<?= e($data['lid']['streetnumber'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label">Postcode</label>
                                 <input type="text" class="form-control" name="postalcode"
-                                    value="<?= htmlspecialchars($data['lid']['postalcode'] ?? '') ?>">
+                                    value="<?= e($data['lid']['postalcode'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label">Plaats</label>
                                 <input type="text" class="form-control" name="city"
-                                    value="<?= htmlspecialchars($data['lid']['city'] ?? '') ?>">
+                                    value="<?= e($data['lid']['city'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-3">
                                 <label class="form-label">Land</label>
                                 <input type="text" class="form-control" id="Country" name="country"
-                                    value="<?= htmlspecialchars($data['lid']['country'] ?? '') ?>">
+                                    value="<?= e($data['lid']['country'] ?? '') ?>">
                             </div>
                         </div>
 
@@ -101,22 +101,22 @@
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Voornaam</label>
                                 <input type="text" class="form-control" required name="emergency_contact_firstname"
-                                    value="<?= htmlspecialchars($data['lid']['emergency_contact_firstname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['emergency_contact_firstname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Tussenvoegsel</label>
                                 <input type="text" class="form-control" name="emergency_contact_middlename"
-                                    value="<?= htmlspecialchars($data['lid']['emergency_contact_middlename'] ?? '') ?>">
+                                    value="<?= e($data['lid']['emergency_contact_middlename'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Achternaam</label>
                                 <input type="text" class="form-control" required name="emergency_contact_lastname"
-                                    value="<?= htmlspecialchars($data['lid']['emergency_contact_lastname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['emergency_contact_lastname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label">Telefoon</label>
                                 <input type="tel" class="form-control" required name="emergency_contact_phone"
-                                    value="<?= htmlspecialchars($data['lid']['emergency_contact_phone'] ?? '') ?>">
+                                    value="<?= e($data['lid']['emergency_contact_phone'] ?? '') ?>">
                             </div>
                         </div>
                         <div class="text-center">
