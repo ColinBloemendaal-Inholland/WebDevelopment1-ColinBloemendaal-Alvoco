@@ -44,7 +44,7 @@ class LedenServices implements IServices
     {
         return $this->repository->getByEmail($email);
     }
-    public function getLedenForDataTable(array $filters, int $start, $length, int $draw): array
+    public function datatable(array $filters, int $start, $length, int $draw): array
     {
         $result = $this->filter($filters, $start, $length);
         $formattedResults = array_map([$this, 'formatLid'], $result['data']->toArray());

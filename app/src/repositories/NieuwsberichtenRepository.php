@@ -11,7 +11,7 @@ class NieuwsberichtenRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getFilterdNieuwsberichten(array $filter, int $start, int $length)
+    public function filter(array $filter, int $start, int $length)
     {
         $query = Nieuwsberichten::query()
             ->select('id', 'Title', 'Bestuursleden_id')
@@ -51,12 +51,15 @@ class NieuwsberichtenRepository extends BaseRepository
             $query->withTrashed();
         }
 
-        $query->orderBy($filter['orderColumn'] ?? 'Title' ,$filter['orderDir'] ?? 'asc');
+        if (isset($filter['orderColumn']) && isset($filter['orderDir']))
+            $query->orderBy($filter['orderColumn'] ?? 'Title' ,$filter['orderDir'] ?? 'asc');
 
         $filteredCount = $query->count();
         $totalCount = Nieuwsberichten::query()->count();
-
-        $data = $query->skip($start)->take($length)->get();
+        if(isset($start) && $length)
+            $data = $query->skip($start)->take($length)->get();
+        else 
+            $data = $query->get();
 
         return [
             'data' => $data,

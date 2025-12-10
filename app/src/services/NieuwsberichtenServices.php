@@ -36,7 +36,7 @@ class NieuwsberichtenServices implements IServices
         return $this->repository->filter($filters, $start, $limit);
     }
 
-    public function getNieuwsberichtenForDatatable(array $filters, int $start, int $length, int $draw)
+    public function datatable(array $filters, int $start, int $length, int $draw)
     {
         $result = $this->filter($filters, $start, $length);
         $formattedResults = $result['data']->map(function ($row) { return $this->format($row);})->toArray();
