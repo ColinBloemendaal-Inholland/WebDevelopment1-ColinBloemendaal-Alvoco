@@ -21,11 +21,6 @@ class LedenRepository extends BaseRepository
         return $this->model->where('email', $email)->first();
     }
 
-    public function getById(int $id): ?Leden
-    {
-        return $this->model->find($id);
-    }
-
     /**
      * Search members by name (firstname, middlename, lastname)
      */
