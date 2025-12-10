@@ -25,9 +25,6 @@ class View
         extract($data);
         require self::GetNormalizedPath('Layout.Head');
         require self::GetNormalizedPath('Layout.Nav');
-        // if(str_starts_with($path, ROOT . 'src/Views/Admin')) {
-        //     require self::GetNormalizedPath('Layout.HeaderAdmin');
-        // }
         require $path;
         require self::GetNormalizedPath('Layout.Footer');
         exit;
