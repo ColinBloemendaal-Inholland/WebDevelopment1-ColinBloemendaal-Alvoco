@@ -4,10 +4,9 @@ namespace App\Controllers;
 
 use App\Helpers\Auth;
 use App\Services\LedenServices;
-use App\Requests\LedenStoreRequest;
-use App\Requests\LedenUpdateRequest;
+use App\Models\Requests\LedenStoreRequest;
+use App\Models\Requests\LedenUpdateRequest;
 use App\Services\RolesServices;
-use Rakit\Validation\Validator;
 
 class LedenController extends BaseController implements IController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Requests;
+namespace App\Models\Requests;
 
 use App\Factories\ValidatorFactory;
 
