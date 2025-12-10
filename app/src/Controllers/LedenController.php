@@ -5,9 +5,9 @@ namespace App\Controllers;
 use App\Helpers\Auth;
 use App\Services\LedenServices;
 use App\Requests\LedenStoreRequest;
+use App\Requests\LedenUpdateRequest;
 use App\Services\RolesServices;
-
-
+use Rakit\Validation\Validator;
 
 class LedenController extends BaseController implements IController
 {
@@ -38,9 +38,7 @@ class LedenController extends BaseController implements IController
     public function store()
     {
         try {
-            $request = new LedenStoreRequest($_POST);
-            $validated = $request->validate();
-            
+            $validated = new LedenStoreRequest($_POST)->validate();
             $post = $this->service->create($validated);
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
@@ -57,22 +55,36 @@ class LedenController extends BaseController implements IController
         return \View::View("admin.leden.edit", 'Wijzig lid', $post);
     }
 
-    public function update()
+    public function update(array $params)
     {
-        //TODO: Implement some validation
-        $post = $this->service->update(intval($_POST['id']), $_POST);
-        return \View::Redirect("/admin/leden/{$post['id']}");
+        $id = intval($params['id']);
+        try {
+            $validated = new LedenUpdateRequest($_POST)->validate();
+            $this->service->update($id, $validated);
+            return \View::Redirect("/admin/leden/{$id}");
+        } catch (\Exception $e) {
+            $errors = json_decode($e->getMessage(), true);
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_old'] = $_POST;
+            return \View::Redirect("/admin/leden/{$id}");
+        }
     }
 
     public function delete(array $params)
     {
-        $post = $this->service->delete(intval($params["id"]));
+        $id = intval($params["id"]);
+        $post = $this->service->delete($id);
+        if(!$post)
+            return \View::Redirect("/admin/leden/{$id}");
         return \View::Redirect("/admin/leden");
     }
 
     public function destroy(array $params)
     {
-        $post = $this->service->destroy(intval($params["id"]));
+        $id = intval($params["id"]);
+        $post = $this->service->destroy($id);
+        if(!$post)
+            return \View::Redirect("/admin/leden/{$id}");
         return \View::Redirect("/admin/leden");
     }
 
