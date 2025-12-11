@@ -7,56 +7,12 @@ use Fastroute\Dispatcher;
 class Router {
     public static $dispatcher;
     public static function RegisterRoutes() {
-        self::$dispatcher = simpleDispatcher(function (RouteCollector $r) {
-            $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
-            
-            $r->addRoute('GET','/leden', ['App\Controllers\LedenController','index']);
+        $routes = require ROOT . 'src/routes/web.php';
 
-            $r->addRoute('POST','/api/leden', ['App\Controllers\LedenController','GetLeden']);
-            $r->addRoute('POST','/api/nieuwsberichten', ['App\Controllers\NieuwsberichtenController','GetNieuwsberichten']);
-
-            $r->addRoute('GET','/login', ['App\Controllers\LedenController','loginView']);
-            $r->addRoute('POST','/login', ['App\Controllers\LedenController','login']);
-
-
-            // Admin routing:
-            $r->addRoute('GET','/admin/', ['App\Controllers\AdminController','index']);
-            $r->addRoute('GET','/admin', ['App\Controllers\AdminController','index']);
-
-            // Admin > Leden routing
-            $r->addRoute('GET','/admin/leden/', ['App\Controllers\AdminController','leden']);
-            $r->addRoute('GET','/admin/leden', ['App\Controllers\AdminController','leden']);
-            $r->addRoute('GET','/admin/leden/{id:\d+}', ['App\Controllers\AdminController','getLid']);
-            $r->addRoute('GET','/admin/leden/create', ['App\Controllers\LedenController','create']);
-            $r->addRoute('GET','/admin/leden/create/', ['App\Controllers\LedenController','create']);
-            $r->addRoute('POST','/admin/leden/create', ['App\Controllers\LedenController','store']);
-            $r->addRoute('GET','/admin/leden/{id:\d+}/edit', ['App\Controllers\AdminController','editLeden']);
-            $r->addRoute('PUT','/admin/leden/{id:\d+}', ['App\Controllers\AdminController','updateLeden']);
-
-            // Admin > Nieuwsberichten routing
-            $r->addRoute('GET','/admin/nieuwsberichten', ['App\Controllers\AdminController','nieuwsberichten']);
-            $r->addRoute('GET','/admin/nieuwsberichten/', ['App\Controllers\AdminController','nieuwsberichten']);
-
-            // Admin > Teams routing
-            $r->addRoute('GET','/admin/teams', ['App\Controllers\AdminController','teams']);
-            $r->addRoute('GET','/admin/teams/', ['App\Controllers\AdminController','teams']);
-
-            // Admin > Coaches
-            $r->addRoute('GET','/admin/coaches', ['App\Controllers\AdminController','coaches']);
-            $r->addRoute('GET','/admin/coaches/', ['App\Controllers\AdminController','coaches']);
-
-            // Admin > Trainers routing
-            $r->addRoute('GET','/admin/trainers', ['App\Controllers\AdminController','trainers']);
-            $r->addRoute('GET','/admin/trainers/', ['App\Controllers\AdminController','trainers']);
-
-            // Admin > Wedstrijden routing
-            $r->addRoute('GET','/admin/wedstrijden', ['App\Controllers\AdminController','wedstrijden']);
-            $r->addRoute('GET','/admin/wedstrijden/', ['App\Controllers\AdminController','wedstrijden']);
-
-            // Admin > Bestuursleden routing
-            $r->addRoute('GET','/admin/bestuursleden', ['App\Controllers\AdminController','bestuursleden']);
-            $r->addRoute('GET','/admin/bestuursleden/', ['App\Controllers\AdminController','bestuursleden']);            
+        self::$dispatcher = simpleDispatcher(function (RouteCollector $r) use ($routes) {
+            $routes($r);
         });
+
         self::HandleRoutes();
     }
 
