@@ -68,7 +68,7 @@
             </li>
             <li class="nav-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a class="nav-link active" href="/admin/wedstrijden">
+                    <a class="nav-link active" href="/admin/bestuursleden">
                         <i class="bi bi-person-fill"></i> Bestuurdleden
                     </a>
                 </div>

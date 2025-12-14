@@ -13,7 +13,7 @@ class LedenServices implements IServices
         $this->repository = new LedenRepository(new Leden());
     }
 
-    public function get(int $id, bool $roles = false): array {
+    public function get(int $id, bool $roles = false) {
         $lid = $this->repository->get($id);
         $data = $lid->toArray();
         if($lid && $roles) {
@@ -22,14 +22,14 @@ class LedenServices implements IServices
         }
         return $data ?? null;
     }
-    public function getAll(): array {
-        return $this->repository->getAll()->toArray() ?? null;
+    public function getAll() {
+        return $this->repository->getAll()->map([$this, 'format']) ?? null;
     }
-    public function create(array $data): array {
-        return $this->repository->create($data)->toArray() ?? null;
+    public function create(array $data) {
+        return $this->repository->create($data) ?? null;
     }
-    public function update(int $id, array $data, ?array $roles = null): array {
-        return $this->repository->update($id, $data, $roles)->toArray() ?? null;
+    public function update(int $id, array $data, ?array $roles = null) {
+        return $this->repository->update($id, $data, $roles) ?? null;
     }
     public function delete(int $id): bool {
         return $this->repository->delete($id) ?? false;
@@ -53,6 +53,18 @@ class LedenServices implements IServices
             "recordsTotal" => $result['recordsTotal'],
             "recordsFiltered" => $result['recordsFiltered'],
             "data" => $formattedResults,
+        ];
+    }
+
+    public function format(Leden $row) {
+        return [
+            'id' => $row['id'],
+            'fullname' => trim($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']),
+            'email' => $row['email'],
+            'phone' => $row['phone'] ?? '',
+            'adres' => trim(
+                "{$row['streetname']} {$row['streetnumber']}, {$row['postalcode']} {$row['city']}"
+            ),
         ];
     }
 

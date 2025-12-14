@@ -5,12 +5,15 @@ namespace App\Controllers;
 use App\Models\Requests\BestuursledenStoreRequest;
 use App\Models\Requests\BestuursledenUpdateRequest;
 use App\Services\BestuursledenServices;
+use App\Services\LedenServices;
 
 class BestuursledenController extends BaseController implements IController {
     private BestuursledenServices $service;
+    private LedenServices $ledenServices;
     public function __construct(?BestuursledenServices $service = null)
     {
-        $this->service = $service ?? new BestuursledenServices();
+        $this->service = new BestuursledenServices();
+        $this->ledenServices = new LedenServices();
     }
 
     public function index() {
@@ -24,7 +27,8 @@ class BestuursledenController extends BaseController implements IController {
     }
 
     public function Create() {
-        return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken');
+        $leden = $this->service->getAllWithNoCurrentBestuursleden();
+        return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken', ['leden' => $leden]);
     }
 
     public function store()
@@ -43,7 +47,8 @@ class BestuursledenController extends BaseController implements IController {
 
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', $post);
+        $leden = $this->ledenServices->getAll();
+        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['post'=> $post, 'leden' => $leden]);
     }
 
     public function update(array $params)
