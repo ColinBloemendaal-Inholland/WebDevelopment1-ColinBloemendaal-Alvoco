@@ -9,22 +9,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Teams extends Model {
     use SoftDeletes;
     protected $table = "Teams";
+
+    protected $with = ['spelers', 'coaches', 'trainers', 'wedstrijden'];
     protected $fillable = [
         "name",
         "class",
         "Category",];
 
     public function spelers(): HasMany { 
-        return $this->hasMany(Spelers::class); 
+        return $this->hasMany(Spelers::class, 'team_id'); 
     }
     public function coaches(): HasMany { 
-        return $this->hasMany(Coaches::class, 'team_coach'); 
+        return $this->hasMany(Coaches::class, 'team_id'); 
     }
     public function trainers(): HasMany { 
-        return $this->hasMany(Trainers::class, 'team_trainer'); 
+        return $this->hasMany(Trainers::class, 'team_id'); 
     }
     public function wedstrijden(): HasMany { 
-        return $this->hasMany(Wedstrijden::class, 'team_id'); 
+        return $this->hasMany(Wedstrijden::class, 'team_home'); 
     }
 
 }
