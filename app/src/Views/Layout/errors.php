@@ -8,8 +8,4 @@
         </ul>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Sluiten"></button>
     </div>
-<?php 
-    // Optionally clear errors after displaying
-    unset($_SESSION['form_errors']);
-endif;
-?>
+<?php endif; ?>

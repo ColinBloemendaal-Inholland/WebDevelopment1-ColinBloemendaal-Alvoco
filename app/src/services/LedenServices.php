@@ -15,10 +15,10 @@ class LedenServices implements IServices
 
     public function get(int $id, bool $roles = false) {
         $lid = $this->repository->get($id);
-        $data = $lid->toArray();
+        $data = $lid;
         if($lid && $roles) {
-            $data["roles"] = $lid->roles()->get()->toArray() ?? [];
-            $data["roleIds"] = array_column($data['roles'],'id') ?? [];
+            $data->roles = $lid->roles()->get()->toArray() ?? [];
+            $data->roleIds = array_column($data->roles,'id') ?? [];
         }
         return $data ?? null;
     }

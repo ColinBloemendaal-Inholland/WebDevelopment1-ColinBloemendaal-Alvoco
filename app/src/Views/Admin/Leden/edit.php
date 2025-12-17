@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="row g-3 mb-3">
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-6">
                                 <label class="form-label">Geslacht</label>
                                 <select class="form-select" name="gender" required>
                                     <option disabled hidden>Kies...</option>
@@ -39,15 +39,22 @@
                                     <option value="O" <?= $data['lid']['gender'] ?? '' === 'O' ? 'selected' : '' ?>>Anders</option>
                                 </select>
                             </div>
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-6">
                                 <label class="form-label">Geboortedatum</label>
                                 <input type="date" class="form-control" name="date_of_birth" required
                                     value="<?= e($data['lid']['date_of_birth'] ?? '') ?>">
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-12 col-md-6">
                                 <label class="form-label">E-mail</label>
                                 <input type="email" class="form-control" name="email" required
                                     value="<?= e($data['lid']['email'] ?? '') ?>">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label class="form-label">Telefoonnummer</label>
+                                <input type="tel" class="form-control" name="phone" required
+                                    value="<?= e($data['lid']['phone'] ?? '') ?>">
                             </div>
                         </div>
                         <!-- Rollen -->
@@ -57,7 +64,7 @@
                                 <label class="form-label" for="roles">Selecteer Rollen</label>
                                 <select name="role[]" id="roles" class="form-select" multiple>
                                     <?php foreach ($data['rolen'] as $rol): ?>
-                                        <option value="<?= $rol->id ?>" <?= in_array($rol->id, $data['lid']['roleIds'] ?? []) ? 'selected' : '' ?>>
+                                        <option value="<?= $rol->id ?>" <?= in_array($rol->id, $data['roleIds'] ?? []) ? 'selected' : '' ?>>
                                             <?= $rol->name ?>
                                         </option>
                                     <?php endforeach; ?>

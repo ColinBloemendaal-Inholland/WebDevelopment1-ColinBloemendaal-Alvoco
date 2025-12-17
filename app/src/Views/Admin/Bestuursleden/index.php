@@ -38,7 +38,7 @@
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>
-                                <td colspan="4" class="text-center">No bestuursleden found.</td>
+                                <td colspan="4" class="text-center">Geen bestuursleden gevonden</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>

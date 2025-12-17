@@ -16,9 +16,9 @@ class View
             500 => '500 Internal Server Error',
     ];
     public int $http;
-    public array $data;
+    public $data;
 
-    public function __construct(int $http, string $title, array $data = [])
+    public function __construct(int $http, string $title, $data = [])
     {
         $this->title = $title;
         $this->data = $data;

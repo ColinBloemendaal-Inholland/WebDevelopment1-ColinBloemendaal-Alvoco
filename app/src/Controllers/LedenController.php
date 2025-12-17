@@ -51,7 +51,14 @@ class LedenController extends BaseController implements IController
     public function edit(array $params)
     {
         $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.leden.edit", 'Wijzig lid', $post);
+        $roles = $this->rolenServices->getAll();
+        $roleIds = array_column($post->roles->toArray(),'id') ?? [];
+
+        return \View::View("admin.leden.edit", 'Wijzig lid', [
+            'lid' => $post,
+            'rolen' => $roles,
+            'roleIds'=> $roleIds
+        ]);
     }
 
     public function update(array $params)
@@ -65,7 +72,7 @@ class LedenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/leden/{$id}");
+            return \View::Redirect("/admin/leden/{$id}/edit");
         }
     }
 

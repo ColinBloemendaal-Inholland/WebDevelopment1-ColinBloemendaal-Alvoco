@@ -14,8 +14,8 @@ class RolesServices implements IServices {
     public function get(int $id): array {
         return $this->repository->get($id)->toArray() ?? null;
     }
-    public function getAll(): array {
-        return $this->repository->getAll()->toArray() ?? null;
+    public function getAll() {
+        return $this->repository->getAll() ?? null;
     }
     public function create(array $data): array {
         return $this->repository->create($data)->toArray() ?? null;

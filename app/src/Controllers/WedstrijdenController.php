@@ -15,16 +15,16 @@ class WedstrijdenController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
+        return \View::View("wedstrijden.index", 'wedstrijden', ['wedstrijden' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('bestuursleden.post', $data['Title'], $data);
+        return \View::View('wedstrijden.post', $data['Title'], $data);
     }
 
     public function Create() {
-        return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken');
+        return \View::View('admin.wedstrijden.create', 'wedstrijden aanmaken');
     }
 
     public function store()
