@@ -9,7 +9,7 @@ class CoachesStoreRequest extends BaseRequests
         return [
             'role' => 'required|alpha',
             'start_date'=> 'required|date:Y-m-d',
-            'leden_id'=> 'required|integer|min:1',
+            'Leden_id'=> 'required|integer|min:1',
             'team_id'=> 'required|integer|min:1'
         ];
     }

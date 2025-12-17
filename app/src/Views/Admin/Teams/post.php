@@ -2,122 +2,110 @@
     <?php \View::Partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container-fluid m-0 py-5">
-            <div class="text-center ">
-                <h1 class="display-4 fw-bold mb-0"><?= $data['team']['name'] ?></h1>
-                <p class="lead text-muted">Team overzicht & wedstrijden</p>
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h4"><?= e($data['team']['name']) ?></h2>
+            <div>
+                <a href="edit.php?id=<?= $data['team']['id'] ?>" class="btn btn-primary btn-sm">Bewerken</a>
+                <a href="delete.php?id=<?= $data['team']['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
             </div>
-            <div class="row">
-                <!-- Speler -->
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <h2 class="h4 fw-bold">Spelers </h2>
-                    </div>
-                    <div class="list-group">
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <!-- Team eigenschappen -->
+                <h5 class="mb-3">Eigenschappen</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Naam</dt>
+                    <dd class="col-sm-9"><?= e($data['team']['name']) ?></dd>
+
+                    <dt class="col-sm-3">Categorie</dt>
+                    <dd class="col-sm-9"><?= e($data['team']['Category'] ?? '-') ?></dd>
+
+                    <dt class="col-sm-3">Klas</dt>
+                    <dd class="col-sm-9"><?= e($data['team']['class'] ?? '-') ?></dd>
+
+                    <dt class="col-sm-3">Aangemaakt op</dt>
+                    <dd class="col-sm-9"><?= e($data['team']['created_at'] ?? '-') ?></dd>
+
+                    <dt class="col-sm-3">Laatste wijziging</dt>
+                    <dd class="col-sm-9"><?= e($data['team']['updated_at'] ?? '-') ?></dd>
+                </dl>
+
+                <hr>
+
+                <!-- Spelers -->
+                <h5 class="mb-3">Spelers</h5>
+                <?php if (!empty($data['team']['spelers'])): ?>
+                    <ul class="list-group mb-3">
                         <?php foreach ($data['team']['spelers'] as $speler): ?>
-                            <div class="list-group-item">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="text-nowrap fw-semibold">
-                                        <?= $speler['number'] ?>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <?= $speler['lid']['fullname'] ?>
-                                    </div>
-                                    <div class="text-nowrap text-muted">
-                                        <?= $speler['position'] ?>
-                                    </div>
-                                    <div>
-                                        <a href="/spelers/<?= $speler['id'] ?>" class="btn btn-sm btn-primary">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= e($speler['lid']['fullname']) ?> (Nummer: <?= e($speler['number']) ?>, Positie: <?= e($speler['position']) ?>)
+                                <a href="/admin/spelers/<?= e($speler['id']) ?>" class="btn btn-sm btn-outline-primary">Bekijk</a>
+                            </li>
                         <?php endforeach; ?>
-                    </div>
-                </div>
-                <!-- Coaches & Trainers -->
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <h2 class="h4 fw-bold">Teamfoto</h2>
-                    </div>
-                    <div class="text-center mb-5">
-                        <img src="teamfoto.jpg" class="img-fluid rounded"
-                            alt="<?= e($data['team']['name']) ?> Teamfoto">
-                    </div>
-                    <div class="mb-3">
-                        <h2 class="h4 fw-bold">Coaches</h2>
-                    </div>
-                    <div class="list-group mb-5">
+                    </ul>
+                <?php else: ?>
+                    <p>- Geen spelers toegewezen</p>
+                <?php endif; ?>
+
+                <hr>
+
+                <!-- Coaches -->
+                <h5 class="mb-3">Coaches</h5>
+                <?php if (!empty($data['team']['coaches'])): ?>
+                    <ul class="list-group mb-3">
                         <?php foreach ($data['team']['coaches'] as $coach): ?>
-                            <div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <?= e($coach['role']) ?>
-                                    </div>
-
-                                    <div class="col">
-                                        <?= e($coach['lid']['fullname']) ?>
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <a href="/admin/coach/<?= e($coach['id']) ?>" class="btn btn-sm btn-primary">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= e($coach['lid']['fullname']) ?> (Rol: <?= e($coach['role']) ?>)
+                                <a href="/admin/coaches/<?= e($coach['id']) ?>" class="btn btn-sm btn-outline-primary">Bekijk</a>
+                            </li>
                         <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>- Geen coaches toegewezen</p>
+                <?php endif; ?>
 
-                    </div>
+                <hr>
 
-                    <div class="mb-3">
-                        <h2 class="h4 fw-bold">Trainers</h2>
-                    </div>
-                    <div class="list-group mb-5">
+                <!-- Trainers -->
+                <h5 class="mb-3">Trainers</h5>
+                <?php if (!empty($data['team']['trainers'])): ?>
+                    <ul class="list-group mb-3">
                         <?php foreach ($data['team']['trainers'] as $trainer): ?>
-                            <div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <?= e($trainer['role']) ?>
-                                    </div>
-
-                                    <div class="col">
-                                        <?= e($trainer['lid']['fullname']) ?>
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <a href="/admin/trainers/<?= e($trainer['id']) ?>" class="btn btn-sm btn-primary">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= e($trainer['lid']['fullname']) ?> (Rol: <?= e($trainer['role']) ?>)
+                                <a href="/admin/trainers/<?= e($trainer['id']) ?>" class="btn btn-sm btn-outline-primary">Bekijk</a>
+                            </li>
                         <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>- Geen trainers toegewezen</p>
+                <?php endif; ?>
 
-                    </div>
+                <hr>
 
-                </div>
+                <!-- Wedstrijden -->
+                <h5 class="mb-3">Wedstrijden</h5>
+                <?php if (!empty($data['team']['wedstrijden'])): ?>
+                    <ul class="list-group mb-3">
+                        <?php foreach ($data['team']['wedstrijden'] as $wedstrijd): ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= e($wedstrijd->hometeam['name']) ?> vs <?= e($wedstrijd->awayTeam['name']) ?>
+                                <a href="/admin/wedstrijden/<?= e($wedstrijd['id']) ?>" class="btn btn-sm btn-outline-primary">Bekijk</a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>- Geen wedstrijden gevonden</p>
+                <?php endif; ?>
+
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="mb-5">
-                <h3>Wedstrijden</h3>
-                <?php foreach ($data['team']['wedstrijden'] as $wedstrijd) { ?>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= e($wedstrijd->hometeam['name']) ?> vs
-                                <?= e($wedstrijd->awayTeam['name']) ?>
-                            </h5>
-                            <p class="card-text">
-                                <strong>Datum:</strong> <?= e($wedstrijd['date']) ?><br>
-                                <strong>Tijd:</strong> <?= e($wedstrijd['time']) ?><br>
-                                <strong>Adres:</strong> <a href="https://maps.google.com/?q=Vondelstraat+35,+1833AA+Alkmaar"
-                                    target="_blank">Vondelstraat 35, 1833AA Alkmaar</a>
-                            </p>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
         </div>
     </div>
 </div>

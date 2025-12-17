@@ -4,13 +4,19 @@ namespace App\Controllers;
 
 use App\Models\Requests\TrainersStoreRequest;
 use App\Models\Requests\TrainersUpdateRequest;
+use App\Services\LedenServices;
+use App\Services\TeamsServices;
 use App\Services\TrainersServices;
 
 class TrainersController extends BaseController implements IController {
     private TrainersServices $service;
-    public function __construct(?TrainersServices $ledenService = null)
+    private LedenServices $ledenServices;
+    private TeamsServices $teamsServices;
+    public function __construct()
     {
-        $this->service = $ledenService ?? new TrainersServices();
+        $this->service = new TrainersServices();
+        $this->ledenServices = new LedenServices();
+        $this->teamsServices = new TeamsServices();
     }
 
     public function index() {
@@ -24,7 +30,9 @@ class TrainersController extends BaseController implements IController {
     }
 
     public function Create() {
-        return \View::View('admin.trainers.create', 'Trainer aanmaken');
+        $teams = $this->teamsServices->getAll();
+        $leden = $this->ledenServices->getAll();
+        return \View::View('admin.trainers.create', 'Trainer aanmaken', ['teams' => $teams, 'leden' => $leden]);
     }
 
     public function store()

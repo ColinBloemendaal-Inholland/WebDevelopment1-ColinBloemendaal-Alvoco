@@ -5,12 +5,18 @@ namespace App\Controllers;
 use App\Models\Requests\CoachesStoreRequest;
 use App\Models\Requests\CoachesUpdateRequest;
 use App\Services\CoachesServices;
+use App\Services\LedenServices;
+use App\Services\TeamsServices;
 
 class CoachesController extends BaseController implements IController {
     private CoachesServices $service;
-    public function __construct(?CoachesServices $ledenService = null)
+    private LedenServices $ledenServices;
+    private TeamsServices $teamsServices;
+    public function __construct()
     {
-        $this->service = $ledenService ?? new CoachesServices();
+        $this->service = new CoachesServices();
+        $this->ledenServices = new LedenServices();
+        $this->teamsServices = new TeamsServices();
     }
 
     public function index() {
@@ -24,7 +30,9 @@ class CoachesController extends BaseController implements IController {
     }
 
     public function Create() {
-        return \View::View('admin.coaches.create', 'Coach aanmaken');
+        $leden = $this->ledenServices->getAll();
+        $teams = $this->teamsServices->getAll();
+        return \View::View('admin.coaches.create', 'Coach aanmaken', ['leden' => $leden, 'teams' => $teams]);
     }
 
     public function store()

@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\SpelersController;
 use FastRoute\RouteCollector;
 
 use App\Controllers\AdminController;
@@ -53,6 +54,16 @@ return function (RouteCollector $r) {
     $r->addRoute('PUT', '/admin/leden/{id:\d+}', [LedenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/leden/{id:\d+}', [LedenController::class, 'delete']);
     $r->addRoute('DELETE', '/admin/leden/{id:\d+}/force', [LedenController::class, 'destroy']);
+
+    // Admin > Spelers
+    $r->addRoute('GET', '/admin/spelers', [AdminController::class, 'spelers']);
+    $r->addRoute('GET', '/admin/spelers/{id:\d+}', [AdminController::class, 'getSpeler']);
+    $r->addRoute('GET', '/admin/spelers/create', [SpelersController::class, 'create']);
+    $r->addRoute('POST', '/admin/spelers/create', [SpelersController::class, 'store']);
+    $r->addRoute('GET', '/admin/spelers/{id:\d+}/edit', [SpelersController::class, 'edit']);
+    $r->addRoute('PUT', '/admin/spelers/{id:\d+}', [SpelersController::class, 'update']);
+    $r->addRoute('DELETE', '/admin/spelers/{id:\d+}', [SpelersController::class, 'delete']);
+    $r->addRoute('DELETE', '/admin/spelers/{id:\d+}/force', [SpelersController::class, 'destroy']);
 
     // Admin > Nieuwsberichten
     $r->addRoute('GET', '/admin/nieuwsberichten', [AdminController::class, 'nieuwsberichten']);

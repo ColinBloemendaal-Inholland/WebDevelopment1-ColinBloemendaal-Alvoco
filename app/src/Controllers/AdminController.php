@@ -6,9 +6,11 @@ use App\Helpers\View;
 use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
+use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\BestuursledenServices;
 use App\Services\CoachesServices;
+use App\Services\TrainersServices;
 use Exception;
 
 class AdminController
@@ -20,6 +22,8 @@ class AdminController
     private TeamsServices $teamsServices;
     private BestuursledenServices $bestuursledenServices;
     private CoachesServices $coachesServices;
+    private SpelersServices $spelersServices;
+    private TrainersServices $trainersServices;
     public function __construct()
     {
         $this->rolenServices =  new RolesServices();
@@ -28,6 +32,8 @@ class AdminController
         $this->teamsServices = new TeamsServices();
         $this->bestuursledenServices = new BestuursledenServices();
         $this->coachesServices = new CoachesServices();
+        $this->spelersServices = new SpelersServices();
+        $this->trainersServices = new TrainersServices();
     }
 
     public function index()
@@ -80,6 +86,10 @@ class AdminController
     {
         return \View::View("admin.trainers.index");
     }
+    public function getTrainer(array $params) {
+        $trainer = $this->trainersServices->get(intval($params['id']));
+        return \View::View('admin.trainers.post', 'Trainer', ['trainer'=> $trainer]);
+    }
 
     public function wedstrijden()
     {
@@ -94,5 +104,15 @@ class AdminController
     public function getBestuurslid(array $params) {
         $bestuurslid = $this->bestuursledenServices->get(intval($params['id']));
         return \View::View('admin.bestuursleden.post', 'Bestuurslid', ['bestuurslid'=> $bestuurslid]);
+    }
+
+    public function spelers()
+    {
+        return \View::View("admin.spelers.index");
+    }
+
+    public function getSpeler(array $params) {
+        $speler = $this->spelersServices->get(intval($params['id']));
+        return \View::View('admin.spelers.post', 'Speler', ['speler'=> $speler]);
     }
 }
