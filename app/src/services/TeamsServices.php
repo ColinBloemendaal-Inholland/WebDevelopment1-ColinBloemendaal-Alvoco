@@ -11,8 +11,8 @@ class TeamsServices implements IServices {
         $this->repository = new TeamsRepository(new Teams());
     }
 
-    public function get(int $id): array {
-        return $this->repository->get($id)->toArray() ?? null;
+    public function get(int $id) {
+        return $this->repository->get($id) ?? null;
     }
     public function getAll(): array {
         return $this->repository->getAll()->toArray() ?? null;

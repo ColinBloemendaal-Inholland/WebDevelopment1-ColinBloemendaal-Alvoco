@@ -12,6 +12,11 @@ class TeamsRepository extends BaseRepository
         parent::__construct($model);
     }
 
+    public function getFullTeam(int $id)
+    {
+        return $this->model->with(['spelers', 'spelers.lid','coaches', 'coaches.lid','trainers', 'trainers.lid','wedstrijden', 'wedstrijden.hometeam', 'wedstrijden.awayteam'])->where('id', $id)->first();
+    }
+
     /**
      * Get a team by its name
      */

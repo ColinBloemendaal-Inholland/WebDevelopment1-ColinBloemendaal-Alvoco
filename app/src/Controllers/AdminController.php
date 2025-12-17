@@ -6,6 +6,7 @@ use App\Helpers\View;
 use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
+use App\Services\TeamsServices;
 use Exception;
 
 class AdminController
@@ -14,11 +15,13 @@ class AdminController
     private RolesServices $rolenServices;
     private LedenServices $ledenServices;
     private NieuwsberichtenServices $nieuwsberichtenServices;
+    private TeamsServices $teamsServices;
     public function __construct(?RolesServices $rolenServices = null, ?LedenServices $ledenServices = null, ?NieuwsberichtenServices $nieuwsberichtenServices = null)
     {
         $this->rolenServices = $rolenServices ?? new RolesServices();
         $this->ledenServices = $ledenServices ?? new LedenServices();
         $this->nieuwsberichtenServices = $nieuwsberichtenServices ?? new NieuwsberichtenServices();
+        $this->teamsServices = $teamsServices ?? new TeamsServices();
     }
 
     public function index()
@@ -46,6 +49,11 @@ class AdminController
     public function teams()
     {
         return \View::View("admin.teams.index");
+    }
+
+    public function getTeam(array $params) {
+        $team = $this->teamsServices->get(intval($params['id']));
+        return \View::View('admin.teams.post', 'Team', ['team'=> $team]);
     }
 
     public function coaches()

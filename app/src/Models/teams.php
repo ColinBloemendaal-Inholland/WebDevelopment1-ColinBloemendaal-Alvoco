@@ -10,14 +10,13 @@ class Teams extends Model {
     use SoftDeletes;
     protected $table = "Teams";
 
-    protected $with = ['spelers', 'coaches', 'trainers', 'wedstrijden'];
     protected $fillable = [
         "name",
         "class",
         "Category",];
 
     public function spelers(): HasMany { 
-        return $this->hasMany(Spelers::class, 'team_id'); 
+        return $this->hasMany(Spelers::class, 'team_id')->orderBy('number', 'asc');; 
     }
     public function coaches(): HasMany { 
         return $this->hasMany(Coaches::class, 'team_id'); 

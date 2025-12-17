@@ -23,7 +23,7 @@ class Wedstrijden extends Model {
     public function hometeam(): BelongsTo {
         return $this->belongsTo(Teams::class, 'team_home');
     }
-    public function AwayTeam(): BelongsTo {
+    public function awayTeam(): BelongsTo {
         return $this->belongsTo(Teams::class, 'team_away');
     }
 }
