@@ -36,4 +36,8 @@ class CoachesRepository extends BaseRepository
     {
         return $this->model->where('role', $role)->get();
     }
+
+    public function getWithTeam(int $id): ?Coaches {
+        return $this->model->with(['team','lid'])->find($id);
+    }
 }

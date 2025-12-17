@@ -12,6 +12,8 @@ class Nieuwsberichten extends Model {
     use SoftDeletes;
     protected $table = "Nieuwsberichten";
 
+    protected $with = ['Authur'];
+
     protected $fillable = [
         "Title",
         "Message",

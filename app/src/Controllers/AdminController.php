@@ -7,6 +7,8 @@ use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
 use App\Services\TeamsServices;
+use App\Services\BestuursledenServices;
+use App\Services\CoachesServices;
 use Exception;
 
 class AdminController
@@ -16,12 +18,16 @@ class AdminController
     private LedenServices $ledenServices;
     private NieuwsberichtenServices $nieuwsberichtenServices;
     private TeamsServices $teamsServices;
-    public function __construct(?RolesServices $rolenServices = null, ?LedenServices $ledenServices = null, ?NieuwsberichtenServices $nieuwsberichtenServices = null)
+    private BestuursledenServices $bestuursledenServices;
+    private CoachesServices $coachesServices;
+    public function __construct()
     {
-        $this->rolenServices = $rolenServices ?? new RolesServices();
-        $this->ledenServices = $ledenServices ?? new LedenServices();
-        $this->nieuwsberichtenServices = $nieuwsberichtenServices ?? new NieuwsberichtenServices();
-        $this->teamsServices = $teamsServices ?? new TeamsServices();
+        $this->rolenServices =  new RolesServices();
+        $this->ledenServices = new LedenServices();
+        $this->nieuwsberichtenServices = new NieuwsberichtenServices();
+        $this->teamsServices = new TeamsServices();
+        $this->bestuursledenServices = new BestuursledenServices();
+        $this->coachesServices = new CoachesServices();
     }
 
     public function index()
@@ -45,6 +51,10 @@ class AdminController
     {
         return \View::View("admin.nieuwsberichten.index");
     }
+    public function getNieuwsbericht(array $params) {
+    $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
+        return \View::View('admin.nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht'=> $nieuwsbericht]);
+    }
 
     public function teams()
     {
@@ -61,6 +71,11 @@ class AdminController
         return \View::View("admin.coaches.index");
     }
 
+    public function getCoach(array $params) {
+        $coach = $this->coachesServices->getWithTeam(intval($params['id']));
+        return \View::View('admin.coaches.post', 'Coach', ['coach'=> $coach]);
+    }
+
     public function trainers()
     {
         return \View::View("admin.trainers.index");
@@ -74,5 +89,10 @@ class AdminController
     public function bestuursleden()
     {
         return \View::View("admin.bestuursleden.index");
+    }
+    
+    public function getBestuurslid(array $params) {
+        $bestuurslid = $this->bestuursledenServices->get(intval($params['id']));
+        return \View::View('admin.bestuursleden.post', 'Bestuurslid', ['bestuurslid'=> $bestuurslid]);
     }
 }
