@@ -81,7 +81,8 @@ class CoachesController extends BaseController implements IController {
 
     public function GetCoaches() {
         $filter = [
-            'name' => $_POST['name'] ?? ''
+            'name' => $_POST['name'] ?? '',
+            'role' => $_POST['role'] ?? ''
         ];
 
         $draw = intval($_POST['draw'] ?? 1);

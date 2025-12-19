@@ -51,6 +51,9 @@ class CoachesRepository extends BaseRepository
                   ->orWhere('lastname', 'like', '%' . $filters['name'] . '%');
             });
         }
+        if (!empty($filters['role'])) {
+            $query->where('role', 'like', '%' . $filters['role'] . '%');
+        }
 
         $recordsTotal = Coaches::count();
         $recordsFiltered = $query->count();
