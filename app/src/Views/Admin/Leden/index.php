@@ -2,6 +2,7 @@
     <?php \View::Partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
+            <h1 class="mb-4">Leden</h1>
             <div class="form-row">
                 <!-- Name or email search -->
                 <div class="form-group col-md-4">
