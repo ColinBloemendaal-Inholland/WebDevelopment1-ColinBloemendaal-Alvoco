@@ -14,7 +14,7 @@ class TeamsRepository extends BaseRepository
 
     public function getFullTeam(int $id)
     {
-        return $this->model->with(['spelers', 'spelers.lid','coaches', 'coaches.lid','trainers', 'trainers.lid','wedstrijden', 'wedstrijden.hometeam', 'wedstrijden.awayteam'])->where('id', $id)->first();
+        return $this->model->with(['spelers', 'spelers.lid', 'coaches', 'coaches.lid', 'trainers', 'trainers.lid', 'wedstrijden', 'wedstrijden.hometeam', 'wedstrijden.awayteam'])->where('id', $id)->first();
     }
 
     /**
@@ -67,5 +67,31 @@ class TeamsRepository extends BaseRepository
     {
         $team = $this->get($teamId);
         return $team ? $team->wedstrijden : collect();
+    }
+
+    public function filter(array $filters, ?int $start = null, ?int $limit = null): array
+    {
+        $query = Teams::query();
+        $recordsTotal = Teams::count();
+        if (!empty($filters['name'])) {
+            $query->where('name', 'like', '%' . $filters['name'] . '%');
+        }
+
+        $recordsFiltered = $query->count();
+
+        if (!is_null($start)) {
+            $query->skip($start);
+        }
+        if (!is_null($limit)) {
+            $query->take($limit);
+        }
+
+        $data = $query->get();
+
+        return [
+            'data' => $data,
+            'recordsTotal' => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered,
+        ];
     }
 }
