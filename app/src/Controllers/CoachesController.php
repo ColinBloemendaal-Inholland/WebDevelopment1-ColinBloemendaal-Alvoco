@@ -78,4 +78,20 @@ class CoachesController extends BaseController implements IController {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/coaches");
     }
+
+    public function GetCoaches() {
+        $filter = [
+            'name' => $_POST['name'] ?? ''
+        ];
+
+        $draw = intval($_POST['draw'] ?? 1);
+        $start = intval($_POST['start'] ?? 0);
+        $length = intval($_POST['length'] ?? 25);
+
+        $result = $this->service->datatable($filter, $start, $length, $draw);
+
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        return;
+    }
 }
