@@ -33,4 +33,25 @@ class TrainersServices implements IServices {
         //TODO: Make filter in the bestuursleden repo
         return $this->repository->filter($filters, $start, $limit);
     }
+    public function datatable(array $filters, int $start, $length, int $draw): array
+    {
+        $result = $this->filter($filters, $start, $length);
+        $formattedResults = $result['data']->map(function ($row) {
+            return $this->format($row);
+        })->toArray() ?? [];
+        return [
+            "draw" => $draw,
+            "recordsTotal" => $result['recordsTotal'],
+            "recordsFiltered" => $result['recordsFiltered'],
+            "data" => $formattedResults,
+        ];
+    }
+    public function format($row)
+    {
+        return [
+            'id' => $row['id'],
+            'name' => $row['lid']['fullname'],
+            'role' => $row['role'],
+        ];
+    }
 }
