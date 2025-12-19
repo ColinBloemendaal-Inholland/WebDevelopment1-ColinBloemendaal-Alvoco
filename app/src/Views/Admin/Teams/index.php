@@ -2,6 +2,13 @@
     <?php \View::Partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container-fluid m-0 py-5">
+            <div class="form-row">
+                <!-- Name or email search -->
+                <div class="form-group col-md-4">
+                    <label for="searchName">Zoek op naam:</label>
+                    <input type="text" class="form-control" id="searchName" placeholder="Voer een naam in:">
+                </div>
+            </div>
             <table id="teamsTable" class="table table-striped table-hover">
                 <tbody>
                     <tr>
@@ -64,6 +71,17 @@
                 }
             ]
         });
+
+        let reloadTimeout;
+        function timeout() {
+            clearTimeout(reloadTimeout);
+            reloadTimeout = setTimeout(function () {
+                teamsTable.ajax.reload();
+            }, 1000);
+        };
+
+        // Text inputs: reload after 1 second of inactivity
+        $('#searchName').on('input', timeout);
     });
 
 </script>
