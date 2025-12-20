@@ -4,7 +4,7 @@ use App\Models\View\View as ViewModel;
 
 class View
 {
-    public static function View(string $viewPath, ?string $title = null, $data = [])
+    public static function View(string $viewPath, string $title, $data = [])
     {
         // Set default http code
         $http = 200;

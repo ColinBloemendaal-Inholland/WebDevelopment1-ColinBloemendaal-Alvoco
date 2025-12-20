@@ -38,7 +38,7 @@ class AdminController
 
     public function index()
     {
-        return \View::View("admin.index");
+        return \View::View("admin.index", 'Admin Dashboard');
     }
 
     public function leden()
@@ -55,7 +55,7 @@ class AdminController
 
     public function nieuwsberichten()
     {
-        return \View::View("admin.nieuwsberichten.index");
+        return \View::View("admin.nieuwsberichten.index", 'Nieuwsberichten');
     }
     public function getNieuwsbericht(array $params) {
     $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
@@ -64,7 +64,7 @@ class AdminController
 
     public function teams()
     {
-        return \View::View("admin.teams.index");
+        return \View::View("admin.teams.index", 'Teams');
     }
 
     public function getTeam(array $params) {
@@ -74,7 +74,7 @@ class AdminController
 
     public function coaches()
     {
-        return \View::View("admin.coaches.index");
+        return \View::View("admin.coaches.index", 'Coaches');
     }
 
     public function getCoach(array $params) {
@@ -84,7 +84,7 @@ class AdminController
 
     public function trainers()
     {
-        return \View::View("admin.trainers.index");
+        return \View::View("admin.trainers.index", 'Trainers');
     }
     public function getTrainer(array $params) {
         $trainer = $this->trainersServices->get(intval($params['id']));
@@ -94,12 +94,12 @@ class AdminController
     public function wedstrijden()
     {
         $teams = $this->teamsServices->getAll();
-        return \View::View("admin.wedstrijden.index", 'wedstrijden', ['teams' => $teams]);
+        return \View::View("admin.wedstrijden.index", 'Wedstrijden', ['teams' => $teams]);
     }
 
     public function bestuursleden()
     {
-        return \View::View("admin.bestuursleden.index");
+        return \View::View("admin.bestuursleden.index", 'Bestuursleden');
     }
     
     public function getBestuurslid(array $params) {
@@ -109,7 +109,7 @@ class AdminController
 
     public function spelers()
     {
-        return \View::View("admin.spelers.index");
+        return \View::View("admin.spelers.index", 'Spelers');
     }
 
     public function getSpeler(array $params) {

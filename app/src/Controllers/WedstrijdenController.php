@@ -17,7 +17,7 @@ class WedstrijdenController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        return \View::View("wedstrijden.index", 'wedstrijden', ['wedstrijden' => $data]);
+        return \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijden' => $data]);
     }
 
     public function show(array $params)
@@ -28,7 +28,7 @@ class WedstrijdenController extends BaseController implements IController
 
     public function Create()
     {
-        return \View::View('admin.wedstrijden.create', 'wedstrijden aanmaken');
+        return \View::View('admin.wedstrijden.create', 'Wedstrijden aanmaken');
     }
 
     public function store()
@@ -69,13 +69,13 @@ class WedstrijdenController extends BaseController implements IController
     public function delete(array $params)
     {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/bestuursleden");
+        return \View::Redirect("/admin/wedstrijden");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/bestuursleden");
+        return \View::Redirect("/admin/wedstrijden");
     }
 
     public function GetWedstrijden()
