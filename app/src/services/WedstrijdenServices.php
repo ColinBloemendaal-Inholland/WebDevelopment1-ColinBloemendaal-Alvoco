@@ -11,17 +11,17 @@ class WedstrijdenServices implements IServices {
         $this->repository = new WedstrijdenRepository(new Wedstrijden());
     }
 
-    public function get(int $id): array {
-        return $this->repository->get($id)->toArray() ?? null;
+    public function get(int $id) {
+        return $this->repository->get($id) ?? null;
     }
-    public function getAll(): array {
-        return $this->repository->getAll()->toArray() ?? null;
+    public function getAll() {
+        return $this->repository->getAll() ?? null;
     }
-    public function create(array $data): array {
-        return $this->repository->create($data)->toArray() ?? null;
+    public function create(array $data) {
+        return $this->repository->create($data) ?? null;
     }
-    public function update(int $id, array $data): array {
-        return $this->repository->update($id, $data)->toArray() ?? null;
+    public function update(int $id, array $data) {
+        return $this->repository->update($id, $data) ?? null;
     }
     public function delete(int $id): bool {
         return $this->repository->delete($id) ?? false;

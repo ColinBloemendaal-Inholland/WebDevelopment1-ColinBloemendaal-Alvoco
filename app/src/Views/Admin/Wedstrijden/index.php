@@ -4,14 +4,25 @@
         <div class="container m-0">
             <h1 class="mb-4">Wedstrijden</h1>
             <div class="form-row">
-                <!-- Name or email search -->
+                <!-- Home team select -->
                 <div class="form-group col-md-4">
-                    <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" placeholder="Voer een naam in:">
+                    <label for="searchHomeTeam">Zoek op thuisteam:</label>
+                    <select name="homeTeam" id="searchHomeTeam" class="form-control" multiple>
+                        <option value="" selected disabled hidden>Selecteer een team</option>
+                        <?php foreach ($data['teams'] as $team) { ?>
+                            <option value="<?= $team->id ?>"><?= $team->name ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
+                <!-- Away team select -->
                 <div class="form-group col-md-4">
-                    <label for="searchRole">Zoek op rol:</label>
-                    <input type="text" class="form-control" id="searchRole" placeholder="Voer een rol in:">
+                    <label for="searchAwayTeam">Zoek op uitteam:</label>
+                    <select name="awayTeam" id="searchAwayTeam" class="form-control" multiple>
+                        <option value="" selected disabled hidden>Selecteer een team</option>
+                        <?php foreach ($data['teams'] as $team) { ?>
+                            <option value="<?= $team->id ?>"><?= $team->name ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
             <table id="wedstrijdenTable" class="table table-striped table-hover">
@@ -39,8 +50,8 @@
                 url: '/api/wedstrijden',
                 type: 'POST',
                 data: function (d) {
-                    // d.name = $('#searchName').val();
-                    // d.role = $('#searchRole').val();
+                    d.homeTeam = $('#searchHomeTeam').val();
+                    d.awayTeam = $('#searchAwayTeam').val();
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -90,5 +101,28 @@
         };
         // Text inputs: reload after 1 second of inactivity
         $('').on('input', timeout);
+
+        $('#searchHomeTeam, #searchAwayTeam').on('change', function () {
+            wedstrijdenTable.ajax.reload();
+        });
+
+        // Tom select
+        new TomSelect('#searchHomeTeam', {
+            create: true,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            },
+            plugins: ['remove_button']
+        });
+        // Tom select
+        new TomSelect('#searchAwayTeam', {
+            create: true,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            },
+            plugins: ['remove_button']
+        });
     });
 </script>

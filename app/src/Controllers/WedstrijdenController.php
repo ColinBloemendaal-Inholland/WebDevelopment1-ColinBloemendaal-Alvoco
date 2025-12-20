@@ -81,9 +81,9 @@ class WedstrijdenController extends BaseController implements IController
     public function GetWedstrijden()
     {
         $filters = [
-            'name' => $_POST['name'] ?? ''
+            'homeTeam' => $_POST['homeTeam'] ?? '',
+            'awayTeam' => $_POST['awayTeam'] ?? '',
         ];
-
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
         $length = intval($_POST['length'] ?? 25);

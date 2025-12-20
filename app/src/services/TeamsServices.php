@@ -17,17 +17,17 @@ class TeamsServices implements IServices
     {
         return $this->repository->get($id) ?? null;
     }
-    public function getAll(): array
+    public function getAll()
     {
-        return $this->repository->getAll()->toArray() ?? null;
+        return $this->repository->getAll() ?? null;
     }
-    public function create(array $data): array
+    public function create(array $data)
     {
-        return $this->repository->create($data)->toArray() ?? null;
+        return $this->repository->create($data) ?? null;
     }
-    public function update(int $id, array $data): array
+    public function update(int $id, array $data)
     {
-        return $this->repository->update($id, $data)->toArray() ?? null;
+        return $this->repository->update($id, $data) ?? null;
     }
     public function delete(int $id): bool
     {

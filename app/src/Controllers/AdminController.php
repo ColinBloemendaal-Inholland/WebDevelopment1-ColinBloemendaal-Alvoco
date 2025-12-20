@@ -93,7 +93,8 @@ class AdminController
 
     public function wedstrijden()
     {
-        return \View::View("admin.wedstrijden.index");
+        $teams = $this->teamsServices->getAll();
+        return \View::View("admin.wedstrijden.index", 'wedstrijden', ['teams' => $teams]);
     }
 
     public function bestuursleden()

@@ -13,8 +13,11 @@ class WedstrijdenRepository extends BaseRepository
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
         $query = Wedstrijden::query()->with('homeTeam', 'awayTeam');
 
-        if (!empty($filters['name'])) {
-            $query->where('opponent', 'like', '%' . $filters['name'] . '%');
+        if (!empty($filters['homeTeam'])) {
+            $query->whereRelation('homeTeam', 'id', $filters['homeTeam']);
+        }
+        if (!empty($filters['awayTeam'])) {
+            $query->whereRelation('awayTeam', 'id', $filters['awayTeam']);
         }
         // Additional filters can be added here
 
