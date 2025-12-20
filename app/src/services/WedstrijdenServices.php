@@ -30,7 +30,31 @@ class WedstrijdenServices implements IServices {
         return $this->repository->destroy($id) ?? false;
     }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
-        //TODO: Make filter in the bestuursleden repo
         return $this->repository->filter($filters, $start, $limit);
+    }
+    public function datatable(array $filters, int $start, $length, int $draw): array
+    {
+        $result = $this->filter($filters, $start, $length);
+        $formattedResults = $result['data']->map(function ($row) {
+            return $this->format($row);
+        })->toArray() ?? [];
+        return [
+            "draw" => $draw,
+            "recordsTotal" => $result['recordsTotal'],
+            "recordsFiltered" => $result['recordsFiltered'],
+            "data" => $formattedResults,
+        ];
+    }
+    private function format($row): array
+    {
+        return [
+            'id' => $row['id'],
+            'teamHome' => $row['homeTeam']['name'],
+            'teamAway' => $row['awayTeam']['name'],
+            'date' => $row['date'],
+            'time' => $row['time'],
+            'location' => $row['location'],
+            'score'=> $row['score_home'] . ' - ' . $row['score_away'],
+        ];
     }
 }

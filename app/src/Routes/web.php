@@ -40,6 +40,7 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/api/teams', [TeamsController::class, 'GetTeams']);
     $r->addRoute('POST', '/api/coaches', [CoachesController::class, 'GetCoaches']);
     $r->addRoute('POST', '/api/trainers', [TrainersController::class, 'GetTrainers']);
+    $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'GetWedstrijden']);
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);

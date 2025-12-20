@@ -6,24 +6,28 @@ use App\Models\Requests\WedstrijdenStoreRequest;
 use App\Models\Requests\WedstrijdenUpdateRequest;
 use App\Services\WedstrijdenServices;
 
-class WedstrijdenController extends BaseController implements IController {
+class WedstrijdenController extends BaseController implements IController
+{
     private WedstrijdenServices $service;
     public function __construct(?WedstrijdenServices $ledenService = null)
     {
         $this->service = $ledenService ?? new WedstrijdenServices();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = $this->service->getAll();
         return \View::View("wedstrijden.index", 'wedstrijden', ['wedstrijden' => $data]);
     }
 
-    public function show(array $params) {
+    public function show(array $params)
+    {
         $data = $this->service->get(intval($params['id']));
         return \View::View('wedstrijden.post', $data['Title'], $data);
     }
 
-    public function Create() {
+    public function Create()
+    {
         return \View::View('admin.wedstrijden.create', 'wedstrijden aanmaken');
     }
 
@@ -41,7 +45,8 @@ class WedstrijdenController extends BaseController implements IController {
         return \View::Redirect("/admin/wedstrijden/{$post['id']}");
     }
 
-    public function edit(array $params) {
+    public function edit(array $params)
+    {
         $post = $this->service->get(intval($params["id"]));
         return \View::View("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
     }
@@ -61,13 +66,30 @@ class WedstrijdenController extends BaseController implements IController {
         }
     }
 
-    public function delete(array $params) {
+    public function delete(array $params)
+    {
         $post = $this->service->delete(intval($params["id"]));
         return \View::Redirect("/admin/bestuursleden");
     }
 
-    public function destroy(array $params) {
+    public function destroy(array $params)
+    {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/bestuursleden");
+    }
+
+    public function GetWedstrijden()
+    {
+        $filters = [
+            'name' => $_POST['name'] ?? ''
+        ];
+
+        $draw = intval($_POST['draw'] ?? 1);
+        $start = intval($_POST['start'] ?? 0);
+        $length = intval($_POST['length'] ?? 25);
+        
+        $result = $this->service->datatable($filters, $start, $length, $draw);
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 }
