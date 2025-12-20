@@ -24,6 +24,11 @@
                         <?php } ?>
                     </select>
                 </div>
+                <!-- Score search -->
+                <div class="form-group col-md-2">
+                    <label for="searchScore">Zoek op score</label>
+                    <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2">
+                </div>
             </div>
             <table id="wedstrijdenTable" class="table table-striped table-hover">
                 <tbody>
@@ -52,6 +57,7 @@
                 data: function (d) {
                     d.homeTeam = $('#searchHomeTeam').val();
                     d.awayTeam = $('#searchAwayTeam').val();
+                    d.score = $('#searchScore').val();
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -96,11 +102,11 @@
         function timeout() {
             clearTimeout(reloadTimeout);
             reloadTimeout = setTimeout(function () {
-                trainersTable.ajax.reload();
+                wedstrijdenTable.ajax.reload();
             }, 1000);
         };
         // Text inputs: reload after 1 second of inactivity
-        $('').on('input', timeout);
+        $('#searchScore').on('input', timeout);
 
         $('#searchHomeTeam, #searchAwayTeam').on('change', function () {
             wedstrijdenTable.ajax.reload();

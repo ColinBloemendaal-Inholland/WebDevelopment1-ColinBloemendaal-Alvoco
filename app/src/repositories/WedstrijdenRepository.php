@@ -19,7 +19,12 @@ class WedstrijdenRepository extends BaseRepository
         if (!empty($filters['awayTeam'])) {
             $query->whereRelation('awayTeam', 'id', $filters['awayTeam']);
         }
-        // Additional filters can be added here
+        if (!empty($filters['homeScore'])) {
+            $query->where('score_home', operator: $filters['homeScore']);
+        }
+        if (!empty($filters['awayScore'])) {
+            $query->where('score_away', operator: $filters['awayScore']);
+        }
 
         $recordsTotal = Wedstrijden::count();
         $recordsFiltered = $query->count();

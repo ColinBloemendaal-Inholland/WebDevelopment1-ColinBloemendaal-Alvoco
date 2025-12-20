@@ -83,6 +83,7 @@ class WedstrijdenController extends BaseController implements IController
         $filters = [
             'homeTeam' => $_POST['homeTeam'] ?? '',
             'awayTeam' => $_POST['awayTeam'] ?? '',
+            'score' => $_POST['score'] ?? '',
         ];
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
