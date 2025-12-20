@@ -7,11 +7,11 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['bestuurslid']['lid']['fullname']) ?></h2>
                         <div>
-                            <a href="/admin/leden/<?= $data['bestuurslid']['lid']['id'] ?>"
+                            <a href="/admin/leden/<?= e($data['bestuurslid']['lid']['id']) ?>"
                                 class="btn btn-primary btn-sm">Bekijk lid</a>
-                            <a href="edit.php?id=<?= $data['bestuurslid']['id'] ?>"
+                            <a href="edit.php?id=<?= e($data['bestuurslid']['id']) ?>"
                                 class="btn btn-primary btn-sm">Edit</a>
-                            <a href="delete.php?id=<?= $data['bestuurslid']['id'] ?>" class="btn btn-danger btn-sm"
+                            <a href="delete.php?id=<?= e($data['bestuurslid']['id']) ?>" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Are you sure?')">Delete</a>
                         </div>
                     </div>

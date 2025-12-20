@@ -21,7 +21,7 @@
                     <select name="role" id="searchRole" class="form-control" multiple>
                         <option value="" selected disabled hidden>Selecteer een rol</option>
                         <?php foreach ($data['rolen'] as $rol) { ?>
-                            <option value="<?= $rol->id ?>"><?= $rol->name ?></option>
+                            <option value="<?= e($rol->id) ?>"><?= e($rol->name) ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -84,10 +84,10 @@
                 info: "Showing _START_ to _END_ of _TOTAL_ filtered entries (from _MAX_ total)"
             },
             columns: [
-                { data: 'fullname', title: 'Naam' },
-                { data: 'email', title: 'Email' },
-                { data: 'phone', title: 'Telefoon' },
-                { data: 'adres', title: 'Adres' },
+                { data: 'fullname', title: 'Naam', render: $.fn.dataTable.render.text() },
+                { data: 'email', title: 'Email', render: $.fn.dataTable.render.text() },
+                { data: 'phone', title: 'Telefoon', render: $.fn.dataTable.render.text() },
+                { data: 'adres', title: 'Adres', render: $.fn.dataTable.render.text() },
                 {
                     data: null,
                     title: 'Acties',

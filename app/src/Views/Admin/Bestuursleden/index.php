@@ -19,18 +19,18 @@
                             <?php foreach ($bestuursleden as $bestuurslid) : ?>
                                 <tr>
                                     <td>
-                                        <?= htmlspecialchars($bestuurslid->lid->fullname) ?>
+                                        <?= e($bestuurslid->lid->fullname) ?>
                                     </td>
                                     <td>
-                                        <?= htmlspecialchars($bestuurslid->role->name ?? '-') ?>
+                                        <?= e($bestuurslid->role->name ?? '-') ?>
                                     </td>
                                     <td>
-                                        <?= htmlspecialchars($bestuurslid->start_date 
+                                        <?= e($bestuurslid->start_date 
                                             ? date('d-m-Y', strtotime($bestuurslid->start_date)) 
                                             : '-') ?>
                                     </td>
                                     <td>
-                                        <?= htmlspecialchars($bestuurslid->end_date 
+                                        <?= e($bestuurslid->end_date 
                                             ? date('d-m-Y', strtotime($bestuurslid->end_date)) 
                                             : '-') ?>
                                     </td>

@@ -26,21 +26,21 @@
                                     <label for="role" class="col-sm-3 col-form-label">Rol</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="role" name="role"
-                                            value="<?= $_SESSION['form_old']['role'] ?? '' ?>" required>
+                                            value="<?= e($_SESSION['form_old']['role'] ?? '') ?>" required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="start_date" class="col-sm-3 col-form-label">Start Datum</label>
                                     <div class="col-sm-9">
                                         <input type="date" class="form-control" id="start_date" name="start_date"
-                                            value="<?= $_SESSION['form_old']['start_date'] ?? '' ?>" required>
+                                            value="<?= e($_SESSION['form_old']['start_date'] ?? '') ?>" required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="end_date" class="col-sm-3 col-form-label">Eind Datum</label>
                                     <div class="col-sm-9">
                                         <input type="date" class="form-control" id="end_date" name="end_date"
-                                            value="<?= $_SESSION['form_old']['end_date'] ?? '' ?>">
+                                            value="<?= e($_SESSION['form_old']['end_date'] ?? '') ?>">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

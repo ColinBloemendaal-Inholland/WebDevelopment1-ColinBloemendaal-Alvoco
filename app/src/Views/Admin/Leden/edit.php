@@ -5,7 +5,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">Lid Bewerken</h2>
-                    <form method="POST" action="/admin/leden/<?= $data['lid']['id'] ?? '' ?>">
+                    <form method="POST" action="/admin/leden/<?= e($data['lid']['id'] ?? '') ?>">
                         <input type="hidden" name="_method" value="PUT">
                         <?php \View::Partial('Layout.errors'); ?>
                         
@@ -65,7 +65,7 @@
                                 <select name="role[]" id="roles" class="form-select" multiple>
                                     <?php foreach ($data['rolen'] as $rol): ?>
                                         <option value="<?= $rol->id ?>" <?= in_array($rol->id, $data['roleIds'] ?? []) ? 'selected' : '' ?>>
-                                            <?= $rol->name ?>
+                                            <?= e($rol->name) ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>

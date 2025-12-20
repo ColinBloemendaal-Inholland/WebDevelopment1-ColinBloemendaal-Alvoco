@@ -10,7 +10,7 @@
                     <select name="homeTeam" id="searchHomeTeam" class="form-control" multiple>
                         <option value="" selected disabled hidden>Selecteer een team</option>
                         <?php foreach ($data['teams'] as $team) { ?>
-                            <option value="<?= $team->id ?>"><?= $team->name ?></option>
+                            <option value="<?= e($team->id) ?>"><?= e($team->name) ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -20,7 +20,7 @@
                     <select name="awayTeam" id="searchAwayTeam" class="form-control" multiple>
                         <option value="" selected disabled hidden>Selecteer een team</option>
                         <?php foreach ($data['teams'] as $team) { ?>
-                            <option value="<?= $team->id ?>"><?= $team->name ?></option>
+                            <option value="<?= e($team->id) ?>"><?= e($team->name) ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -70,12 +70,12 @@
                 info: "Showing _START_ to _END_ of _TOTAL_ filtered entries (from _MAX_ total)"
             },
             columns: [
-                { data: 'teamHome', title: 'Thuis' },
-                { data: 'teamAway', title: 'Uit' },
-                { data: 'date', title: 'Datum' },
-                { data: 'time', title: 'Tijd' },
-                { data: 'location', title: 'Locatie' },
-                { data: 'score', title: 'Score' },
+                { data: 'teamHome', title: 'Thuis', render: $.fn.dataTable.render.text() },
+                { data: 'teamAway', title: 'Uit', render: $.fn.dataTable.render.text() },
+                { data: 'date', title: 'Datum', render: $.fn.dataTable.render.text() },
+                { data: 'time', title: 'Tijd', render: $.fn.dataTable.render.text() },
+                { data: 'location', title: 'Locatie', render: $.fn.dataTable.render.text() },
+                { data: 'score', title: 'Score', render: $.fn.dataTable.render.text() },
                 {
                     data: null,
                     title: 'Acties',

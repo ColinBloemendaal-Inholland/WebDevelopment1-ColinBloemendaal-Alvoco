@@ -7,9 +7,9 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['nieuwsbericht']['Title']) ?></h2>
                         <div>
-                            <a href="edit.php?id=<?= $data['nieuwsbericht']['id'] ?>"
+                            <a href="edit.php?id=<?= e($data['nieuwsbericht']['id']) ?>"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="delete.php?id=<?= $data['nieuwsbericht']['id'] ?>" class="btn btn-danger btn-sm"
+                            <a href="delete.php?id=<?= e($data['nieuwsbericht']['id']) ?>" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                             <dl class="row">
                                 <dt class="col-sm-3">Bericht</dt>
                                 <dd class="col-sm-9">
-                                    <?= $data['nieuwsbericht']['Message'] ?>
+                                    <?= e($data['nieuwsbericht']['Message']) ?>
                                 </dd>
 
                                 <dt class="col-sm-3">Auteur</dt>
@@ -37,7 +37,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

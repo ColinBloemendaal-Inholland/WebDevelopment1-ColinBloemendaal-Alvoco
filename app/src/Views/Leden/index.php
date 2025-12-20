@@ -18,14 +18,14 @@ $(document).ready(function() {
             }
         },
         columns: [
-            { data: 'fullname', title: 'Naam' },
-            { data: 'email', title: 'Email'},
-            { data: 'phone', title: 'Telefoon'},
-            { data: 'adres', title: 'Adres'},
-            { data: 'postal', title: 'Postcode'},
-            { data: 'city', title: 'Stad'},
-            { data: 'emergencyFullname', title: 'Noodcontact'},
-            { data: 'emergencyNumber', title: 'Noodnummer'},
+            { data: 'fullname', title: 'Naam', render: $.fn.dataTable.render.text() },
+            { data: 'email', title: 'Email', render: $.fn.dataTable.render.text() },
+            { data: 'phone', title: 'Telefoon', render: $.fn.dataTable.render.text() },
+            { data: 'adres', title: 'Adres', render: $.fn.dataTable.render.text() },
+            { data: 'postal', title: 'Postcode', render: $.fn.dataTable.render.text() },
+            { data: 'city', title: 'Stad', render: $.fn.dataTable.render.text() },
+            { data: 'emergencyFullname', title: 'Noodcontact', render: $.fn.dataTable.render.text() },
+            { data: 'emergencyNumber', title: 'Noodnummer', render: $.fn.dataTable.render.text() },
 
         ],
         dom: '<"top">rt<"bottom"lp><"clear">',

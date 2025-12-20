@@ -79,8 +79,8 @@
                 info: "Showing _START_ to _END_ of _TOTAL_ filtered entries (from _MAX_ total)"
             },
             columns: [
-                { data: 'title', title: 'Title' },
-                { data: 'fullname', title: 'Authur' },
+                { data: 'title', title: 'Title', render: $.fn.dataTable.render.text() },
+                { data: 'fullname', title: 'Authur', render: $.fn.dataTable.render.text() },
                 {
                     data: null,
                     title: 'Acties',
