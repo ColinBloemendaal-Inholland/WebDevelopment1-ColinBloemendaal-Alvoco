@@ -72,8 +72,22 @@
             columns: [
                 { data: 'teamHome', title: 'Thuis', render: $.fn.dataTable.render.text() },
                 { data: 'teamAway', title: 'Uit', render: $.fn.dataTable.render.text() },
-                { data: 'date', title: 'Datum', render: $.fn.dataTable.render.text() },
-                { data: 'time', title: 'Tijd', render: $.fn.dataTable.render.text() },
+                {
+                    data: 'date', title: 'Datum',
+                    render: function (data, type, row) {
+                        const date = new Date(data);
+                        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                        return date.toLocaleDateString('nl-NL', options);
+                    },
+                },
+                {
+                    data: 'time', title: 'Tijd', render: function (data, type) {
+                        if (!data) return '';
+                        if (type !== 'display') return data;
+                        const [hour, minute] = data.split(':');
+                        return `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`;
+                    }
+                },
                 { data: 'location', title: 'Locatie', render: $.fn.dataTable.render.text() },
                 { data: 'score', title: 'Score', render: $.fn.dataTable.render.text() },
                 {
