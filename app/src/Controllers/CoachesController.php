@@ -50,8 +50,10 @@ class CoachesController extends BaseController implements IController {
     }
 
     public function edit(array $params) {
-        $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.coaches.edit", 'Wijzig bestuurslid', $post);
+        $coach = $this->service->get(intval($params["id"]));
+        $leden = $this->ledenServices->getAll();
+        $teams = $this->teamsServices->getAll();
+        return \View::View("admin.coaches.edit", 'Wijzig bestuurslid', ['coach' => $coach, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)

@@ -9,8 +9,8 @@ class CoachesUpdateRequest extends BaseRequests
         return [
             'role' => 'required|alpha',
             'start_date'=> 'required|date:Y-m-d',
-            'end_date'=> 'required|date:Y-m-d',
-            'leden_id'=> 'required|integer|min:1',
+            'end_date'=> 'nullable|date:Y-m-d',
+            'Leden_id'=> 'required|integer|min:1',
             'team_id'=> 'required|integer|min:1'
         ];
     }
