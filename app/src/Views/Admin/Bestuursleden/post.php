@@ -9,9 +9,9 @@
                         <div>
                             <a href="/admin/leden/<?= e($data['bestuurslid']['lid']['id']) ?>"
                                 class="btn btn-primary btn-sm">Bekijk lid</a>
-                            <a href="/admin/leden/<?= e($data['bestuurslid']['lid']['id']) ?>/edit"
+                            <a href="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Edit</a>
-                            <a href="delete.php?id=<?= e($data['bestuurslid']['id']) ?>" class="btn btn-danger btn-sm"
+                            <a href="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Are you sure?')">Delete</a>
                         </div>
                     </div>

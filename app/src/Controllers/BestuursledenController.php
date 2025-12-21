@@ -48,7 +48,7 @@ class BestuursledenController extends BaseController implements IController {
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAll();
-        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['post'=> $post, 'leden' => $leden]);
+        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['bestuurslid'=> $post, 'leden' => $leden]);
     }
 
     public function update(array $params)
@@ -56,8 +56,8 @@ class BestuursledenController extends BaseController implements IController {
         $id = intval($params['id']);
         try {
             $validated = new BestuursledenUpdateRequest($_POST)->validate();
-            $this->service->update($id, $validated);
-            return \View::Redirect("/admin/bestuursleden/{$id}");
+            $bestuurslid = $this->service->update($id, $validated);
+            return \View::Redirect("/admin/bestuursleden/{$bestuurslid->id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
