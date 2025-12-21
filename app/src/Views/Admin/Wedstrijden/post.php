@@ -11,9 +11,9 @@
                             <?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?>
                         </h2>
                         <div>
-                            <a href="edit.php?id=<?= e($data['wedstrijd']['id']) ?>"
+                            <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="delete.php?id=<?= e($data['wedstrijd']['id']) ?>" class="btn btn-danger btn-sm"
+                            <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
                     </div>

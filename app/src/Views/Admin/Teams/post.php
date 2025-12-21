@@ -7,9 +7,9 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['team']['name']) ?></h2>
                         <div>
-                            <a href="edit.php?id=<?= e($data['team']['id']) ?>"
+                            <a href="/admin/teams/<?= e($data['team']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="delete.php?id=<?= e($data['team']['id']) ?>" class="btn btn-danger btn-sm"
+                            <a href="/admin/teams/<?= e($data['team']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
                     </div>
