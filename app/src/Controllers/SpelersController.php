@@ -80,4 +80,20 @@ class SpelersController extends BaseController implements IController {
         $post = $this->service->destroy(intval($params["id"]));
         return \View::Redirect("/admin/spelers");
     }
+
+    public function GetSpelers() {
+        $filter = [
+            'name' => $_POST['name'] ?? '',
+            'team' => $_POST['team'] ?? ''
+        ];
+
+        $draw = intval($_POST['draw'] ?? 1);
+        $start = intval($_POST['start'] ?? 0);
+        $length = intval($_POST['length'] ?? 25);
+
+        $result = $this->service->datatable($filter, $start, $length, $draw);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        return;
+    }
 }

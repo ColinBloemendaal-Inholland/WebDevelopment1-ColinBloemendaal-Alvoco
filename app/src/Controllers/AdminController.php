@@ -117,7 +117,8 @@ class AdminController
 
     public function spelers()
     {
-        return \View::View("admin.spelers.index", 'Spelers');
+        $teams = $this->teamsServices->getAll();
+        return \View::View("admin.spelers.index", 'Spelers', ['teams' => $teams]);
     }
 
     public function getSpeler(array $params) {
