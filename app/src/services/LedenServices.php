@@ -80,4 +80,8 @@ class LedenServices implements IServices
             'id' => $row['id'],
         ];
     }
+
+    public function getAllWithNoSpeler(?array $spelerIds) {
+        return $this->repository->getAllWithNoSpeler($spelerIds)->map([$this, 'format']) ?? null;
+    }
 }

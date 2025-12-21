@@ -38,6 +38,16 @@
             </li>
             <li class="nav-item">
                 <div class="d-flex justify-content-between align-items-center">
+                    <a class="nav-link active" href="/admin/spelers">
+                        <i class="bi bi-person-fill"></i> Spelers
+                    </a>
+                    <a class="nav-link" href="/admin/spelers/create">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="d-flex justify-content-between align-items-center">
                     <a class="nav-link active" href="/admin/coaches">
                         <i class="bi bi-person-fill"></i> Coaches
                     </a>

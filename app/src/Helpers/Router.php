@@ -27,7 +27,7 @@ class Router {
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 http_response_code(404);
-                View::View("errors.404");
+                View::View("errors.404", '404');
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 http_response_code(405);

@@ -60,12 +60,18 @@ class LedenRepository extends BaseRepository
             $user->roles()->detach($role->id);
     }
 
+    public function getAllWithNoSpeler($spelerIds = []): Collection
+    {
+        $spelerIds = array_map('intval', $spelerIds);
+        return Leden::whereDoesntHave('spelers')->orWhereIn('id', $spelerIds)->get();
+    }
+
     public function filter(array $filter, int $start, int $length): array
     {
         $query = Leden::query();
         // filter for name
         if (!empty($filter['name'])) {
-            $name =  "%{$filter['name']}%";
+            $name = "%{$filter['name']}%";
             $query->where(function ($q) use ($name) {
                 $q->where('firstname', 'like', $name)
                     ->orWhere('middlename', 'like', $name)
@@ -77,11 +83,11 @@ class LedenRepository extends BaseRepository
         // Filter for adress
         if (!empty($filter['adress'])) {
             $adress = "%{$filter['adress']}%";
-            $query->where(function($q) use ($adress) {
+            $query->where(function ($q) use ($adress) {
                 $q->where('streetname', 'like', $adress)
-                ->orWhere('streetnumber', 'like', $adress)
-                ->orWhere('postalcode', 'like', $adress)
-                ->orWhere('city', 'like', $adress);
+                    ->orWhere('streetnumber', 'like', $adress)
+                    ->orWhere('postalcode', 'like', $adress)
+                    ->orWhere('city', 'like', $adress);
             });
         }
 
@@ -96,23 +102,23 @@ class LedenRepository extends BaseRepository
         // Filter for phone
         if (!empty($filter['phone'])) {
             $phone = "%{$filter['phone']}%";
-            $query->where('phone','like', $phone);
+            $query->where('phone', 'like', $phone);
         }
 
         //TODO: make this working
         if (isset($filter['trashed']) && $filter['trashed'] == 1) {
             $query->withTrashed();
         }
-        
+
         $filteredCount = $query->count();
         $count = Leden::query()->count();
 
         $data = $query->skip($start)->take($length)->get();
 
         return [
-            'data'=> $data,
-            'recordsFiltered'=> $filteredCount,
-            'recordsTotal'=> $count,
+            'data' => $data,
+            'recordsFiltered' => $filteredCount,
+            'recordsTotal' => $count,
         ];
     }
 }

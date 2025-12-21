@@ -4,13 +4,19 @@ namespace App\Controllers;
 
 use App\Models\Requests\SpelersStoreRequest;
 use App\Models\Requests\SpelersUpdateRequest;
+use App\Services\LedenServices;
 use App\Services\SpelersServices;
+use App\Services\TeamsServices;
 
 class SpelersController extends BaseController implements IController {
     private SpelersServices $service;
-    public function __construct(?SpelersServices $service = null)
+    private LedenServices $ledenServices;
+    private TeamsServices $teamsServices;
+    public function __construct()
     {
-        $this->service = $service ?? new SpelersServices();
+        $this->service = new SpelersServices();
+        $this->ledenServices = new LedenServices();
+        $this->teamsServices = new TeamsServices();
     }
 
     public function index() {
@@ -24,7 +30,9 @@ class SpelersController extends BaseController implements IController {
     }
 
     public function Create() {
-        return \View::View('admin.spelers.create', 'Speler aanmaken');
+        $leden = $this->ledenServices->getAllWithNoSpeler();
+        $teams = $this->teamsServices->getAll();
+        return \View::View('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
     }
 
     public function store()
@@ -42,8 +50,10 @@ class SpelersController extends BaseController implements IController {
     }
 
     public function edit(array $params) {
-        $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.spelers.edit", 'Wijzig bestuurslid', $post);
+        $speler = $this->service->get(intval($params["id"]));
+        $leden = $this->ledenServices->getAllWithNoSpeler([$speler['Leden_id']]);
+        $teams = $this->teamsServices->getAll();
+        return \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler'=> $speler, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)
