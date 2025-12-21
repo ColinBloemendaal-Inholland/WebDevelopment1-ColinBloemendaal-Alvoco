@@ -29,7 +29,7 @@
 
                                 <dt class="col-sm-3">Geboortedatum</dt>
                                 <dd class="col-sm-9"><?= e($data['lid']['date_of_birth'] ?? '-') ?></dd>
-
+                                <?php //TODO: Calculate age property and display ?>
                                 <dt class="col-sm-3">Leeftijd</dt>
                                 <dd class="col-sm-9"><?= e($data['lid']['age'] ?? '-') ?></dd>
 

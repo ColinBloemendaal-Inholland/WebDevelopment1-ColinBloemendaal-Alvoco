@@ -24,10 +24,10 @@
                             <h5 class="mb-3">Wedstrijd informatie</h5>
                             <dl class="row">
                                 <dt class="col-sm-3">Datum</dt>
-                                <dd class="col-sm-9"><?= e($data['wedstrijd']['date']) ?></dd>
+                                <dd class="col-sm-9"><?= e((new DateTime($data['wedstrijd']['date']))->format('d-m-Y')) ?></dd>
 
                                 <dt class="col-sm-3">Tijd</dt>
-                                <dd class="col-sm-9"><?= e($data['wedstrijd']['time']) ?></dd>
+                                <dd class="col-sm-9"><?= e((new DateTime($data['wedstrijd']['time']))->format('H:i')) ?></dd>
 
                                 <dt class="col-sm-3">Locatie</dt>
                                 <dd class="col-sm-9"><?= e($data['wedstrijd']['location']) ?></dd>
@@ -66,26 +66,13 @@
                                     </div>
                                     <dl class="row">
                                         <dt class="col-sm-4">Naam</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['name'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['name'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Categorie</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['Category'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['Category'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Klas</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['class'] ?? '-') ?>
-                                        </dd>
-
-                                        <dt class="col-sm-4">Aangemaakt op</dt>
-                                        <dd class="col-sm-8">
-                                            <?= e($data['wedstrijd']['hometeam']['created_at'] ?? '-') ?>
-                                        </dd>
-
-                                        <dt class="col-sm-4">Laatste wijziging</dt>
-                                        <dd class="col-sm-8">
-                                            <?= e($data['wedstrijd']['hometeam']['updated_at'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['class'] ?? '-') ?></dd>
                                     </dl>
 
                                     <!-- Home team players -->
@@ -135,26 +122,13 @@
                                     </div>
                                     <dl class="row">
                                         <dt class="col-sm-4">Naam</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Categorie</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['Category'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['Category'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Klas</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['class'] ?? '-') ?>
-                                        </dd>
-
-                                        <dt class="col-sm-4">Aangemaakt op</dt>
-                                        <dd class="col-sm-8">
-                                            <?= e($data['wedstrijd']['awayTeam']['created_at'] ?? '-') ?>
-                                        </dd>
-
-                                        <dt class="col-sm-4">Laatste wijziging</dt>
-                                        <dd class="col-sm-8">
-                                            <?= e($data['wedstrijd']['awayTeam']['updated_at'] ?? '-') ?>
-                                        </dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['class'] ?? '-') ?></dd>
                                     </dl>
 
                                     <!-- Away team players -->
