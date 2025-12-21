@@ -11,6 +11,7 @@ use App\Services\TeamsServices;
 use App\Services\BestuursledenServices;
 use App\Services\CoachesServices;
 use App\Services\TrainersServices;
+use App\Services\WedstrijdenServices;
 use Exception;
 
 class AdminController
@@ -24,6 +25,7 @@ class AdminController
     private CoachesServices $coachesServices;
     private SpelersServices $spelersServices;
     private TrainersServices $trainersServices;
+    private WedstrijdenServices $wedstrijdenServices;
     public function __construct()
     {
         $this->rolenServices =  new RolesServices();
@@ -34,6 +36,7 @@ class AdminController
         $this->coachesServices = new CoachesServices();
         $this->spelersServices = new SpelersServices();
         $this->trainersServices = new TrainersServices();
+        $this->wedstrijdenServices = new WedstrijdenServices();
     }
 
     public function index()
@@ -95,6 +98,11 @@ class AdminController
     {
         $teams = $this->teamsServices->getAll();
         return \View::View("admin.wedstrijden.index", 'Wedstrijden', ['teams' => $teams]);
+    }
+
+    public function GetWedstrijd(array $params) {
+        $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
+        return \View::View('admin.wedstrijden.post', 'Wedstrijd', ['wedstrijd'=> $wedstrijd]);
     }
 
     public function bestuursleden()
