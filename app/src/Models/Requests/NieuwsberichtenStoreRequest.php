@@ -7,9 +7,9 @@ class NieuwsberichtenStoreRequest extends BaseRequests
     public function rules(): array
     {
         return [
-            'title' => 'required|alpha',
-            'message'=> 'required|date:Y-m-d',
-            'bestuursleden_id'=> 'required|integer|min:1',
+            'Title' => 'required',
+            'Message'=> 'required',
+            'Bestuursleden_id'=> 'required|integer|min:0',
         ];
     }
 }

@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success btn-lg">Opslaan</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Opslaan</button>
                         </div>
                     </form>
                 </div>

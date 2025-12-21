@@ -76,14 +76,11 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <hr>
-
-                                <!-- Submit -->
                                 <div class="mb-3 row">
                                     <div class="col-sm-9 offset-sm-3">
                                         <button type="submit" class="btn btn-primary">Opslaan</button>
-                                        <a href="/admin/coaches" class="btn btn-secondary">Annuleren</a>
+                                        <a href="/admin/coaches/<?= e($data['coach']['id']) ?>" class="btn btn-secondary">Annuleren</a>
                                     </div>
                                 </div>
                             </form>

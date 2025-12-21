@@ -4,12 +4,15 @@ namespace App\Controllers;
 
 use App\Models\Requests\NieuwsberichtenStoreRequest;
 use App\Models\Requests\NieuwsberichtenUpdateRequest;
+use App\Services\BestuursledenServices;
 use App\Services\NieuwsberichtenServices;
 
 class NieuwsberichtenController extends BaseController implements IController {
     private NieuwsberichtenServices $service;
-    public function __construct(?NieuwsberichtenServices $service = null) {
-        $this->service = $service ?? new NieuwsberichtenServices();
+    private BestuursledenServices $bestuursledenServices;
+    public function __construct() {
+        $this->service =  new NieuwsberichtenServices();
+        $this->bestuursledenServices = new BestuursledenServices();
     }
 
     public function index() {
@@ -20,8 +23,9 @@ class NieuwsberichtenController extends BaseController implements IController {
         $data = $this->service->get(intval($params['id']));
         return \View::View('nieuwsberichten.post', $data['Titl'], $data);
     }
-    public function Create() {
-        return \View::View('admin.nieuwsberichten.create', 'Niewsbericht aanmaken');
+    public function create() {
+        $bestuursleden = $this->bestuursledenServices->getAll();
+        return \View::View('admin.nieuwsberichten.create', 'Niewsbericht aanmaken', ['bestuursleden' => $bestuursleden]);
     }
     public function store()
     {
@@ -38,8 +42,12 @@ class NieuwsberichtenController extends BaseController implements IController {
     }
 
     public function edit(array $params) {
-        $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.nieuwsberichten.edit", 'Wijzig bestuurslid', $post);
+        $nieuwsbericht = $this->service->get(intval($params["id"]));
+        $bestuursleden = $this->bestuursledenServices->getAll();
+        return \View::View("admin.nieuwsberichten.edit", 'Wijzig bestuurslid', [
+            'nieuwsbericht' => $nieuwsbericht,
+            'bestuursleden' => $bestuursleden
+        ]);
     }
 
     public function update(array $params)
