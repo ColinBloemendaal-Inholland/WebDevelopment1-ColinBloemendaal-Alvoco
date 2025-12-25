@@ -10,6 +10,12 @@ class TeamsStoreRequest extends BaseRequests
             'name' => 'required|alpha',
             'class' => 'required|alpha',
             'category' => 'required|alpha',
+            'spelers' => 'nullable|array',
+            'spelers.*' => 'nullable|integer|min:0',
+            'coaches' => 'nullable|array',
+            'coaches.*' => 'nullable|integer|min:0',
+            'trainers' => 'nullable|array',
+            'trainers.*' => 'nullable|integer|min:0',
         ];
     }
 }

@@ -4,13 +4,22 @@ namespace App\Controllers;
 
 use App\Models\Requests\TeamsStoreRequest;
 use App\Models\Requests\TeamsUpdateRequest;
+use App\Services\CoachesServices;
+use App\Services\SpelersServices;
 use App\Services\TeamsServices;
+use App\Services\TrainersServices;
 
 class TeamsController extends BaseController implements IController {
     private TeamsServices $service;
-    public function __construct(?TeamsServices $service = null)
+    private SpelersServices $spelersServices;
+    private CoachesServices $coachesServices;
+    private TrainersServices $trainersServices;
+    public function __construct()
     {
-        $this->service = $service ?? new TeamsServices();
+        $this->service =  new TeamsServices();
+        $this->spelersServices = new SpelersServices();
+        $this->coachesServices = new CoachesServices();
+        $this->trainersServices = new TrainersServices();
     }
 
     public function index() {
@@ -24,7 +33,14 @@ class TeamsController extends BaseController implements IController {
     }
 
     public function Create() {
-        return \View::View('admin.teams.create', 'Team aanmaken');
+        $spelers = $this->spelersServices->getAll();
+        $coaches = $this->coachesServices->getAll();
+        $trainers = $this->trainersServices->getAll();
+        return \View::View('admin.teams.create', 'Team aanmaken', [
+            'spelers' => $spelers,
+            'coaches' => $coaches,
+            'trainers' => $trainers,
+        ]);
     }
 
     public function store()
@@ -42,12 +58,16 @@ class TeamsController extends BaseController implements IController {
     }
 
     public function edit(array $params) {
-        $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.teams.edit", 'Wijzig bestuurslid', $post);
+        $team = $this->service->get(intval($params["id"]));
+        $coaches = $this->coachesServices->getAll();
+        $spelers = $this->spelersServices->getAll();
+        $trainers = $this->trainersServices->getAll();
+        return \View::View("admin.teams.edit", 'Wijzig bestuurslid', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
     }
 
     public function update(array $params)
     {
+        $validated = [];
         $id = intval($params['id']);
         try {
             $validated = new TeamsUpdateRequest($_POST)->validate();

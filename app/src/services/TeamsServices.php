@@ -23,11 +23,11 @@ class TeamsServices implements IServices
     }
     public function create(array $data)
     {
-        return $this->repository->create($data) ?? null;
+        return $this->repository->createWithRelations($data);
     }
     public function update(int $id, array $data)
     {
-        return $this->repository->update($id, $data) ?? null;
+        return $this->repository->editWithRelations($id, $data) ?? null;
     }
     public function delete(int $id): bool
     {
