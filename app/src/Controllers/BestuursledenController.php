@@ -10,7 +10,7 @@ use App\Services\LedenServices;
 class BestuursledenController extends BaseController implements IController {
     private BestuursledenServices $service;
     private LedenServices $ledenServices;
-    public function __construct(?BestuursledenServices $service = null)
+    public function __construct()
     {
         $this->service = new BestuursledenServices();
         $this->ledenServices = new LedenServices();
@@ -68,11 +68,19 @@ class BestuursledenController extends BaseController implements IController {
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/bestuursleden/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/bestuursleden");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/bestuursleden/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/bestuursleden");
     }
 }
