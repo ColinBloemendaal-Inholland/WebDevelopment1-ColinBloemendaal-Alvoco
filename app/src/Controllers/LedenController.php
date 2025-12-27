@@ -80,8 +80,9 @@ class LedenController extends BaseController implements IController
     {
         $id = intval($params["id"]);
         $post = $this->service->delete($id);
-        if(!$post)
+        if(!$post) {
             \View::Redirect("/admin/leden/{$id}");
+        }
         \View::Redirect("/admin/leden");
     }
 
@@ -89,8 +90,9 @@ class LedenController extends BaseController implements IController
     {
         $id = intval($params["id"]);
         $post = $this->service->destroy($id);
-        if(!$post)
+        if(!$post) {
             \View::Redirect("/admin/leden/{$id}");
+        }
         \View::Redirect("/admin/leden");
     }
 
@@ -112,7 +114,6 @@ class LedenController extends BaseController implements IController
 
         header('Content-Type: application/json');
         echo json_encode($result);
-        return;
     }
 
     public function loginView()
@@ -122,8 +123,9 @@ class LedenController extends BaseController implements IController
 
     public function login()
     {
-        if (!isset($_POST["email"]) && !isset($_POST["password"]))
+        if (!isset($_POST["email"]) && !isset($_POST["password"])) {
             \View::Redirect("/login");
+        }
         $email = $_POST["email"];
         $password = $_POST["password"];
 
