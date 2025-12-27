@@ -22,17 +22,17 @@ class LedenController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        return \View::View("leden.index", 'Leden', ['leden' => $data]);
+        \View::View("leden.index", 'Leden', ['leden' => $data]);
     }
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('leden.post', $data['Title'], $data);
+        \View::View('leden.post', $data['Title'], $data);
     }
     public function Create()
     {
         $data = $this->rolenServices->getAll();
-        return \View::View('admin.leden.create', 'Lid aanmaken', ['rolen'=> $data]);
+        \View::View('admin.leden.create', 'Lid aanmaken', ['rolen'=> $data]);
     }
     public function store()
     {
@@ -43,9 +43,9 @@ class LedenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/leden/create");
+            \View::Redirect("/admin/leden/create");
         }
-        return \View::Redirect("/admin/leden/{$post['id']}");
+        \View::Redirect("/admin/leden/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -54,7 +54,7 @@ class LedenController extends BaseController implements IController
         $roles = $this->rolenServices->getAll();
         $roleIds = array_column($post->roles->toArray(),'id') ?? [];
 
-        return \View::View("admin.leden.edit", 'Wijzig lid', [
+        \View::View("admin.leden.edit", 'Wijzig lid', [
             'lid' => $post,
             'rolen' => $roles,
             'roleIds'=> $roleIds
@@ -67,12 +67,12 @@ class LedenController extends BaseController implements IController
         try {
             $validated = new LedenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/leden/{$id}");
+            \View::Redirect("/admin/leden/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/leden/{$id}/edit");
+            \View::Redirect("/admin/leden/{$id}/edit");
         }
     }
 
@@ -81,8 +81,8 @@ class LedenController extends BaseController implements IController
         $id = intval($params["id"]);
         $post = $this->service->delete($id);
         if(!$post)
-            return \View::Redirect("/admin/leden/{$id}");
-        return \View::Redirect("/admin/leden");
+            \View::Redirect("/admin/leden/{$id}");
+        \View::Redirect("/admin/leden");
     }
 
     public function destroy(array $params)
@@ -90,8 +90,8 @@ class LedenController extends BaseController implements IController
         $id = intval($params["id"]);
         $post = $this->service->destroy($id);
         if(!$post)
-            return \View::Redirect("/admin/leden/{$id}");
-        return \View::Redirect("/admin/leden");
+            \View::Redirect("/admin/leden/{$id}");
+        \View::Redirect("/admin/leden");
     }
 
     public function GetLeden()
@@ -117,13 +117,13 @@ class LedenController extends BaseController implements IController
 
     public function loginView()
     {
-        return \View::View("leden.login");
+        \View::View("leden.login");
     }
 
     public function login()
     {
         if (!isset($_POST["email"]) && !isset($_POST["password"]))
-            return \View::Redirect("/login");
+            \View::Redirect("/login");
         $email = $_POST["email"];
         $password = $_POST["password"];
 

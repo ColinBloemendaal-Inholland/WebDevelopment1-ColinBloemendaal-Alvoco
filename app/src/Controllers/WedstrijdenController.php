@@ -17,18 +17,18 @@ class WedstrijdenController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        return \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijden' => $data]);
+        \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijden' => $data]);
     }
 
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('wedstrijden.post', $data['Title'], $data);
+        \View::View('wedstrijden.post', $data['Title'], $data);
     }
 
     public function Create()
     {
-        return \View::View('admin.wedstrijden.create', 'Wedstrijden aanmaken');
+        \View::View('admin.wedstrijden.create', 'Wedstrijden aanmaken');
     }
 
     public function store()
@@ -40,15 +40,15 @@ class WedstrijdenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/wedstrijden/create");
+            \View::Redirect("/admin/wedstrijden/create");
         }
-        return \View::Redirect("/admin/wedstrijden/{$post['id']}");
+        \View::Redirect("/admin/wedstrijden/{$post['id']}");
     }
 
     public function edit(array $params)
     {
         $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
+        \View::View("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
     }
 
     public function update(array $params)
@@ -57,25 +57,25 @@ class WedstrijdenController extends BaseController implements IController
         try {
             $validated = new WedstrijdenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/wedstrijden/{$id}");
+            \View::Redirect("/admin/wedstrijden/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/wedstrijden/{$id}");
+            \View::Redirect("/admin/wedstrijden/{$id}");
         }
     }
 
     public function delete(array $params)
     {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/wedstrijden");
+        \View::Redirect("/admin/wedstrijden");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/wedstrijden");
+        \View::Redirect("/admin/wedstrijden");
     }
 
     public function GetWedstrijden()

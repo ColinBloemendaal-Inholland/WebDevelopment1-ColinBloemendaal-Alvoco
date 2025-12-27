@@ -14,16 +14,16 @@ class RolesController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("roles.index", 'Roles', ['roles' => $data]);
+        \View::View("roles.index", 'Roles', ['roles' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('roles.post', $data['Title'], $data);
+        \View::View('roles.post', $data['Title'], $data);
     }
 
     public function Create() {
-        return \View::View('admin.roles.create', 'Rol aanmaken');
+        \View::View('admin.roles.create', 'Rol aanmaken');
     }
 
     public function store()
@@ -35,14 +35,14 @@ class RolesController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/roles/create");
+            \View::Redirect("/admin/roles/create");
         }
-        return \View::Redirect("/admin/roles/{$post['id']}");
+        \View::Redirect("/admin/roles/{$post['id']}");
     }
 
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
-        return \View::View("admin.roles.edit", 'Wijzig bestuurslid', $post);
+        \View::View("admin.roles.edit", 'Wijzig bestuurslid', $post);
     }
 
     public function update(array $params)
@@ -51,22 +51,22 @@ class RolesController extends BaseController implements IController {
         try {
             $validated = new RolesUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/roles/{$id}");
+            \View::Redirect("/admin/roles/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/roles/{$id}");
+            \View::Redirect("/admin/roles/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/roles");
+        \View::Redirect("/admin/roles");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/roles");
+        \View::Redirect("/admin/roles");
     }
 }

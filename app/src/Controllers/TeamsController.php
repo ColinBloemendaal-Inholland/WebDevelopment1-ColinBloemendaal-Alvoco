@@ -9,34 +9,38 @@ use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\TrainersServices;
 
-class TeamsController extends BaseController implements IController {
+class TeamsController extends BaseController implements IController
+{
     private TeamsServices $service;
     private SpelersServices $spelersServices;
     private CoachesServices $coachesServices;
     private TrainersServices $trainersServices;
     public function __construct()
     {
-        $this->service =  new TeamsServices();
+        $this->service = new TeamsServices();
         $this->spelersServices = new SpelersServices();
         $this->coachesServices = new CoachesServices();
         $this->trainersServices = new TrainersServices();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = $this->service->getAll();
-        return \View::View("teams.index", 'Teams', ['teams' => $data]);
+        \View::View("teams.index", 'Teams', ['teams' => $data]);
     }
 
-    public function show(array $params) {
+    public function show(array $params)
+    {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('teams.post', $data['Titl'], $data);
+        \View::View('teams.post', $data['Titl'], $data);
     }
 
-    public function Create() {
+    public function Create()
+    {
         $spelers = $this->spelersServices->getAll();
         $coaches = $this->coachesServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        return \View::View('admin.teams.create', 'Team aanmaken', [
+        \View::View('admin.teams.create', 'Team aanmaken', [
             'spelers' => $spelers,
             'coaches' => $coaches,
             'trainers' => $trainers,
@@ -52,17 +56,18 @@ class TeamsController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/teams/create");
+            \View::Redirect("/admin/teams/create");
         }
-        return \View::Redirect("/admin/teams/{$post['id']}");
+        \View::Redirect("/admin/teams/{$post['id']}");
     }
 
-    public function edit(array $params) {
+    public function edit(array $params)
+    {
         $team = $this->service->get(intval($params["id"]));
         $coaches = $this->coachesServices->getAll();
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        return \View::View("admin.teams.edit", 'Wijzig bestuurslid', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
+        \View::View("admin.teams.edit", 'Wijzig bestuurslid', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
     }
 
     public function update(array $params)
@@ -72,23 +77,31 @@ class TeamsController extends BaseController implements IController {
         try {
             $validated = new TeamsUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/teams/{$id}");
+            \View::Redirect("/admin/teams/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/teams/{$id}");
+            \View::Redirect("/admin/teams/{$id}");
         }
     }
 
-    public function delete(array $params) {
+    public function delete(array $params)
+    {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/teams");
+        if (!$post) {
+            \View::Redirect("/admin/teams/{$params["id"]}");
+        }
+        \View::Redirect("/admin/teams");
     }
 
-    public function destroy(array $params) {
+    public function destroy(array $params)
+    {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/teams");
+        if (!$post) {
+            \View::Redirect("/admin/teams/{$params["id"]}");
+        }
+        \View::Redirect("/admin/teams");
     }
 
     public function GetTeams()
@@ -105,6 +118,5 @@ class TeamsController extends BaseController implements IController {
 
         header('Content-Type: application/json');
         echo json_encode($result);
-        return;
     }
 }

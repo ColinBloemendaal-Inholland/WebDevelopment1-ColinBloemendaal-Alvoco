@@ -41,88 +41,88 @@ class AdminController
 
     public function index()
     {
-        return \View::View("admin.index", 'Admin Dashboard');
+        \View::View("admin.index", 'Admin Dashboard');
     }
 
     public function leden()
     {
         $roles = $this->rolenServices->getAll();
-        return \View::View("admin.leden.index", 'Manage leden', ['rolen' => $roles]);
+        \View::View("admin.leden.index", 'Manage leden', ['rolen' => $roles]);
     }
 
     public function getLid(array $params) {
         $lid = $this->ledenServices->get(intval($params['id']));
         //TODO: fix the passing of the name
-        return \View::View('admin.leden.post', 'Lid', ['lid'=> $lid]);
+        \View::View('admin.leden.post', 'Lid', ['lid'=> $lid]);
     }
 
     public function nieuwsberichten()
     {
-        return \View::View("admin.nieuwsberichten.index", 'Nieuwsberichten');
+        \View::View("admin.nieuwsberichten.index", 'Nieuwsberichten');
     }
     public function getNieuwsbericht(array $params) {
     $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
-        return \View::View('admin.nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht'=> $nieuwsbericht]);
+        \View::View('admin.nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht'=> $nieuwsbericht]);
     }
 
     public function teams()
     {
-        return \View::View("admin.teams.index", 'Teams');
+        \View::View("admin.teams.index", 'Teams');
     }
 
     public function getTeam(array $params) {
         $team = $this->teamsServices->get(intval($params['id']));
-        return \View::View('admin.teams.post', 'Team', ['team'=> $team]);
+        \View::View('admin.teams.post', 'Team', ['team'=> $team]);
     }
 
     public function coaches()
     {
-        return \View::View("admin.coaches.index", 'Coaches');
+        \View::View("admin.coaches.index", 'Coaches');
     }
 
     public function getCoach(array $params) {
         $coach = $this->coachesServices->getWithTeam(intval($params['id']));
-        return \View::View('admin.coaches.post', 'Coach', ['coach'=> $coach]);
+        \View::View('admin.coaches.post', 'Coach', ['coach'=> $coach]);
     }
 
     public function trainers()
     {
-        return \View::View("admin.trainers.index", 'Trainers');
+        \View::View("admin.trainers.index", 'Trainers');
     }
     public function getTrainer(array $params) {
         $trainer = $this->trainersServices->get(intval($params['id']));
-        return \View::View('admin.trainers.post', 'Trainer', ['trainer'=> $trainer]);
+        \View::View('admin.trainers.post', 'Trainer', ['trainer'=> $trainer]);
     }
 
     public function wedstrijden()
     {
         $teams = $this->teamsServices->getAll();
-        return \View::View("admin.wedstrijden.index", 'Wedstrijden', ['teams' => $teams]);
+        \View::View("admin.wedstrijden.index", 'Wedstrijden', ['teams' => $teams]);
     }
 
     public function GetWedstrijd(array $params) {
         $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
-        return \View::View('admin.wedstrijden.post', 'Wedstrijd', ['wedstrijd'=> $wedstrijd]);
+        \View::View('admin.wedstrijden.post', 'Wedstrijd', ['wedstrijd'=> $wedstrijd]);
     }
 
     public function bestuursleden()
     {
-        return \View::View("admin.bestuursleden.index", 'Bestuursleden');
+        \View::View("admin.bestuursleden.index", 'Bestuursleden');
     }
     
     public function getBestuurslid(array $params) {
         $bestuurslid = $this->bestuursledenServices->get(intval($params['id']));
-        return \View::View('admin.bestuursleden.post', 'Bestuurslid', ['bestuurslid'=> $bestuurslid]);
+        \View::View('admin.bestuursleden.post', 'Bestuurslid', ['bestuurslid'=> $bestuurslid]);
     }
 
     public function spelers()
     {
         $teams = $this->teamsServices->getAll();
-        return \View::View("admin.spelers.index", 'Spelers', ['teams' => $teams]);
+        \View::View("admin.spelers.index", 'Spelers', ['teams' => $teams]);
     }
 
     public function getSpeler(array $params) {
         $speler = $this->spelersServices->get(intval($params['id']));
-        return \View::View('admin.spelers.post', 'Speler', ['speler'=> $speler]);
+        \View::View('admin.spelers.post', 'Speler', ['speler'=> $speler]);
     }
 }

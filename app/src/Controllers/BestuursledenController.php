@@ -18,17 +18,17 @@ class BestuursledenController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
+        \View::View("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('bestuursleden.post', $data['Title'], $data);
+        \View::View('bestuursleden.post', $data['Title'], $data);
     }
 
     public function Create() {
         $leden = $this->service->getAllWithNoCurrentBestuursleden();
-        return \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken', ['leden' => $leden]);
+        \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken', ['leden' => $leden]);
     }
 
     public function store()
@@ -40,15 +40,15 @@ class BestuursledenController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/bestuursleden/create");
+            \View::Redirect("/admin/bestuursleden/create");
         }
-        return \View::Redirect("/admin/bestuursleden/{$post['id']}");
+        \View::Redirect("/admin/bestuursleden/{$post['id']}");
     }
 
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAll();
-        return \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['bestuurslid'=> $post, 'leden' => $leden]);
+        \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['bestuurslid'=> $post, 'leden' => $leden]);
     }
 
     public function update(array $params)
@@ -57,22 +57,22 @@ class BestuursledenController extends BaseController implements IController {
         try {
             $validated = new BestuursledenUpdateRequest($_POST)->validate();
             $bestuurslid = $this->service->update($id, $validated);
-            return \View::Redirect("/admin/bestuursleden/{$bestuurslid->id}");
+            \View::Redirect("/admin/bestuursleden/{$bestuurslid->id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/bestuursleden/{$id}");
+            \View::Redirect("/admin/bestuursleden/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/bestuursleden");
+        \View::Redirect("/admin/bestuursleden");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/bestuursleden");
+        \View::Redirect("/admin/bestuursleden");
     }
 }

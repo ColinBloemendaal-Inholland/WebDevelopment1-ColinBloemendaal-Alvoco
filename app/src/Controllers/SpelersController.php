@@ -21,18 +21,18 @@ class SpelersController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("spelers.index", 'Spelers', data: ['spelers' => $data]);
+        \View::View("spelers.index", 'Spelers', data: ['spelers' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('spelers.post', $data['Title'], $data);
+        \View::View('spelers.post', $data['Title'], $data);
     }
 
     public function Create() {
         $leden = $this->ledenServices->getAllWithNoSpeler();
         $teams = $this->teamsServices->getAll();
-        return \View::View('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
+        \View::View('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
     }
 
     public function store()
@@ -44,16 +44,16 @@ class SpelersController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/spelers/create");
+            \View::Redirect("/admin/spelers/create");
         }
-        return \View::Redirect("/admin/spelers/{$post['id']}");
+        \View::Redirect("/admin/spelers/{$post['id']}");
     }
 
     public function edit(array $params) {
         $speler = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAllWithNoSpeler([$speler['Leden_id']]);
         $teams = $this->teamsServices->getAll();
-        return \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler'=> $speler, 'leden' => $leden, 'teams' => $teams]);
+        \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler'=> $speler, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)
@@ -62,23 +62,23 @@ class SpelersController extends BaseController implements IController {
         try {
             $validated = new SpelersUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/spelers/{$id}");
+            \View::Redirect("/admin/spelers/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/spelers/{$id}");
+            \View::Redirect("/admin/spelers/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/spelers");
+        \View::Redirect("/admin/spelers");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/spelers");
+        \View::Redirect("/admin/spelers");
     }
 
     public function GetSpelers() {

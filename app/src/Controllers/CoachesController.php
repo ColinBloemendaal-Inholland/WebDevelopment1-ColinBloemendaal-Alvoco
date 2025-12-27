@@ -21,18 +21,18 @@ class CoachesController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("coaches.index", 'Coaches', ['coaches' => $data]);
+        \View::View("coaches.index", 'Coaches', ['coaches' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('coaches.post', $data['Title'], $data);
+        \View::View('coaches.post', $data['Title'], $data);
     }
 
     public function Create() {
         $leden = $this->ledenServices->getAll();
         $teams = $this->teamsServices->getAll();
-        return \View::View('admin.coaches.create', 'Coach aanmaken', ['leden' => $leden, 'teams' => $teams]);
+        \View::View('admin.coaches.create', 'Coach aanmaken', ['leden' => $leden, 'teams' => $teams]);
     }
 
     public function store()
@@ -44,16 +44,16 @@ class CoachesController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/coaches/create");
+            \View::Redirect("/admin/coaches/create");
         }
-        return \View::Redirect("/admin/coaches/{$post['id']}");
+        \View::Redirect("/admin/coaches/{$post['id']}");
     }
 
     public function edit(array $params) {
         $coach = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAll();
         $teams = $this->teamsServices->getAll();
-        return \View::View("admin.coaches.edit", 'Wijzig bestuurslid', ['coach' => $coach, 'leden' => $leden, 'teams' => $teams]);
+        \View::View("admin.coaches.edit", 'Wijzig bestuurslid', ['coach' => $coach, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)
@@ -62,23 +62,23 @@ class CoachesController extends BaseController implements IController {
         try {
             $validated = new CoachesUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/coaches/{$id}");
+            \View::Redirect("/admin/coaches/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/coaches/{$id}");
+            \View::Redirect("/admin/coaches/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/coaches");
+        \View::Redirect("/admin/coaches");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/coaches");
+        \View::Redirect("/admin/coaches");
     }
 
     public function GetCoaches() {

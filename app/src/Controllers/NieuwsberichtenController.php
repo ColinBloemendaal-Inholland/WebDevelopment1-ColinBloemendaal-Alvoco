@@ -17,15 +17,15 @@ class NieuwsberichtenController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        return \View::View("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
+        \View::View("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
     }
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        return \View::View('nieuwsberichten.post', $data['Titl'], $data);
+        \View::View('nieuwsberichten.post', $data['Titl'], $data);
     }
     public function create() {
         $bestuursleden = $this->bestuursledenServices->getAll();
-        return \View::View('admin.nieuwsberichten.create', 'Niewsbericht aanmaken', ['bestuursleden' => $bestuursleden]);
+        \View::View('admin.nieuwsberichten.create', 'Niewsbericht aanmaken', ['bestuursleden' => $bestuursleden]);
     }
     public function store()
     {
@@ -36,15 +36,15 @@ class NieuwsberichtenController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/nieuwsberichten/create");
+            \View::Redirect("/admin/nieuwsberichten/create");
         }
-        return \View::Redirect("/admin/nieuwsberichten/{$post['id']}");
+        \View::Redirect("/admin/nieuwsberichten/{$post['id']}");
     }
 
     public function edit(array $params) {
         $nieuwsbericht = $this->service->get(intval($params["id"]));
         $bestuursleden = $this->bestuursledenServices->getAll();
-        return \View::View("admin.nieuwsberichten.edit", 'Wijzig bestuurslid', [
+        \View::View("admin.nieuwsberichten.edit", 'Wijzig bestuurslid', [
             'nieuwsbericht' => $nieuwsbericht,
             'bestuursleden' => $bestuursleden
         ]);
@@ -56,23 +56,23 @@ class NieuwsberichtenController extends BaseController implements IController {
         try {
             $validated = new NieuwsberichtenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            return \View::Redirect("/admin/nieuwsberichten/{$id}");
+            \View::Redirect("/admin/nieuwsberichten/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            return \View::Redirect("/admin/nieuwsberichten/{$id}");
+            \View::Redirect("/admin/nieuwsberichten/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
-        return \View::Redirect("/admin/nieuwsberichten");
+        \View::Redirect("/admin/nieuwsberichten");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
-        return \View::Redirect("/admin/nieuwsberichten");
+        \View::Redirect("/admin/nieuwsberichten");
     }
 
     //TODO: Place in a API Controller?

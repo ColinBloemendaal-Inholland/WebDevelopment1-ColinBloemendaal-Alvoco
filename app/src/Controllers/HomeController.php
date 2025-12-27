@@ -8,6 +8,6 @@ class HomeController extends BaseController
     public function index($vars = [])
     {
 
-        return \View::View('Dashboard.Home', 'Hello home',['user'=> $this->user()]);
+        \View::View('Dashboard.Home', 'Hello home',['user'=> $this->user()]);
     }
 }
