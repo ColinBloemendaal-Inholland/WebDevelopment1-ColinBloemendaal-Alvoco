@@ -102,6 +102,5 @@ class SpelersController extends BaseController implements IController {
         $result = $this->service->datatable($filter, $start, $length, $draw);
         header('Content-Type: application/json');
         echo json_encode($result);
-        return;
     }
 }
