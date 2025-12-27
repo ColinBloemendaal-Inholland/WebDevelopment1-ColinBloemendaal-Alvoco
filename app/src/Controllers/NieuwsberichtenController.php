@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
@@ -67,11 +67,19 @@ class NieuwsberichtenController extends BaseController implements IController {
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/nieuwsberichten/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/nieuwsberichten");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/nieuwsberichten/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/nieuwsberichten");
     }
 
