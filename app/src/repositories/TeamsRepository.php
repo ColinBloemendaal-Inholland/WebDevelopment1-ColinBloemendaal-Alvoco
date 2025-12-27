@@ -10,11 +10,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TeamsRepository extends BaseRepository
 {
-    public function __construct(Teams $model)
-    {
-        parent::__construct($model);
-    }
-
     public function createWithRelations(array $data): Teams
     {
         $team = $this->model->create($data);
