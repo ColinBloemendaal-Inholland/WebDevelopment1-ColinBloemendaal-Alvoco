@@ -101,6 +101,5 @@ class TrainersController extends BaseController implements IController {
 
         header('Content-Type: application/json');
         echo json_encode($result);
-        return;
     }
 }
