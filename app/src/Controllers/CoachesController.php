@@ -73,11 +73,19 @@ class CoachesController extends BaseController implements IController {
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/coaches/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/coaches");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
+        if(!$post) {
+            \View::Redirect("/admin/coaches/{$params["id"]}");
+            return;
+        }
         \View::Redirect("/admin/coaches");
     }
 
