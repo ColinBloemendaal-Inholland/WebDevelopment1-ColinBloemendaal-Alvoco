@@ -100,7 +100,7 @@ class AdminController
         \View::View("admin.wedstrijden.index", 'Wedstrijden', ['teams' => $teams]);
     }
 
-    public function GetWedstrijd(array $params) {
+    public function getWedstrijd(array $params) {
         $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
         \View::View('admin.wedstrijden.post', 'Wedstrijd', ['wedstrijd'=> $wedstrijd]);
     }

@@ -104,7 +104,7 @@ class TeamsController extends BaseController implements IController
         \View::Redirect("/admin/teams");
     }
 
-    public function GetTeams()
+    public function getTeams()
     {
         $filter = [
             'name' => $_POST['name'] ?? ''

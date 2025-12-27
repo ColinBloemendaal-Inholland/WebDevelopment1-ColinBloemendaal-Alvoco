@@ -35,13 +35,13 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/contact', [BestuursledenController::class, 'storeContact']);
 
     
-    $r->addRoute('POST', '/api/leden', [LedenController::class, 'GetLeden']);
-    $r->addRoute('POST', '/api/nieuwsberichten', [NieuwsberichtenController::class, 'GetNieuwsberichten']);
-    $r->addRoute('POST', '/api/teams', [TeamsController::class, 'GetTeams']);
-    $r->addRoute('POST', '/api/coaches', [CoachesController::class, 'GetCoaches']);
-    $r->addRoute('POST', '/api/trainers', [TrainersController::class, 'GetTrainers']);
-    $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'GetWedstrijden']);
-    $r->addRoute('POST', '/api/spelers', [SpelersController::class, 'GetSpelers']);
+    $r->addRoute('POST', '/api/leden', [LedenController::class, 'getLeden']);
+    $r->addRoute('POST', '/api/nieuwsberichten', [NieuwsberichtenController::class, 'getNieuwsberichten']);
+    $r->addRoute('POST', '/api/teams', [TeamsController::class, 'getTeams']);
+    $r->addRoute('POST', '/api/coaches', [CoachesController::class, 'getCoaches']);
+    $r->addRoute('POST', '/api/trainers', [TrainersController::class, 'getTrainers']);
+    $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'getWedstrijden']);
+    $r->addRoute('POST', '/api/spelers', [SpelersController::class, 'getSpelers']);
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);

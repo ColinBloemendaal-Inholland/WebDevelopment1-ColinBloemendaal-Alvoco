@@ -96,7 +96,7 @@ class LedenController extends BaseController implements IController
         \View::Redirect("/admin/leden");
     }
 
-    public function GetLeden()
+    public function getLeden()
     {
         $filter = [
             'name' => $_POST['name'] ?? '',
@@ -118,7 +118,7 @@ class LedenController extends BaseController implements IController
 
     public function loginView()
     {
-        \View::View("leden.login");
+        \View::View("leden.login",'Inloggen');
     }
 
     public function login()

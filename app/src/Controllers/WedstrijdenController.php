@@ -86,7 +86,7 @@ class WedstrijdenController extends BaseController implements IController
         \View::Redirect("/admin/wedstrijden");
     }
 
-    public function GetWedstrijden()
+    public function getWedstrijden()
     {
         $filters = [
             'homeTeam' => $_POST['homeTeam'] ?? '',

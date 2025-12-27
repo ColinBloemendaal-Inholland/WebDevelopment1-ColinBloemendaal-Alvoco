@@ -87,7 +87,7 @@ class TrainersController extends BaseController implements IController {
         \View::Redirect("/admin/trainers");
     }
 
-    public function GetTrainers() {
+    public function getTrainers() {
         $filter = [
             'name' => $_POST['name'] ?? '',
             'role' => $_POST['role'] ?? ''

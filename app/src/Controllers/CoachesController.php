@@ -89,7 +89,7 @@ class CoachesController extends BaseController implements IController {
         \View::Redirect("/admin/coaches");
     }
 
-    public function GetCoaches() {
+    public function getCoaches() {
         $filter = [
             'name' => $_POST['name'] ?? '',
             'role' => $_POST['role'] ?? ''

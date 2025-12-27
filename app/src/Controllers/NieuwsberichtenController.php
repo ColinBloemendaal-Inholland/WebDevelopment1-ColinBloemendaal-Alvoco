@@ -84,7 +84,7 @@ class NieuwsberichtenController extends BaseController implements IController {
     }
 
     //TODO: Place in a API Controller?
-    public function GetNieuwsberichten() {
+    public function getNieuwsberichten() {
         $filter = [
             'authur'=> $_POST['authur'] ?? '',
             'title'=> $_POST['title'] ??'',

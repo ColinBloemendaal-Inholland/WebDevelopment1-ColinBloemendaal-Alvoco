@@ -89,7 +89,7 @@ class SpelersController extends BaseController implements IController {
         \View::Redirect("/admin/spelers");
     }
 
-    public function GetSpelers() {
+    public function getSpelers() {
         $filter = [
             'name' => $_POST['name'] ?? '',
             'team' => $_POST['team'] ?? ''
