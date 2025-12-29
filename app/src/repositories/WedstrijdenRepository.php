@@ -6,10 +6,6 @@ use App\Models\Wedstrijden;
 
 class WedstrijdenRepository extends BaseRepository
 {
-    public function __construct(Wedstrijden $model)
-    {
-        parent::__construct($model);
-    }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
         $query = Wedstrijden::query()->with('homeTeam', 'awayTeam');
 

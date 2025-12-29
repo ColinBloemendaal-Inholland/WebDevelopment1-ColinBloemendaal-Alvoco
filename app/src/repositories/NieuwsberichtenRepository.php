@@ -6,17 +6,13 @@ use App\Models\Nieuwsberichten;
 
 class NieuwsberichtenRepository extends BaseRepository
 {
-    public function __construct(Nieuwsberichten $model)
-    {
-        parent::__construct($model);
-    }
 
     public function filter(array $filter, int $start, int $length)
     {
         $query = Nieuwsberichten::query()
             ->select('id', 'Title', 'Bestuursleden_id')
             ->with([
-                'Authur:id,Leden_id', 
+                'Authur:id,Leden_id',
                 'Authur.lid:id,firstname,middlename,lastname'
             ]);
 
