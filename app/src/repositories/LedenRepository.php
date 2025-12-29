@@ -53,11 +53,16 @@ class LedenRepository extends BaseRepository
     }
 
     /** Remove a role from the user */
-    public function removeRole(Leden $user, string $roleName)
+    public function removeRole(Leden $user, string $roleName): bool
     {
         $role = Roles::where('name', $roleName)->first();
-        if ($role)
-            $user->roles()->detach($role->id);
+        if ($role) {
+            $result = $user->roles()->detach($role->id);
+            if($result > 0){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function getAllWithNoSpeler($spelerIds = []): Collection
