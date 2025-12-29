@@ -13,26 +13,26 @@
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-4">
-                                <label class="form-label">Voornaam</label>
-                                <input type="text" class="form-control" name="firstname" required
+                                <label for="firstname" class="form-label">Voornaam</label>
+                                <input id="firstname" type="text" class="form-control" name="firstname" required
                                     value="<?= e($data['lid']['firstname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <label class="form-label">Tussenvoegsel</label>
-                                <input type="text" class="form-control" name="middlename"
+                                <label for="middlename" class="form-label">Tussenvoegsel</label>
+                                <input id="middlename" type="text" class="form-control" name="middlename"
                                     value="<?= e($data['lid']['middlename'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <label class="form-label">Achternaam</label>
-                                <input type="text" class="form-control" name="lastname" required
+                                <label for="lastname" class="form-label">Achternaam</label>
+                                <input id="lastname" type="text" class="form-control" name="lastname" required
                                     value="<?= e($data['lid']['lastname'] ?? '') ?>">
                             </div>
                         </div>
 
                         <div class="row g-3 mb-3">
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label">Geslacht</label>
-                                <select class="form-select" name="gender" required>
+                                <label for="gender" class="form-label">Geslacht</label>
+                                <select id="gender" class="form-select" name="gender" required>
                                     <option disabled hidden>Kies...</option>
                                     <option value="M" <?= $data['lid']['gender'] ?? '' === 'M' ? 'selected' : '' ?>>Man</option>
                                     <option value="F" <?= $data['lid']['gender'] ?? '' === 'F' ? 'selected' : '' ?>>Vrouw</option>
@@ -40,20 +40,20 @@
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <label class="form-label">Geboortedatum</label>
-                                <input type="date" class="form-control" name="date_of_birth" required
+                                <label for="date_of_birth" class="form-label">Geboortedatum</label>
+                                <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" required
                                     value="<?= e($data['lid']['date_of_birth'] ?? '') ?>">
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-6">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" class="form-control" name="email" required
+                                <label for="email"  class="form-label">E-mail</label>
+                                <input id="email" type="email" class="form-control" name="email" required
                                     value="<?= e($data['lid']['email'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <label class="form-label">Telefoonnummer</label>
-                                <input type="tel" class="form-control" name="phone" required
+                                <label for="phone" class="form-label">Telefoonnummer</label>
+                                <input id="phone" type="tel" class="form-control" name="phone" required
                                     value="<?= e($data['lid']['phone'] ?? '') ?>">
                             </div>
                         </div>
@@ -76,28 +76,28 @@
                         <h5 class="mb-3">Adres</h5>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-8 col-md-4">
-                                <label class="form-label">Straatnaam</label>
-                                <input type="text" class="form-control" name="streetname"
+                                <label for="streetname" class="form-label">Straatnaam</label>
+                                <input id="streetname" type="text" class="form-control" name="streetname"
                                     value="<?= e($data['lid']['streetname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-4 col-md-1">
-                                <label class="form-label">Nummer</label>
-                                <input type="text" class="form-control" name="streetnumber"
+                                <label for="streetnumber" class="form-label">Nummer</label>
+                                <input id="streetnumber" type="text" class="form-control" name="streetnumber"
                                     value="<?= e($data['lid']['streetnumber'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-2">
-                                <label class="form-label">Postcode</label>
-                                <input type="text" class="form-control" name="postalcode"
+                                <label for="postalcode" class="form-label">Postcode</label>
+                                <input id="postalcode" type="text" class="form-control" name="postalcode"
                                     value="<?= e($data['lid']['postalcode'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-2">
-                                <label class="form-label">Plaats</label>
-                                <input type="text" class="form-control" name="city"
+                                <label for="city" class="form-label">Plaats</label>
+                                <input id="city" type="text" class="form-control" name="city"
                                     value="<?= e($data['lid']['city'] ?? '') ?>">
                             </div>
                             <div class="col-sm-12 col-md-3">
-                                <label class="form-label">Land</label>
-                                <input type="text" class="form-control" id="Country" name="country"
+                                <label for="country" class="form-label">Land</label>
+                                <input id="country" type="text" class="form-control" name="country"
                                     value="<?= e($data['lid']['country'] ?? '') ?>">
                             </div>
                         </div>
@@ -106,23 +106,23 @@
                         <h5 class="mb-3">Noodcontact</h5>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label">Voornaam</label>
-                                <input type="text" class="form-control" required name="emergency_contact_firstname"
+                                <label for="emergency_contact_firstname" class="form-label">Voornaam</label>
+                                <input id="emergency_contact_firstname" type="text" class="form-control" required name="emergency_contact_firstname"
                                     value="<?= e($data['lid']['emergency_contact_firstname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label">Tussenvoegsel</label>
-                                <input type="text" class="form-control" name="emergency_contact_middlename"
+                                <label for="emergency_contact_middlename" class="form-label">Tussenvoegsel</label>
+                                <input id="emergency_contact_middlename" type="text" class="form-control" name="emergency_contact_middlename"
                                     value="<?= e($data['lid']['emergency_contact_middlename'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label">Achternaam</label>
-                                <input type="text" class="form-control" required name="emergency_contact_lastname"
+                                <label for="emergency_contact_lastname" class="form-label">Achternaam</label>
+                                <input id="emergency_contact_lastname" type="text" class="form-control" required name="emergency_contact_lastname"
                                     value="<?= e($data['lid']['emergency_contact_lastname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <label class="form-label">Telefoon</label>
-                                <input type="tel" class="form-control" required name="emergency_contact_phone"
+                                <label for="emergency_contact_phone" class="form-label">Telefoon</label>
+                                <input id="emergency_contact_phone" type="tel" class="form-control" required name="emergency_contact_phone"
                                     value="<?= e($data['lid']['emergency_contact_phone'] ?? '') ?>">
                             </div>
                         </div>
