@@ -61,7 +61,6 @@ class AdminController
 
     public function getLid(array $params) {
         $lid = $this->ledenServices->get(intval($params['id']));
-        //TODO: fix the passing of the name
         \View::View('admin.leden.post', 'Lid', ['lid'=> $lid]);
     }
 
