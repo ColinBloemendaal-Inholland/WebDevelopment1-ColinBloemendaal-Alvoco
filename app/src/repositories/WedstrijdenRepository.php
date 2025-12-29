@@ -44,4 +44,13 @@ class WedstrijdenRepository extends BaseRepository
             'recordsFiltered' => $recordsFiltered,
         ];
     }
+    public function getUpcoming(int $limit = 10)
+    {
+        $query = Wedstrijden::query()
+            ->with('homeTeam', 'awayTeam')
+            ->orderBy('date', 'asc')
+            ->orderBy('time', 'asc')
+            ->limit($limit);
+        return $query->get();
+    }
 }

@@ -65,4 +65,12 @@ class NieuwsberichtenRepository extends BaseRepository
             'recordsTotal' => $totalCount,
         ];
     }
+
+    public function getRecent(int $limit = 5)
+    {
+        return Nieuwsberichten::query()
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get();
+    }
 }

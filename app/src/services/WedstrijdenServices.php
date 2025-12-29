@@ -71,4 +71,36 @@ class WedstrijdenServices implements IServices
             'score' => $row['score_home'] . ' - ' . $row['score_away'],
         ];
     }
+
+    public function getUpComingByDay(int $days = 4, int $limit = 10): array
+    {
+        $wedstrijden = $this->repository->getUpcoming( $limit);
+        $wedstrijden = $this->formatByDay($wedstrijden, $days);
+        return $wedstrijden;
+    }
+
+    private function formatByDay($wedstrijden, int $days = 4): array
+    {
+        $formatted = [];
+        foreach ($wedstrijden as $wedstrijd) {
+            if (count($formatted) >= $days) {
+                break;
+            }
+            
+            $dateKey = date('Y-m-d', strtotime($wedstrijd['date']));
+            if (!isset($formatted[$dateKey])) {
+                $formatted[$dateKey] = [];
+            }
+            $formatted[$dateKey][] = [
+                'id' => $wedstrijd['id'],
+                'team_home' => $wedstrijd['homeTeam']['name'] ?? null,
+                'team_away' => $wedstrijd['awayTeam']['name'] ?? null,
+                'date' => $wedstrijd['date'],
+                'time' => $wedstrijd['time'],
+                'location' => $wedstrijd['location'],
+                'score' => $wedstrijd['score_home'] . ' - ' . $wedstrijd['score_away'],
+            ];
+        }
+        return $formatted;
+    }
 }
