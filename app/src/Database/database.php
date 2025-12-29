@@ -26,8 +26,8 @@ class Database
             // set error mode to exception
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
-        } catch (\Exception $e) {
-            throw new \Exception('Database connection error: ' . $e->getMessage());
+        } catch (\PDOException $e) {
+            throw new \PDOException('Database connection error: ' . $e->getMessage());
         }
     }
 }
