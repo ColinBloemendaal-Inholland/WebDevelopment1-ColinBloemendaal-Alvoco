@@ -51,15 +51,13 @@ class NieuwsberichtenRepository extends BaseRepository
             $query->withTrashed();
         }
 
-        if (isset($filter['orderColumn']) && isset($filter['orderDir']))
+        if (isset($filter['orderColumn']) && isset($filter['orderDir'])) {
             $query->orderBy($filter['orderColumn'] ?? 'Title' ,$filter['orderDir'] ?? 'asc');
+        }
 
         $filteredCount = $query->count();
         $totalCount = Nieuwsberichten::query()->count();
-        if(isset($start) && $length)
-            $data = $query->skip($start)->take($length)->get();
-        else 
-            $data = $query->get();
+        $data = (isset($start) && $length) ? $query->skip($start)->take($length)->get() : $query->get();
 
         return [
             'data' => $data,
