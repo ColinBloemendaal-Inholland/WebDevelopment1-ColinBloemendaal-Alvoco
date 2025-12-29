@@ -41,7 +41,16 @@ class AdminController
 
     public function index()
     {
-        \View::View("admin.index", 'Admin Dashboard');
+        $stats = [
+            'totalLeden' => count($this->ledenServices->getAll()),
+            'totalTeams' => count($this->teamsServices->getAll()),
+            'totalWedstrijden' => count($this->wedstrijdenServices->getAll()),
+            'totalNieuwsberichten' => count($this->nieuwsberichtenServices->getAll()),
+            'totalSpelers' => count($this->spelersServices->getAll()),
+            'totalTrainers' => count($this->trainersServices->getAll()),
+            'totalCoaches' => count($this->coachesServices->getAll()),
+        ];
+        \View::View("admin.index", 'Admin Dashboard', ['stats' => $stats]);
     }
 
     public function leden()
