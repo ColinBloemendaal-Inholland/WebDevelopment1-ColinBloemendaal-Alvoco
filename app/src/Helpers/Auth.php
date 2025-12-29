@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use App\Models\Leden;
 use App\Repositories\LedenRepository;
