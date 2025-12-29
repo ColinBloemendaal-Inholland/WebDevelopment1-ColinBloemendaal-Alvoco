@@ -9,7 +9,7 @@ $capsule = new Capsule;
 // Match your docker-compose mysql config
 $capsule->addConnection([
     'driver'    => 'mysql',
-    'host'      => 'mysql',      
+    'host'      => 'mysql',
     'database'  => 'Alvoco',
     'username'  => 'developer',
     'password'  => 'secret123',
