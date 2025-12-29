@@ -69,7 +69,7 @@ class AdminController
         \View::View("admin.nieuwsberichten.index", 'Nieuwsberichten');
     }
     public function getNieuwsbericht(array $params) {
-    $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
+        $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
         \View::View('admin.nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht'=> $nieuwsbericht]);
     }
 
