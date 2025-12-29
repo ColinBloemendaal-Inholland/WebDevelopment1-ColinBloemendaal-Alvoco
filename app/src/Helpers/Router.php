@@ -7,7 +7,7 @@ use Fastroute\Dispatcher;
 class Router {
     public static $dispatcher;
     public static function RegisterRoutes() {
-        $routes = require ROOT . 'src/routes/web.php';
+        $routes = require_once ROOT . 'src/routes/web.php';
 
         self::$dispatcher = simpleDispatcher(function (RouteCollector $r) use ($routes) {
             $routes($r);
