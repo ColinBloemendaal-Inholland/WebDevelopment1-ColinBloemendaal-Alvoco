@@ -20,8 +20,9 @@ class View
     }
 
     private static function LoadView(string $path, $data = []) {
-        if(!$path)
+        if(!$path) {
             return;
+        }
         extract($data);
         require self::GetNormalizedPath('Layout.Head');
         require self::GetNormalizedPath('Layout.Nav');
@@ -54,8 +55,9 @@ class View
     }
 
     private static function LoadPartial(string $path, $data = []) {
-        if(!$path)
+        if(!$path) {
             return;
+        }
         extract($data);
         require $path;
     }
@@ -63,5 +65,5 @@ class View
     public static function Redirect(string $uri) {
         header('location:'. $uri);
         exit;
-    }    
+    }
 }

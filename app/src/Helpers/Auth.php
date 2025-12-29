@@ -36,8 +36,9 @@ class Auth {
      */
     public static function user() {
         Session::start();
-        if(!self::isLoggedIn())
+        if(!self::isLoggedIn()) {
             return 0;
+        }
         return (int) self::id();
     }
 
