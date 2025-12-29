@@ -19,7 +19,7 @@ class Database
 
             // create PDO connection
             $connection = new PDO(
-                $connectionString, 
+                $connectionString,
                 Config::DB_SERVER_USER,
                 Config::DB_PASSWORD);
 
