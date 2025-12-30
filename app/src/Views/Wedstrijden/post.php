@@ -3,11 +3,15 @@
 		<?php $wedstrijd = $data['wedstrijd']; ?>
 		<div class="row mb-4">
 			<div class="col-12 text-center">
-				<h1 class="display-5 fw-bold">
-					<?= e($wedstrijd->hometeam->name ?? 'Onbekend') ?>
-					<span class="text-primary">vs</span>
-					<?= e($wedstrijd->awayTeam->name ?? 'Onbekend') ?>
-				</h1>
+				   <h1 class="display-5 fw-bold">
+					   <a href="/teams/<?= e($wedstrijd->hometeam->id) ?>" class="link-primary text-decoration-none">
+						   <?= e($wedstrijd->hometeam->name ?? 'Onbekend') ?>
+					   </a>
+					   <span class="text-primary">vs</span>
+					   <a href="/teams/<?= e($wedstrijd->awayTeam->id) ?>" class="link-danger text-decoration-none">
+						   <?= e($wedstrijd->awayTeam->name ?? 'Onbekend') ?>
+					   </a>
+				   </h1>
 				<div class="mb-2 text-muted">
 					<?= e(date('d-m-Y', strtotime($wedstrijd->date))) ?> om <?= e(substr($wedstrijd->time, 0, 5)) ?>
 					| Locatie: <?= e($wedstrijd->location) ?>
@@ -20,9 +24,11 @@
 		<div class="row g-4">
 			<div class="col-md-6">
 				<div class="card h-100">
-					<div class="card-header bg-primary text-white">
-						<?= e($wedstrijd->hometeam->name ?? 'Thuisteam') ?>
-					</div>
+					   <div class="card-header bg-primary text-white">
+						   <a href="/teams/<?= e($wedstrijd->hometeam->id) ?>" class="text-white text-decoration-underline">
+							   <?= e($wedstrijd->hometeam->name ?? 'Thuisteam') ?>
+						   </a>
+					   </div>
 					<div class="card-body">
 						<h6>Spelers</h6>
 						<ul class="list-group mb-3">
@@ -46,9 +52,11 @@
 			</div>
 			<div class="col-md-6">
 				<div class="card h-100">
-					<div class="card-header bg-danger text-white">
-						<?= e($wedstrijd->awayTeam->name ?? 'Uitteam') ?>
-					</div>
+					   <div class="card-header bg-danger text-white">
+						   <a href="/teams/<?= e($wedstrijd->awayTeam->id) ?>" class="text-white text-decoration-underline">
+							   <?= e($wedstrijd->awayTeam->name ?? 'Uitteam') ?>
+						   </a>
+					   </div>
 					<div class="card-body">
 						<h6>Spelers</h6>
 						<ul class="list-group mb-3">
