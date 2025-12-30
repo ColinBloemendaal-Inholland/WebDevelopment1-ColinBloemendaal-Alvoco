@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -16,7 +16,7 @@ class Teams extends Model {
         "Category",];
 
     public function spelers(): HasMany {
-        return $this->hasMany(Spelers::class, 'team_id')->orderBy('number', 'asc');; 
+        return $this->hasMany(Spelers::class, 'team_id')->orderBy('number', 'asc');
     }
     public function coaches(): HasMany {
         return $this->hasMany(Coaches::class, 'team_id');

@@ -67,7 +67,7 @@
 						<i class="bi bi-calendar-event me-2"></i> Wedstrijden
 					</div>
 					<div class="table-responsive">
-						<table class="table table-striped mb-0">
+						<table class="table table-striped table-hover mb-0">
 							<thead>
 								<tr>
 									<th>Datum</th>
@@ -78,7 +78,7 @@
 							</thead>
 							<tbody>
 								<?php if (!empty($data['team']->wedstrijden)): foreach ($data['team']->wedstrijden as $wedstrijd): ?>
-									<tr>
+									<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'" class="cursor-pointer">
 										<td><?= e($wedstrijd->date ?? '-') ?></td>
 										<td><?= e($wedstrijd->hometeam->name ?? '-') ?></td>
 										<td><?= e($wedstrijd->awayteam->name ?? '-') ?></td>
@@ -96,4 +96,7 @@
 			</div>
 		</div>
 	</div>
+<style>
+	.cursor-pointer { cursor: pointer; }
+</style>
 </div>

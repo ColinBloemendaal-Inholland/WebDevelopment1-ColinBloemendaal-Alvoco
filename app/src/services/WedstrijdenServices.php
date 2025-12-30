@@ -74,7 +74,7 @@ class WedstrijdenServices implements IServices
 
     public function getUpComingByDay(int $days = 4, int $limit = 10): array
     {
-        $wedstrijden = $this->repository->getUpcoming( $limit);
+        $wedstrijden = $this->repository->getUpcoming($limit);
         $wedstrijden = $this->formatByDay($wedstrijden, $days);
         return $wedstrijden;
     }
@@ -86,7 +86,7 @@ class WedstrijdenServices implements IServices
             if (count($formatted) >= $days) {
                 break;
             }
-            
+
             $dateKey = date('Y-m-d', strtotime($wedstrijd['date']));
             if (!isset($formatted[$dateKey])) {
                 $formatted[$dateKey] = [];
@@ -102,5 +102,24 @@ class WedstrijdenServices implements IServices
             ];
         }
         return $formatted;
+    }
+
+    /**
+     * Get a wedstrijd with both teams, their spelers, and coaches
+     */
+    public function getWithTeamsAndDetails(int $id)
+    {
+        $wedstrijd = $this->repository->get($id);
+        if (!$wedstrijd) {
+            return null;
+        }
+        // Eager load teams, spelers, coaches
+        $wedstrijd->load([
+            'hometeam.spelers.lid',
+            'hometeam.coaches.lid',
+            'awayTeam.spelers.lid',
+            'awayTeam.coaches.lid',
+        ]);
+        return $wedstrijd;
     }
 }

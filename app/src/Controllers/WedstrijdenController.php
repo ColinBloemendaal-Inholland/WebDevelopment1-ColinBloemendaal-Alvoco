@@ -22,8 +22,14 @@ class WedstrijdenController extends BaseController implements IController
 
     public function show(array $params)
     {
-        $data = $this->service->get(intval($params['id']));
-        \View::View('wedstrijden.post', $data['Title'], $data);
+        $wedstrijd = $this->service->getWithTeamsAndDetails((int)$params['id']);
+        if (!$wedstrijd) {
+            // Optionally handle not found
+            \View::Redirect('/wedstrijden');
+            return;
+        }
+        $title = $wedstrijd->hometeam->name . ' vs ' . $wedstrijd->awayTeam->name;
+        \View::View('wedstrijden.post', $title, ['wedstrijd' => $wedstrijd]);
     }
 
     public function Create()

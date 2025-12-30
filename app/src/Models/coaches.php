@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +21,7 @@ class Coaches extends Model {
     {
         return $this->belongsTo(Leden::class, 'Leden_id');
     }
-    public function team(): BelongsTo { 
-        return $this->belongsTo(Teams::class); 
+    public function team(): BelongsTo {
+        return $this->belongsTo(Teams::class);
     }
 }
