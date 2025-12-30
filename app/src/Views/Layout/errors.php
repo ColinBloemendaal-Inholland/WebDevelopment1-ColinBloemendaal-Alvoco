@@ -3,7 +3,7 @@
         <h5 class="alert-heading">Er zijn fouten in het formulier:</h5>
         <ul class="mb-0">
             <?php foreach ($_SESSION['form_errors'] as $field => $error): ?>
-                <li><?= htmlspecialchars($error) ?></li>
+                <li><?= e($error) ?></li>
             <?php endforeach; ?>
         </ul>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Sluiten"></button>

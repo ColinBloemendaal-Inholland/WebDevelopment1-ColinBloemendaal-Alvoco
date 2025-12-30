@@ -118,28 +118,50 @@ class LedenController extends BaseController implements IController
 
     public function loginView()
     {
-        \View::View("leden.login",'Inloggen');
+        if (\Auth::isLoggedIn()) {
+            \View::Redirect("/");
+        }
+        \View::View("leden.login", 'Inloggen');
     }
 
     public function login()
     {
-        if (!isset($_POST["email"]) && !isset($_POST["password"])) {
+        if (!isset($_POST["email"]) || !isset($_POST["password"])) {
+            $_SESSION['form_errors'] = ['login' => 'Email en wachtwoord zijn verplicht.'];
             \View::Redirect("/login");
         }
-        $email = $_POST["email"];
+
+        $email = trim($_POST["email"]);
         $password = $_POST["password"];
+
+        // Validate email format
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['form_errors'] = ['email' => 'Ongeldig e-mailadres.'];
+            \View::Redirect("/login");
+        }
 
         $user = $this->service->getByEmail($email);
         if (!$user) {
-            return false;
+            $_SESSION['form_errors'] = ['credentials' => 'E-mail of wachtwoord is onjuist.'];
+            \View::Redirect("/login");
         }
 
-        //TODO: implement hasing
-        if ($password != $user->password) {
-            return false;
+        // Verify password using bcrypt
+        if (!\Auth::verifyPassword($password, $user->password)) {
+            $_SESSION['form_errors'] = ['credentials' => 'E-mail of wachtwoord is onjuist.'];
+            \View::Redirect("/login");
         }
 
+        // Clear any previous form errors and log the user in
+        unset($_SESSION['form_errors']);
         \Auth::login($user->email, $user->id);
+        \View::Redirect("/");
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        // Do not use success_message; keep behavior consistent with form_errors usage
         \View::Redirect("/");
     }
 }

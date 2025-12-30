@@ -38,6 +38,7 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/api/leden', [LedenController::class, 'getLeden']);
     $r->addRoute('POST', '/api/nieuwsberichten', [NieuwsberichtenController::class, 'getNieuwsberichten']);
     $r->addRoute('POST', '/api/teams', [TeamsController::class, 'getTeams']);
+    $r->addRoute('GET', '/api/teams/all', [TeamsController::class, 'all']);
     $r->addRoute('POST', '/api/coaches', [CoachesController::class, 'getCoaches']);
     $r->addRoute('POST', '/api/trainers', [TrainersController::class, 'getTrainers']);
     $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'getWedstrijden']);
@@ -45,6 +46,7 @@ return function (RouteCollector $r) {
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);
+    $r->addRoute('GET', '/logout', [LedenController::class, 'logout']);
 
     // Admin routes
     // Admin Dashboard

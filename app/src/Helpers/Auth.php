@@ -7,19 +7,24 @@ use App\Services\LedenServices;
 class Auth {
 
     /**
-     * Lets the user login
+     * Lets the user login with email and password
      */
     public static function login(string $email, int $id) {
         Session::start();
         $_SESSION['user_id'] = $id;
         $_SESSION['email'] = $email;
+        $_SESSION['logged_in_at'] = time();
         return true;
     }
 
     /**
      * Lets the user logout
      */
-    public function logout() {
+    public static function logout() {
+        Session::start();
+        unset($_SESSION['user_id']);
+        unset($_SESSION['email']);
+        unset($_SESSION['logged_in_at']);
         Session::end();
     }
 
@@ -28,7 +33,7 @@ class Auth {
      */
     public static function isLoggedIn() {
         Session::start();
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
     }
 
     /**
@@ -37,7 +42,7 @@ class Auth {
     public static function user() {
         Session::start();
         if(!self::isLoggedIn()) {
-            return 0;
+            return null;
         }
         return (int) self::id();
     }
@@ -51,42 +56,25 @@ class Auth {
     }
 
     /**
-     * Get roles of logged in user
+     * Get user email
      */
-    // public function roles() {
-    //     $user = $this->user();
-    //     if (!$user) {
-    //         return [];
-    //     }
-    //     return $user->getRoles();
-    // }
+    public static function email() {
+        Session::start();
+        return $_SESSION['email'] ?? null;
+    }
 
-    // public function hasRole($role) {
-    //     $user = $this->user();
-    //     if (!$user) {
-    //         return false;
-    //     }
-    //     return $user->hasRole($role);
-    // }
+    /**
+     * Hash a password using bcrypt
+     */
+    public static function hashPassword(string $password): string {
+        return password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+    }
 
-    // public function hasRoles(array $roles): bool {
-    //     $user = $this->user();
-    //     if (!$user) {
-    //         return false;
-    //     }
-    //     return $user->hasAnyRole($roles);
-    // }
+    /**
+     * Verify a password against a hash
+     */
+    public static function verifyPassword(string $password, string $hash): bool {
+        return password_verify($password, $hash);
+    }
 
-    // public static function requireRole(array $roles) {
-    //     if (!isset($_SESSION['user_id'])) {
-    //         http_response_code(403);
-    //         exit('Forbidden: not logged in');
-    //     }
-
-    //     $user = new LedenRepository(new Leden())->getByEmail($_SESSION['email']);
-    //     if (!$user || !$user->hasAnyRole($roles)) {
-    //         http_response_code(403);
-    //         exit('Forbidden: insufficient permissions');
-    //     }
-    // }
 }

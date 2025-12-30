@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use App\Models\View\View as ViewModel;
 

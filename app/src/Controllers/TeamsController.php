@@ -25,8 +25,8 @@ class TeamsController extends BaseController implements IController
 
     public function index()
     {
-        $data = $this->service->getAll();
-        \View::View("teams.index", 'Teams', ['teams' => $data]);
+        $teams = $this->service->getAllByCategory();
+        \View::View("teams.index", 'Teams', ['teams' => $teams]);
     }
 
     public function show(array $params)
@@ -120,3 +120,4 @@ class TeamsController extends BaseController implements IController
         echo json_encode($result);
     }
 }
+

@@ -61,4 +61,25 @@ class TeamsServices implements IServices
             'class' => $row['class'],
         ];
     }
+
+    public function getAllByCategory() {
+        $teams = $this->getAll();
+
+        $groupedTeams = [];
+        $groupedTeams['Heren'] = [];
+        $groupedTeams['Dames'] = [];
+        $groupedTeams['Jongens'] = [];
+        $groupedTeams['Meiden'] = [];
+        $groupedTeams['Overig'] = [];
+
+        foreach ($teams as $team) {
+            $cat = $team->Category ?? 'Overig';
+            $cat = ucfirst(strtolower($cat));
+            if (!isset($groupedTeams[$cat])) {
+                $groupedTeams[$cat] = [];
+            }
+            $groupedTeams[$cat][] = $team;
+        }
+        return $groupedTeams;
+    }
 }
