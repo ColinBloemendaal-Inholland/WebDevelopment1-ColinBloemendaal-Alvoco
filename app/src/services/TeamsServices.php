@@ -82,4 +82,9 @@ class TeamsServices implements IServices
         }
         return $groupedTeams;
     }
+
+    public function getTeamWithRelations(int $id)
+    {
+        return $this->repository->getTeamWithRelations($id) ?? null;
+    }
 }

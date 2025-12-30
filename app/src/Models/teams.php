@@ -15,17 +15,18 @@ class Teams extends Model {
         "class",
         "Category",];
 
-    public function spelers(): HasMany { 
+    public function spelers(): HasMany {
         return $this->hasMany(Spelers::class, 'team_id')->orderBy('number', 'asc');; 
     }
-    public function coaches(): HasMany { 
-        return $this->hasMany(Coaches::class, 'team_id'); 
+    public function coaches(): HasMany {
+        return $this->hasMany(Coaches::class, 'team_id');
     }
-    public function trainers(): HasMany { 
-        return $this->hasMany(Trainers::class, 'team_id'); 
+    public function trainers(): HasMany {
+        return $this->hasMany(Trainers::class, 'team_id');
     }
-    public function wedstrijden(): HasMany { 
-        return $this->hasMany(Wedstrijden::class, 'team_home'); 
+    //TODO: make sure when you get all wedstrijden, you also get the hometeam and awayteam relations
+    public function wedstrijden(): HasMany {
+        return $this->hasMany(Wedstrijden::class, 'team_home');
     }
 
 }

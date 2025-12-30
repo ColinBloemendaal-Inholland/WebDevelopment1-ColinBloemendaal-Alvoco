@@ -31,8 +31,8 @@ class TeamsController extends BaseController implements IController
 
     public function show(array $params)
     {
-        $data = $this->service->get(intval($params['id']));
-        \View::View('teams.post', $data['Titl'], $data);
+        $team = $this->service->getTeamWithRelations(intval($params['id']));
+        \View::View('teams.post', 'Team', ['team'=> $team]);
     }
 
     public function Create()
@@ -50,6 +50,7 @@ class TeamsController extends BaseController implements IController
     public function store()
     {
         try {
+            //TODO: Add functionality that a team picture can be uploaded
             $validated = new TeamsStoreRequest($_POST)->validate();
             $post = $this->service->create($validated);
         } catch (\Exception $e) {
