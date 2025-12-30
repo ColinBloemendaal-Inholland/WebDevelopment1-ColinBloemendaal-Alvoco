@@ -23,7 +23,7 @@ class HomeController extends BaseController
         $nieuwsberichten = $this->nieuwsberichtenServices->getRecent(5);
 
         $data = [
-            'user' => $this->User(),
+            'user' => $this->user(),
             'nieuwsberichten' => $nieuwsberichten,
             'wedstrijdenByDate' => $wedstrijden
         ];

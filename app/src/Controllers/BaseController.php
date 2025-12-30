@@ -11,7 +11,7 @@ class BaseController {
         $this->ledenServices = $ledenServices ?? new LedenServices();
     }
 
-    public function User() {
+    public function user() {
         $user = null;
         if(\Auth::isLoggedIn() && \Auth::user()) {
             $id = \Auth::id();
