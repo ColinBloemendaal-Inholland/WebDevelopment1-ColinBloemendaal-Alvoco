@@ -81,7 +81,7 @@ class LedenServices implements IServices
         ];
     }
 
-    public function getAllWithNoSpeler(?array $spelerIds) {
+    public function getAllWithNoSpeler(?array $spelerIds = null) {
         return $this->repository->getAllWithNoSpeler($spelerIds)->map([$this, 'format']) ?? null;
     }
 }
