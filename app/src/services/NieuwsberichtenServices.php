@@ -17,7 +17,11 @@ class NieuwsberichtenServices implements IServices
         return $this->repository->get($id) ?? null;
     }
     public function getAll() {
-        return $this->repository->getAll() ?? null;
+        $nieuwsberichten = $this->repository->getAll();
+        foreach ($nieuwsberichten as $nieuwsbericht) {
+            $nieuwsbericht['preview'] = $this->getPreview($nieuwsbericht, 200);
+        }
+        return $nieuwsberichten;
     }
     public function create(array $data) {
         return $this->repository->create($data) ?? null;

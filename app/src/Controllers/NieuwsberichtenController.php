@@ -16,12 +16,13 @@ class NieuwsberichtenController extends BaseController implements IController {
     }
 
     public function index() {
-        $data = $this->service->getAll();
+        $data = $this->service->getAll()->toArray();
         \View::View("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
     }
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        \View::View('nieuwsberichten.post', $data['Titl'], $data);
+        //TODO: Add title of nieuwsbericht to second param of view method
+        \View::View('nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht' => $data]);
     }
     public function create() {
         $bestuursleden = $this->bestuursledenServices->getAll();
