@@ -32,7 +32,6 @@ class NieuwsberichtenServices implements IServices
         return $this->repository->destroy($id) ?? false;
     }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
-        //TODO: Make filter in the nieuwsberichten repo
         return $this->repository->filter($filters, $start, $limit);
     }
 
