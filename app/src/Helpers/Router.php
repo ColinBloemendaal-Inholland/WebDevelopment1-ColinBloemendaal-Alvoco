@@ -20,6 +20,7 @@ class Router {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
         if ($httpMethod === 'POST' && isset($_POST['_method'])) {
             $httpMethod = strtoupper($_POST['_method']);
+            unset($_POST['_method']);
         }
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $routeInfo = self::$dispatcher->dispatch($httpMethod, $uri);

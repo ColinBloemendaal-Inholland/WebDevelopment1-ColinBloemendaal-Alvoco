@@ -26,7 +26,7 @@
                                     <label for="Category" class="col-sm-3 col-form-label">Categorie</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="Category" name="category"
-                                               value="<?= e($_SESSION['form_old']['Category'] ?? $data['team']['Category']) ?>">
+                                               value="<?= e($_SESSION['form_old']['category'] ?? $data['team']['category']) ?>">
                                     </div>
                                 </div>
 

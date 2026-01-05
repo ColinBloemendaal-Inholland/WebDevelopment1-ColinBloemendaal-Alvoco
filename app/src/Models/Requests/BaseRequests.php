@@ -3,6 +3,7 @@
 namespace App\Models\Requests;
 
 use App\Factories\ValidatorFactory;
+use Exception;
 
 abstract class BaseRequests
 {
@@ -20,7 +21,7 @@ abstract class BaseRequests
         $validator = ValidatorFactory::make();
         $validation = $validator->validate($this->data, $this->rules());
         if ($validation->fails()) {
-            throw new \Exception(json_encode($validation->errors()->all()));
+            throw new Exception(json_encode($validation->errors()->all()));
         }
         return $validation->getValidData();
     }

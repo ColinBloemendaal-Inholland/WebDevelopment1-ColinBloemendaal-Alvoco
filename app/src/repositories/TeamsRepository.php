@@ -26,26 +26,34 @@ class TeamsRepository extends BaseRepository
 
     public function editWithRelations(int $id, array $data): ?Teams
     {
-        $team = $this->get($id);
+        $team = $this->model->find($id);
         if (!$team) {
             return null;
         }
+        $spelers = isset($data['spelers']) && is_array($data['spelers']) ? $data['spelers'] : [];
+        $coaches = isset($data['coaches']) && is_array($data['coaches']) ? $data['coaches'] : [];
+        $trainers = isset($data['trainers']) && is_array($data['trainers']) ? $data['trainers'] : [];
         $team->update($data);
-
         Spelers::where('team_id', $team->id)
             ->update(['team_id' => null]);
-        Spelers::whereIn('id', $data['spelers'] ?? [])
-            ->update(['team_id' => $team->id]);
+        if (!empty($spelers)) {
+            Spelers::whereIn('id', $spelers)
+                ->update(['team_id' => $team->id]);
+        }
 
         Coaches::where('team_id', $team->id)
             ->update(['team_id' => null]);
-        Coaches::whereIn('id', $data['coaches'] ?? [])
-            ->update(['team_id' => $team->id]);
+        if (!empty($coaches)) {
+            Coaches::whereIn('id', $coaches)
+                ->update(['team_id' => $team->id]);
+        }
 
         Trainers::where('team_id', $team->id)
             ->update(['team_id' => null]);
-        Trainers::whereIn('id', $data['trainers'] ?? [])
-            ->update(['team_id' => $team->id]);
+        if (!empty($trainers)) {
+            Trainers::whereIn('id', $trainers)
+                ->update(['team_id' => $team->id]);
+        }
 
         return $team->refresh();
     }

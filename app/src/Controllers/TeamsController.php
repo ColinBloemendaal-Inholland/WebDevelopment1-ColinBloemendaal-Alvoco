@@ -8,6 +8,7 @@ use App\Services\CoachesServices;
 use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\TrainersServices;
+use Exception;
 
 class TeamsController extends BaseController implements IController
 {
@@ -53,7 +54,7 @@ class TeamsController extends BaseController implements IController
             //TODO: Add functionality that a team picture can be uploaded
             $validated = new TeamsStoreRequest($_POST)->validate();
             $post = $this->service->create($validated);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
@@ -68,7 +69,7 @@ class TeamsController extends BaseController implements IController
         $coaches = $this->coachesServices->getAll();
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        \View::View("admin.teams.edit", 'Wijzig bestuurslid', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
+        \View::View("admin.teams.edit", 'Wijzig team', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
     }
 
     public function update(array $params)
@@ -76,14 +77,18 @@ class TeamsController extends BaseController implements IController
         $validated = [];
         $id = intval($params['id']);
         try {
-            $validated = new TeamsUpdateRequest($_POST)->validate();
+            $validated = (new TeamsUpdateRequest($_POST))->validate();
             $this->service->update($id, $validated);
             \View::Redirect("/admin/teams/{$id}");
-        } catch (\Exception $e) {
-            $errors = json_decode($e->getMessage(), true);
+        } catch (Exception $e) {
+            $msg = $e->getMessage();
+            $errors = json_decode($msg, true);
+            if ($errors === null) {
+                $errors = ["error" => $msg];
+            }
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/teams/{$id}");
+            \View::Redirect("/admin/teams/{$id}/edit");
         }
     }
 

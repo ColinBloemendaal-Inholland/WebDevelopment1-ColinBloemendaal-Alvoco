@@ -7,9 +7,9 @@ class TeamsStoreRequest extends BaseRequests
     public function rules(): array
     {
         return [
-            'name' => 'required|alpha',
-            'class' => 'required|alpha',
-            'category' => 'required|alpha',
+            'name' => 'required',
+            'class' => 'required',
+            'category' => 'required',
             'spelers' => 'nullable|array',
             'spelers.*' => 'nullable|integer|min:0',
             'coaches' => 'nullable|array',
