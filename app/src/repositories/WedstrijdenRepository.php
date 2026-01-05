@@ -45,6 +45,7 @@ class WedstrijdenRepository extends BaseRepository
         $query = Wedstrijden::query()
             ->with(['homeTeam', 'awayTeam', ])
             ->select('id', 'team_home', 'team_away', 'date', 'time', 'location')
+            ->where('date', '>=', date('Y-m-d'))
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
             ->limit($limit);
