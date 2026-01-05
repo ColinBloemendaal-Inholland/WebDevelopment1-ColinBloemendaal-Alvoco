@@ -3,13 +3,13 @@
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
             <h1 class="mb-4">Coaches</h1>
-            <div class="form-row">
+            <div class="row">
                 <!-- Name search -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
                     <input type="text" class="form-control" id="searchName" placeholder="Voer een naam in:">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchRole">Zoek op rol:</label>
                     <input type="text" class="form-control" id="searchRole" placeholder="Voer een rol in:">
                 </div>

@@ -3,38 +3,38 @@
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
             <h1 class="mb-4">Nieuwsberichten</h1>
-            <div class="form-row">
+            <div class="row">
                 <!-- Name of authur search -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchAuthur">Zoek op authur</label>
                     <input type="text" class="form-control" id="searchAuthur"
                         placeholder="Voer een naam in">
                 </div>
                 <!-- Title search -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchTitle">Zoek op titel:</label>
                     <input type="text" class="form-control" id="searchTitle" placeholder="Voor een titel in:">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="row">
                 <!-- From date search -->
-                <div class="form-group col-md-3">
+                <div class="form-group col-3">
                     <label for="searchFrom">Vanaf:</label>
                     <input type="date" class="form-control" id="searchFrom">
                 </div>
                 <!-- Till date search -->
-                <div class="form-group col-md-3">
+                <div class="form-group col-3">
                     <label for="searchTill">Tot:</label>
                     <input type="date" class="form-control" id="searchTill">
                 </div>
                 <!-- With or without soft deleted leden -->
-                <div class="form-group col-md-3 d-flex align-items-end justify-content-end">
+                <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
                         <input class="form-check-input" type="checkbox" id="searchTrashed" value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde nieuwsberichten</label>
                     </div>
                 </div>
-                <div class="form-group col-md-3 d-flex align-items-end justify-content-end">
+                <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <a href="/admin/nieuwsberichten/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>

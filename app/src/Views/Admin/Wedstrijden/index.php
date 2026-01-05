@@ -3,9 +3,9 @@
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
             <h1 class="mb-4">Wedstrijden</h1>
-            <div class="form-row">
+            <div class="row">
                 <!-- Home team select -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchHomeTeam">Zoek op thuisteam:</label>
                     <select name="homeTeam" id="searchHomeTeam" class="form-control" multiple>
                         <option value="" selected disabled hidden>Selecteer een team</option>
@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <!-- Away team select -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-4">
                     <label for="searchAwayTeam">Zoek op uitteam:</label>
                     <select name="awayTeam" id="searchAwayTeam" class="form-control" multiple>
                         <option value="" selected disabled hidden>Selecteer een team</option>
@@ -25,7 +25,7 @@
                     </select>
                 </div>
                 <!-- Score search -->
-                <div class="form-group col-md-2">
+                <div class="form-group col-2">
                     <label for="searchScore">Zoek op score</label>
                     <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2">
                 </div>
