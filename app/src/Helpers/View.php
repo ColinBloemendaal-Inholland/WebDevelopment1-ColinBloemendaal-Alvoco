@@ -24,11 +24,10 @@ class View
             return;
         }
         extract($data);
-        require self::GetNormalizedPath('Layout.Head');
-        require self::GetNormalizedPath('Layout.Nav');
-        require $path;
-        require self::GetNormalizedPath('Layout.Footer');
-        exit;
+        include_once self::GetNormalizedPath('Layout.Head');
+        include_once self::GetNormalizedPath('Layout.Nav');
+        include_once $path;
+        include_once self::GetNormalizedPath('Layout.Footer');
     }
 
     public static function Include(string $viewPath) {
@@ -59,7 +58,7 @@ class View
             return;
         }
         extract($data);
-        require $path;
+        require_once $path;
     }
 
     public static function Redirect(string $uri) {
