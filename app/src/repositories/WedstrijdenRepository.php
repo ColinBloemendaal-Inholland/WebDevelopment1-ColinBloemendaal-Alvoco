@@ -43,7 +43,8 @@ class WedstrijdenRepository extends BaseRepository
     public function getUpcoming(int $limit = 10)
     {
         $query = Wedstrijden::query()
-            ->with('homeTeam', 'awayTeam')
+            ->with(['homeTeam', 'awayTeam', ])
+            ->select('id', 'team_home', 'team_away', 'date', 'time', 'location')
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
             ->limit($limit);
