@@ -23,7 +23,7 @@
                                 <dd class="col-sm-9"><?= e($data['team']['name']) ?></dd>
 
                                 <dt class="col-sm-3">Categorie</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['Category'] ?? '-') ?></dd>
+                                <dd class="col-sm-9"><?= e($data['team']['category'] ?? '-') ?></dd>
 
                                 <dt class="col-sm-3">Klas</dt>
                                 <dd class="col-sm-9"><?= e($data['team']['class'] ?? '-') ?></dd>

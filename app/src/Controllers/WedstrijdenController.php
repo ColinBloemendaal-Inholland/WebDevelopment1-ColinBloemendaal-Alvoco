@@ -16,13 +16,13 @@ class WedstrijdenController extends BaseController implements IController
 
     public function index()
     {
-        $data = $this->service->getAll();
-        \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijden' => $data]);
+        $wedstrijden = $this->service->getUpComingByDay(365, 50) ?? [];
+        \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijdenByDate' => $wedstrijden]);
     }
 
     public function show(array $params)
     {
-        $wedstrijd = $this->service->getWithTeamsAndDetails((int)$params['id']);
+        $wedstrijd = $this->service->getWithTeamsAndDetails((int) $params['id']);
         if (!$wedstrijd) {
             // Optionally handle not found
             \View::Redirect('/wedstrijden');
@@ -75,7 +75,7 @@ class WedstrijdenController extends BaseController implements IController
     public function delete(array $params)
     {
         $post = $this->service->delete(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/wedstrijden/{$params["id"]}");
             return;
         }
@@ -85,7 +85,7 @@ class WedstrijdenController extends BaseController implements IController
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/wedstrijden/{$params["id"]}");
             return;
         }
@@ -102,7 +102,7 @@ class WedstrijdenController extends BaseController implements IController
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
         $length = intval($_POST['length'] ?? 25);
-        
+
         $result = $this->service->datatable($filters, $start, $length, $draw);
         header('Content-Type: application/json');
         echo json_encode($result);

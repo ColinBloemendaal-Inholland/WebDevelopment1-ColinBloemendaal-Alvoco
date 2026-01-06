@@ -6,7 +6,7 @@
 					<i class="bi bi-people-fill me-2"></i> <?= e($data['team']['name']) ?>
 				</h1>
 				<p class="lead text-muted mb-0">Categorie: <span
-						class="badge bg-primary"><?= e($data['team']->Category ?? '-') ?></span> &nbsp; Klasse: <span
+						class="badge bg-primary"><?= e($data['team']->category ?? '-') ?></span> &nbsp; Klasse: <span
 						class="badge bg-secondary"><?= e($data['team']->class ?? '-') ?></span></p>
 			</div>
 		</div>
