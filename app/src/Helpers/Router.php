@@ -44,9 +44,15 @@ class Router {
                 $params = $routeInfo[2];
 
                 // Middleware: Protect admin routes
-                if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle('admin')) {
+                if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle('beheerder')) {
                     http_response_code(403);
                     \View::View("errors.403", '403');
+                    return;
+                }
+                // Middleware: Protect dashboard route
+                if (strpos($uri, '/dashboard') === 0 && !\Auth::isLoggedIn()) {
+                    http_response_code(401);
+                    \View::View("errors.401", '401');
                     return;
                 }
 

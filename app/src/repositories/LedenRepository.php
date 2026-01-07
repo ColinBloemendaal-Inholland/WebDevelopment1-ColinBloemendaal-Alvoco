@@ -126,4 +126,16 @@ class LedenRepository extends BaseRepository
             'recordsTotal' => $count,
         ];
     }
+    public function updateProfile(int $id, array $data)
+    {
+        $user = $this->model->find($id);
+        if (!$user) {
+            return false;
+        }
+        foreach ($data as $key => $value) {
+            $user->$key = $value;
+        }
+        $user->save();
+        return $user;
+    }
 }

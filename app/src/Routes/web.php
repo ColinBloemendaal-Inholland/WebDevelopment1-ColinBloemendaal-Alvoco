@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\DashboardController;
 use App\Controllers\SpelersController;
 use FastRoute\RouteCollector;
 
@@ -21,7 +22,10 @@ return function (RouteCollector $r) {
     // Nieuwsberichten page
     $r->addRoute('GET', '/nieuwsberichten', [NieuwsberichtenController::class, 'index']);
     $r->addRoute('GET', '/nieuwsberichten/{id:\d+}', [NieuwsberichtenController::class, 'show']);
-
+    // Dashboard for leden
+    $r->addRoute('GET', '/dashboard', [LedenController::class, 'dashboard']);
+    $r->addRoute('GET', '/dashboard/edit', [LedenController::class, 'editProfile']);
+    $r->addRoute('POST', '/dashboard/update', [LedenController::class, 'updateProfile']);
     // Teams page
     $r->addRoute('GET', '/teams', [TeamsController::class, 'index']);
     $r->addRoute('GET', '/teams/{id:\d+}', [TeamsController::class, 'show']);

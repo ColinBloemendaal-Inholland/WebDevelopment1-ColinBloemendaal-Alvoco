@@ -13,31 +13,38 @@ class LedenServices implements IServices
         $this->repository = new LedenRepository(new Leden());
     }
 
-    public function get(int $id, bool $roles = false) {
+    public function get(int $id, bool $roles = false)
+    {
         $lid = $this->repository->get($id);
         $data = $lid;
-        if($lid && $roles) {
+        if ($lid && $roles) {
             $data->roles = $lid->roles()->get()->toArray() ?? [];
-            $data->roleIds = array_column($data->roles,'id') ?? [];
+            $data->roleIds = array_column($data->roles, 'id') ?? [];
         }
         return $data ?? null;
     }
-    public function getAll() {
+    public function getAll()
+    {
         return $this->repository->getAll()->map([$this, 'format']) ?? null;
     }
-    public function create(array $data) {
+    public function create(array $data)
+    {
         return $this->repository->create($data) ?? null;
     }
-    public function update(int $id, array $data, ?array $roles = null) {
+    public function update(int $id, array $data, ?array $roles = null)
+    {
         return $this->repository->update($id, $data, $roles) ?? null;
     }
-    public function delete(int $id): bool {
+    public function delete(int $id): bool
+    {
         return $this->repository->delete($id) ?? false;
     }
-    public function destroy(int $id): bool {
+    public function destroy(int $id): bool
+    {
         return $this->repository->destroy($id) ?? false;
     }
-    public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
+    public function filter(array $filters, ?int $start = null, ?int $limit = null): array
+    {
         return $this->repository->filter($filters, $start, $limit);
     }
     public function getByEmail(string $email)
@@ -56,7 +63,8 @@ class LedenServices implements IServices
         ];
     }
 
-    public function format(Leden $row) {
+    public function format(Leden $row)
+    {
         return [
             'id' => $row['id'],
             'fullname' => trim($row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']),
@@ -81,7 +89,23 @@ class LedenServices implements IServices
         ];
     }
 
-    public function getAllWithNoSpeler(?array $spelerIds = null) {
+    public function getAllWithNoSpeler(?array $spelerIds = null)
+    {
         return $this->repository->getAllWithNoSpeler($spelerIds)->map([$this, 'format']) ?? null;
+    }
+    public function updateProfile(int $id, array $data)
+    {
+        // Format/transform data if needed (e.g., date format)
+        if (isset($data['geboortedatum'])) {
+            $data['date_of_birth'] = $data['geboortedatum'];
+            unset($data['geboortedatum']);
+        }
+        // Only pass allowed fields to repo
+        $allowed = [
+            'firstname', 'lastname', 'phone', 'date_of_birth',
+            'streetname', 'streetnumber', 'postalcode', 'city', 'country'
+        ];
+        $filtered = array_intersect_key($data, array_flip($allowed));
+        return $this->repository->updateProfile($id, $filtered);
     }
 }

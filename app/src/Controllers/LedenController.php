@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Auth;
+use App\Models\Leden;
 use App\Services\LedenServices;
 use App\Models\Requests\LedenStoreRequest;
 use App\Models\Requests\LedenUpdateRequest;
@@ -32,7 +33,7 @@ class LedenController extends BaseController implements IController
     public function Create()
     {
         $data = $this->rolenServices->getAll();
-        \View::View('admin.leden.create', 'Lid aanmaken', ['rolen'=> $data]);
+        \View::View('admin.leden.create', 'Lid aanmaken', ['rolen' => $data]);
     }
     public function store()
     {
@@ -52,12 +53,12 @@ class LedenController extends BaseController implements IController
     {
         $post = $this->service->get(intval($params["id"]));
         $roles = $this->rolenServices->getAll();
-        $roleIds = array_column($post->roles->toArray(),'id') ?? [];
+        $roleIds = array_column($post->roles->toArray(), 'id') ?? [];
 
         \View::View("admin.leden.edit", 'Wijzig lid', [
             'lid' => $post,
             'rolen' => $roles,
-            'roleIds'=> $roleIds
+            'roleIds' => $roleIds
         ]);
     }
 
@@ -80,7 +81,7 @@ class LedenController extends BaseController implements IController
     {
         $id = intval($params["id"]);
         $post = $this->service->delete($id);
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/leden/{$id}");
         }
         \View::Redirect("/admin/leden");
@@ -90,7 +91,7 @@ class LedenController extends BaseController implements IController
     {
         $id = intval($params["id"]);
         $post = $this->service->destroy($id);
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/leden/{$id}");
         }
         \View::Redirect("/admin/leden");
@@ -163,5 +164,52 @@ class LedenController extends BaseController implements IController
         \Auth::logout();
         // Do not use success_message; keep behavior consistent with form_errors usage
         \View::Redirect("/");
+    }
+
+    public function dashboard()
+    {
+        if (!\Auth::isLoggedIn()) {
+            http_response_code(401);
+            \View::View('Errors.401', '401');
+            return;
+        }
+        $userId = \Auth::id();
+        $user = Leden::find($userId);
+        \View::View('Dashboard.index', 'Dashboard', ['user' => $user]);
+    }
+
+    public function editProfile() {
+
+        $userId = \Auth::id();
+        $user = $this->service->get($userId);
+        if( !$user) {
+            http_response_code(404);
+            \View::View('Errors.404', '404');
+            return;
+        }
+        \View::View('Dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
+    }
+
+    public function updateProfile() {
+        $userId = \Auth::id();
+        $user = $this->service->get($userId);
+        if (!$user) {
+            http_response_code(404);
+            \View::View('Errors.404', '404');
+            return;
+        }
+
+        try {
+            $validated = new LedenUpdateRequest($_POST)->validate();
+            $this->service->updateProfile($userId, $validated);
+        } catch (\Exception $e) {
+            $errors = json_decode($e->getMessage(), true);
+            $_SESSION['form_errors'] = $errors;
+            $_SESSION['form_old'] = $_POST;
+            \View::Redirect('/dashboard/edit');
+            return;
+        }
+
+        \View::Redirect('/dashboard');
     }
 }
