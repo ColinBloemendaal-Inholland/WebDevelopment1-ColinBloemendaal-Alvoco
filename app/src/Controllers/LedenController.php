@@ -172,17 +172,22 @@ class LedenController extends BaseController implements IController
         }
         $user = \Auth::user();
         $teamsCoached = [];
-        if ($user && $user->hasRole('coach')) {
+        if ($user?->hasRole('coach')) {
             $teamsCoached = $this->service->getTeamsCoachedWithDetails($user->id);
         }
         $teamsTrained = [];
-        if( $user && $user->hasRole('trainer')) {
+        if($user?->hasRole('trainer')) {
             $teamsTrained = $this->service->getTeamsTrainedWithDetails($user->id);
+        }
+        $newsArticles = [];
+        if($user?->hasRole('bestuurslid')) {
+            $newsArticles = $this->service->getRecentNewsForBestuurslid($user->id);
         }
         \View::View('Dashboard.index', 'Dashboard', [
             'user' => $user,
             'teamsCoached' => $teamsCoached,
-            'teamsTrained' => $teamsTrained
+            'teamsTrained' => $teamsTrained,
+            'recentNews' => $newsArticles
         ]);
     }
 

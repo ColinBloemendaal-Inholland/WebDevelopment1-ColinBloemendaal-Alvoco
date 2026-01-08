@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Models\Bestuursleden;
 use App\Models\Coaches;
 use App\Models\Leden;
+use App\Models\Nieuwsberichten;
 use App\Models\Roles;
 use App\Models\Trainers;
 use Illuminate\Database\Eloquent\Collection;
@@ -193,5 +195,20 @@ class LedenRepository extends BaseRepository
             }
         }
         return $teams;
+    }
+
+    /**
+     * Get 5 most recent news articles for a bestuurslid
+     */
+    public function getRecentNewsForBestuurslid(int $ledenId)
+    {
+        $bestuurslid = Bestuursleden::where('Leden_id', $ledenId)->first();
+        if (!$bestuurslid) {
+            return collect();
+        }
+        return Nieuwsberichten::where('Bestuursleden_id', $bestuurslid->id)
+            ->orderByDesc('created_at')
+            ->take(5)
+            ->get();
     }
 }

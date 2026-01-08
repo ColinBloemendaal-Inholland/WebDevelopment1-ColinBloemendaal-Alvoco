@@ -112,4 +112,12 @@ class LedenServices implements IServices
     {
         return $this->repository->getTeamsTrainedWithDetails($ledenId);
     }
+
+    /**
+     * Get recent news articles for a bestuurslid
+     */
+    public function getRecentNewsForBestuurslid(int $ledenId)
+    {
+        return $this->repository->getRecentNewsForBestuurslid($ledenId);
+    }
 }

@@ -5,7 +5,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h2 class="card-title mb-0">Welkom,
-                            <?= e($data['user']->fullname) ?></h2>
+                            <?= e($data['user']->fullname) ?>
+                        </h2>
                         <a href="/dashboard/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
                     </div>
                     <p class="mb-1"><strong>Email:</strong> <?= e($data['user']->email) ?></p>
@@ -31,7 +32,8 @@
                                                     <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                         <?php foreach ($team->upcoming_games as $game): ?>
                                                             <li class="list-group-item">
-                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?> <?= e(date('H:i', strtotime($game->time))) ?> -
+                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?>
+                                                                <?= e(date('H:i', strtotime($game->time))) ?> -
                                                                 <?= e($game->hometeam->name ?? '') ?> vs
                                                                 <?= e($game->awayTeam->name ?? '') ?>
                                                             </li>
@@ -102,7 +104,8 @@
                                                     <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                         <?php foreach ($team->upcoming_games as $game): ?>
                                                             <li class="list-group-item">
-                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?> <?= e(date('H:i', strtotime($game->time))) ?> -
+                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?>
+                                                                <?= e(date('H:i', strtotime($game->time))) ?> -
                                                                 <?= e($game->hometeam->name ?? '') ?> vs
                                                                 <?= e($game->awayTeam->name ?? '') ?>
                                                             </li>
@@ -149,6 +152,20 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
+                    <?php endif; ?>
+                    <?php if (!empty($data['recentNews']) && count($data['recentNews']) > 0): ?>
+                        <hr>
+                        <h5 class="mt-3">Jouw 5 meest recente nieuwsberichten</h5>
+                        <ul class="list-group mb-3">
+                            <?php foreach ($data['recentNews'] as $news): ?>
+                                <li class="list-group-item">
+                                    <strong><?= e($news->Title) ?></strong><br>
+                                    <small class="text-muted">Geplaatst op
+                                        <?= e(date('d-m-Y H:i', strtotime($news->created_at))) ?></small>
+                                    <div><?= e($news->preview()) ?></div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
                     <?php endif; ?>
                 </div>
             </div>

@@ -17,11 +17,7 @@ class NieuwsberichtenServices implements IServices
         return $this->repository->get($id) ?? null;
     }
     public function getAll() {
-        $nieuwsberichten = $this->repository->getAll();
-        foreach ($nieuwsberichten as $nieuwsbericht) {
-            $nieuwsbericht['preview'] = $this->getPreview($nieuwsbericht, 200);
-        }
-        return $nieuwsberichten;
+        return $this->repository->getAll();
     }
     public function create(array $data) {
         return $this->repository->create($data) ?? null;
@@ -61,21 +57,8 @@ class NieuwsberichtenServices implements IServices
         ];
     }
 
-    public function getPreview($artikel, int $length = 200): string
-    {
-        $content = $artikel['Message'] ?? '';
-        if (strlen($content) > $length) {
-            return substr($content, 0, $length) . '...';
-        }
-        return $content;
-    }
-
     public function getRecent(int $limit = 5)
     {
-        $nieuwsberichten = $this->repository->getRecent($limit);
-        foreach ($nieuwsberichten as $nieuwsbericht) {
-            $nieuwsbericht['preview'] = $this->getPreview($nieuwsbericht, 200);
-        }
-        return $nieuwsberichten;
+        return $this->repository->getRecent($limit);
     }
 }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Bestuursleden;
 
 
-class Nieuwsberichten extends Model {
+class Nieuwsberichten extends Model
+{
     use SoftDeletes;
     protected $table = "Nieuwsberichten";
 
@@ -23,5 +24,11 @@ class Nieuwsberichten extends Model {
     public function Authur(): BelongsTo
     {
         return $this->belongsTo(Bestuursleden::class, 'Bestuursleden_id');
+    }
+
+    /** Get preview of nieuwsbericht */
+    public function preview($length = 150): string
+    {
+        return substr($this->Message, 0, $length) . '...';
     }
 }

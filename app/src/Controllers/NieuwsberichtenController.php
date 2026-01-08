@@ -16,7 +16,7 @@ class NieuwsberichtenController extends BaseController implements IController {
     }
 
     public function index() {
-        $data = $this->service->getAll()->toArray();
+        $data = $this->service->getAll();
         \View::View("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
     }
     public function show(array $params) {

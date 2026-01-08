@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="row g-4">
-        <?php if (!empty($data['nieuwsberichten']) && is_array($data['nieuwsberichten'])): ?>
+        <?php if (!empty($data['nieuwsberichten']) && $data['nieuwsberichten']): ?>
             <?php foreach ($data['nieuwsberichten'] as $nieuws): ?>
                 <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
                     <div class="card shadow-sm h-100 flex-grow-1">
@@ -27,7 +27,7 @@
                                     <?= date('d-m-Y', strtotime($nieuws['created_at'])) ?></small>
                             <?php endif; ?>
                             <p class="card-text mt-2 flex-grow-1">
-                                <?= e($nieuws['preview']) ?>
+                                <?= e($nieuws->preview()) ?>
                             </p>
                             <a href="/nieuwsberichten/<?= e($nieuws['id']) ?>" class="btn btn-outline-primary mt-auto">Lees
                                 meer</a>
