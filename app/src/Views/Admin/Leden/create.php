@@ -14,17 +14,17 @@
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="firstname">Voornaam</label>
-                                <input type="text" id="firstname" value="<?= e($_SESSION['form_old']['firstname'] ?? '') ?>"
+                                <input type="text" id="firstname" name="firstname" value="<?= e($_SESSION['form_old']['firstname'] ?? '') ?>"
                                     class="form-control" name="firstname" placeholder="Jan" required autofocus>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="middlename">Tussenvoegsel</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['middlename'] ?? '') ?>"
+                                <input type="text" name="middlename" value="<?= e($_SESSION['form_old']['middlename'] ?? '') ?>"
                                     class="form-control" id="middlename" name="middlename" placeholder="van">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="lastname">Achternaam</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['lastname'] ?? '') ?>"
+                                <input type="text" name="lastname" value="<?= e($_SESSION['form_old']['lastname'] ?? '') ?>"
                                     class="form-control" id="lastname" name="lastname" placeholder="Dijk" required>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                         <div class="row g-3 mb-4">
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label" for="phone">Telefoon</label>
-                                <input type="tel" value="<?= e($_SESSION['form_old']['phone'] ?? '') ?>"
+                                <input type="tel" name="phone" value="<?= e($_SESSION['form_old']['phone'] ?? '') ?>"
                                     class="form-control" id="phone" name="phone" placeholder="+31 6 12345678" required>
                             </div>
                             <div class="col-sm-4">
@@ -89,27 +89,27 @@
                         <div class="row g-3 mb-3">
                             <div class="col-sm-8 col-md-4">
                                 <label class="form-label" for="streetname">Straatnaam</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['streetname'] ?? '') ?>"
+                                <input type="text" name="streetname" value="<?= e($_SESSION['form_old']['streetname'] ?? '') ?>"
                                     class="form-control" id="streetname" name="streetname" placeholder="Hoofdstraat">
                             </div>
                             <div class="col-sm-4 col-md-1">
                                 <label class="form-label" for="streetnumber">Nummer</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['streetnumber'] ?? '') ?>"
+                                <input type="text" name="streetnumber" value="<?= e($_SESSION['form_old']['streetnumber'] ?? '') ?>"
                                     class="form-control" id="streetnumber" name="streetnumber" placeholder="123">
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label" for="postalcode">Postcode</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['postalcode'] ?? '') ?>"
+                                <input type="text" name="postalcode" value="<?= e($_SESSION['form_old']['postalcode'] ?? '') ?>"
                                     class="form-control" id="postalcode" name="postalcode" placeholder="1234 AB">
                             </div>
                             <div class="col-sm-6 col-md-2">
                                 <label class="form-label" for="city">Plaats</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['city'] ?? '') ?>"
+                                <input type="text" name="city" value="<?= e($_SESSION['form_old']['city'] ?? '') ?>"
                                     class="form-control" id="city" name="city" placeholder="Amsterdam">
                             </div>
                             <div class="col-sm-12 col-md-3">
                                 <label class="form-label" for="Country">Land</label>
-                                <input type="text" value="<?= e($_SESSION['form_old']['country'] ?? '') ?>"
+                                <input type="text" name="country" value="<?= e($_SESSION['form_old']['country'] ?? '') ?>"
                                     class="form-control" name="country" id="Country" placeholder="Nederland">
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label" for="emergency_phone">Telefoon</label>
-                                <input type="tel" value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? '') ?>"
+                                <input type="tel" name="emergency_contact_phone" value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? '') ?>"
                                     class="form-control" id="emergency_phone" name="emergency_contact_phone" placeholder="+31 6 12345678"
                                     required>
                             </div>

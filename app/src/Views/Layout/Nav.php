@@ -26,7 +26,7 @@
                 <?php if (\Auth::isLoggedIn()): ?>
                     <!-- User is logged in -->
                     <li class="nav-item dropdown">
-                        <button class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                        <button type="button" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="bi bi-person-circle"></i> <?= htmlspecialchars(\Auth::email()); ?>
                         </button>

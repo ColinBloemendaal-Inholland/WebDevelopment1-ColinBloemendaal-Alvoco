@@ -13,7 +13,7 @@
                 <!-- Adress search -->
                 <div class="form-group col-4">
                     <label for="searchAdress">Zoek op adres:</label>
-                    <input type="text" class="form-control" id="searchAdress" placeholder="Voor een adres in:">
+                    <input type="text" class="form-control" id="searchAdress" name="searchAdress" placeholder="Voor een adres in:">
                 </div>
                 <!-- Role filter -->
                 <div class="form-group col-4">
@@ -30,12 +30,12 @@
                 <!-- Phone search -->
                 <div class="form-group col-6">
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
-                    <input type="tel" class="form-control" id="searchPhone" placeholder="Voer een telefoon nummer in:">
+                    <input type="tel" class="form-control" id="searchPhone" name="searchPhone" placeholder="Voer een telefoon nummer in:">
                 </div>
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
-                        <input class="form-check-input" type="checkbox" id="searchTrashed" value="1">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed" value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
                 <!-- Name or email search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" placeholder="Voer een naam in:">
+                    <input type="text" class="form-control" id="searchName" name="searchName" placeholder="Voer een naam in:">
                 </div>
             </div>
             <table id="teamsTable" class="table table-striped table-hover">

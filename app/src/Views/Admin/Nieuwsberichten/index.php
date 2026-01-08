@@ -13,24 +13,24 @@
                 <!-- Title search -->
                 <div class="form-group col-4">
                     <label for="searchTitle">Zoek op titel:</label>
-                    <input type="text" class="form-control" id="searchTitle" placeholder="Voor een titel in:">
+                    <input type="text" class="form-control" id="searchTitle" name="searchTitle" placeholder="Voor een titel in:">
                 </div>
             </div>
             <div class="row">
                 <!-- From date search -->
                 <div class="form-group col-3">
                     <label for="searchFrom">Vanaf:</label>
-                    <input type="date" class="form-control" id="searchFrom">
+                    <input type="date" class="form-control" id="searchFrom" name="searchFrom">
                 </div>
                 <!-- Till date search -->
                 <div class="form-group col-3">
                     <label for="searchTill">Tot:</label>
-                    <input type="date" class="form-control" id="searchTill">
+                    <input type="date" class="form-control" id="searchTill" name="searchTill">
                 </div>
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
-                        <input class="form-check-input" type="checkbox" id="searchTrashed" value="1">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed" value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde nieuwsberichten</label>
                     </div>
                 </div>
