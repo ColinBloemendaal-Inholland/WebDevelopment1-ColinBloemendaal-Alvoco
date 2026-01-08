@@ -31,7 +31,7 @@
                                                     <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                         <?php foreach ($team->upcoming_games as $game): ?>
                                                             <li class="list-group-item">
-                                                                <?= e($game->date) ?>                     <?= e($game->time) ?> -
+                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?> <?= e(date('H:i', strtotime($game->time))) ?> -
                                                                 <?= e($game->hometeam->name ?? '') ?> vs
                                                                 <?= e($game->awayTeam->name ?? '') ?>
                                                             </li>
@@ -102,7 +102,7 @@
                                                     <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                         <?php foreach ($team->upcoming_games as $game): ?>
                                                             <li class="list-group-item">
-                                                                <?= e($game->date) ?>                     <?= e($game->time) ?> -
+                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?> <?= e(date('H:i', strtotime($game->time))) ?> -
                                                                 <?= e($game->hometeam->name ?? '') ?> vs
                                                                 <?= e($game->awayTeam->name ?? '') ?>
                                                             </li>
