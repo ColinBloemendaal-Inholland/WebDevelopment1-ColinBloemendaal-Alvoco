@@ -44,7 +44,7 @@ class Router {
                 $params = $routeInfo[2];
 
                 // Middleware: Protect admin routes
-                if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle('beheerder')) {
+                if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle(['bestuurslid', 'beheerder'])) {
                     http_response_code(403);
                     \View::View("errors.403", '403');
                     return;
