@@ -44,7 +44,7 @@ class Auth {
         if(!self::isLoggedIn()) {
             return null;
         }
-        return (int) self::id();
+        return Leden::find(self::id())->firstOrFail();
     }
 
     /**

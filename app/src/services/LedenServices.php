@@ -95,17 +95,21 @@ class LedenServices implements IServices
     }
     public function updateProfile(int $id, array $data)
     {
-        // Format/transform data if needed (e.g., date format)
-        if (isset($data['geboortedatum'])) {
-            $data['date_of_birth'] = $data['geboortedatum'];
-            unset($data['geboortedatum']);
-        }
-        // Only pass allowed fields to repo
-        $allowed = [
-            'firstname', 'lastname', 'phone', 'date_of_birth',
-            'streetname', 'streetnumber', 'postalcode', 'city', 'country'
-        ];
-        $filtered = array_intersect_key($data, array_flip($allowed));
-        return $this->repository->updateProfile($id, $filtered);
+        return $this->repository->updateProfile($id, $data);
+    }
+
+    /**
+     * Get all teams coached by a user, with spelers, trainers, coaches, and upcoming games
+     */
+    public function getTeamsCoachedWithDetails(int $ledenId)
+    {
+        return $this->repository->getTeamsCoachedWithDetails($ledenId);
+    }
+    /**
+     * Get all teams trained by a user, with spelers, trainers, coaches, and upcoming games
+     */
+    public function getTeamsTrainedWithDetails(int $ledenId)
+    {
+        return $this->repository->getTeamsTrainedWithDetails($ledenId);
     }
 }

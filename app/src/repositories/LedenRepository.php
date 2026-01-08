@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Models\Coaches;
 use App\Models\Leden;
 use App\Models\Roles;
+use App\Models\Trainers;
 use Illuminate\Database\Eloquent\Collection;
 
 class LedenRepository extends BaseRepository
@@ -58,7 +60,7 @@ class LedenRepository extends BaseRepository
         $role = Roles::where('name', $roleName)->first();
         if ($role) {
             $result = $user->roles()->detach($role->id);
-            if($result > 0){
+            if ($result > 0) {
                 return true;
             }
         }
@@ -137,5 +139,59 @@ class LedenRepository extends BaseRepository
         }
         $user->save();
         return $user;
+    }
+
+    /**
+     * Get all teams coached by a user, with spelers, trainers, coaches, and upcoming games
+     */
+    public function getTeamsCoachedWithDetails(int $ledenId)
+    {
+        $coaches = Coaches::with([
+            'team.spelers.lid',
+            'team.trainers.lid',
+            'team.coaches.lid',
+            'team.wedstrijden',
+        ])->where('Leden_id', $ledenId)->get();
+
+
+        $teams = collect();
+        foreach ($coaches as $coach) {
+            if ($coach->team) {
+                $team = $coach->team;
+                $team->upcoming_games = $team->wedstrijden
+                    ->where('date', '>=', date('Y-m-d'))
+                    ->sortBy('date')
+                    ->take(3);
+                $teams->push($team);
+            }
+        }
+        return $teams;
+    }
+
+    /**
+     * Get all teams trained by a user, with spelers, trainers, coaches, and upcoming games
+     */
+    public function getTeamsTrainedWithDetails(int $ledenId)
+    {
+        $trainers = Trainers::with([
+            'team.spelers.lid',
+            'team.trainers.lid',
+            'team.coaches.lid',
+            'team.wedstrijden',
+        ])->where('Leden_id', $ledenId)
+            ->get();
+
+        $teams = collect();
+        foreach ($trainers as $trainer) {
+            if ($trainer->team) {
+                $team = $trainer->team;
+                $team->upcoming_games = $team->wedstrijden
+                    ->where('date', '>=', date('Y-m-d'))
+                    ->sortBy('date')
+                    ->take(3);
+                $teams->push($team);
+            }
+        }
+        return $teams;
     }
 }

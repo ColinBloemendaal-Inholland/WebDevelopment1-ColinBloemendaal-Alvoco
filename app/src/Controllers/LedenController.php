@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Auth;
+use App\Models\Coaches;
 use App\Models\Leden;
 use App\Services\LedenServices;
 use App\Models\Requests\LedenStoreRequest;
@@ -135,7 +136,6 @@ class LedenController extends BaseController implements IController
         $email = trim($_POST["email"]);
         $password = $_POST["password"];
 
-        // Validate email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['form_errors'] = ['email' => 'Ongeldig e-mailadres.'];
             \View::Redirect("/login");
@@ -147,13 +147,11 @@ class LedenController extends BaseController implements IController
             \View::Redirect("/login");
         }
 
-        // Verify password using bcrypt
         if (!\Auth::verifyPassword($password, $user->password)) {
             $_SESSION['form_errors'] = ['credentials' => 'E-mail of wachtwoord is onjuist.'];
             \View::Redirect("/login");
         }
 
-        // Clear any previous form errors and log the user in
         unset($_SESSION['form_errors']);
         \Auth::login($user->email, $user->id);
         \View::Redirect("/");
@@ -162,7 +160,6 @@ class LedenController extends BaseController implements IController
     public function logout()
     {
         \Auth::logout();
-        // Do not use success_message; keep behavior consistent with form_errors usage
         \View::Redirect("/");
     }
 
@@ -173,9 +170,20 @@ class LedenController extends BaseController implements IController
             \View::View('Errors.401', '401');
             return;
         }
-        $userId = \Auth::id();
-        $user = Leden::find($userId);
-        \View::View('Dashboard.index', 'Dashboard', ['user' => $user]);
+        $user = \Auth::user();
+        $teamsCoached = [];
+        if ($user && $user->hasRole('coach')) {
+            $teamsCoached = $this->service->getTeamsCoachedWithDetails($user->id);
+        }
+        $teamsTrained = [];
+        if( $user && $user->hasRole('trainer')) {
+            $teamsTrained = $this->service->getTeamsTrainedWithDetails($user->id);
+        }
+        \View::View('Dashboard.index', 'Dashboard', [
+            'user' => $user,
+            'teamsCoached' => $teamsCoached,
+            'teamsTrained' => $teamsTrained
+        ]);
     }
 
     public function editProfile() {
