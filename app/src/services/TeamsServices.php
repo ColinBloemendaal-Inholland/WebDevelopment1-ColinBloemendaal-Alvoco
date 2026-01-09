@@ -62,7 +62,8 @@ class TeamsServices implements IServices
         ];
     }
 
-    public function getAllByCategory() {
+    public function getAllByCategory()
+    {
         $teams = $this->getAll();
 
         $groupedTeams = [];
@@ -86,5 +87,18 @@ class TeamsServices implements IServices
     public function getTeamWithRelations(int $id)
     {
         return $this->repository->getTeamWithRelations($id) ?? null;
+    }
+
+    /**
+     * Update trainers and spelers for a team (for coach edit)
+     */
+    public function updateTrainersAndSpelers(int $teamId, array $spelersIds, array $trainersIds)
+    {
+        return $this->repository->updateTrainersAndSpelers($teamId, $spelersIds, $trainersIds);
+    }
+
+    public function getByCoach(int $ledenId)
+    {
+        return $this->repository->getByCoachId($ledenId);
     }
 }

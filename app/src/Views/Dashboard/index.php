@@ -17,12 +17,17 @@
                             <?php foreach ($data['teamsCoached'] as $idx => $team): ?>
                                 <?php if ($team): ?>
                                     <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading<?= $idx ?>">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapse<?= $idx ?>" aria-expanded="false"
-                                                aria-controls="collapse<?= $idx ?>">
-                                                <?= e($team->name ?? 'Onbekend team') ?>
+                                        <h2 class="accordion-header d-flex align-items-center" id="heading<?= $idx ?>">
+                                            <button class="accordion-button collapsed d-flex justify-content-between align-items-center" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse<?= $idx ?>"
+                                                aria-expanded="false" aria-controls="collapse<?= $idx ?>">
+                                                <span class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
+                                                <a href="/dashboard/teams/<?= e($team->id) ?>/edit"
+                                                    class="btn btn-outline-secondary btn-sm ms-2 p-1" title="Team bewerken">
+                                                    <span class="bi bi-pencil"></span>
+                                                </a>
                                             </button>
+
                                         </h2>
                                         <div id="collapse<?= $idx ?>" class="accordion-collapse collapse"
                                             aria-labelledby="heading<?= $idx ?>" data-bs-parent="#teamsAccordion">
@@ -158,13 +163,16 @@
                         <h5 class="mt-3">Jouw 5 meest recente nieuwsberichten</h5>
                         <ul class="list-group mb-3">
                             <?php foreach ($data['recentNews'] as $news): ?>
-                                <li class="list-group-item d-flex flex-md-row flex-column justify-content-between align-items-start gap-2">
+                                <li
+                                    class="list-group-item d-flex flex-md-row flex-column justify-content-between align-items-start gap-2">
                                     <div class="flex-grow-1">
                                         <div class="d-flex align-items-center">
                                             <strong class="me-2 mb-0" style="line-height:1.5;"><?= e($news->Title) ?></strong>
-                                            <a href="/nieuwsberichten/<?= e($news->id) ?>" class="btn btn-primary btn-sm ms-auto">Bekijk</a>
+                                            <a href="/nieuwsberichten/<?= e($news->id) ?>"
+                                                class="btn btn-primary btn-sm ms-auto">Bekijk</a>
                                         </div>
-                                        <small class="text-muted">Geplaatst op <?= e(date('d-m-Y H:i', strtotime($news->created_at))) ?></small>
+                                        <small class="text-muted">Geplaatst op
+                                            <?= e(date('d-m-Y H:i', strtotime($news->created_at))) ?></small>
                                         <div><?= e($news->preview()) ?></div>
                                     </div>
                                 </li>

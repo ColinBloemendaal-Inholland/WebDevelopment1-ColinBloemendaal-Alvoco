@@ -145,4 +145,31 @@ class TeamsRepository extends BaseRepository
             'recordsFiltered' => $recordsFiltered,
         ];
     }
+
+    /**
+     * Update trainers and spelers for a team (for coach edit)
+     */
+    public function updateTrainersAndSpelers(int $teamId, array $spelersIds, array $trainersIds)
+    {
+        $team = $this->model->find($teamId);
+        if (!$team) {
+            return null;
+        }
+        Spelers::where('team_id', $teamId)->update(['team_id' => null]);
+        if (!empty($spelersIds)) {
+            Spelers::whereIn('id', $spelersIds)->update(['team_id' => $teamId]);
+        }
+        Trainers::where('team_id', $teamId)->update(['team_id' => null]);
+        if (!empty($trainersIds)) {
+            Trainers::whereIn('id', $trainersIds)->update(['team_id' => $teamId]);
+        }
+        return $team->refresh();
+    }
+
+    public function getByCoachId(int $ledenId)
+    {
+        return Teams::with(['spelers.lid', 'trainers.lid', 'coaches.lid'])->whereHas('coaches', function ($query) use ($ledenId) {
+            $query->where('Leden_id', $ledenId);
+        })->first();
+    }
 }

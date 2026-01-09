@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Requests\TeamsStoreRequest;
 use App\Models\Requests\TeamsUpdateRequest;
+use App\Models\Requests\TeamUpdateByCoachRequest;
 use App\Services\CoachesServices;
 use App\Services\SpelersServices;
 use App\Services\TeamsServices;
@@ -33,7 +34,7 @@ class TeamsController extends BaseController implements IController
     public function show(array $params)
     {
         $team = $this->service->getTeamWithRelations(intval($params['id']));
-        \View::View('teams.post', 'Team', ['team'=> $team]);
+        \View::View('teams.post', 'Team', ['team' => $team]);
     }
 
     public function Create()
@@ -124,6 +125,38 @@ class TeamsController extends BaseController implements IController
 
         header('Content-Type: application/json');
         echo json_encode($result);
+    }
+
+    // GET: /teams/{id}/edit-by-coach
+    public function editByCoach(array $params)
+    {
+        $user = \Auth::user();
+        $team = $this->service->getByCoach($user->id);
+        $spelers = $this->spelersServices->getAll();
+        $trainers = $this->trainersServices->getAll();
+        \View::View('coach.team.edit', 'Team bewerken', [
+            'team' => $team,
+            'spelers' => $spelers,
+            'trainers' => $trainers
+        ]);
+    }
+
+    // POST: /teams/{id}/update-by-coach
+    public function updateByCoach(array $params)
+    {
+        $teamId = intval($params['id']);
+        $team = $this->service->getTeamWithRelations($teamId);
+        if (!$team) {
+            \View::Redirect("/dashboard");
+        }
+        try {
+            $validated = new TeamUpdateByCoachRequest($_POST)->validate();
+            $this->service->updateTrainersAndSpelers($teamId, $validated['spelers'], $validated['trainers']);
+            \View::Redirect("/dashboard");
+        } catch (Exception $e) {
+            $_SESSION['form_errors'] = $e->getMessage();
+            \View::Redirect("/dashboard/teams/{$teamId}/edit");
+        }
     }
 }
 
