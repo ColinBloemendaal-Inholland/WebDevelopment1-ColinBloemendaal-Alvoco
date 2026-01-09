@@ -109,7 +109,6 @@ class LedenRepository extends BaseRepository
             $query->where('phone', 'like', $phone);
         }
 
-        //TODO: make this working
         if (isset($filter['trashed']) && $filter['trashed'] == 1) {
             $query->onlyTrashed();
         }

@@ -44,7 +44,7 @@ class NieuwsberichtenRepository extends BaseRepository
 
         // Handle trashed
         if (isset($filter['trashed']) && $filter['trashed'] == 1) {
-            $query->withTrashed();
+            $query->onlyTrashed();
         }
 
         if (isset($filter['orderColumn']) && isset($filter['orderDir'])) {

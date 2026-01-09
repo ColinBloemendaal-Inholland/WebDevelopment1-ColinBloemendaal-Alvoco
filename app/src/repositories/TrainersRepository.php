@@ -61,6 +61,10 @@ class TrainersRepository extends BaseRepository
             $query->skip($start)->take($limit);
         }
 
+        if (isset($filters['trashed']) && $filters['trashed'] == 1) {
+            $query->onlyTrashed();
+        }
+
         $data = $query->get();
 
         return [
