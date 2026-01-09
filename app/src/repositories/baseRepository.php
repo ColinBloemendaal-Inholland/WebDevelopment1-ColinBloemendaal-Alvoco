@@ -45,7 +45,7 @@ abstract class BaseRepository implements IBaseRepository
 
     public function destroy(int $id): bool
     {
-        $record = $this->model->findOrFail($id);
+        $record = $this->model->withTrashed()->findOrFail($id);
         return $record->forceDelete() ?? false;
     }
 }
