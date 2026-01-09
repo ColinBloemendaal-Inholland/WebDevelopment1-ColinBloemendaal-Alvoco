@@ -12,11 +12,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LedenRepository extends BaseRepository
 {
-    public function __construct(Leden $model)
-    {
-        parent::__construct($model);
-    }
-
     /**
      * Get a member by email
      */
@@ -116,7 +111,7 @@ class LedenRepository extends BaseRepository
 
         //TODO: make this working
         if (isset($filter['trashed']) && $filter['trashed'] == 1) {
-            $query->withTrashed();
+            $query->onlyTrashed();
         }
 
         $filteredCount = $query->count();
