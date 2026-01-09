@@ -70,4 +70,8 @@ class CoachesRepository extends BaseRepository
             'recordsFiltered' => $recordsFiltered,
         ];
     }
+
+    public function getAvailableCoaches($withCoachesIds) {
+        return Coaches::with('lid')->whereDoesntHave('team')->orWhereIn('id', $withCoachesIds)->get();
+    }
 }

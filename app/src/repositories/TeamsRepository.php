@@ -168,8 +168,13 @@ class TeamsRepository extends BaseRepository
 
     public function getByCoachId(int $ledenId)
     {
-        return Teams::with(['spelers.lid', 'trainers.lid', 'coaches.lid'])->whereHas('coaches', function ($query) use ($ledenId) {
+        return $this->model::with(['spelers.lid', 'trainers.lid', 'coaches.lid'])->whereHas('coaches', function ($query) use ($ledenId) {
             $query->where('Leden_id', $ledenId);
         })->first();
+    }
+    
+    public function getWithCoach(int $id)
+    {
+        return $this->model->with(['coaches', 'coaches.lid'])->where('id', $id)->first();
     }
 }

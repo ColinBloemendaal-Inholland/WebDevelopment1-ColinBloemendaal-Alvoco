@@ -101,4 +101,9 @@ class TeamsServices implements IServices
     {
         return $this->repository->getByCoachId($ledenId);
     }
+
+    public function getWithCoach(int $id)
+    {
+        return $this->repository->getWithCoach($id);
+    }
 }

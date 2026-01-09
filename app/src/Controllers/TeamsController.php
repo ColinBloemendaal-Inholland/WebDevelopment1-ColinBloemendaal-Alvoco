@@ -40,7 +40,7 @@ class TeamsController extends BaseController implements IController
     public function Create()
     {
         $spelers = $this->spelersServices->getAll();
-        $coaches = $this->coachesServices->getAll();
+        $coaches = $this->coachesServices->getAvailableCoaches();
         $trainers = $this->trainersServices->getAll();
         \View::View('admin.teams.create', 'Team aanmaken', [
             'spelers' => $spelers,
@@ -66,8 +66,8 @@ class TeamsController extends BaseController implements IController
 
     public function edit(array $params)
     {
-        $team = $this->service->get(intval($params["id"]));
-        $coaches = $this->coachesServices->getAll();
+        $team = $this->service->getWithCoach(intval($params["id"]));
+        $coaches = $this->coachesServices->getAvailableCoaches($team->coaches->pluck('id')->toArray());
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
         \View::View("admin.teams.edit", 'Wijzig team', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
@@ -127,7 +127,6 @@ class TeamsController extends BaseController implements IController
         echo json_encode($result);
     }
 
-    // GET: /teams/{id}/edit-by-coach
     public function editByCoach(array $params)
     {
         $user = \Auth::user();
@@ -141,7 +140,6 @@ class TeamsController extends BaseController implements IController
         ]);
     }
 
-    // POST: /teams/{id}/update-by-coach
     public function updateByCoach(array $params)
     {
         $teamId = intval($params['id']);
