@@ -55,6 +55,12 @@ class Router {
                     \View::View("errors.401", '401');
                     return;
                 }
+                // Middleware: Protect dashboard route
+                if (strpos($uri, '/dashboard/teams') === 0 && !RoleMiddleware::handle(['coach'])) {
+                    http_response_code(401);
+                    \View::View("errors.401", '401');
+                    return;
+                }
 
                 $controller = new $controllername();
                 $controller->$method($params);
