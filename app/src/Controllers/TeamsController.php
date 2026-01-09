@@ -114,7 +114,8 @@ class TeamsController extends BaseController implements IController
     public function getTeams()
     {
         $filter = [
-            'name' => $_POST['name'] ?? ''
+            'name' => $_POST['name'] ?? '',
+            'trashed' => $_POST['trashed'] ?? '',
         ];
 
         $draw = intval($_POST['draw'] ?? 1);

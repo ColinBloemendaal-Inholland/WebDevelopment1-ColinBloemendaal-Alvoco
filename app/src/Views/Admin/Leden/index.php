@@ -99,15 +99,23 @@
                         let deletedAt;
                         if (row['deleted_at'] !== null) {
                             deletedAt = `
-                                <a href="/admin/leden/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>
+                                <form method="POST" action="/admin/leden/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
                             `;
                         } else {
-                            deletedAt = `<a href="/admin/leden/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                            deletedAt = `
+                                <form method="POST" action="/admin/leden/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         }
                         return `
-                        <a href="/admin/leden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                        <a href="/admin/leden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                    ` + deletedAt;
+                            <a href="/admin/leden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                            <a href="/admin/leden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                        ` + deletedAt;
                     },
                 }
             ],

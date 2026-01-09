@@ -58,6 +58,7 @@
                     d.homeTeam = $('#searchHomeTeam').val();
                     d.awayTeam = $('#searchAwayTeam').val();
                     d.score = $('#searchScore').val();
+                    d.trashed = $('#searchTrashed').prop('checked') ? 1 : 0;
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -96,14 +97,24 @@
                     orderable: false,
                     render: function (data, type, row) {
                         let deletedAt;
-                        if (row['deleted_at'] !== null && row['deleted_at'] !== undefined) {
-                            deletedAt = `<a href="/admin/wedstrijden/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>`;
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <form method="POST" action="/admin/wedstrijden/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         } else {
-                            deletedAt = `<a href="/admin/wedstrijden/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                            deletedAt = `
+                                <form method="POST" action="/admin/wedstrijden/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         }
                         return `
-                        <a href="/admin/wedstrijden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                        <a href="/admin/wedstrijden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="/admin/wedstrijden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                            <a href="/admin/wedstrijden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
                         ` + deletedAt;
                     }
                 }
@@ -127,7 +138,7 @@
         // Text inputs: reload after 1 second of inactivity
         $('#searchScore').on('input', timeout);
 
-        $('#searchHomeTeam, #searchAwayTeam').on('change', function () {
+        $('#searchHomeTeam, #searchAwayTeam, #searchTrashed').on('change', function () {
             wedstrijdenTable.ajax.reload();
         });
 

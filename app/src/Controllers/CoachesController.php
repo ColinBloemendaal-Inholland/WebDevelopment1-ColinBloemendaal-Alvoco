@@ -8,7 +8,8 @@ use App\Services\CoachesServices;
 use App\Services\LedenServices;
 use App\Services\TeamsServices;
 
-class CoachesController extends BaseController implements IController {
+class CoachesController extends BaseController implements IController
+{
     private CoachesServices $service;
     private LedenServices $ledenServices;
     private TeamsServices $teamsServices;
@@ -19,17 +20,20 @@ class CoachesController extends BaseController implements IController {
         $this->teamsServices = new TeamsServices();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = $this->service->getAll();
         \View::View("coaches.index", 'Coaches', ['coaches' => $data]);
     }
 
-    public function show(array $params) {
+    public function show(array $params)
+    {
         $data = $this->service->get(intval($params['id']));
         \View::View('coaches.post', $data['Title'], $data);
     }
 
-    public function Create() {
+    public function Create()
+    {
         $leden = $this->ledenServices->getAll();
         $teams = $this->teamsServices->getAll();
         \View::View('admin.coaches.create', 'Coach aanmaken', ['leden' => $leden, 'teams' => $teams]);
@@ -49,7 +53,8 @@ class CoachesController extends BaseController implements IController {
         \View::Redirect("/admin/coaches/{$post['id']}");
     }
 
-    public function edit(array $params) {
+    public function edit(array $params)
+    {
         $coach = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAll();
         $teams = $this->teamsServices->getAll();
@@ -71,28 +76,32 @@ class CoachesController extends BaseController implements IController {
         }
     }
 
-    public function delete(array $params) {
+    public function delete(array $params)
+    {
         $post = $this->service->delete(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/coaches/{$params["id"]}");
             return;
         }
         \View::Redirect("/admin/coaches");
     }
 
-    public function destroy(array $params) {
+    public function destroy(array $params)
+    {
         $post = $this->service->destroy(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/coaches/{$params["id"]}");
             return;
         }
         \View::Redirect("/admin/coaches");
     }
 
-    public function getCoaches() {
+    public function getCoaches()
+    {
         $filter = [
             'name' => $_POST['name'] ?? '',
-            'role' => $_POST['role'] ?? ''
+            'role' => $_POST['role'] ?? '',
+            'trashed' => $_POST['trashed'] ?? '',
         ];
 
         $draw = intval($_POST['draw'] ?? 1);

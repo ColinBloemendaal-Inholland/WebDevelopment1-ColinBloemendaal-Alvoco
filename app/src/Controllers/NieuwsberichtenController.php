@@ -92,6 +92,7 @@ class NieuwsberichtenController extends BaseController implements IController {
             'message'=> $_POST['message'] ??'',
             'dateFrom'=> $_POST['dateFrom'] ??'',
             'dateTill'=> $_POST['dateTill'] ??'',
+            'trashed'=> $_POST['trashed'] ??'',
             'orderby' => $_POST['order'][0]['column'] ?? 0,
             'orderDir' => $_POST['order'][0]['dir'] ?? 'asc',
         ];

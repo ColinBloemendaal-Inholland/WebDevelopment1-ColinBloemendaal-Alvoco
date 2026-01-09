@@ -88,15 +88,25 @@
                     orderable: false,
                     render: function (data, type, row) {
                         let deletedAt;
-                        if (row['deleted_at'] !== null && row['deleted_at'] !== undefined) {
-                            deletedAt = `<a href="/admin/nieuwsberichten/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>`;
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <form method="POST" action="/admin/nieuwsberichten/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         } else {
-                            deletedAt = `<a href="/admin/nieuwsberichten/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                            deletedAt = `
+                                <form method="POST" action="/admin/nieuwsberichten/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         }
                         return `
-                             <a href="/admin/nieuwsberichten/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                             <a href="/admin/nieuwsberichten/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                             ` + deletedAt;
+                            <a href="/admin/nieuwsberichten/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                            <a href="/admin/nieuwsberichten/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                            ` + deletedAt;
                     },
                 }
             ],
@@ -116,7 +126,7 @@
         $('#searchAuthur, #searchTitle').on('input', timeout);
 
         // Multi-select: reload immediately on change
-        $('#searchFrom, #searchTill, searchTrashed').on('change', function () {
+        $('#searchFrom, #searchTill, #searchTrashed').on('change', function () {
             nieuwsberichtenTable.ajax.reload();
         });
     });

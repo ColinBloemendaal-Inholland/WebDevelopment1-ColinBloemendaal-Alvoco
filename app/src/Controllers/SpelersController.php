@@ -8,7 +8,8 @@ use App\Services\LedenServices;
 use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 
-class SpelersController extends BaseController implements IController {
+class SpelersController extends BaseController implements IController
+{
     private SpelersServices $service;
     private LedenServices $ledenServices;
     private TeamsServices $teamsServices;
@@ -19,17 +20,20 @@ class SpelersController extends BaseController implements IController {
         $this->teamsServices = new TeamsServices();
     }
 
-    public function index() {
+    public function index()
+    {
         $data = $this->service->getAll();
         \View::View("spelers.index", 'Spelers', data: ['spelers' => $data]);
     }
 
-    public function show(array $params) {
+    public function show(array $params)
+    {
         $data = $this->service->get(intval($params['id']));
         \View::View('spelers.post', $data['Title'], $data);
     }
 
-    public function Create() {
+    public function Create()
+    {
         $leden = $this->ledenServices->getAllWithNoSpeler();
         $teams = $this->teamsServices->getAll();
         \View::View('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
@@ -49,11 +53,12 @@ class SpelersController extends BaseController implements IController {
         \View::Redirect("/admin/spelers/{$post['id']}");
     }
 
-    public function edit(array $params) {
+    public function edit(array $params)
+    {
         $speler = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAllWithNoSpeler([$speler['Leden_id']]);
         $teams = $this->teamsServices->getAll();
-        \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler'=> $speler, 'leden' => $leden, 'teams' => $teams]);
+        \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler' => $speler, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)
@@ -71,28 +76,32 @@ class SpelersController extends BaseController implements IController {
         }
     }
 
-    public function delete(array $params) {
+    public function delete(array $params)
+    {
         $post = $this->service->delete(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/spelers/{$params["id"]}");
             return;
         }
         \View::Redirect("/admin/spelers");
     }
 
-    public function destroy(array $params) {
+    public function destroy(array $params)
+    {
         $post = $this->service->destroy(intval($params["id"]));
-        if(!$post) {
+        if (!$post) {
             \View::Redirect("/admin/spelers/{$params["id"]}");
             return;
         }
         \View::Redirect("/admin/spelers");
     }
 
-    public function getSpelers() {
+    public function getSpelers()
+    {
         $filter = [
             'name' => $_POST['name'] ?? '',
-            'team' => $_POST['team'] ?? ''
+            'team' => $_POST['team'] ?? '',
+            'trashed' => $_POST['trashed'] ?? '',
         ];
 
         $draw = intval($_POST['draw'] ?? 1);

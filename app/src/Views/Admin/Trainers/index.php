@@ -7,11 +7,13 @@
                 <!-- Name or email search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" name="searchName" placeholder="Voer een naam in:">
+                    <input type="text" class="form-control" id="searchName" name="searchName"
+                        placeholder="Voer een naam in:">
                 </div>
                 <div class="form-group col-4">
                     <label for="searchRole">Zoek op rol:</label>
-                    <input type="text" class="form-control" id="searchRole" name="searchRole" placeholder="Voer een rol in:">
+                    <input type="text" class="form-control" id="searchRole" name="searchRole"
+                        placeholder="Voer een rol in:">
                 </div>
             </div>
             <table id="trainersTable" class="table table-striped table-hover">
@@ -41,6 +43,7 @@
                 data: function (d) {
                     d.name = $('#searchName').val();
                     d.role = $('#searchRole').val();
+                    d.trashed = $('#searchTrashed').prop('checked') ? 1 : 0;
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -61,14 +64,24 @@
                     orderable: false,
                     render: function (data, type, row) {
                         let deletedAt;
-                        if (row['deleted_at'] !== null && row['deleted_at'] !== undefined) {
-                            deletedAt = `<a href="/admin/trainers/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>`;
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <form method="POST" action="/admin/trainers/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         } else {
-                            deletedAt = `<a href="/admin/trainers/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                            deletedAt = `
+                                <form method="POST" action="/admin/trainers/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
                         }
                         return `
-                        <a href="/admin/trainers/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                        <a href="/admin/trainers/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="/admin/trainers/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                            <a href="/admin/trainers/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
                         ` + deletedAt;
                     }
                 }
@@ -91,5 +104,10 @@
         };
         // Text inputs: reload after 1 second of inactivity
         $('#searchName, #searchRole').on('input', timeout);
+
+        // Multi-select: reload immediately on change
+        $('#searchTrashed').on('change', function () {
+            trainersTable.ajax.reload();
+        });
     });
 </script>
