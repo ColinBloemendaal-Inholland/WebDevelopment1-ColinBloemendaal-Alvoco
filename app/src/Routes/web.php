@@ -66,7 +66,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/leden/{id:\d+}/edit', [LedenController::class, 'edit']);
     $r->addRoute('PUT', '/admin/leden/{id:\d+}', [LedenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/leden/{id:\d+}', [LedenController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/leden/{id:\d+}/force', [LedenController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/leden/{id:\d+}/force', [LedenController::class, 'destroy']);
 
     // Admin > Spelers
     $r->addRoute('GET', '/admin/spelers', [AdminController::class, 'spelers']);
@@ -76,7 +76,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/spelers/{id:\d+}/edit', [SpelersController::class, 'edit']);
     $r->addRoute('PUT', '/admin/spelers/{id:\d+}', [SpelersController::class, 'update']);
     $r->addRoute('DELETE', '/admin/spelers/{id:\d+}', [SpelersController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/spelers/{id:\d+}/force', [SpelersController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/spelers/{id:\d+}/force', [SpelersController::class, 'destroy']);
 
     // Admin > Nieuwsberichten
     $r->addRoute('GET', '/admin/nieuwsberichten', [AdminController::class, 'nieuwsberichten']);
@@ -86,7 +86,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/nieuwsberichten/{id:\d+}/edit', [NieuwsberichtenController::class, 'edit']);
     $r->addRoute('PUT', '/admin/nieuwsberichten/{id:\d+}', [NieuwsberichtenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/nieuwsberichten/{id:\d+}', [NieuwsberichtenController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/nieuwsberichten/{id:\d+}/force', [NieuwsberichtenController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/nieuwsberichten/{id:\d+}/force', [NieuwsberichtenController::class, 'destroy']);
 
     // Admin > Teams
     $r->addRoute('GET', '/admin/teams', [AdminController::class, 'teams']);
@@ -96,7 +96,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/teams/{id:\d+}/edit', [TeamsController::class, 'edit']);
     $r->addRoute('PUT', '/admin/teams/{id:\d+}', [TeamsController::class, 'update']);
     $r->addRoute('DELETE', '/admin/teams/{id:\d+}', [TeamsController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/teams/{id:\d+}/force', [TeamsController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/teams/{id:\d+}/force', [TeamsController::class, 'destroy']);
     // Admin > Coaches
     $r->addRoute('GET', '/admin/coaches', [AdminController::class, 'coaches']);
     $r->addRoute('GET', '/admin/coaches/', [AdminController::class, 'coaches']);
@@ -106,7 +106,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/coaches/{id:\d+}/edit', [CoachesController::class, 'edit']);
     $r->addRoute('PUT', '/admin/coaches/{id:\d+}', [CoachesController::class, 'update']);
     $r->addRoute('DELETE', '/admin/coaches/{id:\d+}', [CoachesController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/coaches/{id:\d+}/force', [CoachesController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/coaches/{id:\d+}/force', [CoachesController::class, 'destroy']);
 
     // Admin > Trainers
     $r->addRoute('GET', '/admin/trainers', [AdminController::class, 'trainers']);
@@ -117,7 +117,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/trainers/{id:\d+}/edit', [TrainersController::class, 'edit']);
     $r->addRoute('PUT', '/admin/trainers/{id:\d+}', [TrainersController::class, 'update']);
     $r->addRoute('DELETE', '/admin/trainers/{id:\d+}', [TrainersController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/trainers/{id:\d+}/force', [TrainersController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/trainers/{id:\d+}/force', [TrainersController::class, 'destroy']);
 
     // Admin > Wedstrijden
     $r->addRoute('GET', '/admin/wedstrijden', [AdminController::class, 'wedstrijden']);
@@ -127,7 +127,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/wedstrijden/{id:\d+}/edit', [WedstrijdenController::class, 'edit']);
     $r->addRoute('PUT', '/admin/wedstrijden/{id:\d+}', [WedstrijdenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/wedstrijden/{id:\d+}', [WedstrijdenController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/wedstrijden/{id:\d+}/force', [WedstrijdenController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/wedstrijden/{id:\d+}/force', [WedstrijdenController::class, 'destroy']);
 
     // Admin > Bestuursleden
     $r->addRoute('GET', '/admin/bestuursleden', [AdminController::class, 'bestuursleden']);
@@ -137,5 +137,5 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/admin/bestuursleden/{id:\d+}/edit', [BestuursledenController::class, 'edit']);
     $r->addRoute('PUT', '/admin/bestuursleden/{id:\d+}', [BestuursledenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/bestuursleden/{id:\d+}', [BestuursledenController::class, 'delete']);
-    $r->addRoute('DELETE', '/admin/bestuursleden/{id:\d+}/force', [BestuursledenController::class, 'destroy']);
+    $r->addRoute('GET', '/admin/bestuursleden/{id:\d+}/force', [BestuursledenController::class, 'destroy']);
 };

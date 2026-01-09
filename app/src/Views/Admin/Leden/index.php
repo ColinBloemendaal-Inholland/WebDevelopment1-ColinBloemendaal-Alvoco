@@ -13,7 +13,8 @@
                 <!-- Adress search -->
                 <div class="form-group col-4">
                     <label for="searchAdress">Zoek op adres:</label>
-                    <input type="text" class="form-control" id="searchAdress" name="searchAdress" placeholder="Voor een adres in:">
+                    <input type="text" class="form-control" id="searchAdress" name="searchAdress"
+                        placeholder="Voor een adres in:">
                 </div>
                 <!-- Role filter -->
                 <div class="form-group col-4">
@@ -30,12 +31,14 @@
                 <!-- Phone search -->
                 <div class="form-group col-6">
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
-                    <input type="tel" class="form-control" id="searchPhone" name="searchPhone" placeholder="Voer een telefoon nummer in:">
+                    <input type="tel" class="form-control" id="searchPhone" name="searchPhone"
+                        placeholder="Voer een telefoon nummer in:">
                 </div>
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
-                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed" value="1">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                            value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
                     </div>
                 </div>
@@ -93,11 +96,18 @@
                     title: 'Acties',
                     orderable: false,
                     render: function (data, type, row) {
+                        let deletedAt;
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <a href="/admin/leden/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>
+                            `;
+                        } else {
+                            deletedAt = `<a href="/admin/leden/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                        }
                         return `
                         <a href="/admin/leden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
                         <a href="/admin/leden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="/admin/leden/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>
-                    `;
+                    ` + deletedAt;
                     },
                 }
             ],
@@ -118,7 +128,6 @@
 
         // Multi-select: reload immediately on change
         $('#searchRole, #searchTrashed').on('change', function () {
-            console.log($('#searchTrashed').prop('checked'))
             ledenTable.ajax.reload();
         });
 

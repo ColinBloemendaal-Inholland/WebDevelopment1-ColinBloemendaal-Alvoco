@@ -60,11 +60,16 @@
                     title: 'Acties',
                     orderable: false,
                     render: function (data, type, row) {
+                        let deletedAt;
+                        if (row['deleted_at'] !== null && row['deleted_at'] !== undefined) {
+                            deletedAt = `<a href="/admin/coaches/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>`;
+                        } else {
+                            deletedAt = `<a href="/admin/coaches/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                        }
                         return `
                         <a href="/admin/coaches/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
                         <a href="/admin/coaches/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="/admin/coaches/${row.id}/delete" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>
-                        `;
+                        ` + deletedAt;
                     }
                 }
             ],

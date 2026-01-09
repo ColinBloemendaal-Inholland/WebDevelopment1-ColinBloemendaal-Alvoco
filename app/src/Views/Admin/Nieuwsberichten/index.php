@@ -7,13 +7,13 @@
                 <!-- Name of authur search -->
                 <div class="form-group col-4">
                     <label for="searchAuthur">Zoek op authur</label>
-                    <input type="text" class="form-control" id="searchAuthur"
-                        placeholder="Voer een naam in">
+                    <input type="text" class="form-control" id="searchAuthur" placeholder="Voer een naam in">
                 </div>
                 <!-- Title search -->
                 <div class="form-group col-4">
                     <label for="searchTitle">Zoek op titel:</label>
-                    <input type="text" class="form-control" id="searchTitle" name="searchTitle" placeholder="Voor een titel in:">
+                    <input type="text" class="form-control" id="searchTitle" name="searchTitle"
+                        placeholder="Voor een titel in:">
                 </div>
             </div>
             <div class="row">
@@ -30,7 +30,8 @@
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
-                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed" value="1">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                            value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde nieuwsberichten</label>
                     </div>
                 </div>
@@ -86,11 +87,16 @@
                     title: 'Acties',
                     orderable: false,
                     render: function (data, type, row) {
+                        let deletedAt;
+                        if (row['deleted_at'] !== null && row['deleted_at'] !== undefined) {
+                            deletedAt = `<a href="/admin/nieuwsberichten/${row.id}/force" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></a>`;
+                        } else {
+                            deletedAt = `<a href="/admin/nieuwsberichten/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>`;
+                        }
                         return `
-                        <a href="/admin/nieuwsberichten/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                        <a href="/admin/nieuwsberichten/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                        <a href="/admin/nieuwsberichten/${row.id}/delete" class="btn btn-sm btn-danger delete-link" data-id="${row.id}"><i class="bi bi-trash-fill"></i></a>
-                    `;
+                             <a href="/admin/nieuwsberichten/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                             <a href="/admin/nieuwsberichten/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                             ` + deletedAt;
                     },
                 }
             ],
