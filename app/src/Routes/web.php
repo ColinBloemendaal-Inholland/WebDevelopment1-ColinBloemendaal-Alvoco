@@ -37,8 +37,8 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/wedstrijden/{id:\d+}', [WedstrijdenController::class, 'show']);
 
     // Contact page
-    $r->addRoute('GET', '/contact', [BestuursledenController::class, 'contact']);
-    $r->addRoute('POST', '/contact', [BestuursledenController::class, 'storeContact']);
+    $r->addRoute('GET', '/contact', [HomeController::class, 'contactForm']);
+    $r->addRoute('POST', '/contact', [HomeController::class, 'storeContact']);
 
     
     $r->addRoute('POST', '/api/leden', [LedenController::class, 'getLeden']);

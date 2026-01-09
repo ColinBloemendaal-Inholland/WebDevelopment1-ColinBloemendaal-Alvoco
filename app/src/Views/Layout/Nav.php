@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/nieuwsberichten">Nieuwsberichten</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ms-auto">
