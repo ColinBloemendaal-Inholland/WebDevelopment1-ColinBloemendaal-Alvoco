@@ -84,9 +84,6 @@ class TeamsController extends BaseController implements IController
         } catch (Exception $e) {
             $msg = $e->getMessage();
             $errors = json_decode($msg, true);
-            if ($errors === null) {
-                $errors = ["error" => $msg];
-            }
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
             \View::Redirect("/admin/teams/{$id}/edit");

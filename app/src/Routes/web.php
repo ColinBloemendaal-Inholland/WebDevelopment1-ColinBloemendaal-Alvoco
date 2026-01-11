@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ContactController;
 use App\Controllers\DashboardController;
 use App\Controllers\SpelersController;
 use FastRoute\RouteCollector;
@@ -37,8 +38,8 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/wedstrijden/{id:\d+}', [WedstrijdenController::class, 'show']);
 
     // Contact page
-    $r->addRoute('GET', '/contact', [HomeController::class, 'contactForm']);
-    $r->addRoute('POST', '/contact', [HomeController::class, 'storeContact']);
+    $r->addRoute('GET', '/contact', [ContactController::class, 'create']);
+    $r->addRoute('POST', '/contact', [ContactController::class, 'store']);
 
     
     $r->addRoute('POST', '/api/leden', [LedenController::class, 'getLeden']);

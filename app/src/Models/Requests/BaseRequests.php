@@ -21,7 +21,11 @@ abstract class BaseRequests
         $validator = ValidatorFactory::make();
         $validation = $validator->validate($this->data, $this->rules());
         if ($validation->fails()) {
-            throw new Exception(json_encode($validation->errors()->all()));
+            $errors = $validation->errors()->all();
+            if (!is_array($errors)) {
+                $errors = [$errors];
+            }
+            throw new Exception(json_encode($errors, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
         return $validation->getValidData();
     }

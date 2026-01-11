@@ -6,7 +6,8 @@ use App\Services\BestuursledenServices;
 use App\Services\NieuwsberichtenServices;
 use App\Services\WedstrijdenServices;
 use App\Services\ContactServices;
-use App\Models\Bestuursleden;
+use App\Models\Requests\ContactStoreRequest;
+
 class HomeController extends BaseController
 {
     private NieuwsberichtenServices $nieuwsberichtenServices;
@@ -35,27 +36,5 @@ class HomeController extends BaseController
         ];
 
         \View::View('Dashboard.Home', 'Home', $data);
-    }
-
-    public function contactForm()
-    {
-        $bestuursleden = $this->bestuursledenServices->getAll();
-        \View::View('Home.contact', 'Contact', [
-            'bestuursleden' => $bestuursleden
-        ]);
-    }
-
-    public function storeContact()
-    {
-        $data = [
-            'naam' => $_POST['naam'] ?? null,
-            'email' => $_POST['email'] ?? null,
-            'bericht' => $_POST['bericht'] ?? null,
-            'bestuurslid_id' => $_POST['bestuurslid_id'] ?? null,
-        ];
-        $this->contactService->verstuurContactFormulier($data);
-        // Optioneel: flash message of redirect
-        header('Location: /contact?success=1');
-        exit;
     }
 }

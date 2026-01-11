@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\View;
+use App\Services\ContactServices;
 use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
@@ -26,6 +27,7 @@ class AdminController
     private SpelersServices $spelersServices;
     private TrainersServices $trainersServices;
     private WedstrijdenServices $wedstrijdenServices;
+    private ContactServices $contactServices;
     public function __construct()
     {
         $this->rolenServices =  new RolesServices();
@@ -37,6 +39,7 @@ class AdminController
         $this->spelersServices = new SpelersServices();
         $this->trainersServices = new TrainersServices();
         $this->wedstrijdenServices = new WedstrijdenServices();
+        $this->contactServices = new ContactServices();
     }
 
     public function index()
@@ -49,6 +52,7 @@ class AdminController
             'totalSpelers' => count($this->spelersServices->getAll()),
             'totalTrainers' => count($this->trainersServices->getAll()),
             'totalCoaches' => count($this->coachesServices->getAll()),
+            'totalContactForms' => count($this->contactServices->getAll()),
         ];
         \View::View("admin.index", 'Admin Dashboard', ['stats' => $stats]);
     }

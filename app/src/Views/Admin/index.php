@@ -33,6 +33,23 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
+                                    <h6 class="card-title mb-2 text-muted">Contactformulieren</h6>
+                                    <h2 class="mb-0"><?= e($data['stats']['totalContactForms'] ?? 0) ?></h2>
+                                </div>
+                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                            </div>
+                            <small class="text-muted">Verzonden contactformulieren</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
                                     <h6 class="card-title mb-2 text-muted">Teams</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalTeams'] ?? 0) ?></h2>
                                 </div>
