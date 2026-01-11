@@ -251,3 +251,15 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-envelope-fill text-primary me-2"></i>Contact Beheren
+                            </h5>
+                            <p class="card-text text-muted">Bekijk en beheer contactformulieren</p>
+                            <a href="/admin/contact" class="btn btn-primary btn-sm">Ga naar Contact</a>
+                        </div>
+                    </div>
+                </div>

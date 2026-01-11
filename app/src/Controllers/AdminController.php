@@ -137,4 +137,15 @@ class AdminController
         $speler = $this->spelersServices->get(intval($params['id']));
         \View::View('admin.spelers.post', 'Speler', ['speler'=> $speler]);
     }
+
+    public function contact()
+    {
+        $bestuursleden = $this->bestuursledenServices->getAll();
+        \View::View("admin.contact.index", 'Contactformulieren' , ['bestuursleden' => $bestuursleden]);
+    }
+    
+    public function getContact(array $params) {
+        $contact = $this->contactServices->get(intval($params['id']));
+        \View::View('admin.contact.post', 'Contactformulier', ['contact'=> $contact]);
+    }
 }

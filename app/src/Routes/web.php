@@ -41,7 +41,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/contact', [ContactController::class, 'create']);
     $r->addRoute('POST', '/contact', [ContactController::class, 'store']);
 
-    
+
     $r->addRoute('POST', '/api/leden', [LedenController::class, 'getLeden']);
     $r->addRoute('POST', '/api/nieuwsberichten', [NieuwsberichtenController::class, 'getNieuwsberichten']);
     $r->addRoute('POST', '/api/teams', [TeamsController::class, 'getTeams']);
@@ -50,6 +50,7 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/api/trainers', [TrainersController::class, 'getTrainers']);
     $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'getWedstrijden']);
     $r->addRoute('POST', '/api/spelers', [SpelersController::class, 'getSpelers']);
+    $r->addRoute('POST', '/api/contact', [ContactController::class, 'getContacts']);
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);
@@ -139,4 +140,14 @@ return function (RouteCollector $r) {
     $r->addRoute('PUT', '/admin/bestuursleden/{id:\d+}', [BestuursledenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/bestuursleden/{id:\d+}', [BestuursledenController::class, 'delete']);
     $r->addRoute('DELETE', '/admin/bestuursleden/{id:\d+}/force', [BestuursledenController::class, 'destroy']);
+
+    // Admin > Contactformulieren
+    $r->addRoute('GET', '/admin/contact', [AdminController::class, 'contact']);
+    $r->addRoute('GET', '/admin/contact/{id:\d+}', [AdminController::class, 'getContact']);
+    $r->addRoute('GET', '/admin/contact/create', [ContactController::class, 'create']);
+    $r->addRoute('POST', '/admin/contact/create', [ContactController::class, 'store']);
+    $r->addRoute('GET', '/admin/contact/{id:\d+}/edit', [ContactController::class, 'edit']);
+    $r->addRoute('PUT', '/admin/contact/{id:\d+}', [ContactController::class, 'update']);
+    $r->addRoute('DELETE', '/admin/contact/{id:\d+}', [ContactController::class, 'delete']);
+    $r->addRoute('DELETE', '/admin/contact/{id:\d+}/force', [ContactController::class, 'destroy']);
 };
