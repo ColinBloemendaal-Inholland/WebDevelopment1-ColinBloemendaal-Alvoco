@@ -45,9 +45,7 @@ class SpelersServices implements IServices
     public function datatable(array $filters, int $start, $length, int $draw): array
     {
         $result = $this->filter($filters, $start, $length);
-        $formattedResults = $result['data']->map(function ($row) {
-            return $this->format($row);
-        })->toArray() ?? [];
+        $formattedResults = array_map([$this, 'format'], $result['data']->toArray());
         return [
             "draw" => $draw,
             "recordsTotal" => $result['recordsTotal'],
@@ -60,7 +58,7 @@ class SpelersServices implements IServices
     {
         return [
             'id' => $row['id'],
-            'name' => $row['lid']['fullname'],
+            'name' => isset($row['lid']) ? trim(($row['lid']['firstname'] ?? '') . ' ' . ($row['lid']['middlename'] ?? '') . ' ' . ($row['lid']['lastname'] ?? '')) : '',
             'team' => $row['team']['name'] ?? 'Geen team',
         ];
     }
