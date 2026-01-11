@@ -18,6 +18,7 @@
     <!-- Tom Select -->
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/64qg5v2oulxlnyjhnn6x5p21xuqa5nen9usdr8sbvddpufv4/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 
     <style>
         /* Ensure dropdown menus appear above sidebar */

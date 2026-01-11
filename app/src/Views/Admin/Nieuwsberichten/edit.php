@@ -1,3 +1,9 @@
+<script>
+    tinymce.init({
+        selector: '#mytextarea'
+    });
+</script>
+
 <div class="d-flex flex-grow-1">
     <?php \View::Partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
@@ -19,7 +25,8 @@
                                     <label for="Title" class="col-sm-3 col-form-label">Titel</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="Title" name="Title"
-                                               value="<?= e($_SESSION['form_old']['Title'] ?? $data['nieuwsbericht']['Title']) ?>" required>
+                                            value="<?= e($_SESSION['form_old']['Title'] ?? $data['nieuwsbericht']['Title']) ?>"
+                                            required>
                                     </div>
                                 </div>
 
@@ -27,7 +34,8 @@
                                 <div class="mb-3 row">
                                     <label for="Message" class="col-sm-3 col-form-label">Bericht</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="Message" name="Message" rows="8" required><?= e($_SESSION['form_old']['Message'] ?? $data['nieuwsbericht']['Message']) ?></textarea>
+                                        <textarea class="form-control" id="Message" name="Message" rows="8"
+                                            required><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? $data['nieuwsbericht']['Message']) ?></textarea>
                                     </div>
                                 </div>
 
@@ -35,7 +43,8 @@
                                 <div class="mb-3 row">
                                     <label for="Bestuursleden_id" class="col-sm-3 col-form-label">Auteur</label>
                                     <div class="col-sm-9">
-                                        <select name="Bestuursleden_id" id="Bestuursleden_id" class="form-select" required>
+                                        <select name="Bestuursleden_id" id="Bestuursleden_id" class="form-select"
+                                            required>
                                             <option value="">Selecteer een auteur</option>
                                             <?php foreach ($data['bestuursleden'] as $bestuurslid): ?>
                                                 <option value="<?= e($bestuurslid['id']) ?>"
@@ -65,6 +74,28 @@
             </div>
         </div>
     </div>
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+        tinymce.init({
+            selector: '#Message',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                // Your account includes a free trial of TinyMCE premium features
+                // Try the most popular premium features until Jan 25, 2026:
+                'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+            uploadcare_public_key: 'c36e4f65e64114f5a703',
+        });
+    </script>
 </div>
 
 <script>

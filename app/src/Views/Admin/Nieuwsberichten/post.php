@@ -19,7 +19,7 @@
                             <dl class="row">
                                 <dt class="col-sm-3">Bericht</dt>
                                 <dd class="col-sm-9">
-                                    <?= e($data['nieuwsbericht']['Message']) ?>
+                                    <?= htmlspecialchars_decode($data['nieuwsbericht']['Message']) ?>
                                 </dd>
 
                                 <dt class="col-sm-3">Auteur</dt>

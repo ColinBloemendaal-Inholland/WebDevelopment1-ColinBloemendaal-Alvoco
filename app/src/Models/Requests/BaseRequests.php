@@ -27,6 +27,12 @@ abstract class BaseRequests
             }
             throw new Exception(json_encode($errors, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
-        return $validation->getValidData();
+        $validData = $validation->getValidData();
+        foreach ($validData as $key => $value) {
+            if (is_string($value)) {
+                $validData[$key] = htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            }
+        }
+        return $validData;
     }
 }

@@ -23,7 +23,7 @@
                                 <div class="mb-3 row">
                                     <label for="Message" class="col-sm-3 col-form-label">Bericht</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="Message" name="Message" rows="8" required><?= e($_SESSION['form_old']['Message'] ?? '') ?></textarea>
+                                        <textarea class="form-control" id="Message" name="Message" rows="8"><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? '') ?></textarea>
                                     </div>
                                 </div>
 
@@ -59,6 +59,21 @@
             </div>
         </div>
     </div>
+    <script>
+        tinymce.init({
+            selector: '#Message',
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+        });
+    </script>
 </div>
 
 <script>
