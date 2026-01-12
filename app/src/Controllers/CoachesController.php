@@ -72,7 +72,7 @@ class CoachesController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::redirect("/admin/coaches/{$id}");
+            \View::redirect("/admin/coaches/{$id}/edit");
         }
     }
 
