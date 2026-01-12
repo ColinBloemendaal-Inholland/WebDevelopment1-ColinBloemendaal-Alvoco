@@ -17,8 +17,8 @@
                                             <option value="">Selecteer een lid</option>
                                             <?php foreach ($data['leden'] as $lid): ?>
                                                 <option value="<?= e($lid['id']) ?>"
-                                                    <?= (isset($_SESSION['form_old']['Leden_id']) && $_SESSION['form_old']['Leden_id'] == $lid['id']) 
-                                                        ? 'selected' 
+                                                    <?= (isset($_SESSION['form_old']['Leden_id']) && $_SESSION['form_old']['Leden_id'] == $lid['id'])
+                                                        ? 'selected'
                                                         : ($data['bestuurslid']['Leden_id'] == $lid['id'] ? 'selected' : '') ?>>
                                                     <?= e($lid['fullname']) ?>
                                                 </option>

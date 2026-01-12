@@ -29,13 +29,13 @@
                                         <?= e($bestuurslid->role->name ?? '-') ?>
                                     </td>
                                     <td>
-                                        <?= e($bestuurslid->start_date 
-                                            ? date('d-m-Y', strtotime($bestuurslid->start_date)) 
+                                        <?= e($bestuurslid->start_date
+                                            ? date('d-m-Y', strtotime($bestuurslid->start_date))
                                             : '-') ?>
                                     </td>
                                     <td>
-                                        <?= e($bestuurslid->end_date 
-                                            ? date('d-m-Y', strtotime($bestuurslid->end_date)) 
+                                        <?= e($bestuurslid->end_date
+                                            ? date('d-m-Y', strtotime($bestuurslid->end_date))
                                             : '-') ?>
                                     </td>
                                 </tr>
