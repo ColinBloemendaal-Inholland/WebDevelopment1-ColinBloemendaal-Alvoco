@@ -1,5 +1,5 @@
 <div class="d-flex flex-grow-1">
-    <?php \View::Partial('Layout.NavAdmin'); ?>
+    <?php \View::partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container-fluid m-0 py-5">
             <div class="row">
@@ -7,7 +7,7 @@
                     <h2 class="h4 mb-4">Nieuwe Trainer toevoegen</h2>
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <?php \View::Partial('Layout.errors'); ?>
+                            <?php \View::partial('Layout.errors'); ?>
                             <form method="POST">
                                 <div class="mb-3 row">
                                     <label for="Leden_id" class="col-sm-3 col-form-label">Lid</label>

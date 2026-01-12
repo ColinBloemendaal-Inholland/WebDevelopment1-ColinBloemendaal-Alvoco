@@ -1,5 +1,5 @@
 <div class="d-flex flex-grow-1">
-    <?php \View::Partial('Layout.NavAdmin'); ?>
+    <?php \View::partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container-fluid m-0 py-5">
             <div class="card shadow-sm">
@@ -9,7 +9,7 @@
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
 
-                        <?php \View::Partial('Layout.errors'); ?>
+                        <?php \View::partial('Layout.errors'); ?>
 
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-4">

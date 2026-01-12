@@ -8,7 +8,7 @@
             <div class="card shadow-sm w-100" style="border-radius: .75rem; overflow: hidden;">
                 <div class="card-body p-4 p-md-5 bg-white">
                     <!-- shared form errors partial -->
-                    <?php \View::Partial('Layout.errors'); ?>
+                    <?php \View::partial('Layout.errors'); ?>
 
                     <form method="post" action="/login" novalidate>
                         <div class="row g-2">

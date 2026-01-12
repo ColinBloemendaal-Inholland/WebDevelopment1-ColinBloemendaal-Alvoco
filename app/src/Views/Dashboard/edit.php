@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h2 class="card-title mb-3">Profiel bewerken</h2>
                     <form method="POST" action="/dashboard/update">
-                        <?php \View::Partial('Layout.errors'); ?>
+                        <?php \View::partial('Layout.errors'); ?>
 
                         <div class="row mb-3">
                             <div class="col-md-4">

@@ -1,5 +1,5 @@
 <div class="d-flex flex-grow-1">
-    <?php \View::Partial('Layout.NavAdmin'); ?>
+    <?php \View::partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
             <h1 class="mb-4">Contacten</h1>

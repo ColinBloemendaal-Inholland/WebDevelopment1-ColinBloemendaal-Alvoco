@@ -10,7 +10,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     <h2 class="h4 mb-4">Contactformulier</h2>
-                    <?php \View::Partial('Layout.errors'); ?>
+                    <?php \View::partial('Layout.errors'); ?>
                     <?php if(isset($_GET['success'])): ?>
                         <div class="alert alert-success">Bericht succesvol verzonden!</div>
                     <?php endif; ?>

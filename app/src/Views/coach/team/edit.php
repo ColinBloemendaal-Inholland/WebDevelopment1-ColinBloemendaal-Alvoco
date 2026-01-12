@@ -1,7 +1,7 @@
 <div class="container py-4">
     <h2>Team bewerken: <?= e($data['team']->name) ?></h2>
     <form method="POST" action="/dashboard/teams/<?= e($data['team']->id) ?>/update">
-        <?php \View::Partial('Layout.errors'); ?>
+        <?php \View::partial('Layout.errors'); ?>
         <div class="mb-3">
             <label for="spelers" class="form-label">Spelers</label>
             <select multiple class="form-select" id="spelers" name="spelers[]">
