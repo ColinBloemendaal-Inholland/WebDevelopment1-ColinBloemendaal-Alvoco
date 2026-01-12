@@ -39,7 +39,6 @@ class CoachesServices implements IServices
     }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        //TODO: Make filter in the coaches repo
         return $this->repository->filter($filters, $start, $limit);
     }
     public function getWithTeam(int $id)
