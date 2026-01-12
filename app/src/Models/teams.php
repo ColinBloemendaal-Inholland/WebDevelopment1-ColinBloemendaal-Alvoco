@@ -13,7 +13,7 @@ class Teams extends Model {
     protected $fillable = [
         "name",
         "class",
-        "Category",
+        "category",
         "picture",
     ];
 
