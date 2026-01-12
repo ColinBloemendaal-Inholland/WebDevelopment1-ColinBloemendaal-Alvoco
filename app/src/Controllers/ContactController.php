@@ -65,7 +65,7 @@ class ContactController extends BaseController implements IController
     {
         $id = intval($params['id']);
         try {
-            $validated = (new ContactUpdateRequest($_POST))->validate();
+            $validated = new ContactUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
             \View::Redirect("/admin/contact/{$id}");
         } catch (\Exception $e) {
