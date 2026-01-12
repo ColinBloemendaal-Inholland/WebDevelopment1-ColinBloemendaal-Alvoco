@@ -17,10 +17,10 @@ class View
 
         $title = $title ? "{$title} - Alvoco" : "Alvoco";
         $view = new ViewModel($http, $title,$data)->toArray();
-        self::LoadView($path, $view);
+        self::loadView($path, $view);
     }
 
-    private static function LoadView(string $path, $data = []) {
+    private static function loadView(string $path, $data = []) {
         if(!$path) {
             return;
         }
@@ -34,7 +34,7 @@ class View
 
     public static function Include(string $viewPath) {
         $path = self::GetNormalizedPath($viewPath);
-        self::LoadView($path);
+        self::loadView($path);
     }
 
     private static function GetNormalizedPath(string $viewPath) {
