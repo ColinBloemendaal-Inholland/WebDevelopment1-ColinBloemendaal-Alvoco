@@ -5,11 +5,11 @@
 			<div class="col-12 text-center">
 				   <h1 class="display-5 fw-bold">
 					   <a href="/teams/<?= e($wedstrijd->hometeam->id) ?>" class="link-primary text-decoration-none">
-						   <?= e($wedstrijd->hometeam->name ?? 'Onbekend') ?>
+						   <?= e(trim($wedstrijd->hometeam->name) ?? 'Onbekend') ?>
 					   </a>
 					   <span class="text-primary">vs</span>
 					   <a href="/teams/<?= e($wedstrijd->awayTeam->id) ?>" class="link-danger text-decoration-none">
-						   <?= e($wedstrijd->awayTeam->name ?? 'Onbekend') ?>
+						   <?= e(trim($wedstrijd->awayTeam->name) ?? 'Onbekend') ?>
 					   </a>
 				   </h1>
 				<div class="mb-2 text-muted">
@@ -26,7 +26,7 @@
 				<div class="card h-100">
 					   <div class="card-header bg-primary text-white">
 						   <a href="/teams/<?= e($wedstrijd->hometeam->id) ?>" class="text-white text-decoration-underline">
-							   <?= e($wedstrijd->hometeam->name ?? 'Thuisteam') ?>
+							   <?= e(trim($wedstrijd->hometeam->name) ?? 'Thuisteam') ?>
 						   </a>
 					   </div>
 					<div class="card-body">
