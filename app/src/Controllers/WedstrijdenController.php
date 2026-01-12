@@ -58,8 +58,9 @@ class WedstrijdenController extends BaseController implements IController
 
     public function edit(array $params)
     {
-        $post = $this->service->get(intval($params["id"]));
-        \View::view("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
+        $post = $this->service->getWithTeamsAndDetails(intval($params["id"]));
+        $teams = $this->teamsServices->getAll();
+        \View::view("admin.wedstrijden.edit", 'Wijzig bestuurslid', ['wedstrijd' => $post, 'teams' => $teams]);
     }
 
     public function update(array $params)
