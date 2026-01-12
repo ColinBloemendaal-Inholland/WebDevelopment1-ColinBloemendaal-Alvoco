@@ -27,4 +27,28 @@ class BestuursledenRepository extends BaseRepository
     {
         return $this->model->where('Leden_id', $lidId)->first();
     }
+
+    public function filter(array $filters, ?int $start = null, ?int $limit = null): array
+    {
+        $query = $this->model->newQuery();
+
+        $recordsTotal = $this->model->count();
+        $recordsFiltered = $query->count();
+
+        // Apply pagination
+        if ($start !== null) {
+            $query->skip($start);
+        }
+        if ($limit !== null) {
+            $query->take($limit);
+        }
+
+        $data = $query->get();
+
+        return [
+            'data' => $data,
+            'recordsTotal' => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered,
+        ];
+    }
 }

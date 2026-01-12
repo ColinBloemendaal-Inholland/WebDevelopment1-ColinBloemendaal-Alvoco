@@ -83,4 +83,17 @@ class BestuursledenController extends BaseController implements IController {
         }
         \View::redirect("/admin/bestuursleden");
     }
+
+    public function getBestuursleden()
+    {
+        $filters = [ ];
+
+        $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
+        $length = isset($_POST['length']) ? intval($_POST['length']) : 10;
+        $draw = isset($_POST['draw']) ? intval($_POST['draw']) : 1;
+
+        $result = $this->service->datatable($filters, $start, $length, $draw);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
 }

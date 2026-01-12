@@ -51,6 +51,7 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/api/wedstrijden', [WedstrijdenController::class, 'getWedstrijden']);
     $r->addRoute('POST', '/api/spelers', [SpelersController::class, 'getSpelers']);
     $r->addRoute('POST', '/api/contact', [ContactController::class, 'getContacts']);
+    $r->addRoute('POST', '/api/bestuursleden', [BestuursledenController::class, 'getBestuursleden']);
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);

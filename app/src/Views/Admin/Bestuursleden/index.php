@@ -9,42 +9,18 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-light">
+                <table id="bestuursledenTable" class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <th>Full Name</th>
-                            <th>Role</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Naam</th>
+                            <th>Rol</th>
+                            <th>Acties</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($bestuursleden)) : ?>
-                            <?php foreach ($bestuursleden as $bestuurslid) : ?>
-                                <tr>
-                                    <td>
-                                        <?= e($bestuurslid->lid->fullname) ?>
-                                    </td>
-                                    <td>
-                                        <?= e($bestuurslid->role->name ?? '-') ?>
-                                    </td>
-                                    <td>
-                                        <?= e($bestuurslid->start_date
-                                            ? date('d-m-Y', strtotime($bestuurslid->start_date))
-                                            : '-') ?>
-                                    </td>
-                                    <td>
-                                        <?= e($bestuurslid->end_date
-                                            ? date('d-m-Y', strtotime($bestuurslid->end_date))
-                                            : '-') ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <tr>
-                                <td colspan="4" class="text-center">Geen bestuursleden gevonden</td>
-                            </tr>
-                        <?php endif; ?>
+                        <tr>
+                            <td colspan="3" style="text-align:center;">Loading…</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -52,3 +28,61 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        // Load datatables
+        var ledenTable = $('#bestuursledenTable').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            info: true,
+            pageLength: 25,
+            lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+            ajax: {
+                url: '/api/bestuursleden',
+                type: 'POST',
+                dataSrc: 'data',
+                error: function (xhr) {
+                    console.error("AJAX Error:", xhr.responseText);
+                }
+            },
+            language: {
+                zeroRecords: "Geen bestuursleden gevonden die voldoen aan je zoekopdracht",
+                emptyTable: "Er zijn nog geen bestuursleden toegevoegd aan de database.",
+                info: "Showing _START_ to _END_ of _TOTAL_ filtered entries (from _MAX_ total)"
+            },
+            columns: [
+                { data: 'naam', title: 'Naam', render: $.fn.dataTable.render.text() },
+                { data: 'rol', title: 'Rol', render: $.fn.dataTable.render.text() },
+                {
+                    data: null,
+                    title: 'Acties',
+                    orderable: false,
+                    render: function (data, type, row) {
+                        let deletedAt;
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <form method="POST" action="/admin/bestuursleden/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
+                        } else {
+                            deletedAt = `
+                                <form method="POST" action="/admin/bestuursleden/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
+                        }
+                        return `
+                            <a href="/admin/bestuursleden/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                            <a href="/admin/bestuursleden/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                        ` + deletedAt;
+                    },
+                }
+            ],
+            dom: '<"top">rt<"bottom"lp><"clear">',
+        });
+    });
+</script>
