@@ -35,6 +35,6 @@ class HomeController extends BaseController
             'wedstrijdenByDate' => $wedstrijden
         ];
 
-        \View::View('Dashboard.Home', 'Home', $data);
+        \View::view('Dashboard.Home', 'Home', $data);
     }
 }

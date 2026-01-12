@@ -17,7 +17,7 @@ class WedstrijdenController extends BaseController implements IController
     public function index()
     {
         $wedstrijden = $this->service->getUpComingByDay(365, 50) ?? [];
-        \View::View("wedstrijden.index", 'Wedstrijden', ['wedstrijdenByDate' => $wedstrijden]);
+        \View::view("wedstrijden.index", 'Wedstrijden', ['wedstrijdenByDate' => $wedstrijden]);
     }
 
     public function show(array $params)
@@ -29,12 +29,12 @@ class WedstrijdenController extends BaseController implements IController
             return;
         }
         $title = $wedstrijd->hometeam->name . ' vs ' . $wedstrijd->awayTeam->name;
-        \View::View('wedstrijden.post', $title, ['wedstrijd' => $wedstrijd]);
+        \View::view('wedstrijden.post', $title, ['wedstrijd' => $wedstrijd]);
     }
 
     public function Create()
     {
-        \View::View('admin.wedstrijden.create', 'Wedstrijden aanmaken');
+        \View::view('admin.wedstrijden.create', 'Wedstrijden aanmaken');
     }
 
     public function store()
@@ -54,7 +54,7 @@ class WedstrijdenController extends BaseController implements IController
     public function edit(array $params)
     {
         $post = $this->service->get(intval($params["id"]));
-        \View::View("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
+        \View::view("admin.wedstrijden.edit", 'Wijzig bestuurslid', $post);
     }
 
     public function update(array $params)

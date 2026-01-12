@@ -28,13 +28,13 @@ class TeamsController extends BaseController implements IController
     public function index()
     {
         $teams = $this->service->getAllByCategory();
-        \View::View("teams.index", 'Teams', ['teams' => $teams]);
+        \View::view("teams.index", 'Teams', ['teams' => $teams]);
     }
 
     public function show(array $params)
     {
         $team = $this->service->getTeamWithRelations(intval($params['id']));
-        \View::View('teams.post', 'Team', ['team' => $team]);
+        \View::view('teams.post', 'Team', ['team' => $team]);
     }
 
     public function Create()
@@ -42,7 +42,7 @@ class TeamsController extends BaseController implements IController
         $spelers = $this->spelersServices->getAll();
         $coaches = $this->coachesServices->getAvailableCoaches();
         $trainers = $this->trainersServices->getAll();
-        \View::View('admin.teams.create', 'Team aanmaken', [
+        \View::view('admin.teams.create', 'Team aanmaken', [
             'spelers' => $spelers,
             'coaches' => $coaches,
             'trainers' => $trainers,
@@ -70,7 +70,7 @@ class TeamsController extends BaseController implements IController
         $coaches = $this->coachesServices->getAvailableCoaches($team->coaches->pluck('id')->toArray());
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        \View::View("admin.teams.edit", 'Wijzig team', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
+        \View::view("admin.teams.edit", 'Wijzig team', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
     }
 
     public function update(array $params)
@@ -131,7 +131,7 @@ class TeamsController extends BaseController implements IController
         $team = $this->service->getByCoach($user->id);
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        \View::View('coach.team.edit', 'Team bewerken', [
+        \View::view('coach.team.edit', 'Team bewerken', [
             'team' => $team,
             'spelers' => $spelers,
             'trainers' => $trainers

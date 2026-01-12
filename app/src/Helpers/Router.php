@@ -33,7 +33,7 @@ class Router {
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 http_response_code(404);
-                \View::View("errors.404", '404');
+                \View::view("errors.404", '404');
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 http_response_code(405);
@@ -47,19 +47,19 @@ class Router {
                 // Middleware: Protect admin routes
                 if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle(['bestuurslid', 'beheerder'])) {
                     http_response_code(403);
-                    \View::View("errors.403", '403');
+                    \View::view("errors.403", '403');
                     return;
                 }
                 // Middleware: Protect dashboard route
                 if (strpos($uri, '/dashboard') === 0 && !\Auth::isLoggedIn()) {
                     http_response_code(401);
-                    \View::View("errors.401", '401');
+                    \View::view("errors.401", '401');
                     return;
                 }
                 // Middleware: Protect dashboard route
                 if (strpos($uri, '/dashboard/teams') === 0 && !RoleMiddleware::handle(['coach'])) {
                     http_response_code(401);
-                    \View::View("errors.401", '401');
+                    \View::view("errors.401", '401');
                     return;
                 }
 

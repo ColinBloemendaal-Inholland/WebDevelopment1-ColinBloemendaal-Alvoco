@@ -14,16 +14,16 @@ class RolesController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        \View::View("roles.index", 'Roles', ['roles' => $data]);
+        \View::view("roles.index", 'Roles', ['roles' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        \View::View('roles.post', $data['Title'], $data);
+        \View::view('roles.post', $data['Title'], $data);
     }
 
     public function Create() {
-        \View::View('admin.roles.create', 'Rol aanmaken');
+        \View::view('admin.roles.create', 'Rol aanmaken');
     }
 
     public function store()
@@ -42,7 +42,7 @@ class RolesController extends BaseController implements IController {
 
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
-        \View::View("admin.roles.edit", 'Wijzig bestuurslid', $post);
+        \View::view("admin.roles.edit", 'Wijzig bestuurslid', $post);
     }
 
     public function update(array $params)

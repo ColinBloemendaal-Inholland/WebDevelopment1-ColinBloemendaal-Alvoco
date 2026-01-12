@@ -23,20 +23,20 @@ class TrainersController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        \View::View("trainers.index", 'Trainers', ['trainers' => $data]);
+        \View::view("trainers.index", 'Trainers', ['trainers' => $data]);
     }
 
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::View('trainers.post', $data['Title'], $data);
+        \View::view('trainers.post', $data['Title'], $data);
     }
 
     public function Create()
     {
         $teams = $this->teamsServices->getAll();
         $leden = $this->ledenServices->getAll();
-        \View::View('admin.trainers.create', 'Trainer aanmaken', ['teams' => $teams, 'leden' => $leden]);
+        \View::view('admin.trainers.create', 'Trainer aanmaken', ['teams' => $teams, 'leden' => $leden]);
     }
 
     public function store()
@@ -56,7 +56,7 @@ class TrainersController extends BaseController implements IController
     public function edit(array $params)
     {
         $post = $this->service->get(intval($params["id"]));
-        \View::View("admin.trainers.edit", 'Wijzig bestuurslid', $post);
+        \View::view("admin.trainers.edit", 'Wijzig bestuurslid', $post);
     }
 
     public function update(array $params)

@@ -23,20 +23,20 @@ class SpelersController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        \View::View("spelers.index", 'Spelers', data: ['spelers' => $data]);
+        \View::view("spelers.index", 'Spelers', data: ['spelers' => $data]);
     }
 
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::View('spelers.post', $data['Title'], $data);
+        \View::view('spelers.post', $data['Title'], $data);
     }
 
     public function Create()
     {
         $leden = $this->ledenServices->getAllWithNoSpeler();
         $teams = $this->teamsServices->getAll();
-        \View::View('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
+        \View::view('admin.spelers.create', 'Speler aanmaken', data: ['leden' => $leden, 'teams' => $teams]);
     }
 
     public function store()
@@ -58,7 +58,7 @@ class SpelersController extends BaseController implements IController
         $speler = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAllWithNoSpeler([$speler['Leden_id']]);
         $teams = $this->teamsServices->getAll();
-        \View::View("admin.spelers.edit", 'Wijzig bestuurslid', ['speler' => $speler, 'leden' => $leden, 'teams' => $teams]);
+        \View::view("admin.spelers.edit", 'Wijzig bestuurslid', ['speler' => $speler, 'leden' => $leden, 'teams' => $teams]);
     }
 
     public function update(array $params)

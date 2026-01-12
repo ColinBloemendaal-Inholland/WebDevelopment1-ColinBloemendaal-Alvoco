@@ -24,17 +24,17 @@ class LedenController extends BaseController implements IController
     public function index()
     {
         $data = $this->service->getAll();
-        \View::View("leden.index", 'Leden', ['leden' => $data]);
+        \View::view("leden.index", 'Leden', ['leden' => $data]);
     }
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::View('leden.post', $data['Title'], $data);
+        \View::view('leden.post', $data['Title'], $data);
     }
     public function Create()
     {
         $data = $this->rolenServices->getAll();
-        \View::View('admin.leden.create', 'Lid aanmaken', ['rolen' => $data]);
+        \View::view('admin.leden.create', 'Lid aanmaken', ['rolen' => $data]);
     }
     public function store()
     {
@@ -56,7 +56,7 @@ class LedenController extends BaseController implements IController
         $roles = $this->rolenServices->getAll();
         $roleIds = array_column($post->roles->toArray(), 'id') ?? [];
 
-        \View::View("admin.leden.edit", 'Wijzig lid', [
+        \View::view("admin.leden.edit", 'Wijzig lid', [
             'lid' => $post,
             'rolen' => $roles,
             'roleIds' => $roleIds
@@ -123,7 +123,7 @@ class LedenController extends BaseController implements IController
         if (\Auth::isLoggedIn()) {
             \View::Redirect("/");
         }
-        \View::View("leden.login", 'Inloggen');
+        \View::view("leden.login", 'Inloggen');
     }
 
     public function login()
@@ -178,7 +178,7 @@ class LedenController extends BaseController implements IController
         if($user?->hasRole('bestuurslid')) {
             $newsArticles = $this->service->getRecentNewsForBestuurslid($user->id);
         }
-        \View::View('Dashboard.index', 'Dashboard', [
+        \View::view('Dashboard.index', 'Dashboard', [
             'user' => $user,
             'teamsCoached' => $teamsCoached,
             'teamsTrained' => $teamsTrained,
@@ -192,10 +192,10 @@ class LedenController extends BaseController implements IController
         $user = $this->service->get($userId);
         if( !$user) {
             http_response_code(404);
-            \View::View('Errors.404', '404');
+            \View::view('Errors.404', '404');
             return;
         }
-        \View::View('Dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
+        \View::view('Dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
     }
 
     public function updateProfile() {
@@ -203,7 +203,7 @@ class LedenController extends BaseController implements IController
         $user = $this->service->get($userId);
         if (!$user) {
             http_response_code(404);
-            \View::View('Errors.404', '404');
+            \View::view('Errors.404', '404');
             return;
         }
 

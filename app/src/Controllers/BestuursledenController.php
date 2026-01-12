@@ -18,17 +18,17 @@ class BestuursledenController extends BaseController implements IController {
 
     public function index() {
         $data = $this->service->getAll();
-        \View::View("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
+        \View::view("bestuursleden.index", 'Bestuursleden', ['bestuursleden' => $data]);
     }
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        \View::View('bestuursleden.post', $data['Title'], $data);
+        \View::view('bestuursleden.post', $data['Title'], $data);
     }
 
     public function Create() {
         $leden = $this->service->getAllWithNoCurrentBestuursleden();
-        \View::View('admin.bestuursleden.create', 'Bestuursleden aanmaken', ['leden' => $leden]);
+        \View::view('admin.bestuursleden.create', 'Bestuursleden aanmaken', ['leden' => $leden]);
     }
 
     public function store()
@@ -48,7 +48,7 @@ class BestuursledenController extends BaseController implements IController {
     public function edit(array $params) {
         $post = $this->service->get(intval($params["id"]));
         $leden = $this->ledenServices->getAll();
-        \View::View("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['bestuurslid'=> $post, 'leden' => $leden]);
+        \View::view("admin.bestuursleden.edit", 'Wijzig bestuurslid', ['bestuurslid'=> $post, 'leden' => $leden]);
     }
 
     public function update(array $params)
