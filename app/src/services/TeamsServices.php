@@ -74,6 +74,7 @@ class TeamsServices implements IServices
         $groupedTeams['Overig'] = [];
 
         foreach ($teams as $team) {
+            $team->image = $this->getTeamImage($team);
             $cat = $team->category ?? 'Overig';
             $cat = ucfirst(strtolower($cat));
             if (!isset($groupedTeams[$cat])) {
@@ -86,7 +87,25 @@ class TeamsServices implements IServices
 
     public function getTeamWithRelations(int $id)
     {
-        return $this->repository->getTeamWithRelations($id) ?? null;
+        $team = $this->repository->getTeamWithRelations($id) ?? null;
+        if ($team) {
+            $team->image = $this->getTeamImage($team);
+        }
+        return $team;
+    }
+
+    /**
+     * Returns the web path to the team image or a fallback if not found
+     */
+    public function getTeamImage($team)
+    {
+        $imageFile = $team->picture ?? null;
+        $publicPath = ROOT . '/public/uploads/teams/';
+        $webPath = '/uploads/teams/';
+        if ($imageFile && file_exists($publicPath . $imageFile)) {
+            return $webPath . $imageFile;
+        }
+        return null;
     }
 
     /**

@@ -20,12 +20,13 @@
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 team-card">
                         <a href="/teams/<?= intval($team->id); ?>" class="text-decoration-none text-dark">
                             <div class="card h-100 shadow-sm">
-                                <div class="ratio ratio-16x9 bg-secondary d-flex align-items-center justify-content-center text-white"
-                                    style="background-image: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));">
-                                    <div>
-                                        <i class="bi bi-people-fill" style="font-size:36px; opacity:0.9"></i>
-                                    </div>
-                                </div>
+                                    <?php if (!empty($team->image)): ?>
+                                        <img src="<?= e($team->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100 h-100" >
+                                    <?php else: ?>
+                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100" style="height: 200px;">
+                                            <span class="text-muted">Geen teamfoto</span>
+                                        </div>
+                                    <?php endif; ?>
                                 <div class="card-body">
                                     <h5 class="card-title mb-1"><?= htmlspecialchars($team->name); ?></h5>
                                     <p class="card-text text-muted small mb-2">Klasse: <?= htmlspecialchars($team->class ?? '-'); ?></p>

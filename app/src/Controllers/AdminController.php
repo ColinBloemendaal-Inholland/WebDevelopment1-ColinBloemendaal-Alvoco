@@ -83,7 +83,7 @@ class AdminController
     }
 
     public function getTeam(array $params) {
-        $team = $this->teamsServices->get(intval($params['id']));
+        $team = $this->teamsServices->getTeamWithRelations(intval($params['id']));
         \View::view('admin.teams.post', 'Team', ['team'=> $team]);
     }
 

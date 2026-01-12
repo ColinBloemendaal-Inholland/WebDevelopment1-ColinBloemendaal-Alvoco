@@ -22,7 +22,7 @@ class UploadHelper
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = uniqid('team_', true) . '.' . $ext;
         // Ensure upload directory exists
-        $uploadPath = __DIR__ . '/../../public/' . $targetDir;
+        $uploadPath = ROOT . 'public/' . $targetDir;
         if (!is_dir($uploadPath)) {
             mkdir($uploadPath, 0755, true);
         }
@@ -32,6 +32,6 @@ class UploadHelper
             return false;
         }
         // Return relative path for storage in DB
-        return $targetDir . '/' . $filename;
+        return $filename;
     }
 }

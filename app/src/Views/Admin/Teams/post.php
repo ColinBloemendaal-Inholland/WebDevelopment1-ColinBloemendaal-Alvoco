@@ -17,23 +17,37 @@
                     <div class="card shadow-sm mb-4">
                         <div class="card-body">
                             <!-- Team eigenschappen -->
-                            <h5 class="mb-3">Eigenschappen</h5>
-                            <dl class="row">
-                                <dt class="col-sm-3">Naam</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['name']) ?></dd>
 
-                                <dt class="col-sm-3">Categorie</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['category'] ?? '-') ?></dd>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 class="mb-3">Eigenschappen</h5>
+                                    <dl class="row">
+                                        <dt class="col-sm-4">Naam</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['name']) ?></dd>
 
-                                <dt class="col-sm-3">Klas</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['class'] ?? '-') ?></dd>
+                                        <dt class="col-sm-4">Categorie</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['category'] ?? '-') ?></dd>
 
-                                <dt class="col-sm-3">Aangemaakt op</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['created_at'] ?? '-') ?></dd>
+                                        <dt class="col-sm-4">Klas</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['class'] ?? '-') ?></dd>
 
-                                <dt class="col-sm-3">Laatste wijziging</dt>
-                                <dd class="col-sm-9"><?= e($data['team']['updated_at'] ?? '-') ?></dd>
-                            </dl>
+                                        <dt class="col-sm-4">Aangemaakt op</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['created_at'] ?? '-') ?></dd>
+
+                                        <dt class="col-sm-4">Laatste wijziging</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['updated_at'] ?? '-') ?></dd>
+                                    </dl>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <?php if (!empty($data['team']['image'])): ?>
+                                        <img src="<?= e($data['team']['image']) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100 h-100" >
+                                    <?php else: ?>
+                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100" style="height: 200px;">
+                                            <span class="text-muted">Geen teamfoto</span>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
 
                             <hr>
 
