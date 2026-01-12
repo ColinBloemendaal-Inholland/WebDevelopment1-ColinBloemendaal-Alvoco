@@ -90,7 +90,10 @@
                                 <div class="mb-3 row">
                                     <label for="status" class="col-sm-3 col-form-label">Status</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="status" name="status" placeholder="Bijv. gepland, gespeeld" value="<?= e($data['wedstrijd']['status'] ?? '') ?>" required>
+                                        <select name="status" id="status" class="form-select">
+                                            <option value="gepland" <?= ( ($data['wedstrijd']['status'] ?? '') == 'gepland') ? 'selected' : '' ?>>Gepland</option>
+                                            <option value="gespeeld" <?= ( ($data['wedstrijd']['status'] ?? '') == 'gespeeld') ? 'selected' : '' ?>>Voltooid</option>
+                                        </select>
                                     </div>
                                 </div>
 
