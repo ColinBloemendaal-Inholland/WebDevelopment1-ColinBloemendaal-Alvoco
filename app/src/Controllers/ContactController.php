@@ -98,7 +98,6 @@ class ContactController extends BaseController implements IController
 
     public function getContacts()
     {
-        error_log($_POST['bestuurslid_id']);
         $filter = [
             'naam' => $_POST['naam'] ?? '',
             'email' => $_POST['email'] ?? '',
