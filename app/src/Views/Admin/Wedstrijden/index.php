@@ -29,6 +29,9 @@
                     <label for="searchScore">Zoek op score</label>
                     <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2">
                 </div>
+                <div class="form-group col-2 d-flex align-items-end justify-content-end">
+                    <a href="/admin/wedstrijden/create" class="btn btn-primary">Toevoegen</a>
+                </div>
             </div>
             <table id="wedstrijdenTable" class="table table-striped table-hover">
                 <tbody>

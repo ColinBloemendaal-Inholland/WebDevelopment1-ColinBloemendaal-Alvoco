@@ -3,7 +3,11 @@
     <div class="flex-grow-1 p-4">
         <div class="container-fluid m-0 py-5">
             <h1 class="mb-4">Bestuursleden</h1>
-
+            <div class="row">
+                <div class="col-12 d-flex align-items-end justify-content-end mb-3">
+                    <a href="/admin/bestuursleden/create" class="btn btn-primary">Toevoegen</a>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="thead-light">

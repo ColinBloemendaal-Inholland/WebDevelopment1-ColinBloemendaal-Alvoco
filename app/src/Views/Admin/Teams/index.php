@@ -4,11 +4,14 @@
         <div class="container m-0">
             <h1 class="mb-4">Teams</h1>
             <div class="row">
-                <!-- Name or email search -->
+                <!-- Name search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
                     <input type="text" class="form-control" id="searchName" name="searchName"
                         placeholder="Voer een naam in:">
+                </div>
+                <div class="form-group col-8 d-flex align-items-end justify-content-end">
+                    <a href="/admin/teams/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>
             <table id="teamsTable" class="table table-striped table-hover">

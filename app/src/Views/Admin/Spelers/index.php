@@ -19,6 +19,9 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="form-group col-4 d-flex align-items-end justify-content-end">
+                    <a href="/admin/spelers/create" class="btn btn-primary">Toevoegen</a>
+                </div>
             </div>
             <table id="spelersTable" class="table table-striped table-hover">
                 <tbody>

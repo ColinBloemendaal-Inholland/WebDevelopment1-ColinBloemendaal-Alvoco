@@ -15,6 +15,9 @@
                     <input type="text" class="form-control" id="searchRole" name="searchRole"
                         placeholder="Voer een rol in:">
                 </div>
+                <div class="form-group col-4 d-flex align-items-end justify-content-end">
+                    <a href="/admin/coaches/create" class="btn btn-primary">Toevoegen</a>
+                </div>
             </div>
             <table id="coachesTable" class="table table-striped table-hover">
                 <tbody>
