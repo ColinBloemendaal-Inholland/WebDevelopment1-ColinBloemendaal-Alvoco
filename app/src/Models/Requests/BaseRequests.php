@@ -18,7 +18,6 @@ abstract class BaseRequests
 
     public function validate(): array
     {
-        //TODO: Als er tijd over is ook de foutmeldingen nederlands talig maken
         $validator = ValidatorFactory::make();
         $validator->setMessages(require ROOT . 'src/lang/nl.php');
         $validation = $validator->validate($this->data, $this->rules());
