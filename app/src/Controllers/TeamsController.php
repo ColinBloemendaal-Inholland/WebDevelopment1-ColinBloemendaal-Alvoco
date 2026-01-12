@@ -143,15 +143,15 @@ class TeamsController extends BaseController implements IController
         $teamId = intval($params['id']);
         $team = $this->service->getTeamWithRelations($teamId);
         if (!$team) {
-            \View::Redirect("/dashboard");
+            \View::Redirect("/profile");
         }
         try {
             $validated = new TeamUpdateByCoachRequest($_POST)->validate();
             $this->service->updateTrainersAndSpelers($teamId, $validated['spelers'], $validated['trainers']);
-            \View::Redirect("/dashboard");
+            \View::Redirect("/profile");
         } catch (Exception $e) {
             $_SESSION['form_errors'] = $e->getMessage();
-            \View::Redirect("/dashboard/teams/{$teamId}/edit");
+            \View::Redirect("/profile/teams/{$teamId}/edit");
         }
     }
 }

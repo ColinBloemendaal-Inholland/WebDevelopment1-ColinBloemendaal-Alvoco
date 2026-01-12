@@ -35,7 +35,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li>
-                                <a class="dropdown-item" href="/admin">
+                                <a class="dropdown-item" href="/profile">
                                     <i class="bi bi-person-fill"></i> Profile
                                 </a>
                             </li>
