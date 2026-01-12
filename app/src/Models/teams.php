@@ -26,9 +26,17 @@ class Teams extends Model {
     public function trainers(): HasMany {
         return $this->hasMany(Trainers::class, 'team_id');
     }
-    //TODO: make sure when you get all wedstrijden, you also get the hometeam and awayteam relations
-    public function wedstrijden(): HasMany {
+    public function wedstrijdenHome(): HasMany {
         return $this->hasMany(Wedstrijden::class, 'team_home');
+    }
+    public function wedstrijdenAway(): HasMany {
+        return $this->hasMany(Wedstrijden::class, 'team_away');
+    }
+
+    public function getWedstrijdenAttribute() {
+        return $this->wedstrijdenHome()->get()->merge(
+            $this->wedstrijdenAway()->get())->sortBy('date');
+    
     }
 
 }

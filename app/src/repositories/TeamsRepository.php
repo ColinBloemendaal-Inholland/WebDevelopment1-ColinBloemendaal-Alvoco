@@ -60,12 +60,12 @@ class TeamsRepository extends BaseRepository
 
     public function getTeamWithRelations(int $id): ?Teams
     {
-        return $this->model->with(['spelers', 'coaches', 'trainers', 'wedstrijden'])->where('id', $id)->first();
+        return $this->model->with(['spelers', 'coaches', 'trainers', 'wedstrijdenHome', 'wedstrijdenAway'])->where('id', $id)->first();
     }
 
     public function getFullTeam(int $id)
     {
-        return $this->model->with(['spelers', 'spelers.lid', 'coaches', 'coaches.lid', 'trainers', 'trainers.lid', 'wedstrijden', 'wedstrijden.hometeam', 'wedstrijden.awayteam'])->where('id', $id)->first();
+        return $this->model->with(['spelers', 'spelers.lid', 'coaches', 'coaches.lid', 'trainers', 'trainers.lid', 'wedstrijdenHome', 'wedstrijdenHome.hometeam', 'wedstrijdenHome.awayteam', 'wedstrijdenAway', 'wedstrijdenAway.hometeam', 'wedstrijdenAway.awayteam'])->where('id', $id)->first();
     }
 
     /**

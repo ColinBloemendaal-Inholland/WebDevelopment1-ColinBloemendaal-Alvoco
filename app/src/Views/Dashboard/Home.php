@@ -25,7 +25,7 @@
                                     <?= date('d M Y', strtotime( $nieuwsbericht['date'] ?? 'now')) ?>
                                 </p>
                                 <p class="card-text">
-                                    <?= e($nieuwsbericht->preview(200) ?? '') ?>
+                                    <?= htmlspecialchars_decode($nieuwsbericht->preview(200) ?? '') ?>
                                 </p>
                                 <a href="/nieuwsberichten/<?= e($nieuwsbericht['id']) ?>" class="btn btn-primary btn-sm">
                                     Lees meer
