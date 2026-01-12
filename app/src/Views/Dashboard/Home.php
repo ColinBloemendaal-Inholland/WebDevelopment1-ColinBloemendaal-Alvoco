@@ -60,7 +60,7 @@
                                         <div class="d-flex justify-content-between align-items-start mb-2">
                                             <h6 class="card-title mb-0">
                                                 <a href="/wedstrijden/<?= e($wedstrijd['id']) ?>" class="text-decoration-none">
-                                                    <?= e($wedstrijd['team_home']) . ' - ' . e($wedstrijd['team_away']) ?>
+                                                    <?= e(trim($wedstrijd['team_home']) ?? '') . ' - ' . e(trim($wedstrijd['team_away']) ?? '') ?>
                                                 </a>
                                             </h6>
                                         </div>
