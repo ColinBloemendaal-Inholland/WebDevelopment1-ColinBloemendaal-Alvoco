@@ -16,7 +16,6 @@ class TeamsStoreRequest extends BaseRequests
             'coaches.*' => 'required|integer|min:0',
             'trainers' => 'required|array',
             'trainers.*' => 'required|integer|min:0',
-            'team_picture' => 'required|string',
         ];
     }
 }
