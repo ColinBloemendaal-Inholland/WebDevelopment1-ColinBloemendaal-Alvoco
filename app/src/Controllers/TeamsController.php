@@ -125,7 +125,7 @@ class TeamsController extends BaseController implements IController
         echo json_encode($result);
     }
 
-    public function editByCoach(array $params)
+    public function editByCoach()
     {
         $user = \Auth::user();
         $team = $this->service->getByCoach($user->id);
