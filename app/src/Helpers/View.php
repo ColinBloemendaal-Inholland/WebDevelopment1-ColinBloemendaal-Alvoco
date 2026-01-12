@@ -45,10 +45,8 @@ class View
     }
 
     public static function partial(string $viewPath, $data = []) {
-        $http = 200;
         $path = self::getNormalizedPath($viewPath);
         if(!file_exists($path)) {
-            $http = 404;
             $path = self::getNormalizedPath('Errors.404');
         }
 
