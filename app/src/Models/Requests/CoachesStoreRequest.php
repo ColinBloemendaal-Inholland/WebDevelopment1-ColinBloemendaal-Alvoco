@@ -10,7 +10,7 @@ class CoachesStoreRequest extends BaseRequests
             'role' => 'required|alpha',
             'start_date'=> 'required|date:Y-m-d',
             'Leden_id'=> 'required|integer|min:1',
-            'team_id'=> 'required|integer|min:1'
+            'team_id'=> 'required|integer|min:0',
         ];
     }
 }

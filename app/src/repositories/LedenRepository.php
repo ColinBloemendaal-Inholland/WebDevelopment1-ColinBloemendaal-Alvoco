@@ -149,7 +149,6 @@ class LedenRepository extends BaseRepository
             'team.wedstrijden',
         ])->where('Leden_id', $ledenId)->get();
 
-
         $teams = collect();
         foreach ($coaches as $coach) {
             if ($coach->team) {
