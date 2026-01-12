@@ -85,7 +85,6 @@ class TeamsController extends BaseController implements IController
         $id = intval($params['id']);
         try {
             $validated = new TeamsUpdateRequest($_POST)->validate();
-            //TODO: When editing a team, uploading a new picture removes the old one from storage
             if (isset($_FILES['picture'])) {
                 $imagePath = UploadHelper::uploadImage($_FILES['picture']);
                 if ($imagePath) {
