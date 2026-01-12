@@ -13,7 +13,17 @@ class Teams extends Model {
     protected $fillable = [
         "name",
         "class",
-        "Category",];
+        "Category",
+        "picture",
+    ];
+
+    public function getTeamPictureUrl(): string
+    {
+        if (!empty($this->team_picture)) {
+            return "/" . ltrim($this->team_picture, "/");
+        }
+        return "/uploads/teams/default.png";
+    }
 
     public function spelers(): HasMany {
         return $this->hasMany(Spelers::class, 'team_id')->orderBy('number', 'asc');

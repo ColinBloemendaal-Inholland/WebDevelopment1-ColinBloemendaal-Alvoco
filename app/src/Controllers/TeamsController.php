@@ -10,6 +10,7 @@ use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\TrainersServices;
 use Exception;
+use App\Helpers\UploadHelper;
 
 class TeamsController extends BaseController implements IController
 {
@@ -52,8 +53,14 @@ class TeamsController extends BaseController implements IController
     public function store()
     {
         try {
-            //TODO: Add functionality that a team picture can be uploaded
             $validated = new TeamsStoreRequest($_POST)->validate();
+            // Handle team picture upload
+            if (isset($_FILES['team_picture']) && $_FILES['team_picture']['error'] === UPLOAD_ERR_OK) {
+                $imagePath = UploadHelper::uploadImage($_FILES['team_picture']);
+                if ($imagePath) {
+                    $validated['team_picture'] = $imagePath;
+                }
+            }
             $post = $this->service->create($validated);
         } catch (Exception $e) {
             $errors = json_decode($e->getMessage(), true);
@@ -78,7 +85,15 @@ class TeamsController extends BaseController implements IController
         $validated = [];
         $id = intval($params['id']);
         try {
-            $validated = (new TeamsUpdateRequest($_POST))->validate();
+            $validated = new TeamsUpdateRequest($_POST)->validate();
+            if (isset($_FILES['picture'])) {
+                $imagePath = UploadHelper::uploadImage($_FILES['picture']);
+                if ($imagePath) {
+                    error_log('Uploaded image path: ' . $imagePath);
+                    $validated['picture'] = $imagePath;
+                }
+            }
+            error_log('Validated data: ' . print_r($validated, true));
             $this->service->update($id, $validated);
             \View::redirect("/admin/teams/{$id}");
         } catch (Exception $e) {

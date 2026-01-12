@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <?php \View::partial('Layout.errors'); ?>
 
-                            <form method="POST" action="/admin/teams/<?= e($data['team']['id']) ?>">
+                            <form method="POST" action="/admin/teams/<?= e($data['team']['id']) ?>" enctype="multipart/form-data">
                                 <input type="hidden" name="_method" value="PUT">
                                 <!-- Naam -->
                                 <div class="mb-3 row">
@@ -40,6 +40,13 @@
                                 </div>
 
                                 <hr>
+                                <!-- Teamfoto upload -->
+                                <div class="mb-3 row">
+                                    <label for="team_picture" class="col-sm-3 col-form-label">Teamfoto</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" id="team_picture" name="picture" accept="image/*">
+                                    </div>
+                                </div>
 
                                 <!-- Spelers -->
                                 <div class="mb-3 row">

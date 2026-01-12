@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.4-fpm
 
 # Install system dependencies and Composer
 RUN apt-get update \
@@ -10,6 +10,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+COPY php.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # Allow running Composer as root within the container
 ENV COMPOSER_ALLOW_SUPERUSER=1

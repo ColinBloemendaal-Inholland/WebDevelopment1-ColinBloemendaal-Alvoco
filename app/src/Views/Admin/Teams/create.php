@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <?php \View::partial('Layout.errors'); ?>
 
-                            <form method="POST">
+                            <form method="POST" enctype="multipart/form-data">
                                 <!-- Naam -->
                                 <div class="mb-3 row">
                                     <label for="name" class="col-sm-3 col-form-label">Naam</label>
@@ -39,6 +39,13 @@
                                 </div>
 
                                 <hr>
+                                <!-- Teamfoto upload -->
+                                <div class="mb-3 row">
+                                    <label for="team_picture" class="col-sm-3 col-form-label">Teamfoto</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" id="team_picture" name="picture" accept="image/*">
+                                    </div>
+                                </div>
 
                                 <!-- Spelers -->
                                 <div class="mb-3 row">
