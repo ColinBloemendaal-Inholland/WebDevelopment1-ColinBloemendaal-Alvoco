@@ -7,13 +7,13 @@
                 <!-- Name or email search -->
                 <div class="form-group col-4">
                     <label for="searchNameOrEmail">Zoek op naam of email:</label>
-                    <input type="text" class="form-control" id="searchNameOrEmail"
+                    <input type="text" class="form-control" id="searchNameOrEmail" aria-label="Zoek op naam of e-mail invoerveld"
                         placeholder="Voer een naam of email in:">
                 </div>
                 <!-- Adress search -->
                 <div class="form-group col-4">
                     <label for="searchAdress">Zoek op adres:</label>
-                    <input type="text" class="form-control" id="searchAdress" name="searchAdress"
+                    <input type="text" class="form-control" id="searchAdress" name="searchAdress" aria-label="Zoek op adres invoerveld"
                         placeholder="Voor een adres in:">
                 </div>
                 <!-- Role filter -->
@@ -31,13 +31,13 @@
                 <!-- Phone search -->
                 <div class="form-group col-6">
                     <label for="searchPhone">Zoek op telefoon nummer:</label>
-                    <input type="tel" class="form-control" id="searchPhone" name="searchPhone"
+                    <input type="tel" class="form-control" id="searchPhone" name="searchPhone" aria-label="Zoek op telefoonnummer invoerveld"
                         placeholder="Voer een telefoon nummer in:">
                 </div>
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
-                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed" aria-label="Met verwijderde leden checkbox"
                             value="1">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
                     </div>

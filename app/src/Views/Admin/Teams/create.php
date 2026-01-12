@@ -15,7 +15,7 @@
                                 <div class="mb-3 row">
                                     <label for="name" class="col-sm-3 col-form-label">Naam</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Bijv. Heren 1"
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Bijv. Heren 1" aria-label="Teamnaam invoerveld"
                                                value="<?= e($_SESSION['form_old']['name'] ?? '') ?>" required>
                                     </div>
                                 </div>
@@ -24,7 +24,7 @@
                                 <div class="mb-3 row">
                                     <label for="Category" class="col-sm-3 col-form-label">Categorie</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="Category" name="category" placeholder="Bijv. Heren"
+                                        <input type="text" class="form-control" id="Category" name="category" placeholder="Bijv. Heren" aria-label="Categorie invoerveld"
                                                value="<?= e($_SESSION['form_old']['category'] ?? '') ?>">
                                     </div>
                                 </div>
@@ -33,7 +33,7 @@
                                 <div class="mb-3 row">
                                     <label for="class" class="col-sm-3 col-form-label">Klasse</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="class" name="class" placeholder="Bijv. 2de klasse"
+                                        <input type="text" class="form-control" id="class" name="class" placeholder="Bijv. 2de klasse" aria-label="Klasse invoerveld"
                                                value="<?= e($_SESSION['form_old']['class'] ?? '') ?>">
                                     </div>
                                 </div>

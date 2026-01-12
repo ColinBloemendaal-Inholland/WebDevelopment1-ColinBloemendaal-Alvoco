@@ -7,12 +7,12 @@
                 <!-- Name search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" name="searchName"
+                    <input type="text" class="form-control" id="searchName" name="searchName" aria-label="Zoek op naam invoerveld"
                         placeholder="Voer een naam in:">
                 </div>
                 <div class="form-group col-4">
                     <label for="searchRole">Zoek op rol:</label>
-                    <input type="text" class="form-control" id="searchRole" name="searchRole"
+                    <input type="text" class="form-control" id="searchRole" name="searchRole" aria-label="Zoek op rol invoerveld"
                         placeholder="Voer een rol in:">
                 </div>
                 <div class="form-group col-4 d-flex align-items-end justify-content-end">

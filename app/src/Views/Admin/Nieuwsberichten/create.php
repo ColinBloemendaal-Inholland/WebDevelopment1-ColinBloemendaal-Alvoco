@@ -14,8 +14,8 @@
                                 <div class="mb-3 row">
                                     <label for="Title" class="col-sm-3 col-form-label">Titel</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="Title" name="Title"
-                                               value="<?= e($_SESSION['form_old']['Title'] ?? '') ?>" required>
+                                             <input type="text" class="form-control" id="Title" name="Title"
+                                                 value="<?= e($_SESSION['form_old']['Title'] ?? '') ?>" required aria-label="Titel invoerveld">
                                     </div>
                                 </div>
 
@@ -23,7 +23,7 @@
                                 <div class="mb-3 row">
                                     <label for="Message" class="col-sm-3 col-form-label">Bericht</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="Message" name="Message" rows="8"><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? '') ?></textarea>
+                                        <textarea class="form-control" id="Message" name="Message" rows="8" aria-label="Bericht invoerveld"><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? '') ?></textarea>
                                     </div>
                                 </div>
 

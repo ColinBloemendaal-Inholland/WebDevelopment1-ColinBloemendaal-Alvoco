@@ -4,7 +4,7 @@
         <?php \View::partial('Layout.errors'); ?>
         <div class="mb-3">
             <label for="spelers" class="form-label">Spelers</label>
-            <select multiple class="form-select" id="spelers" name="spelers[]">
+            <select multiple class="form-select" id="spelers" name="spelers[]" aria-label="Spelers selectievak">
                 <?php foreach ($data['spelers'] as $speler): ?>
                     <option value="<?= e($speler->id) ?>" <?= $data['team']->spelers->contains('id', $speler->id) ? 'selected' : '' ?>>
                         <?= e($speler->lid->fullname ?? $speler->id) ?>
@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="trainers" class="form-label">Trainers</label>
-            <select multiple class="form-select" id="trainers" name="trainers[]">
+            <select multiple class="form-select" id="trainers" name="trainers[]" aria-label="Trainers selectievak">
                 <?php foreach ($data['trainers'] as $trainer): ?>
                     <option value="<?= e($trainer->id) ?>" <?= $data['team']->trainers->contains('id', $trainer->id) ? 'selected' : '' ?>>
                         <?= e($trainer->lid->fullname ?? $trainer->id) ?>

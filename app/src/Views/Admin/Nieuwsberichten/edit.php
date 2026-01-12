@@ -26,7 +26,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="Title" name="Title"
                                             value="<?= e($_SESSION['form_old']['Title'] ?? $data['nieuwsbericht']['Title']) ?>"
-                                            required>
+                                            required aria-label="Titel invoerveld">
                                     </div>
                                 </div>
 
@@ -35,7 +35,7 @@
                                     <label for="Message" class="col-sm-3 col-form-label">Bericht</label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" id="Message" name="Message" rows="8"
-                                            required><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? $data['nieuwsbericht']['Message']) ?></textarea>
+                                            required aria-label="Bericht invoerveld"><?= htmlspecialchars_decode($_SESSION['form_old']['Message'] ?? $data['nieuwsbericht']['Message']) ?></textarea>
                                     </div>
                                 </div>
 

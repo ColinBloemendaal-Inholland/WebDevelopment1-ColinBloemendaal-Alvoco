@@ -7,7 +7,7 @@
                 <!-- Name or email search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" name="searchName"
+                    <input type="text" class="form-control" id="searchName" name="searchName" aria-label="Zoek op naam invoerveld"
                         placeholder="Voer een naam in:">
                 </div>
                 <div class="form-group col-4">

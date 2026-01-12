@@ -21,7 +21,7 @@
 							foreach ($data['team']->spelers as $speler): ?>
 								<li class="list-group-item">
 									<?php if (!empty($speler->number)): ?>
-										<span class="badge bg-info ms-2">#<?= e($speler->number) ?></span>
+	<input type="text" class="form-control" id="teamName" name="teamName" value="<?= e($data['team']['name'] ?? '') ?>" aria-label="Teamnaam invoerveld">
 									<?php endif; ?>
 									<?= e($speler->lid->fullname ?? '') ?>
 								</li>

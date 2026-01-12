@@ -7,31 +7,31 @@
                 <!-- Name of authur search -->
                 <div class="form-group col-4">
                     <label for="searchAuthur">Zoek op authur</label>
-                    <input type="text" class="form-control" id="searchAuthur" placeholder="Voer een naam in">
+                    <input type="text" class="form-control" id="searchAuthur" placeholder="Voer een naam in" aria-label="Zoek op auteur invoerveld">
                 </div>
                 <!-- Title search -->
                 <div class="form-group col-4">
                     <label for="searchTitle">Zoek op titel:</label>
                     <input type="text" class="form-control" id="searchTitle" name="searchTitle"
-                        placeholder="Voor een titel in:">
+                        placeholder="Voor een titel in:" aria-label="Zoek op titel invoerveld">
                 </div>
             </div>
             <div class="row">
                 <!-- From date search -->
                 <div class="form-group col-3">
                     <label for="searchFrom">Vanaf:</label>
-                    <input type="date" class="form-control" id="searchFrom" name="searchFrom">
+                    <input type="date" class="form-control" id="searchFrom" name="searchFrom" aria-label="Zoek vanaf datum invoerveld">
                 </div>
                 <!-- Till date search -->
                 <div class="form-group col-3">
                     <label for="searchTill">Tot:</label>
-                    <input type="date" class="form-control" id="searchTill" name="searchTill">
+                    <input type="date" class="form-control" id="searchTill" name="searchTill" aria-label="Zoek tot datum invoerveld">
                 </div>
                 <!-- With or without soft deleted leden -->
                 <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <div class="form-check form-switch float-right">
                         <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
-                            value="1">
+                            value="1" aria-label="Met verwijderde nieuwsberichten checkbox">
                         <label class="form-check-label" for="searchTrashed">Met verwijderde nieuwsberichten</label>
                     </div>
                 </div>

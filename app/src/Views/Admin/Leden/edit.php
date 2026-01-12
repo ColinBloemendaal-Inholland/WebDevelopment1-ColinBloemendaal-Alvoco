@@ -15,17 +15,17 @@
                             <div class="col-sm-12 col-md-4">
                                 <label for="firstname" class="form-label">Voornaam</label>
                                 <input id="firstname" type="text" class="form-control" name="firstname" required
-                                    value="<?= e($data['lid']['firstname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['firstname'] ?? '') ?>" aria-label="Voornaam invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label for="middlename" class="form-label">Tussenvoegsel</label>
                                 <input id="middlename" type="text" class="form-control" name="middlename"
-                                    value="<?= e($data['lid']['middlename'] ?? '') ?>">
+                                    value="<?= e($data['lid']['middlename'] ?? '') ?>" aria-label="Tussenvoegsel invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label for="lastname" class="form-label">Achternaam</label>
                                 <input id="lastname" type="text" class="form-control" name="lastname" required
-                                    value="<?= e($data['lid']['lastname'] ?? '') ?>">
+                                    value="<?= e($data['lid']['lastname'] ?? '') ?>" aria-label="Achternaam invoerveld">
                             </div>
                         </div>
 
@@ -42,19 +42,19 @@
                             <div class="col-sm-6 col-md-6">
                                 <label for="date_of_birth" class="form-label">Geboortedatum</label>
                                 <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" required
-                                    value="<?= e($data['lid']['date_of_birth'] ?? '') ?>">
+                                    value="<?= e($data['lid']['date_of_birth'] ?? '') ?>" aria-label="Geboortedatum invoerveld">
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-6">
                                 <label for="email"  class="form-label">E-mail</label>
                                 <input id="email" type="email" class="form-control" name="email" required
-                                    value="<?= e($data['lid']['email'] ?? '') ?>">
+                                    value="<?= e($data['lid']['email'] ?? '') ?>" aria-label="E-mail invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="phone" class="form-label">Telefoonnummer</label>
                                 <input id="phone" type="tel" class="form-control" name="phone" required
-                                    value="<?= e($data['lid']['phone'] ?? '') ?>">
+                                    value="<?= e($data['lid']['phone'] ?? '') ?>" aria-label="Telefoonnummer invoerveld">
                             </div>
                         </div>
                         <!-- Rollen -->

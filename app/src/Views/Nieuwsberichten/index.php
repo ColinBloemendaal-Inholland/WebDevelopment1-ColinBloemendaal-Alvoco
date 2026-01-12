@@ -29,8 +29,8 @@
                             <p class="card-text mt-2 flex-grow-1">
                                 <?= htmlspecialchars_decode($nieuws->preview()) ?>
                             </p>
-                            <a href="/nieuwsberichten/<?= e($nieuws['id']) ?>" class="btn btn-outline-primary mt-auto">Lees
-                                meer</a>
+                                <a href="/nieuwsberichten/<?= e($nieuws['id']) ?>" class="btn btn-outline-primary mt-auto" aria-label="Lees meer over <?= e(trim($nieuws['Title']) ?? '') ?>">Lees
+                                    meer</a>
                         </div>
                     </div>
                 </div>

@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="form-group col-4">
                     <label for="searchNaam">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchNaam" name="searchNaam"
+                    <input type="text" class="form-control" id="searchNaam" name="searchNaam" aria-label="Zoek op naam invoerveld"
                         placeholder="Voer een naam in:">
                 </div>
                 <div class="form-group col-4">
                     <label for="searchEmail">Zoek op email:</label>
-                    <input type="text" class="form-control" id="searchEmail" name="searchEmail"
+                    <input type="text" class="form-control" id="searchEmail" name="searchEmail" aria-label="Zoek op e-mail invoerveld"
                         placeholder="Voer een email in:">
                 </div>
                 <div class="form-group col-4">

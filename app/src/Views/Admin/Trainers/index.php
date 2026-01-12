@@ -8,12 +8,12 @@
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
                     <input type="text" class="form-control" id="searchName" name="searchName"
-                        placeholder="Voer een naam in:">
+                        placeholder="Voer een naam in:" aria-label="Zoek op naam invoerveld">
                 </div>
                 <div class="form-group col-4">
                     <label for="searchRole">Zoek op rol:</label>
                     <input type="text" class="form-control" id="searchRole" name="searchRole"
-                        placeholder="Voer een rol in:">
+                        placeholder="Voer een rol in:" aria-label="Zoek op rol invoerveld">
                 </div>
                 <div class="form-group col-4 d-flex align-items-end justify-content-end">
                     <a href="/admin/trainers/create" class="btn btn-primary">Toevoegen</a>

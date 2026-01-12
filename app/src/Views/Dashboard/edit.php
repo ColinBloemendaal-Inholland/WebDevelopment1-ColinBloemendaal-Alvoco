@@ -11,41 +11,41 @@
                             <div class="col-md-4">
                                 <label for="firstname" class="form-label">Voornaam</label>
                                 <input type="text" name="firstname" id="firstname" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['firstname'] ?? $data['user']->firstname) ?>" placeholder="Voornaam" required>
+                                    value="<?= e($_SESSION['form_old']['firstname'] ?? $data['user']->firstname) ?>" placeholder="Voornaam" required aria-label="Voornaam invoerveld">
                             </div>
                             <div class="col-md-4">
                                 <label for="middlename" class="form-label">Tussenvoegsel</label>
                                 <input type="text" name="middlename" id="middlename" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['middlename'] ?? $data['user']->middlename) ?>" placeholder="Tussenvoegsel">
+                                    value="<?= e($_SESSION['form_old']['middlename'] ?? $data['user']->middlename) ?>" placeholder="Tussenvoegsel" aria-label="Tussenvoegsel invoerveld">
                             </div>
                             <div class="col-md-4">
                                 <label for="lastname" class="form-label">Achternaam</label>
                                 <input type="text" name="lastname" id="lastname" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['lastname'] ?? $data['user']->lastname) ?>" placeholder="Achternaam" required>
+                                    value="<?= e($_SESSION['form_old']['lastname'] ?? $data['user']->lastname) ?>" placeholder="Achternaam" required aria-label="Achternaam invoerveld">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">E-mailadres</label>
                                 <input type="email" name="email" id="email" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['email'] ?? $data['user']->email) ?>" placeholder="E-mailadres" required>
+                                    value="<?= e($_SESSION['form_old']['email'] ?? $data['user']->email) ?>" placeholder="E-mailadres" required aria-label="E-mailadres invoerveld">
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Telefoon</label>
                                 <input type="text" name="phone" id="phone" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['phone'] ?? $data['user']->phone) ?>" placeholder="Telefoon">
+                                    value="<?= e($_SESSION['form_old']['phone'] ?? $data['user']->phone) ?>" placeholder="Telefoon" aria-label="Telefoon invoerveld">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-8">
                                 <label for="streetname" class="form-label">Straatnaam</label>
                                 <input type="text" name="streetname" id="streetname" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['streetname'] ?? $data['user']->streetname) ?>" placeholder="Straatnaam">
+                                    value="<?= e($_SESSION['form_old']['streetname'] ?? $data['user']->streetname) ?>" placeholder="Straatnaam" aria-label="Straatnaam invoerveld">
                             </div>
                             <div class="col-md-4">
                                 <label for="streetnumber" class="form-label">Huisnummer</label>
                                 <input type="text" name="streetnumber" id="streetnumber" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['streetnumber'] ?? $data['user']->streetnumber) ?>" placeholder="Huisnummer">
+                                    value="<?= e($_SESSION['form_old']['streetnumber'] ?? $data['user']->streetnumber) ?>" placeholder="Huisnummer" aria-label="Huisnummer invoerveld">
                             </div>
                         </div>
                         <div class="row mb-3">

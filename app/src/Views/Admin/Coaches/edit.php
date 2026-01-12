@@ -36,7 +36,7 @@
                                 <div class="mb-3 row">
                                     <label for="role" class="col-sm-3 col-form-label">Rol</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="role" name="role"
+                                        <input type="text" class="form-control" id="role" name="role" aria-label="Rol invoerveld"
                                                value="<?= e($_SESSION['form_old']['role'] ?? $data['coach']['role']) ?>" required>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                 <div class="mb-3 row">
                                     <label for="start_date" class="col-sm-3 col-form-label">Start Datum</label>
                                     <div class="col-sm-9">
-                                        <input type="date" class="form-control" id="start_date" name="start_date"
+                                        <input type="date" class="form-control" id="start_date" name="start_date" aria-label="Startdatum invoerveld"
                                                value="<?= e($_SESSION['form_old']['start_date'] ?? $data['coach']['start_date']) ?>" required>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 <div class="mb-3 row">
                                     <label for="end_date" class="col-sm-3 col-form-label">Eind Datum</label>
                                     <div class="col-sm-9">
-                                        <input type="date" class="form-control" id="end_date" name="end_date"
+                                        <input type="date" class="form-control" id="end_date" name="end_date" aria-label="Einddatum invoerveld"
                                                value="<?= e($_SESSION['form_old']['end_date'] ?? $data['coach']['end_date']) ?>">
                                     </div>
                                 </div>

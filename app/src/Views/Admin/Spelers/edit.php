@@ -35,7 +35,7 @@
                                 <div class="mb-3 row">
                                     <label for="number" class="col-sm-3 col-form-label">Nummer</label>
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="number" name="number"
+                                        <input type="number" class="form-control" id="number" name="number" aria-label="Rugnummer invoerveld"
                                                value="<?= e($_SESSION['form_old']['number'] ?? $data['speler']['number']) ?>" required>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                 <div class="mb-3 row">
                                     <label for="position" class="col-sm-3 col-form-label">Positie</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="position" name="position"
+                                        <input type="text" class="form-control" id="position" name="position" aria-label="Positie invoerveld"
                                                value="<?= e($_SESSION['form_old']['position'] ?? $data['speler']['position']) ?>" required>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@
                                 <div class="mb-3 row">
                                     <label for="name" class="col-sm-3 col-form-label">Naam</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="name" name="name"
+                                        <input type="text" class="form-control" id="name" name="name" aria-label="Teamnaam invoerveld"
                                                value="<?= e($_SESSION['form_old']['name'] ?? $data['team']['name']) ?>" required>
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                                 <div class="mb-3 row">
                                     <label for="Category" class="col-sm-3 col-form-label">Categorie</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="Category" name="category"
+                                        <input type="text" class="form-control" id="Category" name="category" aria-label="Categorie invoerveld"
                                                value="<?= e($_SESSION['form_old']['category'] ?? $data['team']['category']) ?>">
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                 <div class="mb-3 row">
                                     <label for="class" class="col-sm-3 col-form-label">Klas</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="class" name="class"
+                                        <input type="text" class="form-control" id="class" name="class" aria-label="Klasse invoerveld"
                                                value="<?= e($_SESSION['form_old']['class'] ?? $data['team']['class']) ?>">
                                     </div>
                                 </div>

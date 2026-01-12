@@ -14,17 +14,17 @@
                         <div class="row g-2">
                             <div class="col-12 col-md-6">
                                 <label for="email" class="form-label small">E-mailadres</label>
-                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="je@voorbeeld.nl" required autofocus>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="je@voorbeeld.nl" required autofocus aria-label="E-mailadres invoerveld">
                             </div>
                             <div class="col-12 col-md-6">
                                 <label for="password" class="form-label small">Wachtwoord</label>
-                                <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Wachtwoord" required>
+                                <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Wachtwoord" required aria-label="Wachtwoord invoerveld">
                             </div>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-between mt-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="remember" name="remember">
+                                <input class="form-check-input" type="checkbox" value="1" id="remember" name="remember" aria-label="Onthouden checkbox">
                                 <label class="form-check-label small" for="remember">Onthouden</label>
                             </div>
                             <a href="#" class="small text-decoration-none">Wachtwoord vergeten?</a>

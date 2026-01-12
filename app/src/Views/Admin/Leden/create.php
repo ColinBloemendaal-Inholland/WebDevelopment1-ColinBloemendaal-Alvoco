@@ -15,17 +15,17 @@
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="firstname">Voornaam</label>
                                 <input type="text" id="firstname" name="firstname" value="<?= e($_SESSION['form_old']['firstname'] ?? '') ?>"
-                                    class="form-control" name="firstname" placeholder="Jan" required autofocus>
+                                    class="form-control" name="firstname" placeholder="Jan" required autofocus aria-label="Voornaam invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="middlename">Tussenvoegsel</label>
                                 <input type="text" name="middlename" value="<?= e($_SESSION['form_old']['middlename'] ?? '') ?>"
-                                    class="form-control" id="middlename" name="middlename" placeholder="van">
+                                    class="form-control" id="middlename" name="middlename" placeholder="van" aria-label="Tussenvoegsel invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="lastname">Achternaam</label>
                                 <input type="text" name="lastname" value="<?= e($_SESSION['form_old']['lastname'] ?? '') ?>"
-                                    class="form-control" id="lastname" name="lastname" placeholder="Dijk" required>
+                                    class="form-control" id="lastname" name="lastname" placeholder="Dijk" required aria-label="Achternaam invoerveld">
                             </div>
                         </div>
 
@@ -42,11 +42,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label" for="dateofbirth">Geboortedatum</label>
-                                <input type="date" id="dateofbirth" class="form-control" name="date_of_birth" required value="<?= $_SESSION['form_old']['date_of_birth'] ?? '' ?>">
+                                <input type="date" id="dateofbirth" class="form-control" name="date_of_birth" required value="<?= $_SESSION['form_old']['date_of_birth'] ?? '' ?>" aria-label="Geboortedatum invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="email">E-mail</label>
-                                <input type="email" id="email" class="form-control" name="email" placeholder="voorbeeld@email.com" required value="<?= $_SESSION['form_old']['lstname'] ?? '' ?>">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="voorbeeld@email.com" required value="<?= $_SESSION['form_old']['lstname'] ?? '' ?>" aria-label="E-mail invoerveld">
                             </div>
                         </div>
 
@@ -54,7 +54,7 @@
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label" for="phone">Telefoon</label>
                                 <input type="tel" name="phone" value="<?= e($_SESSION['form_old']['phone'] ?? '') ?>"
-                                    class="form-control" id="phone" name="phone" placeholder="+31 6 12345678" required>
+                                    class="form-control" id="phone" name="phone" placeholder="+31 6 12345678" required aria-label="Telefoon invoerveld">
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label" for="password">Wachtwoord</label>

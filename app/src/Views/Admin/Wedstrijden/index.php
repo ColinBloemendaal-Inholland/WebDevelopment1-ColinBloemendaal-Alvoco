@@ -27,7 +27,7 @@
                 <!-- Score search -->
                 <div class="form-group col-2">
                     <label for="searchScore">Zoek op score</label>
-                    <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2">
+                    <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2" aria-label="Zoek op score invoerveld">
                 </div>
                 <div class="form-group col-2 d-flex align-items-end justify-content-end">
                     <a href="/admin/wedstrijden/create" class="btn btn-primary">Toevoegen</a>

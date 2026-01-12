@@ -12,19 +12,19 @@
                                 <div class="mb-3 row">
                                     <label for="naam" class="col-sm-3 col-form-label">Naam</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="naam" name="naam" value="<?= e($_SESSION['form_old']['naam'] ?? '') ?>" required>
+                                        <input type="text" class="form-control" id="naam" name="naam" value="<?= e($_SESSION['form_old']['naam'] ?? '') ?>" required aria-label="Naam invoerveld">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="email" name="email" value="<?= e($_SESSION['form_old']['email'] ?? '') ?>" required>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?= e($_SESSION['form_old']['email'] ?? '') ?>" required aria-label="E-mail invoerveld">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="bericht" class="col-sm-3 col-form-label">Bericht</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="bericht" name="bericht" required><?= e($_SESSION['form_old']['bericht'] ?? '') ?></textarea>
+                                        <textarea class="form-control" id="bericht" name="bericht" required aria-label="Bericht invoerveld"><?= e($_SESSION['form_old']['bericht'] ?? '') ?></textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
