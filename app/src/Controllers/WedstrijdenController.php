@@ -37,7 +37,6 @@ class WedstrijdenController extends BaseController implements IController
 
     public function Create()
     {
-        //TODO: Make an actual view for this - still empty
         $teams = $this->teamsServices->getAll();
         \View::view('admin.wedstrijden.create', 'Wedstrijden aanmaken', ['teams' => $teams]);
     }
