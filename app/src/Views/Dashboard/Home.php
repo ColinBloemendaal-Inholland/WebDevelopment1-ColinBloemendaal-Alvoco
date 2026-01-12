@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <a href="/nieuwsberichten/<?= e($nieuwsbericht['id']) ?>" class="text-decoration-none">
-                                        <?= e($nieuwsbericht['Title']  ?? 'Geen titel') ?>
+                                        <?= e(trim($nieuwsbericht['Title'])  ?? 'Geen titel') ?>
                                     </a>
                                 </h5>
                                 <p class="card-text text-muted small mb-2">
