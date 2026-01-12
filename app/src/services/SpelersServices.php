@@ -39,7 +39,6 @@ class SpelersServices implements IServices
     }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        //TODO: Make filter in the spelers repo
         return $this->repository->filter($filters, $start, $limit);
     }
     public function datatable(array $filters, int $start, $length, int $draw): array

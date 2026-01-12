@@ -100,11 +100,6 @@
 
 <script>
     $(function () {
-        // TomSelect for Auteur
         new TomSelect("#Bestuursleden_id", { create: false, sortField: { field: "text", direction: "asc" } });
-
-        // TODO: Initialize WYSIWYG (simple example using contenteditable or TinyMCE/CKEditor)
-        // Example with CKEditor:
-        // ClassicEditor.create(document.querySelector('#Message'));
     });
 </script>
