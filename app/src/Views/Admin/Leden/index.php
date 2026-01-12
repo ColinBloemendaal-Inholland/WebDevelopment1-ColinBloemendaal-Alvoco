@@ -47,6 +47,15 @@
                 </div>
             </div>
             <table id="ledenTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Email</th>
+                        <th>Telefoon</th>
+                        <th>Adres</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colspan="5" style="text-align:center;">Loading…</td>

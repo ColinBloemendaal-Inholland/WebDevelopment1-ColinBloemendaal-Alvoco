@@ -40,6 +40,13 @@
                 </div>
             </div>
             <table id="nieuwsberichtenTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Authur</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colspan="5" style="text-align:center;">Loading…</td>

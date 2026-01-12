@@ -34,6 +34,17 @@
                 </div>
             </div>
             <table id="wedstrijdenTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Thuis</th>
+                        <th>Uit</th>
+                        <th>Datum</th>
+                        <th>Tijd</th>
+                        <th>Locatie</th>
+                        <th>Score</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colspan="7" style="text-align:center;">Loading…</td>
