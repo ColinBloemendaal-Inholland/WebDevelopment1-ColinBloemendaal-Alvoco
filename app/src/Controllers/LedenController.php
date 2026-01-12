@@ -165,11 +165,6 @@ class LedenController extends BaseController implements IController
 
     public function dashboard()
     {
-        if (!\Auth::isLoggedIn()) {
-            http_response_code(401);
-            \View::View('Errors.401', '401');
-            return;
-        }
         $user = \Auth::user();
         $teamsCoached = [];
         if ($user?->hasRole('coach')) {
@@ -219,10 +214,10 @@ class LedenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect('/dashboard/edit');
+            \View::Redirect('/profile/edit');
             return;
         }
 
-        \View::Redirect('/dashboard');
+        \View::Redirect('/profile');
     }
 }
