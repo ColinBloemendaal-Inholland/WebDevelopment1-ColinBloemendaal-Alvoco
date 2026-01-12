@@ -25,7 +25,7 @@ class WedstrijdenController extends BaseController implements IController
         $wedstrijd = $this->service->getWithTeamsAndDetails((int) $params['id']);
         if (!$wedstrijd) {
             // Optionally handle not found
-            \View::Redirect('/wedstrijden');
+            \View::redirect('/wedstrijden');
             return;
         }
         $title = $wedstrijd->hometeam->name . ' vs ' . $wedstrijd->awayTeam->name;
@@ -46,9 +46,9 @@ class WedstrijdenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/wedstrijden/create");
+            \View::redirect("/admin/wedstrijden/create");
         }
-        \View::Redirect("/admin/wedstrijden/{$post['id']}");
+        \View::redirect("/admin/wedstrijden/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -63,12 +63,12 @@ class WedstrijdenController extends BaseController implements IController
         try {
             $validated = new WedstrijdenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/wedstrijden/{$id}");
+            \View::redirect("/admin/wedstrijden/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/wedstrijden/{$id}");
+            \View::redirect("/admin/wedstrijden/{$id}");
         }
     }
 
@@ -76,20 +76,20 @@ class WedstrijdenController extends BaseController implements IController
     {
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/wedstrijden/{$params["id"]}");
+            \View::redirect("/admin/wedstrijden/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/wedstrijden");
+        \View::redirect("/admin/wedstrijden");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/wedstrijden/{$params["id"]}");
+            \View::redirect("/admin/wedstrijden/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/wedstrijden");
+        \View::redirect("/admin/wedstrijden");
     }
 
     public function getWedstrijden()

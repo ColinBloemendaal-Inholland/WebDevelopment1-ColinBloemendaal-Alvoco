@@ -48,9 +48,9 @@ class CoachesController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/coaches/create");
+            \View::redirect("/admin/coaches/create");
         }
-        \View::Redirect("/admin/coaches/{$post['id']}");
+        \View::redirect("/admin/coaches/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -67,12 +67,12 @@ class CoachesController extends BaseController implements IController
         try {
             $validated = new CoachesUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/coaches/{$id}");
+            \View::redirect("/admin/coaches/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/coaches/{$id}");
+            \View::redirect("/admin/coaches/{$id}");
         }
     }
 
@@ -80,20 +80,20 @@ class CoachesController extends BaseController implements IController
     {
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/coaches/{$params["id"]}");
+            \View::redirect("/admin/coaches/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/coaches");
+        \View::redirect("/admin/coaches");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/coaches/{$params["id"]}");
+            \View::redirect("/admin/coaches/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/coaches");
+        \View::redirect("/admin/coaches");
     }
 
     public function getCoaches()

@@ -42,12 +42,12 @@ class ContactController extends BaseController implements IController
         try {
             $validated = (new ContactStoreRequest($_POST))->validate();
             $contact = $this->service->create($validated);
-            \View::Redirect("/admin/contact/{$contact['id']}");
+            \View::redirect("/admin/contact/{$contact['id']}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/contact/create");
+            \View::redirect("/admin/contact/create");
         }
     }
 
@@ -67,12 +67,12 @@ class ContactController extends BaseController implements IController
         try {
             $validated = new ContactUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/contact/{$id}");
+            \View::redirect("/admin/contact/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/contact/{$id}/edit");
+            \View::redirect("/admin/contact/{$id}/edit");
         }
     }
 
@@ -80,20 +80,20 @@ class ContactController extends BaseController implements IController
     {
         $deleted = $this->service->delete(intval($params['id']));
         if (!$deleted) {
-            \View::Redirect("/admin/contact/{$params['id']}");
+            \View::redirect("/admin/contact/{$params['id']}");
             return;
         }
-        \View::Redirect("/admin/contact");
+        \View::redirect("/admin/contact");
     }
 
     public function destroy(array $params)
     {
         $destroyed = $this->service->destroy(intval($params['id']));
         if (!$destroyed) {
-            \View::Redirect("/admin/contact/{$params['id']}");
+            \View::redirect("/admin/contact/{$params['id']}");
             return;
         }
-        \View::Redirect("/admin/contact");
+        \View::redirect("/admin/contact");
     }
 
     public function getContacts()

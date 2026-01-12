@@ -35,9 +35,9 @@ class RolesController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/roles/create");
+            \View::redirect("/admin/roles/create");
         }
-        \View::Redirect("/admin/roles/{$post['id']}");
+        \View::redirect("/admin/roles/{$post['id']}");
     }
 
     public function edit(array $params) {
@@ -51,30 +51,30 @@ class RolesController extends BaseController implements IController {
         try {
             $validated = new RolesUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/roles/{$id}");
+            \View::redirect("/admin/roles/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/roles/{$id}");
+            \View::redirect("/admin/roles/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/roles/{$params["id"]}");
+            \View::redirect("/admin/roles/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/roles");
+        \View::redirect("/admin/roles");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/roles/{$params["id"]}");
+            \View::redirect("/admin/roles/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/roles");
+        \View::redirect("/admin/roles");
     }
 }

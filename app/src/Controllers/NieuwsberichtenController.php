@@ -37,9 +37,9 @@ class NieuwsberichtenController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/nieuwsberichten/create");
+            \View::redirect("/admin/nieuwsberichten/create");
         }
-        \View::Redirect("/admin/nieuwsberichten/{$post['id']}");
+        \View::redirect("/admin/nieuwsberichten/{$post['id']}");
     }
 
     public function edit(array $params) {
@@ -57,31 +57,31 @@ class NieuwsberichtenController extends BaseController implements IController {
         try {
             $validated = new NieuwsberichtenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/nieuwsberichten/{$id}");
+            \View::redirect("/admin/nieuwsberichten/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/nieuwsberichten/{$id}/edit");
+            \View::redirect("/admin/nieuwsberichten/{$id}/edit");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/nieuwsberichten/{$params["id"]}");
+            \View::redirect("/admin/nieuwsberichten/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/nieuwsberichten");
+        \View::redirect("/admin/nieuwsberichten");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/nieuwsberichten/{$params["id"]}");
+            \View::redirect("/admin/nieuwsberichten/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/nieuwsberichten");
+        \View::redirect("/admin/nieuwsberichten");
     }
 
     //TODO: Place in a API Controller?

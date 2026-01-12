@@ -59,9 +59,9 @@ class TeamsController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/teams/create");
+            \View::redirect("/admin/teams/create");
         }
-        \View::Redirect("/admin/teams/{$post['id']}");
+        \View::redirect("/admin/teams/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -80,13 +80,13 @@ class TeamsController extends BaseController implements IController
         try {
             $validated = (new TeamsUpdateRequest($_POST))->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/teams/{$id}");
+            \View::redirect("/admin/teams/{$id}");
         } catch (Exception $e) {
             $msg = $e->getMessage();
             $errors = json_decode($msg, true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/teams/{$id}/edit");
+            \View::redirect("/admin/teams/{$id}/edit");
         }
     }
 
@@ -94,18 +94,18 @@ class TeamsController extends BaseController implements IController
     {
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/teams/{$params["id"]}");
+            \View::redirect("/admin/teams/{$params["id"]}");
         }
-        \View::Redirect("/admin/teams");
+        \View::redirect("/admin/teams");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/teams/{$params["id"]}");
+            \View::redirect("/admin/teams/{$params["id"]}");
         }
-        \View::Redirect("/admin/teams");
+        \View::redirect("/admin/teams");
     }
 
     public function getTeams()
@@ -143,15 +143,15 @@ class TeamsController extends BaseController implements IController
         $teamId = intval($params['id']);
         $team = $this->service->getTeamWithRelations($teamId);
         if (!$team) {
-            \View::Redirect("/profile");
+            \View::redirect("/profile");
         }
         try {
             $validated = new TeamUpdateByCoachRequest($_POST)->validate();
             $this->service->updateTrainersAndSpelers($teamId, $validated['spelers'], $validated['trainers']);
-            \View::Redirect("/profile");
+            \View::redirect("/profile");
         } catch (Exception $e) {
             $_SESSION['form_errors'] = $e->getMessage();
-            \View::Redirect("/profile/teams/{$teamId}/edit");
+            \View::redirect("/profile/teams/{$teamId}/edit");
         }
     }
 }

@@ -48,9 +48,9 @@ class SpelersController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/spelers/create");
+            \View::redirect("/admin/spelers/create");
         }
-        \View::Redirect("/admin/spelers/{$post['id']}");
+        \View::redirect("/admin/spelers/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -67,12 +67,12 @@ class SpelersController extends BaseController implements IController
         try {
             $validated = new SpelersUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/spelers/{$id}");
+            \View::redirect("/admin/spelers/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/spelers/{$id}");
+            \View::redirect("/admin/spelers/{$id}");
         }
     }
 
@@ -80,20 +80,20 @@ class SpelersController extends BaseController implements IController
     {
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/spelers/{$params["id"]}");
+            \View::redirect("/admin/spelers/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/spelers");
+        \View::redirect("/admin/spelers");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/spelers/{$params["id"]}");
+            \View::redirect("/admin/spelers/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/spelers");
+        \View::redirect("/admin/spelers");
     }
 
     public function getSpelers()

@@ -48,9 +48,9 @@ class TrainersController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/trainers/create");
+            \View::redirect("/admin/trainers/create");
         }
-        \View::Redirect("/admin/trainers/{$post['id']}");
+        \View::redirect("/admin/trainers/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -65,12 +65,12 @@ class TrainersController extends BaseController implements IController
         try {
             $validated = new TrainersUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/trainers/{$id}");
+            \View::redirect("/admin/trainers/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/trainers/{$id}");
+            \View::redirect("/admin/trainers/{$id}");
         }
     }
 
@@ -78,20 +78,20 @@ class TrainersController extends BaseController implements IController
     {
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/trainers/{$params["id"]}");
+            \View::redirect("/admin/trainers/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/trainers");
+        \View::redirect("/admin/trainers");
     }
 
     public function destroy(array $params)
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::Redirect("/admin/trainers/{$params["id"]}");
+            \View::redirect("/admin/trainers/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/trainers");
+        \View::redirect("/admin/trainers");
     }
 
     public function getTrainers()

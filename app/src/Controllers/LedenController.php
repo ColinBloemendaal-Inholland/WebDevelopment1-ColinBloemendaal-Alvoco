@@ -45,9 +45,9 @@ class LedenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/leden/create");
+            \View::redirect("/admin/leden/create");
         }
-        \View::Redirect("/admin/leden/{$post['id']}");
+        \View::redirect("/admin/leden/{$post['id']}");
     }
 
     public function edit(array $params)
@@ -69,12 +69,12 @@ class LedenController extends BaseController implements IController
         try {
             $validated = new LedenUpdateRequest($_POST)->validate();
             $this->service->update($id, $validated);
-            \View::Redirect("/admin/leden/{$id}");
+            \View::redirect("/admin/leden/{$id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/leden/{$id}/edit");
+            \View::redirect("/admin/leden/{$id}/edit");
         }
     }
 
@@ -83,9 +83,9 @@ class LedenController extends BaseController implements IController
         $id = intval($params["id"]);
         $post = $this->service->delete($id);
         if (!$post) {
-            \View::Redirect("/admin/leden/{$id}");
+            \View::redirect("/admin/leden/{$id}");
         }
-        \View::Redirect("/admin/leden");
+        \View::redirect("/admin/leden");
     }
 
     public function destroy(array $params)
@@ -93,9 +93,9 @@ class LedenController extends BaseController implements IController
         $id = intval($params["id"]);
         $post = $this->service->destroy($id);
         if (!$post) {
-            \View::Redirect("/admin/leden/{$id}");
+            \View::redirect("/admin/leden/{$id}");
         }
-        \View::Redirect("/admin/leden");
+        \View::redirect("/admin/leden");
     }
 
     public function getLeden()
@@ -121,7 +121,7 @@ class LedenController extends BaseController implements IController
     public function loginView()
     {
         if (\Auth::isLoggedIn()) {
-            \View::Redirect("/");
+            \View::redirect("/");
         }
         \View::view("leden.login", 'Inloggen');
     }
@@ -130,7 +130,7 @@ class LedenController extends BaseController implements IController
     {
         if (!isset($_POST["email"]) || !isset($_POST["password"])) {
             $_SESSION['form_errors'] = ['login' => 'Email en wachtwoord zijn verplicht.'];
-            \View::Redirect("/login");
+            \View::redirect("/login");
         }
 
         $email = trim($_POST["email"]);
@@ -138,29 +138,29 @@ class LedenController extends BaseController implements IController
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['form_errors'] = ['email' => 'Ongeldig e-mailadres.'];
-            \View::Redirect("/login");
+            \View::redirect("/login");
         }
 
         $user = $this->service->getByEmail($email);
         if (!$user) {
             $_SESSION['form_errors'] = ['credentials' => 'E-mail of wachtwoord is onjuist.'];
-            \View::Redirect("/login");
+            \View::redirect("/login");
         }
 
         if (!\Auth::verifyPassword($password, $user->password)) {
             $_SESSION['form_errors'] = ['credentials' => 'E-mail of wachtwoord is onjuist.'];
-            \View::Redirect("/login");
+            \View::redirect("/login");
         }
 
         unset($_SESSION['form_errors']);
         \Auth::login($user->email, $user->id);
-        \View::Redirect("/");
+        \View::redirect("/");
     }
 
     public function logout()
     {
         \Auth::logout();
-        \View::Redirect("/");
+        \View::redirect("/");
     }
 
     public function dashboard()
@@ -214,10 +214,10 @@ class LedenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect('/profile/edit');
+            \View::redirect('/profile/edit');
             return;
         }
 
-        \View::Redirect('/profile');
+        \View::redirect('/profile');
     }
 }

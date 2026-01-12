@@ -40,9 +40,9 @@ class BestuursledenController extends BaseController implements IController {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/bestuursleden/create");
+            \View::redirect("/admin/bestuursleden/create");
         }
-        \View::Redirect("/admin/bestuursleden/{$post['id']}");
+        \View::redirect("/admin/bestuursleden/{$post['id']}");
     }
 
     public function edit(array $params) {
@@ -57,30 +57,30 @@ class BestuursledenController extends BaseController implements IController {
         try {
             $validated = new BestuursledenUpdateRequest($_POST)->validate();
             $bestuurslid = $this->service->update($id, $validated);
-            \View::Redirect("/admin/bestuursleden/{$bestuurslid->id}");
+            \View::redirect("/admin/bestuursleden/{$bestuurslid->id}");
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::Redirect("/admin/bestuursleden/{$id}");
+            \View::redirect("/admin/bestuursleden/{$id}");
         }
     }
 
     public function delete(array $params) {
         $post = $this->service->delete(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/bestuursleden/{$params["id"]}");
+            \View::redirect("/admin/bestuursleden/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/bestuursleden");
+        \View::redirect("/admin/bestuursleden");
     }
 
     public function destroy(array $params) {
         $post = $this->service->destroy(intval($params["id"]));
         if(!$post) {
-            \View::Redirect("/admin/bestuursleden/{$params["id"]}");
+            \View::redirect("/admin/bestuursleden/{$params["id"]}");
             return;
         }
-        \View::Redirect("/admin/bestuursleden");
+        \View::redirect("/admin/bestuursleden");
     }
 }
