@@ -57,7 +57,7 @@
                                 <div class="mb-3 row">
                                     <label for="time" class="col-sm-3 col-form-label">Tijd</label>
                                     <div class="col-sm-9">
-                                        <input type="time" class="form-control" id="time" name="time" value="<?= e($data['wedstrijd']['time'] ?? '') ?>" required>
+                                        <input type="time" class="form-control" id="time" name="time" value="<?= e(date('H:i', strtotime($data['wedstrijd']['time'] ?? ''))) ?>" required>
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                     <div class="col-sm-9">
                                         <select name="status" id="status" class="form-select">
                                             <option value="gepland" <?= ( ($data['wedstrijd']['status'] ?? '') == 'gepland') ? 'selected' : '' ?>>Gepland</option>
-                                            <option value="gespeeld" <?= ( ($data['wedstrijd']['status'] ?? '') == 'gespeeld') ? 'selected' : '' ?>>Voltooid</option>
+                                            <option value="voltooid" <?= ( ($data['wedstrijd']['status'] ?? '') == 'voltooid') ? 'selected' : '' ?>>Voltooid</option>
                                         </select>
                                     </div>
                                 </div>

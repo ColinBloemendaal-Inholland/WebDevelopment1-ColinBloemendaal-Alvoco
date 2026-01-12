@@ -74,7 +74,7 @@ class WedstrijdenController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            \View::redirect("/admin/wedstrijden/{$id}");
+            \View::redirect("/admin/wedstrijden/{$id}/edit");
         }
     }
 
