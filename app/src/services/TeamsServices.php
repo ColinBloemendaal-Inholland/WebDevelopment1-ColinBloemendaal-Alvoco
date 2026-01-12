@@ -74,7 +74,7 @@ class TeamsServices implements IServices
         $groupedTeams['Overig'] = [];
 
         foreach ($teams as $team) {
-            $cat = $team->Category ?? 'Overig';
+            $cat = $team->category ?? 'Overig';
             $cat = ucfirst(strtolower($cat));
             if (!isset($groupedTeams[$cat])) {
                 $groupedTeams[$cat] = [];
