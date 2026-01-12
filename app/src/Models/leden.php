@@ -35,7 +35,6 @@ class Leden extends Model
         'emergency_contact_phone'
     ];
 
-    //TODO: Add description of fields
     public function roles()
     {
         return $this->belongsToMany(Roles::class, 'leden_roles', 'leden_id', 'role_id');
