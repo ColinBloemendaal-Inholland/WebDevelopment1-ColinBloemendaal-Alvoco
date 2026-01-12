@@ -30,7 +30,6 @@ class TrainersServices implements IServices {
         return $this->repository->destroy($id) ?? false;
     }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
-        //TODO: Make filter in the bestuursleden repo
         return $this->repository->filter($filters, $start, $limit);
     }
     public function datatable(array $filters, int $start, $length, int $draw): array

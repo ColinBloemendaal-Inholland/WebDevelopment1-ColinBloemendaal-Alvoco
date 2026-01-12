@@ -65,6 +65,7 @@ class AdminController
 
     public function getLid(array $params) {
         $lid = $this->ledenServices->get(intval($params['id']));
+        var_dump($lid->age);
         \View::view('admin.leden.post', $lid->fullname, ['lid'=> $lid]);
     }
 

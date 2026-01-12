@@ -72,7 +72,7 @@ class Leden extends Model
     /** Get age of lid */
     public function getAgeAttribute()
     {
-        return $this->birthdate ? Carbon::parse($this->birthdate)->age : null;
+        return $this->date_of_birth ? Carbon::parse($this->date_of_birth)->age : null;
     }
 
     /** Get full name of emergency contact */
