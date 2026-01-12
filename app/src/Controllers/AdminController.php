@@ -114,7 +114,7 @@ class AdminController
 
     public function getWedstrijd(array $params) {
         $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
-        $title = $wedstrijd->home_team->name . " vs " . $wedstrijd->away_team->name;
+        $title = $wedstrijd->hometeam->name . " vs " . $wedstrijd->awayteam->name;
         \View::view('admin.wedstrijden.post', $title, ['wedstrijd'=> $wedstrijd]);
     }
 

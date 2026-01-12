@@ -18,6 +18,7 @@ abstract class BaseRequests
 
     public function validate(): array
     {
+        //TODO: Als er tijd over is ook de foutmeldingen nederlands talig maken
         $validator = ValidatorFactory::make();
         $validation = $validator->validate($this->data, $this->rules());
         if ($validation->fails()) {

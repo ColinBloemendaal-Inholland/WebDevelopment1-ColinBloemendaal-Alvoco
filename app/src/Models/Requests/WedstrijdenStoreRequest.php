@@ -8,13 +8,10 @@ class WedstrijdenStoreRequest extends BaseRequests
     {
         return [
             'team_home'=> 'required|integer|min:1',
-            'team_away'=> 'required|integer|min:1',
+            'team_away'=> 'required|integer|min:1|different:team_home',
             'date'=> 'required|date:Y-m-d',
-            'time'=> 'required|date_format:H:i',
+            'time'=> 'required|date:H:i',
             'location'=> 'required|alpha',
-            'score_home'=> 'required|integer|min:0|max:5',
-            'score_away'=> 'required|integer|min:0|max:5',
-            'status'=> 'required|alpha',
             'referee'=> 'required|alpha',
         ];
     }

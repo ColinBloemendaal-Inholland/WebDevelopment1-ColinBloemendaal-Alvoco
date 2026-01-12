@@ -4,14 +4,17 @@ namespace App\Controllers;
 
 use App\Models\Requests\WedstrijdenStoreRequest;
 use App\Models\Requests\WedstrijdenUpdateRequest;
+use App\Services\TeamsServices;
 use App\Services\WedstrijdenServices;
 
 class WedstrijdenController extends BaseController implements IController
 {
     private WedstrijdenServices $service;
+    private TeamsServices $teamsServices;
     public function __construct(?WedstrijdenServices $ledenService = null)
     {
         $this->service = $ledenService ?? new WedstrijdenServices();
+        $this->teamsServices = new TeamsServices();
     }
 
     public function index()
@@ -35,7 +38,8 @@ class WedstrijdenController extends BaseController implements IController
     public function Create()
     {
         //TODO: Make an actual view for this - still empty
-        \View::view('admin.wedstrijden.create', 'Wedstrijden aanmaken');
+        $teams = $this->teamsServices->getAll();
+        \View::view('admin.wedstrijden.create', 'Wedstrijden aanmaken', ['teams' => $teams]);
     }
 
     public function store()
