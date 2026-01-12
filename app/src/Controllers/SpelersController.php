@@ -29,7 +29,7 @@ class SpelersController extends BaseController implements IController
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::view('spelers.post', $data['Title'], $data);
+        \View::view('spelers.post', $data['lid']->fullname, $data);
     }
 
     public function Create()

@@ -23,7 +23,7 @@ class BestuursledenController extends BaseController implements IController {
 
     public function show(array $params) {
         $data = $this->service->get(intval($params['id']));
-        \View::view('bestuursleden.post', $data['Title'], $data);
+        \View::view('bestuursleden.post', $data['lid']['fullname'], $data);
     }
 
     public function Create() {

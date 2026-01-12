@@ -35,7 +35,7 @@ class TeamsController extends BaseController implements IController
     public function show(array $params)
     {
         $team = $this->service->getTeamWithRelations(intval($params['id']));
-        \View::view('teams.post', 'Team', ['team' => $team]);
+        \View::view('teams.post', $team->name, ['team' => $team]);
     }
 
     public function Create()

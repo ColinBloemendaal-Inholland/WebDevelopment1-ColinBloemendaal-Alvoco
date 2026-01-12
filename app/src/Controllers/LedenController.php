@@ -29,7 +29,7 @@ class LedenController extends BaseController implements IController
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::view('leden.post', $data['Title'], $data);
+        \View::view('leden.post', $data->fullname, $data);
     }
     public function Create()
     {

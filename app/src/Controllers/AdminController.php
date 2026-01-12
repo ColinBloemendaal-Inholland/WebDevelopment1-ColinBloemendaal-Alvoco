@@ -65,7 +65,7 @@ class AdminController
 
     public function getLid(array $params) {
         $lid = $this->ledenServices->get(intval($params['id']));
-        \View::view('admin.leden.post', 'Lid', ['lid'=> $lid]);
+        \View::view('admin.leden.post', $lid->fullname, ['lid'=> $lid]);
     }
 
     public function nieuwsberichten()
@@ -74,7 +74,7 @@ class AdminController
     }
     public function getNieuwsbericht(array $params) {
         $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
-        \View::view('admin.nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht'=> $nieuwsbericht]);
+        \View::view('admin.nieuwsberichten.post', $nieuwsbericht->Title, ['nieuwsbericht'=> $nieuwsbericht]);
     }
 
     public function teams()
@@ -84,7 +84,7 @@ class AdminController
 
     public function getTeam(array $params) {
         $team = $this->teamsServices->getTeamWithRelations(intval($params['id']));
-        \View::view('admin.teams.post', 'Team', ['team'=> $team]);
+        \View::view('admin.teams.post', $team->name, ['team'=> $team]);
     }
 
     public function coaches()
@@ -94,7 +94,7 @@ class AdminController
 
     public function getCoach(array $params) {
         $coach = $this->coachesServices->getWithTeam(intval($params['id']));
-        \View::view('admin.coaches.post', 'Coach', ['coach'=> $coach]);
+        \View::view('admin.coaches.post', $coach->lid->fullname, ['coach'=> $coach]);
     }
 
     public function trainers()
@@ -103,7 +103,7 @@ class AdminController
     }
     public function getTrainer(array $params) {
         $trainer = $this->trainersServices->get(intval($params['id']));
-        \View::view('admin.trainers.post', 'Trainer', ['trainer'=> $trainer]);
+        \View::view('admin.trainers.post', $trainer->lid->fullname, ['trainer'=> $trainer]);
     }
 
     public function wedstrijden()
@@ -114,7 +114,8 @@ class AdminController
 
     public function getWedstrijd(array $params) {
         $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
-        \View::view('admin.wedstrijden.post', 'Wedstrijd', ['wedstrijd'=> $wedstrijd]);
+        $title = $wedstrijd->home_team->name . " vs " . $wedstrijd->away_team->name;
+        \View::view('admin.wedstrijden.post', $title, ['wedstrijd'=> $wedstrijd]);
     }
 
     public function bestuursleden()
@@ -124,7 +125,7 @@ class AdminController
     
     public function getBestuurslid(array $params) {
         $bestuurslid = $this->bestuursledenServices->get(intval($params['id']));
-        \View::view('admin.bestuursleden.post', 'Bestuurslid', ['bestuurslid'=> $bestuurslid]);
+        \View::view('admin.bestuursleden.post', $bestuurslid->lid->fullname, ['bestuurslid'=> $bestuurslid]);
     }
 
     public function spelers()
@@ -135,7 +136,7 @@ class AdminController
 
     public function getSpeler(array $params) {
         $speler = $this->spelersServices->get(intval($params['id']));
-        \View::view('admin.spelers.post', 'Speler', ['speler'=> $speler]);
+        \View::view('admin.spelers.post', $speler->lid->fullname, ['speler'=> $speler]);
     }
 
     public function contact()

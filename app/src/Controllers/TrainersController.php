@@ -29,7 +29,7 @@ class TrainersController extends BaseController implements IController
     public function show(array $params)
     {
         $data = $this->service->get(intval($params['id']));
-        \View::view('trainers.post', $data['Title'], $data);
+        \View::view('trainers.post', $data['lid']->fullname, $data);
     }
 
     public function Create()

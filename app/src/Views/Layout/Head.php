@@ -31,7 +31,7 @@
         }
     </style>
 
-    <title><?= $title; ?></title>
+    <title><?= e($title); ?></title>
 </head>
 
 <body class="vh-100 d-flex flex-column">

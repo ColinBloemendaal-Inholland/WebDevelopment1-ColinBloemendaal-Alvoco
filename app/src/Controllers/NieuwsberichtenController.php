@@ -20,9 +20,8 @@ class NieuwsberichtenController extends BaseController implements IController {
         \View::view("nieuwsberichten.index", 'Nieuwsberichten', ['nieuwsberichten' => $data]);
     }
     public function show(array $params) {
-        $data = $this->service->get(intval($params['id']));
-        //TODO: Add title of nieuwsbericht to second param of view method
-        \View::view('nieuwsberichten.post', 'Nieuwsbericht', ['nieuwsbericht' => $data]);
+        $nieuwsbericht = $this->service->get(intval($params['id']));
+        \View::view('nieuwsberichten.post', $nieuwsbericht['Title'], ['nieuwsbericht' => $nieuwsbericht]);
     }
     public function create() {
         $bestuursleden = $this->bestuursledenServices->getAll();
@@ -45,7 +44,7 @@ class NieuwsberichtenController extends BaseController implements IController {
     public function edit(array $params) {
         $nieuwsbericht = $this->service->get(intval($params["id"]));
         $bestuursleden = $this->bestuursledenServices->getAll();
-        \View::view("admin.nieuwsberichten.edit", 'Wijzig bestuurslid', [
+        \View::view("admin.nieuwsberichten.edit", 'Wijzig nieuwsbericht', [
             'nieuwsbericht' => $nieuwsbericht,
             'bestuursleden' => $bestuursleden
         ]);
