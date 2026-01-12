@@ -119,6 +119,7 @@ class AdminController
 
     public function bestuursleden()
     {
+        //TODO: Fix the view
         \View::View("admin.bestuursleden.index", 'Bestuursleden');
     }
     
