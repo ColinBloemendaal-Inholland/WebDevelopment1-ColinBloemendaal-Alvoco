@@ -60,7 +60,7 @@ class View
             return;
         }
         extract($data);
-        require_once $path;
+        include_once $path;
     }
 
     public static function Redirect(string $uri) {
