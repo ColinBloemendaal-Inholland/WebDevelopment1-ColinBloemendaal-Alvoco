@@ -29,10 +29,6 @@ class RolesServices implements IServices {
     public function destroy(int $id): bool {
         return $this->repository->destroy($id) ?? false;
     }
-    public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
-        //TODO: Make filter in the roles repo
-        return $this->repository->filter($filters, $start, $limit);
-    }
     public function getByName(string $name) {
         return $this->repository->getByName($name);
     }
