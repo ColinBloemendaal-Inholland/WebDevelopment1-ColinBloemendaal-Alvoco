@@ -13,7 +13,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title mb-2">
                                 <a href="/nieuwsberichten/<?= e($nieuws['id']) ?>" class="text-decoration-none text-dark">
-                                    <?= e($nieuws['Title']) ?>
+                                    <?= e(trim($nieuws['Title']) ?? '') ?>
                                 </a>
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
