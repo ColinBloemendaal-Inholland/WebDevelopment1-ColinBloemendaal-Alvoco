@@ -21,9 +21,14 @@
 							foreach ($data['team']->spelers as $speler): ?>
 								<li class="list-group-item">
 									<?php if (!empty($speler->number)): ?>
-	<input type="text" class="form-control" id="teamName" name="teamName" value="<?= e($data['team']['name'] ?? '') ?>" aria-label="Teamnaam invoerveld">
+										<span class="badge bg-primary ms-2">
+											<?= e($speler->number) ?>
+										</span>
 									<?php endif; ?>
 									<?= e($speler->lid->fullname ?? '') ?>
+									<?php if (!empty($speler->position)): ?>
+										<span class="text-muted ms-2">(<?= e($speler->position) ?>)</span>
+									<?php endif; ?>
 								</li>
 							<?php endforeach; else: ?>
 							<li class="list-group-item text-muted">Geen spelers gevonden.</li>
@@ -32,6 +37,11 @@
 				</div>
 			</div>
 			<div class="col-md-6">
+				<div class="card mb-4">
+					<?php if (!empty($data['team']->image)): ?>
+						<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow">
+					<?php endif; ?>
+				</div>
 				<div class="card mb-4">
 					<div class="card-header bg-success text-white">
 						<i class="bi bi-person-badge me-2"></i> Coaches
@@ -84,7 +94,8 @@
 							<tbody>
 								<?php if (!empty($data['team']->wedstrijden)):
 									foreach ($data['team']->wedstrijden as $wedstrijd): ?>
-										<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'" class="cursor-pointer">
+										<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'"
+											class="cursor-pointer">
 											<td><?= e($wedstrijd->date ?? '-') ?></td>
 											<td><?= e($wedstrijd->hometeam->name ?? '-') ?></td>
 											<td><?= e($wedstrijd->awayteam->name ?? '-') ?></td>
