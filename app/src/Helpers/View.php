@@ -25,6 +25,7 @@ class View
             return;
         }
         extract($data);
+        // Using include_once to avoid multiple inclusions and so the script doesnt stop executing if file is missing
         include_once self::GetNormalizedPath('Layout.Head');
         include_once self::GetNormalizedPath('Layout.Nav');
         include_once $path;

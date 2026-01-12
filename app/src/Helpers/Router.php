@@ -11,6 +11,7 @@ use FastRoute\Dispatcher;
 class Router {
     public static $dispatcher;
     public static function registerRoutes() {
+        // Using require_once so it fails if file is missing
         $routes = require_once ROOT . 'src/routes/web.php';
 
         self::$dispatcher = simpleDispatcher(function (RouteCollector $r) use ($routes) {
