@@ -63,10 +63,10 @@
                                 <dd class="col-sm-9"><?= e($data['lid']['emergency_contact_phone'] ?? '-') ?></dd>
 
                                 <dt class="col-sm-3">Aangemaakt op</dt>
-                                <dd class="col-sm-9"><?= e($data['lid']['created_at']) ?></dd>
+                                <dd class="col-sm-9"><?= e($data['lid']['created_at'] ?? '-') ?></dd>
 
                                 <dt class="col-sm-3">Laatste wijziging</dt>
-                                <dd class="col-sm-9"><?= e($data['lid']['updated_at']) ?></dd>
+                                <dd class="col-sm-9"><?= e($data['lid']['updated_at'] ?? '-') ?></dd>
                             </dl>
                         </div>
                     </div>
