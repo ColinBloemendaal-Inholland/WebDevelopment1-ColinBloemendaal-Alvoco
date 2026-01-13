@@ -29,7 +29,7 @@ abstract class BaseRepository implements IBaseRepository
         return $this->model->create($data);
     }
 
-    public function update(int $id, array $data, ?array $roles = null): Model
+    public function update(int $id, array $data): Model
     {
         $record = $this->model->findOrFail($id);
         $data = array_map(fn($value) => $value === '' ? null : $value, $data);

@@ -58,12 +58,13 @@ class TeamsServices implements IServices
             'id' => $row['id'],
             'name' => $row['name'],
             'class' => $row['class'],
+            'seizoen' => $row['seizoenen']['title'] ?? '-',
         ];
     }
 
-    public function getAllByCategory()
+    public function getAllByCategory($season = null)
     {
-        $teams = $this->getAll();
+        $teams = $this->repository->getAllBySeason($season);
 
         $groupedTeams = [];
         $groupedTeams['Heren'] = [];

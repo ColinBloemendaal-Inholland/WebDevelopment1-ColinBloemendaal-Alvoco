@@ -7,6 +7,19 @@
             <p class="lead text-muted mb-0">Ontdek alle teams van Alvoco, gesorteerd per categorie. Klik op een team
                 voor meer informatie, spelers, coaches en wedstrijden.</p>
         </div>
+        <div class="col-lg-4 col-md-5 col-12 mt-3 mt-md-0">
+            <form method="GET" action="">
+                <label for="seizoenFilter" class="form-label">Filter op seizoen:</label>
+                <select name="seizoen_id" id="seizoenFilter" class="form-select" onchange="this.form.submit()">
+                    <option value="">Alle seizoenen</option>
+                    <?php foreach ($data['seizoenen'] as $seizoen): ?>
+                        <option value="<?= e($seizoen['id']) ?>" <?= isset($_GET['seizoen_id']) && $_GET['seizoen_id'] == $seizoen['id'] ? 'selected' : (!empty($seizoen['is_current']) ? 'selected' : '') ?>>
+                            <?= e($seizoen['title']) ?><?= !empty($seizoen['is_current']) ? ' (Huidig)' : '' ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
+        </div>
     </div>
 
     <?php

@@ -37,6 +37,20 @@
                                                value="<?= e($_SESSION['form_old']['class'] ?? '') ?>">
                                     </div>
                                 </div>
+                                <div class="mb-3 row">
+                                    <label for="season" class="col-sm-3 col-form-label">Seizoen</label>
+                                    <div class="col-sm-9">
+                                        <select name="seizoen_id" id="" class="form-select">
+                                            <option value="">Selecteer seizoen</option>
+                                            <?php foreach ($data['seizoenen'] as $season): ?>
+                                                <option value="<?= e($season['id']) ?>"
+                                                    <?= isset($_SESSION['form_old']['seizoen_id']) ? ($_SESSION['form_old']['seizoen_id'] == $season['id'] ? 'selected' : '') : ((!empty($season['is_current']) && $season['is_current']) ? 'selected' : '') ?>>
+                                                    <?= e($season['title']) ?><?= !empty($season['is_current']) ? ' (Huidig)' : '' ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <hr>
                                 <!-- Teamfoto upload -->

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +18,13 @@ class Teams extends Model
         "class",
         "category",
         "picture",
+        "seizoen_id"
     ];
+
+    public function seizoenen(): BelongsTo
+    {
+        return $this->belongsTo(Seizoenen::class,'seizoen_id');
+    }
 
     public function spelers(): BelongsToMany
     {

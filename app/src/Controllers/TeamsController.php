@@ -6,6 +6,7 @@ use App\Models\Requests\TeamsStoreRequest;
 use App\Models\Requests\TeamsUpdateRequest;
 use App\Models\Requests\TeamUpdateByCoachRequest;
 use App\Services\CoachesServices;
+use App\Services\SeizoenenServices;
 use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\TrainersServices;
@@ -18,18 +19,25 @@ class TeamsController extends BaseController implements IController
     private SpelersServices $spelersServices;
     private CoachesServices $coachesServices;
     private TrainersServices $trainersServices;
+    private SeizoenenServices $seizoenenServices;
     public function __construct()
     {
         $this->service = new TeamsServices();
         $this->spelersServices = new SpelersServices();
         $this->coachesServices = new CoachesServices();
         $this->trainersServices = new TrainersServices();
+        $this->seizoenenServices = new SeizoenenServices();
     }
 
     public function index()
     {
-        $teams = $this->service->getAllByCategory();
-        \View::view("teams.index", 'Teams', ['teams' => $teams]);
+        $seizoenen = $this->seizoenenServices->getAll();
+        $season = null;
+        if (!empty($_GET['seizoen_id'])) {
+            $season = $_GET['seizoen_id'] ?? null;
+        }
+        $teams = $this->service->getAllByCategory($season);
+        \View::view("teams.index", 'Teams', ['teams' => $teams, 'seizoenen' => $seizoenen]);
     }
 
     public function show(array $params)
@@ -40,6 +48,7 @@ class TeamsController extends BaseController implements IController
 
     public function Create()
     {
+        $seizoenen = $this->seizoenenServices->getAll();
         $spelers = $this->spelersServices->getAll();
         $coaches = $this->coachesServices->getAvailableCoaches();
         $trainers = $this->trainersServices->getAll();
@@ -47,11 +56,13 @@ class TeamsController extends BaseController implements IController
             'spelers' => $spelers,
             'coaches' => $coaches,
             'trainers' => $trainers,
+            'seizoenen' => $seizoenen
         ]);
     }
 
     public function store()
     {
+        //TODO: turn the category input into a select instead of a text input
         try {
             $validated = new TeamsStoreRequest($_POST)->validate();
             if (isset($_FILES['picture'])) {
@@ -65,6 +76,7 @@ class TeamsController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
+            error_log($e->getMessage());
             \View::redirect("/admin/teams/create");
         }
         \View::redirect("/admin/teams/{$post['id']}");
@@ -72,11 +84,18 @@ class TeamsController extends BaseController implements IController
 
     public function edit(array $params)
     {
+        $seizoenen = $this->seizoenenServices->getAll();
         $team = $this->service->getWithCoach(intval($params["id"]));
         $coaches = $this->coachesServices->getAvailableCoaches($team->coaches->pluck('id')->toArray());
         $spelers = $this->spelersServices->getAll();
         $trainers = $this->trainersServices->getAll();
-        \View::view("admin.teams.edit", 'Wijzig team', ['team' => $team, 'coaches' => $coaches, 'spelers' => $spelers, 'trainers' => $trainers]);
+        \View::view("admin.teams.edit", 'Wijzig team', [
+            'team' => $team,
+            'coaches' => $coaches,
+            'spelers' => $spelers,
+            'trainers' => $trainers,
+            'seizoenen' => $seizoenen
+        ]);
     }
 
     public function update(array $params)
@@ -125,6 +144,7 @@ class TeamsController extends BaseController implements IController
         $filter = [
             'name' => $_POST['name'] ?? '',
             'trashed' => $_POST['trashed'] ?? '',
+            'seizoen_id' => $_POST['seizoen_id'] ?? ''
         ];
 
         $draw = intval($_POST['draw'] ?? 1);

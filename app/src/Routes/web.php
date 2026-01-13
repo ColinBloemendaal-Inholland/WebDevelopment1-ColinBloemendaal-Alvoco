@@ -2,6 +2,7 @@
 
 use App\Controllers\ContactController;
 use App\Controllers\DashboardController;
+use App\Controllers\SeizoenenController;
 use App\Controllers\SpelersController;
 use FastRoute\RouteCollector;
 
@@ -52,6 +53,7 @@ return function (RouteCollector $r) {
     $r->addRoute('POST', '/api/spelers', [SpelersController::class, 'getSpelers']);
     $r->addRoute('POST', '/api/contact', [ContactController::class, 'getContacts']);
     $r->addRoute('POST', '/api/bestuursleden', [BestuursledenController::class, 'getBestuursleden']);
+    $r->addRoute('POST', '/api/seizoenen', [SeizoenenController::class, 'getSeizoenen']);
 
     $r->addRoute('GET', '/login', [LedenController::class, 'loginView']);
     $r->addRoute('POST', '/login', [LedenController::class, 'login']);
@@ -151,4 +153,14 @@ return function (RouteCollector $r) {
     $r->addRoute('PUT', '/admin/contact/{id:\d+}', [ContactController::class, 'update']);
     $r->addRoute('DELETE', '/admin/contact/{id:\d+}', [ContactController::class, 'delete']);
     $r->addRoute('DELETE', '/admin/contact/{id:\d+}/force', [ContactController::class, 'destroy']);
+    
+    // Admin > Seizoenen
+    $r->addRoute('GET', '/admin/seizoenen', [AdminController::class, 'seizoenen']);
+    $r->addRoute('GET', '/admin/seizoenen/{id:\d+}', [AdminController::class, 'getSeizoen']);
+    $r->addRoute('GET', '/admin/seizoenen/create', [SeizoenenController::class, 'create']);
+    $r->addRoute('POST', '/admin/seizoenen/create', [SeizoenenController::class, 'store']);
+    $r->addRoute('GET', '/admin/seizoenen/{id:\d+}/edit', [SeizoenenController::class, 'edit']);
+    $r->addRoute('PUT', '/admin/seizoenen/{id:\d+}', [SeizoenenController::class, 'update']);
+    $r->addRoute('DELETE', '/admin/seizoenen/{id:\d+}', [SeizoenenController::class, 'delete']);
+    $r->addRoute('DELETE', '/admin/seizoenen/{id:\d+}/force', [SeizoenenController::class, 'destroy']);
 };

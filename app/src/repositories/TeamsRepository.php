@@ -13,8 +13,7 @@ class TeamsRepository extends BaseRepository
     public function createWithRelations(array $data): Teams
     {
         $team = $this->model->create($data);
-        Spelers::whereIn('id', $data['spelers'] ?? [])
-            ->update(['team_id' => $team->id]);
+        $team->spelers()->sync($data['spelers'] ?? []);
 
         Coaches::whereIn('id', $data['coaches'] ?? [])
             ->update(['team_id' => $team->id]);
@@ -33,14 +32,12 @@ class TeamsRepository extends BaseRepository
         $spelers = isset($data['spelers']) && is_array($data['spelers']) ? $data['spelers'] : [];
         $coaches = isset($data['coaches']) && is_array($data['coaches']) ? $data['coaches'] : [];
         $trainers = isset($data['trainers']) && is_array($data['trainers']) ? $data['trainers'] : [];
+        error_log(print_r($data, true));
         $team->update($data);
-        Spelers::where('team_id', $team->id)
-            ->update(['team_id' => null]);
-        if (!empty($spelers)) {
-            Spelers::whereIn('id', $spelers)
-                ->update(['team_id' => $team->id]);
-        }
+        // Only sync spelers (many-to-many)
+        $team->spelers()->sync($spelers);
 
+        // Coaches and trainers: revert to team_id update logic
         Coaches::where('team_id', $team->id)
             ->update(['team_id' => null]);
         if (!empty($coaches)) {
@@ -122,10 +119,13 @@ class TeamsRepository extends BaseRepository
 
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        $query = Teams::query();
+        $query = Teams::query()->with(['seizoenen']);
         $recordsTotal = Teams::count();
         if (!empty($filters['name'])) {
             $query->where('name', 'like', '%' . $filters['name'] . '%');
+        }
+        if (!empty($filters['seizoen_id'])) {
+            $query->where('seizoen_id', $filters['seizoen_id']);
         }
 
         $recordsFiltered = $query->count();
@@ -180,5 +180,19 @@ class TeamsRepository extends BaseRepository
     public function getWithCoach(int $id)
     {
         return $this->model->with(['coaches', 'coaches.lid'])->where('id', $id)->first();
+    }
+
+    public function getAllBySeason($season = null)
+    {
+        $query = Teams::query()->with(['seizoenen']);
+
+        if (!empty($season)) {
+            $query->where('seizoen_id', $season);
+        } else {
+            $query->whereHas('seizoenen', function ($q) {
+                $q->where('is_current', 1);
+            });
+        }
+        return $query->get();
     }
 }

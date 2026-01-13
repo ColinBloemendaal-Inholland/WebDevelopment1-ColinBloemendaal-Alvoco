@@ -7,6 +7,7 @@ use App\Services\ContactServices;
 use App\Services\NieuwsberichtenServices;
 use App\Services\RolesServices;
 use App\Services\LedenServices;
+use App\Services\SeizoenenServices;
 use App\Services\SpelersServices;
 use App\Services\TeamsServices;
 use App\Services\BestuursledenServices;
@@ -28,6 +29,7 @@ class AdminController
     private TrainersServices $trainersServices;
     private WedstrijdenServices $wedstrijdenServices;
     private ContactServices $contactServices;
+    private SeizoenenServices $seizoenenServices;
     public function __construct()
     {
         $this->rolenServices =  new RolesServices();
@@ -40,6 +42,7 @@ class AdminController
         $this->trainersServices = new TrainersServices();
         $this->wedstrijdenServices = new WedstrijdenServices();
         $this->contactServices = new ContactServices();
+        $this->seizoenenServices = new SeizoenenServices();
     }
 
     public function index()
@@ -79,7 +82,8 @@ class AdminController
 
     public function teams()
     {
-        \View::view("admin.teams.index", 'Teams');
+        $seizoenen = $this->seizoenenServices->getAll();
+        \View::view("admin.teams.index", 'Teams', ['seizoenen' => $seizoenen]);
     }
 
     public function getTeam(array $params) {
@@ -148,5 +152,15 @@ class AdminController
     public function getContact(array $params) {
         $contact = $this->contactServices->get(intval($params['id']));
         \View::view('admin.contact.post', 'Contactformulier', ['contact'=> $contact]);
+    }
+
+    public function seizoenen()
+    {
+        \View::view("admin.seizoenen.index", 'Seizoenen' );
+    }
+    
+    public function getSeizoen(array $params) {
+        $seizoen = $this->seizoenenServices->get(intval($params['id']));
+        \View::view('admin.seizoenen.post', 'Seizoen', ['seizoen'=> $seizoen]);
     }
 }

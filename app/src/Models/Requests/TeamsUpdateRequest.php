@@ -10,12 +10,13 @@ class TeamsUpdateRequest extends BaseRequests
             'name' => 'required',
             'class' => 'required',
             'category' => 'required',
-            'spelers' => 'nullable|array',
-            'spelers.*' => 'nullable|integer|min:0',
-            'coaches' => 'nullable|array',
-            'coaches.*' => 'nullable|integer|min:0',
-            'trainers' => 'nullable|array',
-            'trainers.*' => 'nullable|integer|min:0',
+            'seizoen_id' => 'required|integer|min:0',
+            'spelers' => 'required|array',
+            'spelers.*' => 'required|integer|min:0',
+            'coaches' => 'required|array',
+            'coaches.*' => 'required|integer|min:0',
+            'trainers' => 'required|array',
+            'trainers.*' => 'required|integer|min:0',
         ];
     }
 }

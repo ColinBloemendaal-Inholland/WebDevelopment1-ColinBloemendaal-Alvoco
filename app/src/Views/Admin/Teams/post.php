@@ -31,6 +31,9 @@
                                         <dt class="col-sm-4">Klas</dt>
                                         <dd class="col-sm-8"><?= e($data['team']['class'] ?? '-') ?></dd>
 
+                                        <dt class="col-sm-4">Seizoen</dt>
+                                        <dd class="col-sm-8"><?= e($data['team']['seizoenen']['title'] ?? '-') ?></dd>
+
                                         <dt class="col-sm-4">Aangemaakt op</dt>
                                         <dd class="col-sm-8"><?= e($data['team']['created_at'] ?? '-') ?></dd>
 

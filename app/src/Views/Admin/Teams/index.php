@@ -7,10 +7,21 @@
                 <!-- Name search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" name="searchName" aria-label="Zoek op teamnaam invoerveld"
-                        placeholder="Voer een naam in:">
+                    <input type="text" class="form-control" id="searchName" name="searchName"
+                        aria-label="Zoek op teamnaam invoerveld" placeholder="Voer een naam in:">
                 </div>
-                <div class="form-group col-8 d-flex align-items-end justify-content-end">
+                <div class="form-group col-4">
+                    <label for="searchSeizoen">Zoek op seizoen:</label>
+                    <select name="seizoen" id="searchSeizoen" class="form-select">
+                        <option value="" selected>Selecteer een seizoen</option>
+                        <?php foreach ($data['seizoenen'] as $seizoen) : ?>
+                            <option value="<?= e($seizoen['id']) ?>"
+                            <?= $seizoen['is_current'] ? 'selected' : '' ?>>
+                            <?= e($seizoen['title']) ?><?= !empty($seizoen['is_current']) ? ' (Huidig)' : '' ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group col-4 d-flex align-items-end justify-content-end">
                     <a href="/admin/teams/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>
@@ -19,12 +30,13 @@
                     <tr>
                         <th>Naam</th>
                         <th>Klasse</th>
+                        <th>Seizoen</th>
                         <th>Acties</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="5" style="text-align:center;">Loading…</td>
+                        <td colspan="4" style="text-align:center;">Loading…</td>
                     </tr>
                 </tbody>
             </table>
@@ -48,6 +60,7 @@
                 data: function (d) {
                     d.name = $('#searchName').val();
                     d.trashed = $('#searchTrashed').prop('checked') ? 1 : 0;
+                    d.seizoen_id = $('#searchSeizoen').val();
                 },
                 dataSrc: 'data',
                 error: function (xhr) {
@@ -62,6 +75,7 @@
             columns: [
                 { data: 'name', title: 'Naam', render: $.fn.dataTable.render.text() },
                 { data: 'class', title: 'Klasse', render: $.fn.dataTable.render.text() },
+                { data: 'seizoen', title: 'Seizoen', render: $.fn.dataTable.render.text() },
                 {
                     data: null,
                     title: 'Acties',
@@ -112,7 +126,7 @@
         $('#searchName').on('input', timeout);
 
         // Multi-select: reload immediately on change
-        $('#searchTrashed').on('change', function () {
+        $('#searchTrashed, #searchSeizoen').on('change', function () {
             teamsTable.ajax.reload();
         });
     });

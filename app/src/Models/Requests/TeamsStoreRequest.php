@@ -10,6 +10,7 @@ class TeamsStoreRequest extends BaseRequests
             'name' => 'required',
             'class' => 'required',
             'category' => 'required',
+            'seizoen_id' => 'required|integer|min:0',
             'spelers' => 'required|array',
             'spelers.*' => 'required|integer|min:0',
             'coaches' => 'required|array',
