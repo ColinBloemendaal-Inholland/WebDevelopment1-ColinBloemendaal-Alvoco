@@ -1,7 +1,8 @@
-<div class="d-flex flex-grow-1">
-    <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container m-0">
+<div class="d-flex flex-column min-vh-100">
+    <div class="d-flex flex-grow-1">
+        <?php \View::partial('Layout.NavAdmin'); ?>
+        <div class="flex-grow-1 p-4">
+            <div class="container m-0">
             <h1 class="mb-4">Leden</h1>
             <div class="row">
                 <!-- Name or email search -->

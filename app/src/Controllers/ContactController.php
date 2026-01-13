@@ -20,19 +20,19 @@ class ContactController extends BaseController implements IController
     public function index()
     {
         $contacts = $this->service->getAll();
-        \View::view('admin.contact.index', 'Contacten', ['contacts' => $contacts]);
+        \View::view('contact.index', 'Contacten', ['contacts' => $contacts]);
     }
 
     public function show(array $params)
     {
         $contact = $this->service->get(intval($params['id']));
-        \View::view('admin.contact.post', 'Contact', ['contact' => $contact]);
+        \View::view('contact.post', 'Contact', ['contact' => $contact]);
     }
 
     public function create()
     {
         $bestuursleden = $this->bestuursledenServices->getAll();
-        \View::view('admin.contact.create', 'Contact toevoegen', [
+        \View::view('contact.create', 'Contact toevoegen', [
             'bestuursleden' => $bestuursleden
         ]);
     }

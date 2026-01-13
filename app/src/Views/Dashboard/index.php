@@ -7,7 +7,7 @@
                         <h2 class="card-title mb-0">Welkom,
                             <?= e($data['user']->fullname) ?>
                         </h2>
-                        <a href="/dashboard/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
+                        <a href="/profile/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
                     </div>
                     <p class="mb-1"><strong>Email:</strong> <?= e($data['user']->email) ?></p>
                     <?php if (!empty($data['teamsCoached']) && count($data['teamsCoached']) > 0): ?>

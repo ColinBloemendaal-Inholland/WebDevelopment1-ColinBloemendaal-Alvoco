@@ -1,7 +1,8 @@
-<div class="d-flex flex-grow-1">
-    <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
+<div class="d-flex flex-column min-vh-100">
+    <div class="d-flex flex-grow-1">
+        <?php \View::partial('Layout.NavAdmin'); ?>
+        <div class="flex-grow-1 p-4">
+            <div class="container-fluid m-0 py-5">
             <h1 class="mb-4">Bestuursleden</h1>
             <div class="row">
                 <div class="col-12 d-flex align-items-end justify-content-end mb-3">

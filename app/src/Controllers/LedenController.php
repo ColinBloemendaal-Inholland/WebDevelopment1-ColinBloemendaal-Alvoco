@@ -165,6 +165,7 @@ class LedenController extends BaseController implements IController
 
     public function dashboard()
     {
+        //TODO: check if this actually works
         $user = \Auth::user();
         $teamsCoached = [];
         if ($user?->hasRole('coach')) {
@@ -187,7 +188,7 @@ class LedenController extends BaseController implements IController
     }
 
     public function editProfile() {
-
+        error_log("Entering editProfile method.");
         $userId = \Auth::id();
         $user = $this->service->get($userId);
         if( !$user) {
@@ -195,7 +196,7 @@ class LedenController extends BaseController implements IController
             \View::view('Errors.404', '404');
             return;
         }
-        \View::view('Dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
+        \View::view('dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
     }
 
     public function updateProfile() {

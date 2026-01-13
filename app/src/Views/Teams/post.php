@@ -1,4 +1,4 @@
-<div class="bg-light bg-gradient py-5" style="min-height:100vh;">
+<div class="bg-light bg-gradient py-5 flex-grow-1 d-flex flex-column">
 	<div class="container">
 		<div class="row mb-4 align-items-center">
 			<div class="col-lg-8 col-md-7 col-12">
@@ -11,7 +11,13 @@
 			</div>
 		</div>
 		<div class="row g-4">
-			<div class="col-md-6">
+			<!-- Team image: order-2 on md+, order-1 on xs -->
+			<div class="col-12 d-md-none mb-3">
+				<?php if (!empty($data['team']->image)): ?>
+					<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100">
+				<?php endif; ?>
+			</div>
+			<div class="col-md-6 order-2 order-md-1">
 				<div class="card mb-4">
 					<div class="card-header bg-primary text-white">
 						<i class="bi bi-person-lines-fill me-2"></i> Spelers
@@ -36,10 +42,11 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<!-- Team image for md+ screens -->
+			<div class="col-md-6 d-none d-md-block order-1 order-md-2">
 				<div class="card mb-4">
 					<?php if (!empty($data['team']->image)): ?>
-						<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow">
+						<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100">
 					<?php endif; ?>
 				</div>
 				<div class="card mb-4">
@@ -113,9 +120,4 @@
 			</div>
 		</div>
 	</div>
-	<style>
-		.cursor-pointer {
-			cursor: pointer;
-		}
-	</style>
 </div>
