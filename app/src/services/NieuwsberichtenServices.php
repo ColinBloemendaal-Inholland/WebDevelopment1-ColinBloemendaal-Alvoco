@@ -54,6 +54,7 @@ class NieuwsberichtenServices implements IServices
             'fullname' => $leden ? trim($leden->firstname . ' ' . $leden->middlename . ' ' . $leden->lastname) : null,
             'title' => $row->Title,
             'id' => $row->id,
+            'deleted_at' => $row->deleted_at,
         ];
     }
 

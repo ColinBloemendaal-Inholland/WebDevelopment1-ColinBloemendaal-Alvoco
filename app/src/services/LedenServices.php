@@ -73,6 +73,7 @@ class LedenServices implements IServices
             'adres' => trim(
                 "{$row['streetname']} {$row['streetnumber']}, {$row['postalcode']} {$row['city']}"
             ),
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 

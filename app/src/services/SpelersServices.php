@@ -59,6 +59,7 @@ class SpelersServices implements IServices
             'id' => $row['id'],
             'name' => isset($row['lid']) ? trim(($row['lid']['firstname'] ?? '') . ' ' . ($row['lid']['middlename'] ?? '') . ' ' . ($row['lid']['lastname'] ?? '')) : '',
             'team' => $row['team']['name'] ?? 'Geen team',
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 }

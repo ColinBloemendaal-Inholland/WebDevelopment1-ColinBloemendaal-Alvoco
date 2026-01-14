@@ -51,6 +51,7 @@ class TrainersServices implements IServices {
             'id' => $row['id'],
             'name' => $row['lid']['fullname'],
             'role' => $row['role'],
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 }

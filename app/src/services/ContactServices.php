@@ -66,6 +66,7 @@ class ContactServices implements IServices {
             'naam' => $contact['naam'],
             'email' => $contact['email'],
             'bestuurslid' => isset($contact['bestuurslid']['lid']) ? $this->formatLidName($contact['bestuurslid']['lid']) : null,
+            'deleted_at' => $contact['deleted_at'],
         ];
     }
 

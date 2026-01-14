@@ -69,6 +69,7 @@ class WedstrijdenServices implements IServices
             'time' => $row['time'],
             'location' => $row['location'],
             'score' => $row['score_home'] . ' - ' . $row['score_away'],
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 

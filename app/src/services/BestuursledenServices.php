@@ -60,6 +60,7 @@ class BestuursledenServices implements IServices {
             'id' => $row['id'],
             'naam' => $row['lid']['fullname'],
             'rol' => $row['role'],
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 }
