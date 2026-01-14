@@ -1,4 +1,4 @@
-<div class="d-flex flex-column min-vh-100">
+<div class="d-flex flex-column">
     <div class="d-flex flex-grow-1">
         <?php \View::partial('Layout.NavAdmin'); ?>
         <div class="flex-grow-1 p-4">
