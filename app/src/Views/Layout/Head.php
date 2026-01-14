@@ -27,7 +27,7 @@
     <style>
         /* Ensure dropdown menus appear above sidebar */
         .dropdown-menu {
-            z-index: 1050 !important;
+            z-index: 1050;
         }
     </style>
 

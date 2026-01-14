@@ -5,7 +5,7 @@
                 <h1 class="fw-bold h3">Welkom terug</h1>
             </header>
             <section class="col-12 col-md-8 col-lg-6">
-                <div class="card shadow-sm w-100">
+                <div class="card shadow-sm w-100 border border-secondary border-opacity-25">
                     <div class="card-body p-4 p-md-5 bg-white">
                         <!-- shared form errors partial -->
                         <?php \View::partial('Layout.errors'); ?>
@@ -41,8 +41,3 @@
         </div>
     </div>
 </main>
-
-<style>
-    body { background: #f4f6f8; }
-    .card { border: none; }
-</style>
