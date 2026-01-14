@@ -20,10 +20,13 @@
                                         <?php if ($team): ?>
                                             <article class="accordion-item">
                                                 <h3 class="accordion-header d-flex align-items-center h6" id="heading<?= $idx ?>">
-                                                    <button class="accordion-button collapsed d-flex justify-content-between align-items-center" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapse<?= $idx ?>"
-                                                        aria-expanded="false" aria-controls="collapse<?= $idx ?>">
-                                                        <span class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
+                                                    <button
+                                                        class="accordion-button collapsed d-flex justify-content-between align-items-center"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse<?= $idx ?>" aria-expanded="false"
+                                                        aria-controls="collapse<?= $idx ?>">
+                                                        <span
+                                                            class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
                                                         <a href="/profile/teams/<?= e($team->id) ?>/edit"
                                                             class="btn btn-outline-secondary btn-sm ms-2 p-1" title="Team bewerken">
                                                             <span class="bi bi-pencil"></span>
@@ -54,36 +57,37 @@
                                                                 <ul class="list-group mb-3">
                                                                     <?php foreach ($team->spelers as $speler): ?>
                                                                         <li class="list-group-item">
-                                                                            <span class="badge bg-primary me-2"><?= e($speler->number ?? '-') ?></span>
+                                                                            <span
+                                                                                class="badge bg-primary me-2"><?= e($speler->number ?? '-') ?></span>
                                                                             <?= e($speler->lid->fullname ?? 'Onbekende speler') ?>
                                                                         </li>
                                                                     <?php endforeach; ?>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h6>Coaches</h6>
-                                                        <ul class="list-group mb-3">
-                                                            <?php foreach ($team->coaches as $coach): ?>
-                                                                <li class="list-group-item">
-                                                                    <?= e($coach->lid->fullname ?? 'Onbekende coach') ?>
-                                                                </li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
-                                                        <h6>Trainers</h6>
-                                                        <ul class="list-group mb-3">
-                                                            <?php foreach ($team->trainers as $trainer): ?>
-                                                                <li class="list-group-item">
-                                                                    <?= e($trainer->lid->fullname ?? 'Onbekende trainer') ?>
-                                                                </li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h6>Coaches</h6>
+                                                                <ul class="list-group mb-3">
+                                                                    <?php foreach ($team->coaches as $coach): ?>
+                                                                        <li class="list-group-item">
+                                                                            <?= e($coach->lid->fullname ?? 'Onbekende coach') ?>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
+                                                                <h6>Trainers</h6>
+                                                                <ul class="list-group mb-3">
+                                                                    <?php foreach ($team->trainers as $trainer): ?>
+                                                                        <li class="list-group-item">
+                                                                            <?= e($trainer->lid->fullname ?? 'Onbekende trainer') ?>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
@@ -179,8 +183,8 @@
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
-                </div>
-            </div>
+                </article>
+            </section>
         </div>
     </div>
-</div>
+</main>
