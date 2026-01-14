@@ -9,8 +9,10 @@
                         <div>
                             <a href="/admin/leden/<?= e($data['lid']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Edit</a>
-                            <a href="/admin/leden/<?= e($data['lid']['id']) ?>/delete" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure?')">Delete</a>
+                            <form action="/admin/leden/<?= e($data['lid']['id']) ?>" method="POST" onsubmit="return confirm('Are you sure?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </div>
                     </header>
                     <div class="card shadow-sm mb-4">

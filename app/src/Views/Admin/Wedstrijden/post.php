@@ -13,8 +13,10 @@
                         <div>
                             <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/delete" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
+                            <form action="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>" method="POST" onsubmit="return confirm('Weet je het zeker?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">Verwijderen</button>
+                            </form>
                         </div>
                     </header>
 

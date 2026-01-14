@@ -11,8 +11,10 @@
                                 class="btn btn-primary btn-sm">Bekijk lid</a>
                             <a href="/admin/spelers/<?= e($data['speler']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="/admin/spelers/<?= e($data['speler']['id']) ?>/delete" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
+                            <form action="/admin/spelers/<?= e($data['speler']['id']) ?>" method="POST" onsubmit="return confirm('Weet je het zeker?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">Verwijderen</button>
+                            </form>
                         </div>
                     </header>
                     <article class="card shadow-sm mb-4">

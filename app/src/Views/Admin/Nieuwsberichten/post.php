@@ -9,8 +9,10 @@
                         <div>
                             <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/delete" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
+                            <form action="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>" method="POST" onsubmit="return confirm('Weet je het zeker?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">Verwijderen</button>
+                            </form>
                         </div>
                     </header>
                     <article class="card shadow-sm mb-4">
