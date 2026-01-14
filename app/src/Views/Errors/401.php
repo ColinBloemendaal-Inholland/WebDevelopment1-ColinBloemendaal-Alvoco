@@ -1,6 +1,6 @@
 <main>
   <section class="container d-flex justify-content-center align-items-center min-vh-100">
-    <article class="card shadow-lg p-4 text-center" style="max-width: 500px; width: 100%;">
+    <article class="card shadow-lg p-4 text-center">
       <header>
         <h1 class="display-1 fw-bold mb-2 text-info">401</h1>
         <h2 class="h3 mb-3">Niet geautoriseerd</h2>

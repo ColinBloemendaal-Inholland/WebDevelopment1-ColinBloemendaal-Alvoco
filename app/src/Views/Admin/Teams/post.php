@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['team']['name']) ?></h2>
-                        <div>
+                        <div class="d-flex gap-2">
                             <a href="/admin/teams/<?= e($data['team']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
                             <form action="/admin/teams/<?= e($data['team']['id']) ?>" method="POST" onsubmit="return confirm('Weet je het zeker?')">
@@ -45,7 +45,7 @@
                                     <?php if (!empty($data['team']['image'])): ?>
                                         <img src="<?= e($data['team']['image']) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100 h-100" >
                                     <?php else: ?>
-                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100" style="height: 200px;">
+                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100">
                                             <span class="text-muted">Geen teamfoto</span>
                                         </div>
                                     <?php endif; ?>

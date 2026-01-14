@@ -59,7 +59,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="7" style="text-align:center;">Loading…</td>
+                        <td colspan="7" class="text-center">Loading…</td>
                     </tr>
                 </tbody>
             </table>

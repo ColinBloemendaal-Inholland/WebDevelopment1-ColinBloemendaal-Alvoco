@@ -37,7 +37,7 @@
                                     <?php if (!empty($team->image)): ?>
                                         <img src="<?= e($team->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100 h-100" >
                                     <?php else: ?>
-                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100" style="height: 200px;">
+                                        <div class="bg-light border rounded d-flex align-items-center justify-content-center w-100 h-100">
                                             <span class="text-muted">Geen teamfoto</span>
                                         </div>
                                     <?php endif; ?>

@@ -16,12 +16,12 @@
                                 <div class="card-body">
                                     <h3 class="card-title h5">
                                         <a href="/nieuwsberichten/<?= e($nieuwsbericht['id']) ?>" class="text-decoration-none">
-                                            <?= e(trim($nieuwsbericht['Title'])  ?? 'Geen titel') ?>
+                                            <?= e(trim($nieuwsbericht['Title']) ?? 'Geen titel') ?>
                                         </a>
                                     </h3>
                                     <p class="card-text text-muted small mb-2">
                                         <i class="bi bi-calendar-event me-1"></i>
-                                        <?= date('d M Y', strtotime( $nieuwsbericht['date'] ?? 'now')) ?>
+                                        <?= date('d M Y', strtotime($nieuwsbericht['date'] ?? 'now')) ?>
                                     </p>
                                     <p class="card-text">
                                         <?= htmlspecialchars_decode($nieuwsbericht->preview(200) ?? '') ?>
@@ -37,7 +37,7 @@
             </section>
             <!-- Sidebar - Wedstrijden -->
             <aside class="col-lg-4" aria-label="Komende Wedstrijden">
-                <div class="sticky-top" style="top: 20px;">
+                <div class="sticky-top mt-1">
                     <h2 class="mb-4">Komende Wedstrijden</h2>
                     <?php if (empty($data['wedstrijdenByDate'])): ?>
                         <div class="alert alert-info">
@@ -54,27 +54,28 @@
                                     <article class="card shadow-sm border-0 mb-2">
                                         <div class="card-body p-3">
                                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <h6 class="card-title mb-0">
-                                                <a href="/wedstrijden/<?= e($wedstrijd['id']) ?>" class="text-decoration-none">
-                                                    <?= e(trim($wedstrijd['team_home']) ?? '') . ' - ' . e(trim($wedstrijd['team_away']) ?? '') ?>
-                                                </a>
-                                            </h6>
+                                                <h6 class="card-title mb-0">
+                                                    <a href="/wedstrijden/<?= e($wedstrijd['id']) ?>" class="text-decoration-none">
+                                                        <?= e(trim($wedstrijd['team_home']) ?? '') . ' - ' . e(trim($wedstrijd['team_away']) ?? '') ?>
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            <p class="card-text small text-muted mb-2">
+                                                <i class="bi bi-clock me-1"></i>
+                                                <?= date('H:i', strtotime($wedstrijd['time'])) ?>
+                                            </p>
+                                            <p class="card-text small mb-0">
+                                                <i class="bi bi-geo-alt me-1"></i>
+                                                <?= e($wedstrijd['location'] ?? 'Locatie onbekend') ?>
+                                            </p>
                                         </div>
-                                        <p class="card-text small text-muted mb-2">
-                                            <i class="bi bi-clock me-1"></i>
-                                            <?= date('H:i', strtotime($wedstrijd['time'])) ?>
-                                        </p>
-                                        <p class="card-text small mb-0">
-                                            <i class="bi bi-geo-alt me-1"></i>
-                                            <?= e($wedstrijd['location'] ?? 'Locatie onbekend') ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                                    </article>
+                                <?php endforeach; ?>
+                            </section>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            </aside>
         </div>
     </div>
-</div>
+</main>

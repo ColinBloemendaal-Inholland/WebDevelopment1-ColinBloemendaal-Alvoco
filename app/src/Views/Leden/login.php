@@ -5,7 +5,7 @@
                 <h1 class="fw-bold h3">Welkom terug</h1>
             </header>
             <section class="col-12 col-md-8 col-lg-6">
-                <div class="card shadow-sm w-100" style="border-radius: .75rem; overflow: hidden;">
+                <div class="card shadow-sm w-100">
                     <div class="card-body p-4 p-md-5 bg-white">
                         <!-- shared form errors partial -->
                         <?php \View::partial('Layout.errors'); ?>

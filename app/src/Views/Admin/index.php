@@ -20,7 +20,7 @@
                                         <h6 class="card-title mb-2 text-muted">Totaal Leden</h6>
                                         <h2 class="mb-0"><?= e($data['stats']['totalLeden'] ?? 0) ?></h2>
                                     </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-people-fill"></i>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <h6 class="card-title mb-2 text-muted">Contactformulieren</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalContactForms'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-envelope-fill"></i>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                     <h6 class="card-title mb-2 text-muted">Teams</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalTeams'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-diagram-3-fill"></i>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                     <h6 class="card-title mb-2 text-muted">Wedstrijden</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalWedstrijden'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-calendar-event-fill"></i>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                     <h6 class="card-title mb-2 text-muted">Nieuwsberichten</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalNieuwsberichten'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-newspaper"></i>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <h6 class="card-title mb-2 text-muted">Spelers</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalSpelers'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                     <h6 class="card-title mb-2 text-muted">Trainers</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalTrainers'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-person-vcard-fill"></i>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                     <h6 class="card-title mb-2 text-muted">Coaches</h6>
                                     <h2 class="mb-0"><?= e($data['stats']['totalCoaches'] ?? 0) ?></h2>
                                 </div>
-                                <div class="text-primary" style="font-size: 2.5rem; opacity: 0.2;">
+                                <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-person-badge-fill"></i>
                                 </div>
                             </div>

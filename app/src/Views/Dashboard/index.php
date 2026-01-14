@@ -171,7 +171,7 @@
                                     class="list-group-item d-flex flex-md-row flex-column justify-content-between align-items-start gap-2">
                                     <div class="flex-grow-1">
                                         <div class="d-flex align-items-center">
-                                            <strong class="me-2 mb-0" style="line-height:1.5;"><?= e($news->Title) ?></strong>
+                                            <strong class="me-2 mb-0"><?= e($news->Title) ?></strong>
                                             <a href="/nieuwsberichten/<?= e($news->id) ?>"
                                                 class="btn btn-primary btn-sm ms-auto">Bekijk</a>
                                         </div>
