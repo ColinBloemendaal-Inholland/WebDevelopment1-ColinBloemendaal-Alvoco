@@ -1,0 +1,42 @@
+TODOs:
+
+admin/*/post
+> delete knop geeft op het moment ook een js confirm, dit moet vervangen worden door een bootstrap modal OF meteen naar de delete route gaan en daar een bevestiging vragen
+> maakt nu nog gebruik van confirm(), dit moet weg en vervangen worden door een bootstrap modal
+
+admin/teams/post
+> Integreti constraint zorgt ervoor dat de force ook niet werkt...
+
+admin/*/index - datatables
+> datatables zorgt dat de mobile / tablet views verneukt zijn
+> Indien deleted_at gezet is en filter op deleted staat moet ipv view en edit alleen force delete en restore getoond worden
+
+Globaal:
+> alles checken op js in php bestand, moet in aparte js files
+
+admin/wedstrijden/post
+> Speler nr in een blauw blokje voor de naam
+> Categorie is niet juist zichtbaar
+
+admin/bestuursleden/post
+> NavAdmin heeft niet de goeie hoogte / word te snel afgeseden
+
+admin/bestuursleden/index
+> add filters on name and role, deleted_at
+
+admin/spelers/create
+> doet t niet
+
+admin/trainers/edit
+> bestaat niet?
+
+admin/contact
+> De naam contact vind ik niet passend
+
+admin/spelers
+> team naam word niet laten zien in de lijst
+
+admin/trainers/index
+> met deleted filter aan doet de adminnav raar
+
+                        <div class="d-flex gap-2">
