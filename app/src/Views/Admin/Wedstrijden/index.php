@@ -29,9 +29,19 @@
                 <!-- Score search -->
                 <div class="form-group col-2">
                     <label for="searchScore">Zoek op score</label>
-                    <input type="text" name="searchScore" class="form-control" id="searchScore" placeholder="Bijv. 3 - 2" aria-label="Zoek op score invoerveld">
+                    <input type="text" name="searchScore" class="form-control" id="searchScore"
+                        placeholder="Bijv. 3 - 2" aria-label="Zoek op score invoerveld">
                 </div>
-                <div class="form-group col-2 d-flex align-items-end justify-content-end">
+            </div>
+            <div class="row py-3">
+                <div class="form-group col-9 d-flex align-items-end">
+                    <div class="form-check form-switch float-right">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                            aria-label="Met verwijderde contacten checkbox" value="1">
+                        <label class="form-check-label" for="searchTrashed">Met verwijderde contacten</label>
+                    </div>
+                </div>
+                <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <a href="/admin/wedstrijden/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>

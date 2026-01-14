@@ -8,7 +8,7 @@ class ContactRepository extends BaseRepository implements IBaseRepository
 {
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        $query = $this->model->newQuery()->with('bestuurslid', 'bestuurslid.lid');
+        $query = Contact::query()->with('bestuurslid', 'bestuurslid.lid');
         if (isset($filters['naam'])) {
             $query->where('naam', 'like', '%' . $filters['naam'] . '%');
         }

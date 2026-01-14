@@ -7,17 +7,25 @@
             </header>
             <div class="row">
                 <!-- Name search -->
-                <div class="form-group col-4">
+                <div class="form-group col-3">
                     <label for="searchName">Zoek op naam:</label>
                     <input type="text" class="form-control" id="searchName" name="searchName"
                         aria-label="Zoek op naam invoerveld" placeholder="Voer een naam in:">
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-3">
                     <label for="searchRole">Zoek op rol:</label>
                     <input type="text" class="form-control" id="searchRole" name="searchRole"
                         aria-label="Zoek op rol invoerveld" placeholder="Voer een rol in:">
                 </div>
-                <div class="form-group col-4 d-flex align-items-end justify-content-end">
+                <div class="form-group col-3 d-flex align-items-end">
+                    <div class="form-check form-switch float-right">
+                        <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                            aria-label="Met verwijderde contacten checkbox" value="1">
+                        <label class="form-check-label" for="searchTrashed">Met verwijderde contacten</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-3 d-flex align-items-end justify-content-end">
                     <a href="/admin/coaches/create" class="btn btn-primary">Toevoegen</a>
                 </div>
             </div>

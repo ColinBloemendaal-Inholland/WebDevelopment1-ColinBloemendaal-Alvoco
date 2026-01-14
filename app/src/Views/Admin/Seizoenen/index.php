@@ -9,10 +9,17 @@
 				<!-- Titel search -->
 				<div class="form-group col-4">
 					<label for="searchTitle">Zoek op titel:</label>
-					<input type="text" class="form-control" id="searchTitle" name="searchTitle" aria-label="Zoek op seizoen titel invoerveld"
-						placeholder="Voer een titel in:">
+					<input type="text" class="form-control" id="searchTitle" name="searchTitle"
+						aria-label="Zoek op seizoen titel invoerveld" placeholder="Voer een titel in:">
 				</div>
-				<div class="form-group col-8 d-flex align-items-end justify-content-end">
+				<div class="form-group col-4 d-flex align-items-end">
+					<div class="form-check form-switch float-right">
+						<input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+							aria-label="Met verwijderde contacten checkbox" value="1">
+						<label class="form-check-label" for="searchTrashed">Met verwijderde contacten</label>
+					</div>
+				</div>
+				<div class="form-group col-4 d-flex align-items-end justify-content-end">
 					<a href="/admin/seizoenen/create" class="btn btn-primary">Toevoegen</a>
 				</div>
 			</div>
@@ -48,6 +55,7 @@
 				type: 'POST',
 				data: function (d) {
 					d.title = $('#searchTitle').val();
+					d.trashed = $('#searchTrashed').is(':checked') ? 1 : 0;
 				},
 				dataSrc: 'data',
 				error: function (xhr) {
@@ -61,7 +69,7 @@
 			},
 			columns: [
 				{ data: 'title', title: 'Titel', render: $.fn.dataTable.render.text() },
-				{ data: 'is_current', title: 'Huidig', render: function(data) { return data ? 'Ja' : 'Nee'; } },
+				{ data: 'is_current', title: 'Huidig', render: function (data) { return data ? 'Ja' : 'Nee'; } },
 				{
 					data: null,
 					title: 'Acties',
@@ -97,5 +105,9 @@
 		};
 
 		$('#searchTitle').on('input', timeout);
+
+		$('#searchTrashed').on('change', function () {
+            seizoenenTable.ajax.reload();
+        });
 	});
 </script>

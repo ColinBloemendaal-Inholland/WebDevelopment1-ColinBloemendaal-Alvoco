@@ -28,13 +28,13 @@ class SeizoenenRepository extends BaseRepository
 
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        $query = $this->model->newQuery();
+        $query = Seizoenen::query();
 
         if (isset($filters['name'])) {
             $query->where('name', 'like', '%' . $filters['name'] . '%');
         }
-        if(isset($filters['is_current'])) {
-            $query->where('is_current', $filters['is_current']);
+        if(isset($filters['trashed']) && $filters['trashed'] == 1) {
+            $query->onlyTrashed();
         }
 
         $total = Seizoenen::count();

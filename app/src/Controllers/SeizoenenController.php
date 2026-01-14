@@ -93,7 +93,10 @@ class SeizoenenController extends BaseController implements IController
 
     public function getSeizoenen()
     {
-        $filter = [];
+        $filter = [
+            'title' => $_POST['title'] ?? null,
+            'trashed' => $_POST['trashed'] ?? null
+        ];
 
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
