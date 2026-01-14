@@ -1,12 +1,12 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
             <div class="row">
                 <div class="col-12">
 
                     <!-- Top: Match header + action buttons -->
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['wedstrijd']['hometeam']['name'] ?? '-') ?> vs
                             <?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?>
                         </h2>
@@ -16,10 +16,10 @@
                             <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
-                    </div>
+                    </header>
 
                     <!-- Match main info -->
-                    <div class="card shadow-sm mb-4">
+                    <article class="card shadow-sm mb-4">
                         <div class="card-body">
                             <h5 class="mb-3">Wedstrijd informatie</h5>
                             <dl class="row">
@@ -51,7 +51,7 @@
                                 <dd class="col-sm-9"><?= e($data['wedstrijd']['updated_at'] ?? '-') ?></dd>
                             </dl>
                         </div>
-                    </div>
+                    </article>
 
                     <!-- Teams columns -->
                     <div class="row">
@@ -171,6 +171,6 @@
 
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </div>

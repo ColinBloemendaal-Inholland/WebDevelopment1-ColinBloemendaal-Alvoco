@@ -1,10 +1,12 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
-            <div class="card shadow-sm">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
+            <article class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Ledenformulier</h2>
+                    <header>
+                        <h2 class="card-title text-center mb-4">Ledenformulier</h2>
+                    </header>
                     <form autocomplete="off" method="POST" action="/admin/leden/create">
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
@@ -152,7 +154,9 @@
         </div>
 
     </div>
-</div>
+            </article>
+        </section>
+    </main>
 
 
 <script>

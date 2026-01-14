@@ -1,34 +1,34 @@
 <div class="d-flex flex-column min-vh-100">
     <div class="d-flex flex-grow-1">
         <?php \View::partial('Layout.NavAdmin'); ?>
-        <div class="flex-grow-1 p-4">
-            <div class="container-fluid m-0 py-5">
-            <h1 class="mb-4">Bestuursleden</h1>
-            <div class="row">
-                <div class="col-12 d-flex align-items-end justify-content-end mb-3">
-                    <a href="/admin/bestuursleden/create" class="btn btn-primary">Toevoegen</a>
+        <main class="flex-grow-1 p-4">
+            <section class="container-fluid m-0 py-5">
+                <header>
+                    <h1 class="mb-4">Bestuursleden</h1>
+                </header>
+                <div class="row">
+                    <div class="col-12 d-flex align-items-end justify-content-end mb-3">
+                        <a href="/admin/bestuursleden/create" class="btn btn-primary">Toevoegen</a>
+                    </div>
                 </div>
-            </div>
-            <div class="table-responsive">
-                <table id="bestuursledenTable" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Naam</th>
-                            <th>Rol</th>
-                            <th>Acties</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="3" style="text-align:center;">Loading…</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
+                <div class="table-responsive">
+                    <table id="bestuursledenTable" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Rol</th>
+                                <th>Acties</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" style="text-align:center;">Loading…</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
 <script>
     $(document).ready(function () {
         // Load datatables

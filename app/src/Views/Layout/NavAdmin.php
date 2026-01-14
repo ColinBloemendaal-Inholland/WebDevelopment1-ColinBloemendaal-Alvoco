@@ -1,5 +1,8 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse position-sticky ">
     <div class="position-sticky pt-3">
+        <header>
+            <span class="visually-hidden">Admin navigatie</span>
+        </header>
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="/admin">

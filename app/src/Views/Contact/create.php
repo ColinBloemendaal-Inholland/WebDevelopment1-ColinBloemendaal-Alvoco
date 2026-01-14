@@ -1,20 +1,23 @@
-<div class="container py-5">
-    <div class="row mb-4">
-        <div class="col-12 text-center">
-            <h1 class="display-4 fw-bold">Contact</h1>
-            <p class="lead">Neem contact op met een bestuurslid via onderstaand formulier.</p>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-lg-7 col-md-9">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h2 class="h4 mb-4">Contactformulier</h2>
-                    <?php \View::partial('Layout.errors'); ?>
-                    <?php if(isset($_GET['success'])): ?>
-                        <div class="alert alert-success">Bericht succesvol verzonden!</div>
-                    <?php endif; ?>
-                    <form method="POST" action="/contact">
+<main>
+    <section class="container py-5">
+        <header class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">Contact</h1>
+                <p class="lead">Neem contact op met een bestuurslid via onderstaand formulier.</p>
+            </div>
+        </header>
+        <section class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <article class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <header>
+                            <h2 class="h4 mb-4">Contactformulier</h2>
+                        </header>
+                        <?php \View::partial('Layout.errors'); ?>
+                        <?php if(isset($_GET['success'])): ?>
+                            <div class="alert alert-success">Bericht succesvol verzonden!</div>
+                        <?php endif; ?>
+                        <form method="POST" action="/contact">
                         <div class="mb-3">
                             <label for="naam" class="form-label">Naam</label>
                             <input type="text" name="naam" id="naam" class="form-control" required
@@ -41,12 +44,13 @@
                             <label for="bericht" class="form-label">Bericht</label>
                             <textarea name="bericht" id="bericht" class="form-control" rows="5" required aria-label="Bericht invoerveld"><?= e($_SESSION['form_old']['bericht'] ?? '') ?></textarea>
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Verstuur</button>
-                        </div>
-                    </form>
-                </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Verstuur</button>
+                            </div>
+                        </form>
+                    </div>
+                </article>
             </div>
-        </div>
-    </div>
-</div>
+        </section>
+    </section>
+</main>

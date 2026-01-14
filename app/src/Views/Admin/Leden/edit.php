@@ -1,10 +1,12 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
-            <div class="card shadow-sm">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
+            <article class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Lid Bewerken</h2>
+                    <header>
+                        <h2 class="card-title text-center mb-4">Lid Bewerken</h2>
+                    </header>
                     <form method="POST" action="/admin/leden/<?= e($data['lid']['id'] ?? '') ?>">
                         <input type="hidden" name="_method" value="PUT">
                         <?php \View::partial('Layout.errors'); ?>
@@ -131,10 +133,9 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </article>
+        </section>
+    </main>
 
 <script>
     new TomSelect("#roles", {

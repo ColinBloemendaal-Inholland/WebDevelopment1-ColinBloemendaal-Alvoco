@@ -1,8 +1,10 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container m-0">
-            <h1 class="mb-4">Wedstrijden</h1>
+    <main class="flex-grow-1 p-4">
+        <section class="container m-0">
+            <header>
+                <h1 class="mb-4">Wedstrijden</h1>
+            </header>
             <div class="row">
                 <!-- Home team select -->
                 <div class="form-group col-4">
@@ -51,8 +53,8 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
+        </section>
+    </main>
 </div>
 
 <script>

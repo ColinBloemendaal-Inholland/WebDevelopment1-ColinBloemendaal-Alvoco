@@ -1,10 +1,10 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['nieuwsbericht']['Title']) ?></h2>
                         <div>
                             <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/edit"
@@ -12,9 +12,8 @@
                             <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
-                    </div>
-
-                    <div class="card shadow-sm mb-4">
+                    </header>
+                    <article class="card shadow-sm mb-4">
                         <div class="card-body">
                             <dl class="row">
                                 <dt class="col-sm-3">Bericht</dt>
@@ -34,9 +33,9 @@
                                 <dd class="col-sm-9"><?= e($data['nieuwsbericht']['updated_at']) ?></dd>
                             </dl>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </div>

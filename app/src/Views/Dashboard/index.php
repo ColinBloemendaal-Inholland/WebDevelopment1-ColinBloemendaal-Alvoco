@@ -1,63 +1,63 @@
-<div class="container py-5">
-    <div class="row mb-4">
-        <div class="col-md-8 mx-auto">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h2 class="card-title mb-0">Welkom,
-                            <?= e($data['user']->fullname) ?>
-                        </h2>
-                        <a href="/profile/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
-                    </div>
-                    <p class="mb-1"><strong>Email:</strong> <?= e($data['user']->email) ?></p>
-                    <?php if (!empty($data['teamsCoached']) && count($data['teamsCoached']) > 0): ?>
-                        <hr>
-                        <h5 class="mt-3">Teams die je coacht</h5>
-                        <div class="accordion mb-3" id="teamsAccordion">
-                            <?php foreach ($data['teamsCoached'] as $idx => $team): ?>
-                                <?php if ($team): ?>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header d-flex align-items-center" id="heading<?= $idx ?>">
-                                            <button class="accordion-button collapsed d-flex justify-content-between align-items-center" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse<?= $idx ?>"
-                                                aria-expanded="false" aria-controls="collapse<?= $idx ?>">
-                                                <span class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
-                                                <a href="/dashboard/teams/<?= e($team->id) ?>/edit"
-                                                    class="btn btn-outline-secondary btn-sm ms-2 p-1" title="Team bewerken">
-                                                    <span class="bi bi-pencil"></span>
-                                                </a>
-                                            </button>
-
-                                        </h2>
-                                        <div id="collapse<?= $idx ?>" class="accordion-collapse collapse"
-                                            aria-labelledby="heading<?= $idx ?>" data-bs-parent="#teamsAccordion">
-                                            <div class="accordion-body">
-                                                <h6>Komende wedstrijden</h6>
-                                                <ul class="list-group mb-3">
-                                                    <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
-                                                        <?php foreach ($team->upcoming_games as $game): ?>
-                                                            <li class="list-group-item">
-                                                                <?= e(date('d-m-Y', strtotime($game->date))) ?>
-                                                                <?= e(date('H:i', strtotime($game->time))) ?> -
-                                                                <?= e($game->hometeam->name ?? '') ?> vs
-                                                                <?= e($game->awayTeam->name ?? '') ?>
-                                                            </li>
-                                                        <?php endforeach; ?>
-                                                    <?php else: ?>
-                                                        <li class="list-group-item">Geen komende wedstrijden</li>
-                                                    <?php endif; ?>
-                                                </ul>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h6>Spelers</h6>
+<main>
+    <div class="container py-5">
+        <div class="row mb-4">
+            <section class="col-md-8 mx-auto" aria-label="Dashboard hoofdsectie">
+                <article class="card shadow-sm">
+                    <div class="card-body">
+                        <header class="d-flex align-items-center justify-content-between mb-3">
+                            <h1 class="card-title mb-0 h2">Welkom,
+                                <?= e($data['user']->fullname) ?>
+                            </h1>
+                            <a href="/profile/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
+                        </header>
+                        <p class="mb-1"><strong>Email:</strong> <?= e($data['user']->email) ?></p>
+                        <?php if (!empty($data['teamsCoached']) && count($data['teamsCoached']) > 0): ?>
+                            <hr>
+                            <section aria-label="Teams die je coacht">
+                                <h2 class="mt-3 h5">Teams die je coacht</h2>
+                                <div class="accordion mb-3" id="teamsAccordion">
+                                    <?php foreach ($data['teamsCoached'] as $idx => $team): ?>
+                                        <?php if ($team): ?>
+                                            <article class="accordion-item">
+                                                <h3 class="accordion-header d-flex align-items-center h6" id="heading<?= $idx ?>">
+                                                    <button class="accordion-button collapsed d-flex justify-content-between align-items-center" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapse<?= $idx ?>"
+                                                        aria-expanded="false" aria-controls="collapse<?= $idx ?>">
+                                                        <span class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
+                                                        <a href="/dashboard/teams/<?= e($team->id) ?>/edit"
+                                                            class="btn btn-outline-secondary btn-sm ms-2 p-1" title="Team bewerken">
+                                                            <span class="bi bi-pencil"></span>
+                                                        </a>
+                                                    </button>
+                                                </h3>
+                                                <div id="collapse<?= $idx ?>" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading<?= $idx ?>" data-bs-parent="#teamsAccordion">
+                                                    <div class="accordion-body">
+                                                        <h4 class="h6">Komende wedstrijden</h4>
                                                         <ul class="list-group mb-3">
-                                                            <?php foreach ($team->spelers as $speler): ?>
-                                                                <li class="list-group-item">
-                                                                    <span
-                                                                        class="badge bg-primary me-2"><?= e($speler->number ?? '-') ?></span>
-                                                                    <?= e($speler->lid->fullname ?? 'Onbekende speler') ?>
-                                                                </li>
-                                                            <?php endforeach; ?>
+                                                            <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
+                                                                <?php foreach ($team->upcoming_games as $game): ?>
+                                                                    <li class="list-group-item">
+                                                                        <?= e(date('d-m-Y', strtotime($game->date))) ?>
+                                                                        <?= e(date('H:i', strtotime($game->time))) ?> -
+                                                                        <?= e($game->hometeam->name ?? '') ?> vs
+                                                                        <?= e($game->awayTeam->name ?? '') ?>
+                                                                    </li>
+                                                                <?php endforeach; ?>
+                                                            <?php else: ?>
+                                                                <li class="list-group-item">Geen komende wedstrijden</li>
+                                                            <?php endif; ?>
+                                                        </ul>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h5 class="h6">Spelers</h5>
+                                                                <ul class="list-group mb-3">
+                                                                    <?php foreach ($team->spelers as $speler): ?>
+                                                                        <li class="list-group-item">
+                                                                            <span class="badge bg-primary me-2"><?= e($speler->number ?? '-') ?></span>
+                                                                            <?= e($speler->lid->fullname ?? 'Onbekende speler') ?>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
                                                         </ul>
                                                     </div>
                                                     <div class="col-md-6">

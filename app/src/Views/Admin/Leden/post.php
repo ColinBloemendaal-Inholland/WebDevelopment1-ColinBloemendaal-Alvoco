@@ -1,21 +1,21 @@
 <div class="d-flex flex-column min-vh-100">
     <div class="d-flex flex-grow-1">
         <?php \View::partial('Layout.NavAdmin'); ?>
-        <div class="flex-grow-1 p-4">
-            <div class="container-fluid m-0 py-5">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="h4"><?= e($data['lid']['fullname']) ?></h2>
-                        <div>
-                            <a href="/admin/leden/<?= e($data['lid']['id']) ?>/edit" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="/admin/leden/<?= e($data['lid']['id']) ?>/delete" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure?')">Delete</a>
-                        </div>
-                    </div>
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-body">
-                            <dl class="row">
+        <main class="flex-grow-1 p-4">
+            <section class="container-fluid m-0 py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <header class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="h4"><?= e($data['lid']['fullname']) ?></h2>
+                            <div>
+                                <a href="/admin/leden/<?= e($data['lid']['id']) ?>/edit" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/admin/leden/<?= e($data['lid']['id']) ?>/delete" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure?')">Delete</a>
+                            </div>
+                        </header>
+                        <article class="card shadow-sm mb-4">
+                            <div class="card-body">
+                                <dl class="row">
                                 <dt class="col-sm-3">Voornaam</dt>
                                 <dd class="col-sm-9"><?= e($data['lid']['firstname']) ?></dd>
 
@@ -68,11 +68,12 @@
 
                                 <dt class="col-sm-3">Laatste wijziging</dt>
                                 <dd class="col-sm-9"><?= e($data['lid']['updated_at'] ?? '-') ?></dd>
+                                </dd>
                             </dl>
                         </div>
-                    </div>
+                    </article>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 </div>

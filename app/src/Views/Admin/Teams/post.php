@@ -1,10 +1,10 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['team']['name']) ?></h2>
                         <div>
                             <a href="/admin/teams/<?= e($data['team']['id']) ?>/edit"
@@ -12,12 +12,10 @@
                             <a href="/admin/teams/<?= e($data['team']['id']) ?>/delete" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
                         </div>
-                    </div>
-
-                    <div class="card shadow-sm mb-4">
+                    </header>
+                    <article class="card shadow-sm mb-4">
                         <div class="card-body">
                             <!-- Team eigenschappen -->
-
                             <div class="row">
                                 <div class="col-md-8">
                                     <h5 class="mb-3">Eigenschappen</h5>
@@ -68,7 +66,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php else: ?>
-                                <p>- Geen spelers toegewezen</p>
+                                <span class="text-muted">Geen spelers toegevoegd aan dit team.</span>
                             <?php endif; ?>
 
                             <hr>
@@ -86,7 +84,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php else: ?>
-                                <p>- Geen coaches toegewezen</p>
+                                <span class="text-muted">Geen coaches toegevoegd aan dit team.</span>
                             <?php endif; ?>
 
                             <hr>
@@ -104,7 +102,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php else: ?>
-                                <p>- Geen trainers toegewezen</p>
+                                <span class="text-muted">Geen trainers toegevoegd aan dit team.</span>
                             <?php endif; ?>
 
                             <hr>
@@ -122,13 +120,12 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php else: ?>
-                                <p>- Geen wedstrijden gevonden</p>
+                                <span class="text-muted">Geen wedstrijden gevonden</span>
                             <?php endif; ?>
-
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </div>

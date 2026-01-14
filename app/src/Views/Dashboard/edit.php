@@ -1,10 +1,13 @@
-<div class="container py-5">
-    <div class="row mb-4">
-        <div class="col-md-8 mx-auto">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h2 class="card-title mb-3">Profiel bewerken</h2>
-                    <form method="POST" action="/dashboard/update">
+<main>
+    <section class="container py-5">
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+                <article class="card shadow-sm">
+                    <div class="card-body">
+                        <header>
+                            <h2 class="card-title mb-3">Profiel bewerken</h2>
+                        </header>
+                        <form method="POST" action="/dashboard/update">
                         <?php \View::partial('Layout.errors'); ?>
 
                         <div class="row mb-3">
@@ -83,7 +86,9 @@
                             </div>
                         </div>
                         <hr>
-                        <h4 class="mb-3">Noodcontact gegevens</h4>
+                        <header>
+                            <h4 class="mb-3">Noodcontact gegevens</h4>
+                        </header>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="emergency_contact_firstname" class="form-label">Voornaam</label>
@@ -108,9 +113,10 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                         <a href="/dashboard" class="btn btn-secondary ms-2">Annuleren</a>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                </article>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</main>

@@ -1,12 +1,13 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
-    <div class="flex-grow-1 p-4">
-        <div class="container-fluid m-0 py-5">
+    <main class="flex-grow-1 p-4">
+        <section class="container-fluid m-0 py-5">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="h4 mb-4">Nieuw Nieuwsbericht toevoegen</h2>
- 
-                    <div class="card shadow-sm">
+                    <header>
+                        <h2 class="h4 mb-4">Nieuw Nieuwsbericht toevoegen</h2>
+                    </header>
+                    <article class="card shadow-sm">
                         <div class="card-body">
                             <?php \View::partial('Layout.errors'); ?>
                             <form method="POST">
@@ -54,28 +55,27 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </div>
-    <script>
-        tinymce.init({
-            selector: '#Message',
-            plugins: [
-                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-        });
-    </script>
-</div>
+        </section>
+    </main>
 
+<script>
+    tinymce.init({
+        selector: '#Message',
+        plugins: [
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+        ],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+    });
+</script>
 <script>
     $(function () {
         // TomSelect for Auteur
