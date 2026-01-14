@@ -2,7 +2,9 @@
     <?php \View::partial('Layout.NavAdmin'); ?>
     <div class="flex-grow-1 p-4">
         <div class="container m-0">
-            <h1 class="mb-4">Teams</h1>
+            <header>
+                <h1 class="mb-4">Teams</h1>
+            </header>
             <div class="row">
                 <!-- Name search -->
                 <div class="form-group col-4">
@@ -14,10 +16,10 @@
                     <label for="searchSeizoen">Zoek op seizoen:</label>
                     <select name="seizoen" id="searchSeizoen" class="form-select">
                         <option value="" selected>Selecteer een seizoen</option>
-                        <?php foreach ($data['seizoenen'] as $seizoen) : ?>
-                            <option value="<?= e($seizoen['id']) ?>"
-                            <?= $seizoen['is_current'] ? 'selected' : '' ?>>
-                            <?= e($seizoen['title']) ?><?= !empty($seizoen['is_current']) ? ' (Huidig)' : '' ?></option>
+                        <?php foreach ($data['seizoenen'] as $seizoen): ?>
+                            <option value="<?= e($seizoen['id']) ?>" <?= $seizoen['is_current'] ? 'selected' : '' ?>>
+                                <?= e($seizoen['title']) ?>    <?= !empty($seizoen['is_current']) ? ' (Huidig)' : '' ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                 </div>

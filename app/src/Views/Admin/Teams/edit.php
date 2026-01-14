@@ -119,9 +119,7 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <hr>
-
                                 <div class="mb-3 row">
                                     <div class="col-sm-9 offset-sm-3">
                                         <button type="submit" class="btn btn-primary">Opslaan</button>
@@ -135,6 +133,7 @@
             </div>
         </section>
     </main>
+</div>
 
 <script>
     $(function () {

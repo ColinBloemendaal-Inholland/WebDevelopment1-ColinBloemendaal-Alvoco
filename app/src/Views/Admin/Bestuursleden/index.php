@@ -1,8 +1,8 @@
-<div class="d-flex flex-column min-vh-100">
+<div class="d-flex flex-column">
     <div class="d-flex flex-grow-1">
         <?php \View::partial('Layout.NavAdmin'); ?>
         <main class="flex-grow-1 p-4">
-            <section class="container-fluid m-0 py-5">
+            <section class="container m-0 py-5">
                 <header>
                     <h1 class="mb-4">Bestuursleden</h1>
                 </header>
@@ -11,24 +11,24 @@
                         <a href="/admin/bestuursleden/create" class="btn btn-primary">Toevoegen</a>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table id="bestuursledenTable" class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Naam</th>
-                                <th>Rol</th>
-                                <th>Acties</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td colspan="3" style="text-align:center;">Loading…</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table id="bestuursledenTable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Rol</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" style="text-align:center;">Loading…</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </main>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         // Load datatables

@@ -1,8 +1,8 @@
-<div class="d-flex flex-column min-vh-100">
+<div class="d-flex flex-column">
     <div class="d-flex flex-grow-1">
         <?php \View::partial('Layout.NavAdmin'); ?>
         <main class="flex-grow-1 p-4">
-            <section class="container-fluid m-0 py-5">
+            <section class="container m-0 py-5">
                 <div class="row">
                     <div class="col-12">
                         <header class="d-flex justify-content-between align-items-center mb-3">

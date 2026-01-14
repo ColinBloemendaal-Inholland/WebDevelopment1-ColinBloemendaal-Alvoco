@@ -9,13 +9,13 @@
                 <!-- Name search -->
                 <div class="form-group col-4">
                     <label for="searchName">Zoek op naam:</label>
-                    <input type="text" class="form-control" id="searchName" name="searchName" aria-label="Zoek op naam invoerveld"
-                        placeholder="Voer een naam in:">
+                    <input type="text" class="form-control" id="searchName" name="searchName"
+                        aria-label="Zoek op naam invoerveld" placeholder="Voer een naam in:">
                 </div>
                 <div class="form-group col-4">
                     <label for="searchRole">Zoek op rol:</label>
-                    <input type="text" class="form-control" id="searchRole" name="searchRole" aria-label="Zoek op rol invoerveld"
-                        placeholder="Voer een rol in:">
+                    <input type="text" class="form-control" id="searchRole" name="searchRole"
+                        aria-label="Zoek op rol invoerveld" placeholder="Voer een rol in:">
                 </div>
                 <div class="form-group col-4 d-flex align-items-end justify-content-end">
                     <a href="/admin/coaches/create" class="btn btn-primary">Toevoegen</a>
@@ -37,6 +37,7 @@
             </table>
         </section>
     </main>
+</div>
 
 <script>
     $(document).ready(function () {
@@ -77,23 +78,23 @@
                         let deletedAt;
                         if (row['deleted_at'] !== null) {
                             deletedAt = `
-                                <form method="POST" action="/admin/coaches/${row.id}/force" class="d-inline">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
-                                </form>
-                            `;
+                            <form method="POST" action="/admin/coaches/${row.id}/force" class="d-inline">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        `;
                         } else {
                             deletedAt = `
-                                <form method="POST" action="/admin/coaches/${row.id}" class="d-inline delete-form" data-id="${row.id}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
-                                </form>
-                            `;
+                            <form method="POST" action="/admin/coaches/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        `;
                         }
                         return `
-                            <a href="/admin/coaches/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
-                            <a href="/admin/coaches/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-                        ` + deletedAt;
+                        <a href="/admin/coaches/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
+                        <a href="/admin/coaches/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
+                    ` + deletedAt;
                     }
                 }
             ],

@@ -1,7 +1,7 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
     <main class="flex-grow-1 p-4">
-        <section class="container-fluid m-0 py-5">
+        <section class="container m-0 py-5">
             <article class="card shadow-sm">
                 <div class="card-body">
                     <header>
@@ -10,7 +10,7 @@
                     <form method="POST" action="/admin/leden/<?= e($data['lid']['id'] ?? '') ?>">
                         <input type="hidden" name="_method" value="PUT">
                         <?php \View::partial('Layout.errors'); ?>
-                        
+
                         <!-- Persoonlijke Gegevens -->
                         <h5 class="mb-3">Persoonlijke Gegevens</h5>
                         <div class="row g-3 mb-3">
@@ -22,7 +22,8 @@
                             <div class="col-sm-12 col-md-4">
                                 <label for="middlename" class="form-label">Tussenvoegsel</label>
                                 <input id="middlename" type="text" class="form-control" name="middlename"
-                                    value="<?= e($data['lid']['middlename'] ?? '') ?>" aria-label="Tussenvoegsel invoerveld">
+                                    value="<?= e($data['lid']['middlename'] ?? '') ?>"
+                                    aria-label="Tussenvoegsel invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label for="lastname" class="form-label">Achternaam</label>
@@ -36,27 +37,32 @@
                                 <label for="gender" class="form-label">Geslacht</label>
                                 <select id="gender" class="form-select" name="gender" required>
                                     <option disabled hidden>Kies...</option>
-                                    <option value="M" <?= $data['lid']['gender'] ?? '' === 'M' ? 'selected' : '' ?>>Man</option>
-                                    <option value="F" <?= $data['lid']['gender'] ?? '' === 'F' ? 'selected' : '' ?>>Vrouw</option>
-                                    <option value="O" <?= $data['lid']['gender'] ?? '' === 'O' ? 'selected' : '' ?>>Anders</option>
+                                    <option value="M" <?= $data['lid']['gender'] ?? '' === 'M' ? 'selected' : '' ?>>Man
+                                    </option>
+                                    <option value="F" <?= $data['lid']['gender'] ?? '' === 'F' ? 'selected' : '' ?>>Vrouw
+                                    </option>
+                                    <option value="O" <?= $data['lid']['gender'] ?? '' === 'O' ? 'selected' : '' ?>>Anders
+                                    </option>
                                 </select>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <label for="date_of_birth" class="form-label">Geboortedatum</label>
                                 <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" required
-                                    value="<?= e($data['lid']['date_of_birth'] ?? '') ?>" aria-label="Geboortedatum invoerveld">
+                                    value="<?= e($data['lid']['date_of_birth'] ?? '') ?>"
+                                    aria-label="Geboortedatum invoerveld">
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12 col-md-6">
-                                <label for="email"  class="form-label">E-mail</label>
+                                <label for="email" class="form-label">E-mail</label>
                                 <input id="email" type="email" class="form-control" name="email" required
                                     value="<?= e($data['lid']['email'] ?? '') ?>" aria-label="E-mail invoerveld">
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="phone" class="form-label">Telefoonnummer</label>
                                 <input id="phone" type="tel" class="form-control" name="phone" required
-                                    value="<?= e($data['lid']['phone'] ?? '') ?>" aria-label="Telefoonnummer invoerveld">
+                                    value="<?= e($data['lid']['phone'] ?? '') ?>"
+                                    aria-label="Telefoonnummer invoerveld">
                             </div>
                         </div>
                         <!-- Rollen -->
@@ -109,22 +115,26 @@
                         <div class="row g-3 mb-3">
                             <div class="col-sm-6 col-md-3">
                                 <label for="emergency_contact_firstname" class="form-label">Voornaam</label>
-                                <input id="emergency_contact_firstname" type="text" class="form-control" required name="emergency_contact_firstname"
+                                <input id="emergency_contact_firstname" type="text" class="form-control" required
+                                    name="emergency_contact_firstname"
                                     value="<?= e($data['lid']['emergency_contact_firstname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="emergency_contact_middlename" class="form-label">Tussenvoegsel</label>
-                                <input id="emergency_contact_middlename" type="text" class="form-control" name="emergency_contact_middlename"
+                                <input id="emergency_contact_middlename" type="text" class="form-control"
+                                    name="emergency_contact_middlename"
                                     value="<?= e($data['lid']['emergency_contact_middlename'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="emergency_contact_lastname" class="form-label">Achternaam</label>
-                                <input id="emergency_contact_lastname" type="text" class="form-control" required name="emergency_contact_lastname"
+                                <input id="emergency_contact_lastname" type="text" class="form-control" required
+                                    name="emergency_contact_lastname"
                                     value="<?= e($data['lid']['emergency_contact_lastname'] ?? '') ?>">
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="emergency_contact_phone" class="form-label">Telefoon</label>
-                                <input id="emergency_contact_phone" type="tel" class="form-control" required name="emergency_contact_phone"
+                                <input id="emergency_contact_phone" type="tel" class="form-control" required
+                                    name="emergency_contact_phone"
                                     value="<?= e($data['lid']['emergency_contact_phone'] ?? '') ?>">
                             </div>
                         </div>
@@ -136,11 +146,12 @@
             </article>
         </section>
     </main>
+</div>
 
-<script>
-    new TomSelect("#roles", {
-        plugins: ["remove_button"],
-        placeholder: "Selecteer rollen...",
-        maxItems: null
-    });
-</script>
+    <script>
+        new TomSelect("#roles", {
+            plugins: ["remove_button"],
+            placeholder: "Selecteer rollen...",
+            maxItems: null
+        });
+    </script>
