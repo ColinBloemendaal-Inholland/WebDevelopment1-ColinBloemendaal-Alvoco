@@ -24,7 +24,7 @@
                                                         data-bs-toggle="collapse" data-bs-target="#collapse<?= $idx ?>"
                                                         aria-expanded="false" aria-controls="collapse<?= $idx ?>">
                                                         <span class="flex-grow-1 text-start"><?= e($team->name ?? 'Onbekend team') ?></span>
-                                                        <a href="/dashboard/teams/<?= e($team->id) ?>/edit"
+                                                        <a href="/profile/teams/<?= e($team->id) ?>/edit"
                                                             class="btn btn-outline-secondary btn-sm ms-2 p-1" title="Team bewerken">
                                                             <span class="bi bi-pencil"></span>
                                                         </a>

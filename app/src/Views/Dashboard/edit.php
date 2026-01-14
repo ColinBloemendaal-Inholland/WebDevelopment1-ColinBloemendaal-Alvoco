@@ -7,7 +7,7 @@
                         <header>
                             <h2 class="card-title mb-3">Profiel bewerken</h2>
                         </header>
-                        <form method="POST" action="/dashboard/update">
+                        <form method="POST" action="/profile/update">
                         <?php \View::partial('Layout.errors'); ?>
 
                         <div class="row mb-3">
@@ -112,7 +112,7 @@
                                 value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? $data['user']->emergency_contact_phone ?? '') ?>" placeholder="Telefoon">
                         </div>
                         <button type="submit" class="btn btn-primary">Opslaan</button>
-                        <a href="/dashboard" class="btn btn-secondary ms-2">Annuleren</a>
+                        <a href="/profile" class="btn btn-secondary ms-2">Annuleren</a>
                         </form>
                     </div>
                 </article>

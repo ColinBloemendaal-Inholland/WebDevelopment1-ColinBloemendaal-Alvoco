@@ -1,6 +1,6 @@
 <div class="container py-4">
     <h2>Team bewerken: <?= e($data['team']->name) ?></h2>
-    <form method="POST" action="/dashboard/teams/<?= e($data['team']->id) ?>/update">
+    <form method="POST" action="/profile/teams/<?= e($data['team']->id) ?>/update">
         <?php \View::partial('Layout.errors'); ?>
         <div class="mb-3">
             <label for="spelers" class="form-label">Spelers</label>
@@ -30,7 +30,7 @@
         <header>
             <h2>Team bewerken: <?= e($data['team']->name) ?></h2>
         </header>
-        <form method="POST" action="/dashboard/teams/<?= e($data['team']->id) ?>/update">
+        <form method="POST" action="/profile/teams/<?= e($data['team']->id) ?>/update">
             <?php \View::partial('Layout.errors'); ?>
             <div class="mb-3">
                 <label for="spelers" class="form-label">Spelers</label>

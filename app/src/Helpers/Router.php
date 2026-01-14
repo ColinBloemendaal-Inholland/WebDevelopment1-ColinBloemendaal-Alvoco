@@ -60,14 +60,14 @@ class Router
                     }
 
                     // Middleware: dashboard auth
-                    if (strpos($uri, '/dashboard') === 0 && !\Auth::isLoggedIn()) {
+                    if (strpos($uri, '/profile') === 0 && !\Auth::isLoggedIn()) {
                         http_response_code(401);
                         \View::view("errors.401", '401');
                         return;
                     }
 
                     // Middleware: dashboard teams
-                    if (strpos($uri, '/dashboard/teams') === 0 && !RoleMiddleware::handle(['coach'])) {
+                    if (strpos($uri, '/profile/teams') === 0 && !RoleMiddleware::handle(['coach'])) {
                         http_response_code(401);
                         \View::view("errors.401", '401');
                         return;
