@@ -55,8 +55,15 @@ class TrainersController extends BaseController implements IController
 
     public function edit(array $params)
     {
-        $post = $this->service->get(intval($params["id"]));
-        \View::view("admin.trainers.edit", 'Wijzig bestuurslid', $post);
+        $trainer = $this->service->get(intval($params["id"]));
+        if (!$trainer) {
+            \View::redirect("/admin/trainers");
+        }
+        \View::view("admin.trainers.edit", 'Wijzig bestuurslid', [
+            'trainer' => $trainer,
+            'teams' => $this->teamsServices->getAll(),
+            'leden' => $this->ledenServices->getAll(),
+        ]);
     }
 
     public function update(array $params)
