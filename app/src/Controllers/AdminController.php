@@ -107,7 +107,7 @@ class AdminController
     }
     public function getTrainer(array $params) {
         $trainer = $this->trainersServices->get(intval($params['id']));
-        \View::view('admin.trainers.post', $trainer->lid->fullname, ['trainer'=> $trainer]);
+        \View::view('admin.trainers.post', $trainer->lid->fullname ?? '', ['trainer'=> $trainer]);
     }
 
     public function wedstrijden()
