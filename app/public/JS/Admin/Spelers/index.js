@@ -34,18 +34,18 @@ $(document).ready(function () {
                 orderable: false,
                 render: function (data, type, row) {
                     let deletedAt;
-                    if (row['deleted_at'] !== null) {
-                        deletedAt = `
-                            <form method="POST" action="/admin/spelers/${row.id}/force" class="d-inline force-delete-form">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-sm btn-danger me-1 force-delete-link"><i class="bi bi-trash-fill"></i></button>
-                            </form>
-                        `;
-                    } else {
+                    if (row.deleted_at === null) {
                         deletedAt = `
                             <form method="POST" action="/admin/spelers/${row.id}" class="d-inline delete-form">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        `;
+                    } else {
+                        deletedAt = `
+                            <form method="POST" action="/admin/spelers/${row.id}/force" class="d-inline force-delete-form">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger me-1 force-delete-link"><i class="bi bi-trash-fill"></i></button>
                             </form>
                         `;
                     }
