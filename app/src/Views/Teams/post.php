@@ -6,7 +6,10 @@
 					<h1 class="display-5 fw-bold mb-2 text-primary">
 						<i class="bi bi-people-fill me-2"></i> <?= e($data['team']['name']) ?>
 					</h1>
-					<p class="lead text-muted mb-0">Categorie: <span class="badge bg-primary"><?= e($data['team']->category ?? '-') ?></span> &nbsp; Klasse: <span class="badge bg-secondary"><?= e($data['team']->class ?? '-') ?></span></p>
+					<p class="lead text-muted mb-0">Categorie: <span
+							class="badge bg-primary"><?= e($data['team']->category ?? '-') ?></span> &nbsp; Klasse:
+						<span class="badge bg-secondary"><?= e($data['team']->class ?? '-') ?></span>
+					</p>
 				</div>
 			</header>
 			<section class="row g-4">
@@ -17,36 +20,40 @@
 					<?php endif; ?>
 				</div>
 				<div class="col-md-6 order-2 order-md-1">
-					<article class="card mb-4">
+					<section class="card mb-4">
 						<div class="card-header bg-primary text-white">
 							<i class="bi bi-person-lines-fill me-2"></i> Spelers
 						</div>
 						<ul class="list-group list-group-flush">
 							<?php if (!empty($data['team']->spelers)):
 								foreach ($data['team']->spelers as $speler): ?>
-									<li class="list-group-item">
-										<?php if (!empty($speler->number)): ?>
-											<span class="badge bg-primary ms-2">
-												<?= e($speler->number) ?>
-											</span>
-										<?php endif; ?>
-										<?= e($speler->lid->fullname ?? '') ?>
-										<?php if (!empty($speler->position)): ?>
-											<span class="text-muted ms-2">(<?= e($speler->position) ?>)</span>
-										<?php endif; ?>
-									</li>
+									<article>
+										<li class="list-group-item">
+											<?php if (!empty($speler->number)): ?>
+												<span class="badge bg-primary ms-2">
+													<?= e($speler->number) ?>
+												</span>
+											<?php endif; ?>
+											<?= e($speler->lid->fullname ?? '') ?>
+											<?php if (!empty($speler->position)): ?>
+												<span class="text-muted ms-2">(<?= e($speler->position) ?>)</span>
+											<?php endif; ?>
+										</li>
+									</article>
 								<?php endforeach; else: ?>
 								<li class="list-group-item text-muted">Geen spelers gevonden.</li>
 							<?php endif; ?>
 						</ul>
-					</article>
+					</section>
 				</div>
 				<!-- Team image for md+ screens -->
 				<div class="col-md-6 d-none d-md-block order-1 order-md-2">
 					<?php if (!empty($data['team']->image)): ?>
-						<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100">
+						<section class="card mb-4">
+							<img src="<?= e($data['team']->image) ?>" alt="Teamfoto" class="img-fluid rounded shadow w-100">
+						</section>
 					<?php endif; ?>
-					<article class="card mb-4">
+					<section class="card mb-4">
 						<div class="card-header bg-success text-white">
 							<i class="bi bi-person-badge me-2"></i> Coaches
 						</div>
@@ -60,8 +67,8 @@
 								<li class="list-group-item text-muted">Geen coaches gevonden.</li>
 							<?php endif; ?>
 						</ul>
-					</article>
-					<article class="card mb-4">
+					</section>
+					<section class="card mb-4">
 						<div class="card-header bg-warning text-dark">
 							<i class="bi bi-person-workspace me-2"></i> Trainers
 						</div>
@@ -75,7 +82,7 @@
 								<li class="list-group-item text-muted">Geen trainers gevonden.</li>
 							<?php endif; ?>
 						</ul>
-					</article>
+					</section>
 				</div>
 			</section>
 			<section class="row mt-4">
@@ -97,7 +104,8 @@
 								<tbody>
 									<?php if (!empty($data['team']->wedstrijden)):
 										foreach ($data['team']->wedstrijden as $wedstrijd): ?>
-											<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'" class="cursor-pointer">
+											<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'"
+												class="cursor-pointer">
 												<td><?= e($wedstrijd->date ?? '-') ?></td>
 												<td><?= e($wedstrijd->hometeam->name ?? '-') ?></td>
 												<td><?= e($wedstrijd->awayteam->name ?? '-') ?></td>
