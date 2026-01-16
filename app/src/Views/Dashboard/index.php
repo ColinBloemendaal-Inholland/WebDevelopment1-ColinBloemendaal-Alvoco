@@ -199,7 +199,7 @@
                                             </div>
                                             <small class="text-muted">Geplaatst op
                                                 <?= e(date('d-m-Y H:i', strtotime($news->created_at))) ?></small>
-                                            <div><?= e($news->preview()) ?></div>
+                                            <div><?= htmlspecialchars_decode($news->preview()) ?></div>
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
