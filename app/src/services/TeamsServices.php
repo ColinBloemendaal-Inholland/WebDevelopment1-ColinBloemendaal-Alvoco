@@ -58,7 +58,7 @@ class TeamsServices implements IServices
             'id' => $row['id'],
             'name' => $row['name'],
             'class' => $row['class'],
-            'seizoen' => $row['seizoenen']['title'] ?? '-',
+            'seizoen' => $row['seizoenen']['title'] ?? 'Onbekend',
             'deleted_at' => $row['deleted_at'],
         ];
     }

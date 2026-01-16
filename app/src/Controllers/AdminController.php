@@ -140,7 +140,7 @@ class AdminController
 
     public function getSpeler(array $params) {
         $speler = $this->spelersServices->get(intval($params['id']));
-        \View::view('admin.spelers.post', $speler->lid->fullname, ['speler'=> $speler]);
+        \View::view('admin.spelers.post', $speler->lid->fullname ?? '', ['speler'=> $speler]);
     }
 
     public function contact()

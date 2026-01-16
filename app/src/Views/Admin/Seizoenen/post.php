@@ -9,10 +9,12 @@
                         <div class="d-flex gap-2">
                             <a href="/admin/seizoenen/<?= e($data['seizoen']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <form action="/admin/seizoenen/<?= e($data['seizoen']['id']) ?>" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="button" class="btn btn-danger btn-sm delete-link">Verwijderen</button>
-                            </form>
+                            <?php if(!$data['seizoen']['is_current']): ?>
+                                <form action="/admin/seizoenen/<?= e($data['seizoen']['id']) ?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="button" class="btn btn-danger btn-sm delete-link">Verwijderen</button>
+                                </form>
+                            <?php endif ?>
                         </div>
                     </header>
                     <article class="card shadow-sm mb-4">

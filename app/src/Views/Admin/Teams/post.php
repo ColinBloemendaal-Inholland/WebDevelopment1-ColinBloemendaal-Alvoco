@@ -32,7 +32,7 @@
                                         <dd class="col-sm-8"><?= e($data['team']['class'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Seizoen</dt>
-                                        <dd class="col-sm-8"><?= e($data['team']['seizoenen']['title'] ?? '-') ?></dd>
+                                        <dd class="col-sm-8"><?= e($data['team']['seizoenen']['title'] ?? 'Onbekend') ?></dd>
 
                                         <dt class="col-sm-4">Aangemaakt op</dt>
                                         <dd class="col-sm-8"><?= e($data['team']['created_at'] ?? '-') ?></dd>
@@ -60,7 +60,7 @@
                                 <ul class="list-group mb-3">
                                     <?php foreach ($data['team']['spelers'] as $speler): ?>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <?= e($speler['lid']['fullname']) ?> (Nummer: <?= e($speler['number']) ?>, Positie:
+                                            <?= e($speler['lid']['fullname'] ?? 'Onbekend') ?> (Nummer: <?= e($speler['number']) ?>, Positie:
                                             <?= e($speler['position']) ?>)
                                             <a href="/admin/spelers/<?= e($speler['id']) ?>"
                                                 class="btn btn-sm btn-outline-primary">Bekijk</a>
@@ -79,7 +79,7 @@
                                 <ul class="list-group mb-3">
                                     <?php foreach ($data['team']['coaches'] as $coach): ?>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <?= e($coach['lid']['fullname']) ?> (Rol: <?= e($coach['role']) ?>)
+                                            <?= e($coach['lid']['fullname'] ?? 'Onbekend') ?> (Rol: <?= e($coach['role']) ?>)
                                             <a href="/admin/coaches/<?= e($coach['id']) ?>"
                                                 class="btn btn-sm btn-outline-primary">Bekijk</a>
                                         </li>
@@ -97,7 +97,7 @@
                                 <ul class="list-group mb-3">
                                     <?php foreach ($data['team']['trainers'] as $trainer): ?>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <?= e($trainer['lid']['fullname']) ?> (Rol: <?= e($trainer['role']) ?>)
+                                            <?= e($trainer['lid']['fullname'] ?? 'Onbekend') ?> (Rol: <?= e($trainer['role']) ?>)
                                             <a href="/admin/trainers/<?= e($trainer['id']) ?>"
                                                 class="btn btn-sm btn-outline-primary">Bekijk</a>
                                         </li>
@@ -132,4 +132,4 @@
     </main>
 </div>
 
-        <?php \View::partial('Partials.DeleteModal', ['type' => 'team']); ?>
+<?php \View::partial('Partials.DeleteModal', ['type' => 'team']); ?>
