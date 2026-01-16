@@ -20,6 +20,8 @@ class TeamsController extends BaseController implements IController
     private CoachesServices $coachesServices;
     private TrainersServices $trainersServices;
     private SeizoenenServices $seizoenenServices;
+    private array $categories = ['Heren', 'Dames', 'Jongens', 'Meisjes', 'Gemengd'];
+    private array $classes = [ 'Eredivisie', 'Topdivisie', '1e divisie', '2e divisie', '3e divisie', '1e klasse', '2e klasse', '3e klasse'];
     public function __construct()
     {
         $this->service = new TeamsServices();
@@ -56,7 +58,9 @@ class TeamsController extends BaseController implements IController
             'spelers' => $spelers,
             'coaches' => $coaches,
             'trainers' => $trainers,
-            'seizoenen' => $seizoenen
+            'seizoenen' => $seizoenen,
+            'categories' => $this->categories,
+            'classes' => $this->classes
         ]);
     }
 
@@ -93,7 +97,9 @@ class TeamsController extends BaseController implements IController
             'coaches' => $coaches,
             'spelers' => $spelers,
             'trainers' => $trainers,
-            'seizoenen' => $seizoenen
+            'seizoenen' => $seizoenen,
+            'categories' => $this->categories,
+            'classes' => $this->classes
         ]);
     }
 

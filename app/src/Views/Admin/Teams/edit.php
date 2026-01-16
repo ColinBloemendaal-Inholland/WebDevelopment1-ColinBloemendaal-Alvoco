@@ -25,8 +25,14 @@
                                 <div class="mb-3 row">
                                     <label for="Category" class="col-sm-3 col-form-label">Categorie</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="Category" name="category" aria-label="Categorie invoerveld"
-                                               value="<?= e($_SESSION['form_old']['category'] ?? $data['team']['category']) ?>">
+                                        <select class="form-select" id="Category" name="category" aria-label="Categorie selectievak">
+                                            <option value="">Selecteer categorie</option>
+                                            <?php foreach ($data['categories'] as $category): ?>
+                                                <option value="<?= e($category) ?>" <?= (($_SESSION['form_old']['category'] ?? $data['team']['category']) === $category) ? 'selected' : '' ?>>
+                                                    <?= e($category) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -34,8 +40,16 @@
                                 <div class="mb-3 row">
                                     <label for="class" class="col-sm-3 col-form-label">Klas</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="class" name="class" aria-label="Klasse invoerveld"
-                                               value="<?= e($_SESSION['form_old']['class'] ?? $data['team']['class']) ?>">
+                                        <?php $selectedClass = $_SESSION['form_old']['class'] ?? $data['team']['class']; ?>
+                                        <select class="form-select" id="class" name="class" aria-label="Klasse selectievak">
+                                            <option value="">Selecteer klasse</option>
+                                            <?php foreach ($data['classes'] as $class): ?>
+                                                <option value="<?= e($class) ?>" <?= ($selectedClass === $class) ? 'selected' : '' ?>>
+                                                    <?= e($class) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                            <option value="Overig" <?= ($selectedClass && !in_array($selectedClass, $data['classes'], true)) ? 'selected' : '' ?>>Overig</option>
+                                        </select>
                                     </div>
                                 </div>
 

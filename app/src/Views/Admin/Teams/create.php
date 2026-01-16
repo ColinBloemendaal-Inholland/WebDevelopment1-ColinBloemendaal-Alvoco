@@ -24,8 +24,14 @@
                                 <div class="mb-3 row">
                                     <label for="Category" class="col-sm-3 col-form-label">Categorie</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="Category" name="category" placeholder="Bijv. Heren" aria-label="Categorie invoerveld"
-                                               value="<?= e($_SESSION['form_old']['category'] ?? '') ?>">
+                                        <select class="form-select" id="Category" name="category" aria-label="Categorie selectievak">
+                                            <option value="">Selecteer categorie</option>
+                                            <?php foreach ($data['categories'] as $category): ?>
+                                                <option value="<?= e($category) ?>" <?= (($_SESSION['form_old']['category'] ?? '') === $category) ? 'selected' : '' ?>>
+                                                    <?= e($category) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -33,8 +39,14 @@
                                 <div class="mb-3 row">
                                     <label for="class" class="col-sm-3 col-form-label">Klasse</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="class" name="class" placeholder="Bijv. 2de klasse" aria-label="Klasse invoerveld"
-                                               value="<?= e($_SESSION['form_old']['class'] ?? '') ?>">
+                                        <select class="form-select" id="class" name="class" aria-label="Klasse selectievak">
+                                            <option value="">Selecteer klasse</option>
+                                            <?php foreach ($data['classes'] as $class): ?>
+                                                <option value="<?= e($class) ?>" <?= (($_SESSION['form_old']['class'] ?? '') === $class) ? 'selected' : '' ?>>
+                                                    <?= e($class) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
