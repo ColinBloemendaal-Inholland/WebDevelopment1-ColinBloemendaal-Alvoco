@@ -44,7 +44,7 @@ class Auth {
         if(!self::isLoggedIn()) {
             return null;
         }
-        return Leden::find(self::id())->firstOrFail();
+        return Leden::findOrFail(self::id());
     }
 
     /**
@@ -53,6 +53,7 @@ class Auth {
     public static function id() {
         Session::start();
         return $_SESSION['user_id'] ?? null;
+        
     }
 
     /**
