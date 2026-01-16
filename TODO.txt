@@ -4,10 +4,6 @@ admin/*/post
 > delete knop geeft op het moment ook een js confirm, dit moet vervangen worden door een bootstrap modal OF meteen naar de delete route gaan en daar een bevestiging vragen
 > maakt nu nog gebruik van confirm(), dit moet weg en vervangen worden door een bootstrap modal
 
-admin/*/index - datatables
-> datatables zorgt dat de mobile / tablet views verneukt zijn
-> Indien deleted_at gezet is en filter op deleted staat moet ipv view en edit alleen force delete en restore getoond worden
-
 Globaal:
 > alles checken op js in php bestand, moet in aparte js files
 
