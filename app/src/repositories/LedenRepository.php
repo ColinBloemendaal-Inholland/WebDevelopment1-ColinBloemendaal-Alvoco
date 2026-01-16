@@ -204,4 +204,41 @@ class LedenRepository extends BaseRepository
             ->take(5)
             ->get();
     }
+
+    /**
+     * Overwrites BaseRepository's create behaviour. Create's a new lid and sets their roles.
+     * @param array $data
+     * @return Leden
+     */
+    public function create(array $data): Leden
+    {
+        $roles = $data['role'] ?? [];
+        unset($data['role']);
+        $user = new Leden();
+        foreach ($data as $key => $value) {
+            $user->$key = $value;
+        }
+        $user->save();
+        $user->refresh();
+        $user->roles()->sync($roles);
+        return $user;
+    }
+
+    /**
+     * Overwrites BaseRepository's update behaviour. Updates a lid and their roles.
+     * @param int $id
+     * @param array $data
+     */
+    public function update(int $id, array $data): Leden
+    {
+        $roles = $data['role'] ?? [];
+        unset($data['role']);
+        $user = $this->model->findOrFail($id);
+        foreach ($data as $key => $value) {
+            $user->$key = $value;
+        }
+        $user->roles()->sync($roles);
+        $user->save();
+        return $user;
+    }
 }

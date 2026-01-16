@@ -1,26 +1,10 @@
 TODOs:
 
-admin/*/post
-> delete knop geeft op het moment ook een js confirm, dit moet vervangen worden door een bootstrap modal OF meteen naar de delete route gaan en daar een bevestiging vragen
-> maakt nu nog gebruik van confirm(), dit moet weg en vervangen worden door een bootstrap modal
-
 Globaal:
 > alles checken op js in php bestand, moet in aparte js files
 
-admin/bestuursleden/post
-> NavAdmin heeft niet de goeie hoogte / word te snel afgeseden
-
 admin/contact
 > De naam contact vind ik niet passend
-
-admin/trainers/index
-> met deleted filter aan doet de adminnav raar
-
-                        <div class="d-flex gap-2">
-
-
-Rollen toewijzen aan lid doet het niet
-Zowel bij create als edit
 
 When retrieving a lid in the datatables only retrieve those who are not (soft)deleted
 

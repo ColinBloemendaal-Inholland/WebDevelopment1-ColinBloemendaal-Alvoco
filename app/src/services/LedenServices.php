@@ -31,9 +31,9 @@ class LedenServices implements IServices
     {
         return $this->repository->create($data) ?? null;
     }
-    public function update(int $id, array $data, ?array $roles = null)
+    public function update(int $id, array $data)
     {
-        return $this->repository->update($id, $data, $roles) ?? null;
+        return $this->repository->update($id, $data) ?? null;
     }
     public function delete(int $id): bool
     {

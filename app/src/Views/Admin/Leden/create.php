@@ -33,14 +33,13 @@
 
                         <div class="row g-3 mb-3">
                             <div class="col-sm-6 col-md-4">
-                                <label class="form-label" for="role">Geslacht</label>
-                                <select class="form-select" id="role" name="gender" required>
+                                <label class="form-label" for="gender">Geslacht</label>
+                                <select class="form-select" id="gender" name="gender" required>
                                     <option disabled hidden <?= ($_SESSION['form_old']['gender'] ?? '') === '' ? 'selected' : '' ?>>Kies...</option>
                                     <option value="M" <?= ($_SESSION['form_old']['gender'] ?? '') === 'M' ? 'selected' : '' ?>>Man</option>
                                     <option value="F" <?= ($_SESSION['form_old']['gender'] ?? '') === 'F' ? 'selected' : '' ?>>Vrouw</option>
                                     <option value="O" <?= ($_SESSION['form_old']['gender'] ?? '') === 'O' ? 'selected' : '' ?>>Anders</option>
                                 </select>
-
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <label class="form-label" for="dateofbirth">Geboortedatum</label>
@@ -48,7 +47,7 @@
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label class="form-label" for="email">E-mail</label>
-                                <input type="email" id="email" class="form-control" name="email" placeholder="voorbeeld@email.com" required value="<?= $_SESSION['form_old']['lstname'] ?? '' ?>" aria-label="E-mail invoerveld">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="voorbeeld@email.com" required value="<?= $_SESSION['form_old']['email'] ?? '' ?>" aria-label="E-mail invoerveld">
                             </div>
                         </div>
 
@@ -75,7 +74,7 @@
                         <div class="row g-3 mb-4">
                             <div class="col-12">
                                 <label class="form-label" for="roles">Selecteer Rollen</label>
-                                <select name="role" id="roles" class="form-select" multiple>
+                                <select name="role[]" id="roles" class="form-select" multiple>
                                     <option value="" selected disabled hidden>Selecteer een rol</option>
                                     <?php foreach ($data['rolen'] as $rol) { ?>
                                         <option value="<?= $rol['id'] ?>" <?= (isset($_SESSION['form_old']['role']) && $_SESSION['form_old']['role'] == $rol['id']) ? 'selected' : '' ?>>

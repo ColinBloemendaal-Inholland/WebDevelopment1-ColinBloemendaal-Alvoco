@@ -22,7 +22,9 @@ class LedenUpdateRequest extends BaseRequests
             'emergency_contact_firstname' => 'required|alpha',
             'emergency_contact_middlename' => 'alpha',
             'emergency_contact_lastname' => 'required|alpha',
-            'emergency_contact_phone' => 'required'
+            'emergency_contact_phone' => 'required',
+            'role' => 'array|required',
+            'role.*' => 'integer|min:1',
         ];
     }
 }
