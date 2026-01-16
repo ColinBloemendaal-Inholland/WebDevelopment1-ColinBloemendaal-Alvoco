@@ -101,9 +101,7 @@ class SpelersController extends BaseController implements IController
         $filter = [
             'name' => $_POST['name'] ?? '',
             'team' => $_POST['team'] ?? '',
-            'trashed' => $_POST['trashed'] ?? '',
         ];
-
         $draw = intval($_POST['draw'] ?? 1);
         $start = intval($_POST['start'] ?? 0);
         $length = intval($_POST['length'] ?? 25);

@@ -38,15 +38,15 @@ class SpelersRepository extends BaseRepository
               ->select('lid.firstname', 'lid.middlename', 'lid.lastname', 'Teams.name as team_name', 'Spelers.*');
 
         if (!empty($filters['name'])) {
-            $query->whereHas('lid', function ($q) use ($filters) {
-                $q->where('fullname', 'LIKE', '%' . $filters['name'] . '%');
+            $query->where(function($q) use ($filters) {
+                $q->where('lid.firstname', 'like', '%' . $filters['name'] . '%')
+                  ->orWhere('lid.middlename', 'like', '%' . $filters['name'] . '%')
+                  ->orWhere('lid.lastname', 'like', '%' . $filters['name'] . '%');
             });
         }
 
         if (!empty($filters['team'])) {
-            $query->whereHas('teams', function ($q) use ($filters) {
-                $q->where('id', '=', $filters['team']);
-            });
+            $query->where('Teams.id', '=', $filters['team']);
         }
 
         $recordsTotal = $this->model->count();
@@ -54,10 +54,6 @@ class SpelersRepository extends BaseRepository
 
         if (!is_null($start) && !is_null($limit)) {
             $query->skip($start)->take($limit);
-        }
-
-        if (isset($filters['trashed']) && $filters['trashed'] == 1) {
-            $query->onlyTrashed();
         }
 
         $data = $query->get();
