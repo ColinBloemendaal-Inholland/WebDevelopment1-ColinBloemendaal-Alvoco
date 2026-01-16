@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <header class="d-flex align-items-center justify-content-between mb-3">
                             <h1 class="card-title mb-0 h2">Welkom,
-                                <?= e($data['user']->fullname) ?>
+                                <?= e($data['user']->fullname ?? 'Onbekend') ?>
                             </h1>
                             <a href="/profile/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
                         </header>
@@ -35,22 +35,30 @@
                                                             <div class="d-flex gap-2">
                                                                 <a href="/teams/<?= e($team->id) ?>"
                                                                     class="btn btn-primary btn-sm">
-                                                                    Bekijk
+                                                                    Bekijk team
                                                                 </a>
                                                                 <a href="/profile/teams/<?= e($team->id) ?>/edit"
                                                                     class="btn btn-secondary btn-sm">
-                                                                    Bewerken
+                                                                    Bewerk team
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <ul class="list-group mb-3">
                                                             <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                                 <?php foreach ($team->upcoming_games as $game): ?>
-                                                                    <li class="list-group-item">
-                                                                        <?= e(date('d-m-Y', strtotime($game->date))) ?>
-                                                                        <?= e(date('H:i', strtotime($game->time))) ?> -
-                                                                        <?= e($game->hometeam->name ?? '') ?> vs
-                                                                        <?= e($game->awayTeam->name ?? '') ?>
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                        <span>
+                                                                            <?= e(date('d-m-Y', strtotime($game->date))) ?>
+                                                                            <?= e(date('H:i', strtotime($game->time))) ?> -
+                                                                            <?= e($game->hometeam->name ?? '') ?> vs
+                                                                            <?= e($game->awayTeam->name ?? '') ?>
+                                                                        </span>
+                                                                        <?php if (!empty($game->id)): ?>
+                                                                            <a href="/wedstrijden/<?= e($game->id) ?>"
+                                                                                class="btn btn-outline-primary btn-sm">
+                                                                                Bekijk wedstrijd
+                                                                            </a>
+                                                                        <?php endif; ?>
                                                                     </li>
                                                                 <?php endforeach; ?>
                                                             <?php else: ?>
@@ -118,11 +126,19 @@
                                                     <ul class="list-group mb-3">
                                                         <?php if (!empty($team->upcoming_games) && count($team->upcoming_games) > 0): ?>
                                                             <?php foreach ($team->upcoming_games as $game): ?>
-                                                                <li class="list-group-item">
-                                                                    <?= e(date('d-m-Y', strtotime($game->date))) ?>
-                                                                    <?= e(date('H:i', strtotime($game->time))) ?> -
-                                                                    <?= e($game->hometeam->name ?? '') ?> vs
-                                                                    <?= e($game->awayTeam->name ?? '') ?>
+                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>
+                                                                        <?= e(date('d-m-Y', strtotime($game->date))) ?>
+                                                                        <?= e(date('H:i', strtotime($game->time))) ?> -
+                                                                        <?= e($game->hometeam->name ?? '') ?> vs
+                                                                        <?= e($game->awayTeam->name ?? '') ?>
+                                                                    </span>
+                                                                    <?php if (!empty($game->id)): ?>
+                                                                        <a href="/wedstrijden/<?= e($game->id) ?>"
+                                                                            class="btn btn-outline-primary btn-sm">
+                                                                            Bekijk wedstrijd
+                                                                        </a>
+                                                                    <?php endif; ?>
                                                                 </li>
                                                             <?php endforeach; ?>
                                                         <?php else: ?>
