@@ -83,7 +83,6 @@ class NieuwsberichtenController extends BaseController implements IController {
         \View::redirect("/admin/nieuwsberichten");
     }
 
-    //TODO: Place in a API Controller?
     public function getNieuwsberichten() {
         $filter = [
             'authur'=> $_POST['authur'] ?? '',
