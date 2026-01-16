@@ -3,6 +3,4 @@ TODOs:
 admin/contact
 > De naam contact vind ik niet passend
 
-leden cant edit their own data
-
 WYSIWYG editor kapot door JS migratie
