@@ -30,7 +30,12 @@ class SpelersRepository extends BaseRepository
 
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
-        $query = $this->model->with(['lid', 'team']);
+        $query = $this->model->newQuery();
+
+        $query->leftJoin('spelers_teams', 'Spelers.id', '=', 'spelers_teams.speler_id')
+              ->leftJoin('Teams', 'spelers_teams.team_id', '=', 'Teams.id')
+              ->leftJoin('Leden as lid', 'Spelers.Leden_id', '=', 'lid.id')
+              ->select('lid.firstname', 'lid.middlename', 'lid.lastname', 'Teams.name as team_name', 'Spelers.*');
 
         if (!empty($filters['name'])) {
             $query->whereHas('lid', function ($q) use ($filters) {
@@ -39,7 +44,7 @@ class SpelersRepository extends BaseRepository
         }
 
         if (!empty($filters['team'])) {
-            $query->whereHas('team', function ($q) use ($filters) {
+            $query->whereHas('teams', function ($q) use ($filters) {
                 $q->where('id', '=', $filters['team']);
             });
         }
