@@ -3,8 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Auth;
-use App\Models\Coaches;
-use App\Models\Leden;
+use App\Models\Requests\LedenSelfUpdateRequest;
 use App\Services\LedenServices;
 use App\Models\Requests\LedenStoreRequest;
 use App\Models\Requests\LedenUpdateRequest;
@@ -210,7 +209,7 @@ class LedenController extends BaseController implements IController
         }
 
         try {
-            $validated = new LedenUpdateRequest($_POST)->validate();
+            $validated = new LedenSelfUpdateRequest($_POST)->validate();
             $this->service->updateProfile($userId, $validated);
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);
@@ -219,7 +218,6 @@ class LedenController extends BaseController implements IController
             \View::redirect('/profile/edit');
             return;
         }
-
         \View::redirect('/profile');
     }
 }
