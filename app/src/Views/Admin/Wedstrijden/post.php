@@ -71,7 +71,7 @@
                                         <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['name'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Categorie</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['Category'] ?? '-') ?></dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['category'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Klas</dt>
                                         <dd class="col-sm-8"><?= e($data['wedstrijd']['hometeam']['class'] ?? '-') ?></dd>
@@ -131,7 +131,7 @@
                                         <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Categorie</dt>
-                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['Category'] ?? '-') ?></dd>
+                                        <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['category'] ?? '-') ?></dd>
 
                                         <dt class="col-sm-4">Klas</dt>
                                         <dd class="col-sm-8"><?= e($data['wedstrijd']['awayTeam']['class'] ?? '-') ?></dd>
