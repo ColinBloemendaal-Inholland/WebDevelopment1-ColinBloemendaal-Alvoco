@@ -146,7 +146,8 @@ class LedenRepository extends BaseRepository
             'team.spelers.lid',
             'team.trainers.lid',
             'team.coaches.lid',
-            'team.wedstrijden',
+            'team.wedstrijdenHome',
+            'team.wedstrijdenAway',
         ])->where('Leden_id', $ledenId)->get();
 
         $teams = collect();
@@ -172,7 +173,8 @@ class LedenRepository extends BaseRepository
             'team.spelers.lid',
             'team.trainers.lid',
             'team.coaches.lid',
-            'team.wedstrijden',
+            'team.wedstrijdenHome',
+            'team.wedstrijdenAway',
         ])->where('Leden_id', $ledenId)
             ->get();
 
