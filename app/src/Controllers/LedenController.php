@@ -166,7 +166,6 @@ class LedenController extends BaseController implements IController
 
     public function dashboard()
     {
-        //TODO: check if this actually works
         $user = \Auth::user();
         $teamsCoached = [];
         if ($user?->hasRole('coach')) {
