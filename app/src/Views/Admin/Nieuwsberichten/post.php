@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['nieuwsbericht']['Title']) ?></h2>
-                        <div>
+                        <div class="d-flex gap-2">
                             <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
                             <form action="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>" method="POST">

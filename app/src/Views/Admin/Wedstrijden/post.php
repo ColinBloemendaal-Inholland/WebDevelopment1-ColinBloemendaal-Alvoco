@@ -10,7 +10,7 @@
                         <h2 class="h4"><?= e($data['wedstrijd']['hometeam']['name'] ?? '-') ?> vs
                             <?= e($data['wedstrijd']['awayTeam']['name'] ?? '-') ?>
                         </h2>
-                        <div>
+                        <div class="d-flex gap-2">
                             <a href="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
                             <form action="/admin/wedstrijden/<?= e($data['wedstrijd']['id']) ?>" method="POST">

@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['trainer']['lid']['fullname']) ?></h2>
-                        <div>
+                        <div class="d-flex gap-2">
                             <a href="/admin/leden/<?= e($data['trainer']['lid']['id']) ?>"
                                 class="btn btn-primary btn-sm">Bekijk lid</a>
                             <a href="/admin/trainers/<?= e($data['trainer']['id']) ?>/edit"

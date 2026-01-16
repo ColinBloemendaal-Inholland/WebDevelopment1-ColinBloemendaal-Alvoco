@@ -6,14 +6,14 @@
                 <div class="col-12">
                     <header class="d-flex justify-content-between align-items-center mb-3">
                         <h2 class="h4"><?= e($data['bestuurslid']['lid']['fullname']) ?></h2>
-                        <div>
+                        <div class="d-flex gap-2">
                             <a href="/admin/leden/<?= e($data['bestuurslid']['lid']['id']) ?>"
                                 class="btn btn-primary btn-sm">Bekijk lid</a>
                             <a href="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>/edit"
-                                class="btn btn-primary btn-sm">Edit</a>
+                                class="btn btn-primary btn-sm">Bewerken</a>
                             <form action="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="button" class="btn btn-danger btn-sm delete-link">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm delete-link">Verwijderen</button>
                             </form>
                         </div>
                     </header>
