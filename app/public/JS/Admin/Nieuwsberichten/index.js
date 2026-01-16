@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Load datatables
-    var nieuwsberichtenTable = $('#nieuwsberichtenTable').DataTable({
+    let nieuwsberichtenTable = $('#nieuwsberichtenTable').DataTable({
         processing: true,
         serverSide: true,
         searching: false,

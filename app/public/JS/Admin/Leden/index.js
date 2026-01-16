@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Load datatables
-    var ledenTable = $('#ledenTable').DataTable({
+    let ledenTable = $('#ledenTable').DataTable({
         processing: true,
         serverSide: true,
         searching: false,

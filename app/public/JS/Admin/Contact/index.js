@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var contactTable = $('#contactTable').DataTable({
+    let contactTable = $('#contactTable').DataTable({
         processing: true,
         serverSide: true,
         searching: false,

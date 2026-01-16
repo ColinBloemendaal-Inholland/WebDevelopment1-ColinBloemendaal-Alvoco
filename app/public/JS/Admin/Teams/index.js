@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Load datatables
-    var teamsTable = $('#teamsTable').DataTable({
+    let teamsTable = $('#teamsTable').DataTable({
         processing: true,
         serverSide: true,
         searching: false,

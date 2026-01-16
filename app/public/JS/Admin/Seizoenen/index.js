@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var seizoenenTable = $('#seizoenenTable').DataTable({
+    let seizoenenTable = $('#seizoenenTable').DataTable({
         processing: true,
         serverSide: true,
         searching: false,
