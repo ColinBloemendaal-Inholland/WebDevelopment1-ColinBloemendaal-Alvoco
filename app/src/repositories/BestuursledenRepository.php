@@ -35,6 +35,21 @@ class BestuursledenRepository extends BaseRepository
         $recordsTotal = $this->model->count();
         $recordsFiltered = $query->count();
 
+        // Apply filters
+        if (!empty($filters['name'])) {
+            $query->whereHas('lid', function ($q) use ($filters) {
+                $q->where('firstname', 'like', $filters['name'] . '%')
+                    ->orWhere('middlename', 'like', $filters['name'] . '%')
+                    ->orWhere('lastname', 'like', $filters['name'] . '%');
+            });
+        }
+        if (!empty($filters['role'])) {
+            $query->where('role', 'like', '%' . $filters['role'] . '%');
+        }
+        if (!empty($filters['trashed']) && $filters['trashed'] == 1) {
+            $query->onlyTrashed();
+        }
+
         // Apply pagination
         if ($start !== null) {
             $query->skip($start);

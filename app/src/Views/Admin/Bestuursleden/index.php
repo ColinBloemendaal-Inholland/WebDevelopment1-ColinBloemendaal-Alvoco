@@ -6,11 +6,31 @@
                 <header>
                     <h1 class="mb-4">Bestuursleden</h1>
                 </header>
-                <div class="row">
-                    <div class="col-12 d-flex align-items-end justify-content-end mb-3">
+                <div class="row mb-3">
+                    <!-- Name  search -->
+                    <div class="form-group col-4">
+                        <label for="searchName">Zoek op naam:</label>
+                        <input type="text" class="form-control" id="searchName"
+                            aria-label="Zoek op naam invoerveld" placeholder="Voer een naam in:">
+                    </div>
+                    <!-- Adress search -->
+                    <div class="form-group col-4">
+                        <label for="searchRole">Zoek op rol:</label>
+                        <input type="text" class="form-control" id="searchRole" name="searchRole"
+                            aria-label="Zoek op rol invoerveld" placeholder="Voer een rol in:">
+                    </div>
+                    <div class="form-group col-md-2 d-flex align-items-end">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
+                                value="1">
+                            <label class="form-check-label" for="searchTrashed">Met verwijderde</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end justify-content-end">
                         <a href="/admin/bestuursleden/create" class="btn btn-primary">Toevoegen</a>
                     </div>
                 </div>
+
                 <table id="bestuursledenTable" class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -42,6 +62,11 @@
             ajax: {
                 url: '/api/bestuursleden',
                 type: 'POST',
+                data: function (d) {
+                    d.naam = $('#searchName').val();
+                    d.rol = $('#searchRole').val() || [];
+                    d.trashed = $('#searchTrashed').prop('checked') ? 1 : 0;
+                },
                 dataSrc: 'data',
                 error: function (xhr) {
                     console.error("AJAX Error:", xhr.responseText);
@@ -84,6 +109,20 @@
                 }
             ],
             dom: '<"top">rt<"bottom"lp><"clear">',
+        });
+        let reloadTimeout;
+        function timeout() {
+            clearTimeout(reloadTimeout);
+            reloadTimeout = setTimeout(function () {
+                ledenTable.ajax.reload();
+            }, 700);
+        }
+
+        // Text input: reload after 700ms of inactivity
+        $('#searchName, #searchRole').on('input', timeout);
+        // Multi-select and checkbox: reload immediately on change
+        $('#searchTrashed').on('change', function () {
+            ledenTable.ajax.reload();
         });
     });
 </script>

@@ -86,8 +86,11 @@ class BestuursledenController extends BaseController implements IController {
 
     public function getBestuursleden()
     {
-        // TODO: Add filters based on request parameters
-        $filters = [ ];
+        $filters = [
+            'name' => $_POST['naam'] ?? '',
+            'role' => $_POST['rol'] ?? '',
+            'trashed' => $_POST['trashed'] ?? 0,
+        ];
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $length = isset($_POST['length']) ? intval($_POST['length']) : 10;
