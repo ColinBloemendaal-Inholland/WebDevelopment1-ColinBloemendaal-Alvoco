@@ -75,14 +75,26 @@
 					title: 'Acties',
 					orderable: false,
 					render: function (data, type, row) {
+                        if (row['deleted_at'] !== null) {
+                            deletedAt = `
+                                <form method="POST" action="/admin/seizoenen/${row.id}/force" class="d-inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
+                        } else {
+                            deletedAt = `
+                                <form method="POST" action="/admin/seizoenen/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            `;
+                        }
+
 						return `
 							<a href="/admin/seizoenen/${row.id}" class="btn btn-sm btn-primary me-1"><i class="bi bi-eye-fill"></i></a>
 							<a href="/admin/seizoenen/${row.id}/edit" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-fill"></i></a>
-							<form method="POST" action="/admin/seizoenen/${row.id}" class="d-inline delete-form" data-id="${row.id}">
-								<input type="hidden" name="_method" value="DELETE">
-								<button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
-							</form>
-						`;
+						` + deletedAt;
 					},
 				}
 			],
