@@ -82,9 +82,13 @@
                                     <?php if (!empty($data['wedstrijd']['hometeam']['spelers'])): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['hometeam']['spelers'] as $speler): ?>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= e($speler['lid']['fullname']) ?> (Nummer: <?= e($speler['number']) ?>,
-                                                    Positie: <?= e($speler['position']) ?>)
+                                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge rounded bg-primary me-2 px-2 py-1 fs-6 d-inline-block" style="min-width:32px;">
+                                                            <?= e($speler['number']) ?>
+                                                        </span>
+                                                        <?= e($speler['lid']['fullname'] ?? 'Anoniem') ?> (Positie: <?= e($speler['position']) ?>)
+                                                    </div>
                                                     <a href="/admin/spelers/<?= e($speler['id']) ?>"
                                                         class="btn btn-sm btn-outline-primary">Bekijk</a>
                                                 </li>
@@ -100,7 +104,7 @@
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['hometeam']['coaches'] as $coach): ?>
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= e($coach['lid']['fullname']) ?> (Rol: <?= e($coach['role']) ?>)
+                                                    <?= e($coach['lid']['fullname'] ?? 'Anoniem') ?> (Rol: <?= e($coach['role']) ?>)
                                                     <a href="/admin/coaches/<?= e($coach['id']) ?>"
                                                         class="btn btn-sm btn-outline-primary">Bekijk</a>
                                                 </li>
@@ -138,9 +142,13 @@
                                     <?php if (!empty($data['wedstrijd']['awayTeam']['spelers'])): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['awayTeam']['spelers'] as $speler): ?>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= e($speler['lid']['fullname']) ?> (Nummer: <?= e($speler['number']) ?>,
-                                                    Positie: <?= e($speler['position']) ?>)
+                                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="badge rounded bg-primary me-2 px-2 py-1 fs-6 d-inline-block" style="min-width:32px;">
+                                                            <?= e($speler['number']) ?>
+                                                        </span>
+                                                        <?= e($speler['lid']['fullname'] ?? 'Anoniem') ?> (Positie: <?= e($speler['position']) ?>)
+                                                    </div>
                                                     <a href="/admin/spelers/<?= e($speler['id']) ?>"
                                                         class="btn btn-sm btn-outline-primary">Bekijk</a>
                                                 </li>
@@ -156,7 +164,7 @@
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['awayTeam']['coaches'] as $coach): ?>
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                    <?= e($coach['lid']['fullname']) ?> (Rol: <?= e($coach['role']) ?>)
+                                                    <?= e($coach['lid']['fullname'] ?? 'Anoniem') ?> (Rol: <?= e($coach['role']) ?>)
                                                     <a href="/admin/coaches/<?= e($coach['id']) ?>"
                                                         class="btn btn-sm btn-outline-primary">Bekijk</a>
                                                 </li>
@@ -169,8 +177,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Teams columns -->
-
                 </div>
             </div>
         </section>
