@@ -76,7 +76,6 @@ class TeamsController extends BaseController implements IController
             $errors = json_decode($e->getMessage(), true);
             $_SESSION['form_errors'] = $errors;
             $_SESSION['form_old'] = $_POST;
-            error_log($e->getMessage());
             \View::redirect("/admin/teams/create");
         }
         \View::redirect("/admin/teams/{$post['id']}");

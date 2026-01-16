@@ -44,7 +44,6 @@ class SpelersServices implements IServices
     public function datatable(array $filters, int $start, $length, int $draw): array
     {
         $result = $this->filter($filters, $start, $length);
-        error_log(print_r($result['data'][1], true));
         $formattedResults = array_map([$this, 'format'], $result['data']->toArray());
         return [
             "draw" => $draw,

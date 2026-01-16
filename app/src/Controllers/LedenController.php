@@ -188,7 +188,6 @@ class LedenController extends BaseController implements IController
     }
 
     public function editProfile() {
-        error_log("Entering editProfile method.");
         $userId = \Auth::id();
         $user = $this->service->get($userId);
         if( !$user) {
