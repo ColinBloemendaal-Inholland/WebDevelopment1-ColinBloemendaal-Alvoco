@@ -1,11 +1,8 @@
 TODOs:
 
-Globaal:
-> alles checken op js in php bestand, moet in aparte js files
-
 admin/contact
 > De naam contact vind ik niet passend
 
-When retrieving a lid in the datatables only retrieve those who are not (soft)deleted
+leden cant edit their own data
 
-Check het project op display errors als een relatie van het item gesoftdelete is
+WYSIWYG editor kapot door JS migratie
