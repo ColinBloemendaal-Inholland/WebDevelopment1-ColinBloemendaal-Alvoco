@@ -9,9 +9,9 @@
                         <div>
                             <a href="/admin/leden/<?= e($data['lid']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Edit</a>
-                            <form action="/admin/leden/<?= e($data['lid']['id']) ?>" method="POST" onsubmit="return confirm('Are you sure?')">
+                            <form action="/admin/leden/<?= e($data['lid']['id']) ?>" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm delete-link">Delete</button>
                             </form>
                         </div>
                     </header>
@@ -79,3 +79,5 @@
         </section>
     </main>
 </div>
+
+        <?php \View::partial('Partials.DeleteModal', ['type' => 'lid']); ?>

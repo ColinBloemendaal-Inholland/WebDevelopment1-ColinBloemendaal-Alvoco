@@ -12,9 +12,9 @@
                                     class="btn btn-primary btn-sm">Bekijk lid</a>
                                 <a href="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>/edit"
                                     class="btn btn-primary btn-sm">Edit</a>
-                                <form action="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>" method="POST" onsubmit="return confirm('Are you sure?')">
+                                <form action="/admin/bestuursleden/<?= e($data['bestuurslid']['id']) ?>" method="POST">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="button" class="btn btn-danger btn-sm delete-link">Delete</button>
                                 </form>
                             </div>
                         </header>
@@ -47,3 +47,5 @@
         </main>
     </div>
 </div>
+
+<?php \View::partial('Partials.DeleteModal', ['type' => 'bestuurslid']); ?>

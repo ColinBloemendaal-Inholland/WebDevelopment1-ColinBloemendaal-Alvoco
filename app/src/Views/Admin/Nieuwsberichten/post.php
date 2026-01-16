@@ -9,9 +9,9 @@
                         <div>
                             <a href="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
-                            <form action="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>" method="POST" onsubmit="return confirm('Weet je het zeker?')">
+                            <form action="/admin/nieuwsberichten/<?= e($data['nieuwsbericht']['id']) ?>" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger btn-sm">Verwijderen</button>
+                                <button type="button" class="btn btn-danger btn-sm delete-link">Verwijderen</button>
                             </form>
                         </div>
                     </header>
@@ -41,3 +41,5 @@
         </section>
     </main>
 </div>
+
+<?php \View::partial('Partials.DeleteModal', ['type' => 'nieuwsbericht']); ?>

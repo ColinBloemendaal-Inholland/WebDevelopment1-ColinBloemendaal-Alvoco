@@ -12,9 +12,10 @@
                                     class="btn btn-primary btn-sm">Bekijk lid</a>
                                 <a href="/admin/trainers/<?= e($data['trainer']['id']) ?>/edit"
                                     class="btn btn-primary btn-sm">Bewerken</a>
-                                <a href="/admin/trainers/<?= e($data['trainer']['id']) ?>/delete"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Weet je het zeker?')">Verwijderen</a>
+                                <form action="/admin/trainers/<?= e($data['trainer']['id']) ?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="button" class="btn btn-danger btn-sm delete-link">Verwijderen</button>
+                                </form>
                             </div>
                         </header>
                         <article class="card shadow-sm mb-4">
@@ -51,3 +52,5 @@
         </main>
     </div>
 </div>
+
+<?php \View::partial('Partials.DeleteModal', ['type' => 'trainer']); ?>
