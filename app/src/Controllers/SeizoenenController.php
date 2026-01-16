@@ -70,7 +70,6 @@ class SeizoenenController extends BaseController implements IController
 
     public function delete(array $params)
     {
-        //TODO: implement soft delete - currently going to link > must be a form with DELETE method
         $post = $this->service->delete(intval($params["id"]));
         if (!$post) {
             \View::redirect("/admin/seizoenen/{$params["id"]}");
