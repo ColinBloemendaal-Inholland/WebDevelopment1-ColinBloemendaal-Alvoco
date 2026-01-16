@@ -66,7 +66,6 @@ class TeamsController extends BaseController implements IController
 
     public function store()
     {
-        //TODO: turn the category input into a select instead of a text input
         try {
             $validated = new TeamsStoreRequest($_POST)->validate();
             if (isset($_FILES['picture'])) {
