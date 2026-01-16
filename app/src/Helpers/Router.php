@@ -82,11 +82,10 @@ class Router
             http_response_code(404);
             \View::view("errors.404", '404');
         }
-        //TODO: TURN THIS BACK ON AFTER DEBUGGING 
-        // catch (Throwable $e) {
-        //     http_response_code(500);
-        //     \View::view("errors.500", '500');
-        // }
+        catch (Throwable $e) {
+            http_response_code(500);
+            \View::view("errors.500", '500');
+        }
     }
 
 }
