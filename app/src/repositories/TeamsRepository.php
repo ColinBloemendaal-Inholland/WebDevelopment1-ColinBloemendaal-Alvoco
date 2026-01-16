@@ -159,10 +159,7 @@ class TeamsRepository extends BaseRepository
         if (!$team) {
             return null;
         }
-        Spelers::where('team_id', $teamId)->update(['team_id' => null]);
-        if (!empty($spelersIds)) {
-            Spelers::whereIn('id', $spelersIds)->update(['team_id' => $teamId]);
-        }
+        $team->spelers()->sync($spelersIds);
         Trainers::where('team_id', $teamId)->update(['team_id' => null]);
         if (!empty($trainersIds)) {
             Trainers::whereIn('id', $trainersIds)->update(['team_id' => $teamId]);
