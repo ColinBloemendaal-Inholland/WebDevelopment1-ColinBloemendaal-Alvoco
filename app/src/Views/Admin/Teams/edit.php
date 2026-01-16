@@ -77,7 +77,7 @@
                                                         $speler['id'],
                                                         $_SESSION['form_old']['spelers'] ?? $data['team']['spelers']->pluck('id')->toArray()
                                                     ) ? 'selected' : '' ?>>
-                                                    <?= e($speler['lid']['fullname']) ?>
+                                                    <?= e($speler['lid']['fullname'] ?? 'Onbekend') ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -95,7 +95,7 @@
                                                         $coach['id'],
                                                         $_SESSION['form_old']['coaches'] ?? $data['team']['coaches']->pluck('id')->toArray()
                                                     ) ? 'selected' : '' ?>>
-                                                    <?= e($coach['lid']['fullname']) ?>
+                                                    <?= e($coach['lid']['fullname'] ?? 'Onbekend') ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -113,7 +113,7 @@
                                                         $trainer['id'],
                                                         $_SESSION['form_old']['trainers'] ?? $data['team']['trainers']->pluck('id')->toArray()
                                                     ) ? 'selected' : '' ?>>
-                                                    <?= e($trainer['lid']['fullname']) ?>
+                                                    <?= e($trainer['lid']['fullname'] ?? 'Onbekend') ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
