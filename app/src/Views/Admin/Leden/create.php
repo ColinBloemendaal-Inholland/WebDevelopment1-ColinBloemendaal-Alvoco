@@ -55,7 +55,7 @@
                             <div class="col-sm-4 col-md-4">
                                 <label class="form-label" for="phone">Telefoon</label>
                                 <input type="tel" name="phone" value="<?= e($_SESSION['form_old']['phone'] ?? '') ?>"
-                                    class="form-control" id="phone" name="phone" placeholder="+31 6 12345678" required aria-label="Telefoon invoerveld">
+                                    class="form-control" id="phone" name="phone" required aria-label="Telefoon invoerveld" placeholder="+31612345678 / 0612345678">
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label" for="password">Wachtwoord</label>
@@ -139,7 +139,7 @@
                             <div class="col-sm-6 col-md-3">
                                 <label class="form-label" for="emergency_phone">Telefoon</label>
                                 <input type="tel" name="emergency_contact_phone" value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? '') ?>"
-                                    class="form-control" id="emergency_phone" name="emergency_contact_phone" placeholder="+31 6 12345678"
+                                    class="form-control" id="emergency_phone" name="emergency_contact_phone" placeholder="+31612345678 / 0612345678"
                                     required>
                             </div>
                         </div>

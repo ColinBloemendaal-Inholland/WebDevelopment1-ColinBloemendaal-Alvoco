@@ -36,7 +36,7 @@
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Telefoon</label>
                                 <input type="text" name="phone" id="phone" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['phone'] ?? $data['user']->phone) ?>" placeholder="Telefoon" aria-label="Telefoon invoerveld">
+                                    value="<?= e($_SESSION['form_old']['phone'] ?? $data['user']->phone) ?>" placeholder="+31612345678 / 0612345678" aria-label="Telefoon invoerveld">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -55,23 +55,23 @@
                             <div class="col-md-6">
                                 <label for="postalcode" class="form-label">Postcode</label>
                                 <input type="text" name="postalcode" id="postalcode" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['postalcode'] ?? $data['user']->postalcode) ?>" placeholder="Postcode">
+                                    value="<?= e($_SESSION['form_old']['postalcode'] ?? $data['user']->postalcode) ?>" placeholder="Postcode" aria-label="Postcode invoerveld">
                             </div>
                             <div class="col-md-6">
                                 <label for="city" class="form-label">Plaats</label>
                                 <input type="text" name="city" id="city" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['city'] ?? $data['user']->city) ?>" placeholder="Plaats">
+                                    value="<?= e($_SESSION['form_old']['city'] ?? $data['user']->city) ?>" placeholder="Plaats" aria-label="Plaats invoerveld">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="country" class="form-label">Land</label>
                             <input type="text" name="country" id="country" class="form-control"
-                                value="<?= e($_SESSION['form_old']['country'] ?? $data['user']->country) ?>" placeholder="Land">
+                                value="<?= e($_SESSION['form_old']['country'] ?? $data['user']->country) ?>" placeholder="Land" aria-label="Land invoerveld">
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="gender" class="form-label">Geslacht</label>
-                                <select name="gender" id="gender" class="form-select" required>
+                                <select name="gender" id="gender" class="form-select" required aria-label="Geslacht selectie">
                                     <?php $genderValue = $_SESSION['form_old']['gender'] ?? $data['user']->gender ?? ''; ?>
                                     <option value="" <?= $genderValue === '' ? 'selected' : '' ?>>Selecteer geslacht</option>
                                     <option value="M" <?= $genderValue === 'M' ? 'selected' : '' ?>>Man</option>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="geboortedatum" class="form-label">Geboortedatum</label>
-                                <input type="date" name="date_of_birth" id="geboortedatum" class="form-control"
+                                <input type="date" name="date_of_birth" id="geboortedatum" class="form-control" aria-label="Geboortedatum invoerveld"
                                     value="<?= e($_SESSION['form_old']['geboortedatum'] ?? $data['user']->date_of_birth) ?>">
                             </div>
                         </div>
@@ -93,26 +93,26 @@
                             <div class="col-md-4">
                                 <label for="emergency_contact_firstname" class="form-label">Voornaam</label>
                                 <input type="text" name="emergency_contact_firstname" id="emergency_contact_firstname" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['emergency_contact_firstname'] ?? $data['user']->emergency_contact_firstname ?? '') ?>" placeholder="Voornaam">
+                                    value="<?= e($_SESSION['form_old']['emergency_contact_firstname'] ?? $data['user']->emergency_contact_firstname ?? '') ?>" placeholder="Voornaam" aria-label="Noodcontact voornaam invoerveld">
                             </div>
                             <div class="col-md-4">
                                 <label for="emergency_contact_middlename" class="form-label">Tussenvoegsel</label>
                                 <input type="text" name="emergency_contact_middlename" id="emergency_contact_middlename" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['emergency_contact_middlename'] ?? $data['user']->emergency_contact_middlename ?? '') ?>" placeholder="Tussenvoegsel">
+                                    value="<?= e($_SESSION['form_old']['emergency_contact_middlename'] ?? $data['user']->emergency_contact_middlename ?? '') ?>" placeholder="Tussenvoegsel" aria-label="Noodcontact tussenvoegsel invoerveld">
                             </div>
                             <div class="col-md-4">
                                 <label for="emergency_contact_lastname" class="form-label">Achternaam</label>
                                 <input type="text" name="emergency_contact_lastname" id="emergency_contact_lastname" class="form-control"
-                                    value="<?= e($_SESSION['form_old']['emergency_contact_lastname'] ?? $data['user']->emergency_contact_lastname ?? '') ?>" placeholder="Achternaam">
+                                    value="<?= e($_SESSION['form_old']['emergency_contact_lastname'] ?? $data['user']->emergency_contact_lastname ?? '') ?>" placeholder="Achternaam" aria-label="Noodcontact achternaam invoerveld">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="emergency_contact_phone" class="form-label">Telefoon</label>
-                            <input type="text" name="emergency_contact_phone" id="emergency_contact_phone" class="form-control"
-                                value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? $data['user']->emergency_contact_phone ?? '') ?>" placeholder="Telefoon">
+                            <input type="text" name="emergency_contact_phone" id="emergency_contact_phone" class="form-control" placeholder="+31612345678 / 0612345678"
+                                value="<?= e($_SESSION['form_old']['emergency_contact_phone'] ?? $data['user']->emergency_contact_phone ?? '') ?>" aria-label="Noodcontact telefoon invoerveld">
                         </div>
-                        <button type="submit" class="btn btn-primary">Opslaan</button>
-                        <a href="/profile" class="btn btn-secondary ms-2">Annuleren</a>
+                        <button type="submit" class="btn btn-primary" aria-label="Opslaan van profielwijzigingen">Opslaan</button>
+                        <a href="/profile" class="btn btn-secondary ms-2" aria-label="Annuleren en terug naar profiel">Annuleren</a>
                         </form>
                     </div>
                 </article>

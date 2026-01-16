@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="phone" class="form-label">Telefoonnummer</label>
-                                <input id="phone" type="tel" class="form-control" name="phone" required
+                                <input id="phone" type="tel" class="form-control" name="phone" required placeholder="+31612345678 / 0612345678"
                                     value="<?= e($data['lid']['phone'] ?? '') ?>"
                                     aria-label="Telefoonnummer invoerveld">
                             </div>
@@ -134,7 +134,7 @@
                             <div class="col-sm-6 col-md-3">
                                 <label for="emergency_contact_phone" class="form-label">Telefoon</label>
                                 <input id="emergency_contact_phone" type="tel" class="form-control" required
-                                    name="emergency_contact_phone"
+                                    name="emergency_contact_phone" placeholder="+31612345678 / 0612345678"
                                     value="<?= e($data['lid']['emergency_contact_phone'] ?? '') ?>">
                             </div>
                         </div>

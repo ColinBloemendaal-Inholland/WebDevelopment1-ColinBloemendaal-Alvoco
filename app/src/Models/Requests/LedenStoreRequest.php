@@ -15,7 +15,7 @@ class LedenStoreRequest extends BaseRequests
             'email' => 'required|email',
             'password' => 'required|min:6',
             'password_confirm' => 'required|same:password',
-            'phone' => 'required',
+            'phone' => 'required|regex:/^(\+?\d{1,3})?\d{10}$/',
             'streetname' => 'required|alpha',
             'streetnumber' => 'required',
             'postalcode' => 'required',
@@ -24,7 +24,7 @@ class LedenStoreRequest extends BaseRequests
             'emergency_contact_firstname' => 'required|alpha',
             'emergency_contact_middlename' => 'alpha',
             'emergency_contact_lastname' => 'required|alpha',
-            'emergency_contact_phone' => 'required',
+            'emergency_contact_phone' => 'required|regex:/^(\+?\d{1,3})?\d{10}$/',
             'role' => 'array|required',
             'role.*' => 'integer|min:1',
         ];
