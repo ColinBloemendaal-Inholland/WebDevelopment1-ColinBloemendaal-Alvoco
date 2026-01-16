@@ -122,9 +122,4 @@
     </main>
 </div>
 
-<script>
-    $(function () {
-        new TomSelect("#hometeam", { plugins: ['remove_button'] });
-        new TomSelect("#awayteam", { plugins: ['remove_button'] });
-    });
-</script>
+<script src="/JS/Admin/Wedstrijden/edit.js"></script>

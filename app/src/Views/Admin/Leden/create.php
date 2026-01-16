@@ -158,10 +158,4 @@
     </main>
 
 
-<script>
-    new TomSelect("#roles", {
-        plugins: ["remove_button"],
-        maxItems: null,
-        placeholder: "Selecteer rollen...",
-    });
-</script>
+<script src="/JS/Admin/Leden/create.js"></script>

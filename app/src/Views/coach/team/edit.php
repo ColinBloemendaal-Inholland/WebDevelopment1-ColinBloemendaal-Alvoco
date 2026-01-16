@@ -56,9 +56,4 @@
         </form>
     </section>
 </main>
-<script>
-    $(function () {
-        new TomSelect('#spelers', { plugins: ['remove_button'], create: false });
-        new TomSelect('#trainers', { plugins: ['remove_button'], create: false });
-    });
-</script>
+<script src="/JS/coach/team/edit.js"></script>

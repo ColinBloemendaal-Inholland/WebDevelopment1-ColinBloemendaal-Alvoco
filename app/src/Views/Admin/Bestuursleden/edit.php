@@ -69,11 +69,4 @@
     </main>
 </div>
 
-<script>
-    $(function () {
-        new TomSelect("#Leden_id", {
-            create: false,
-            sortField: { field: "text", direction: "asc" }
-        });
-    });
-</script>
+<script src="/JS/Admin/Bestuursleden/edit.js"></script>

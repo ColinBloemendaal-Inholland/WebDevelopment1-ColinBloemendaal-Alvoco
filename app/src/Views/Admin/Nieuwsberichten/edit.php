@@ -1,9 +1,3 @@
-<script>
-    tinymce.init({
-        selector: '#mytextarea'
-    });
-</script>
-
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
     <main class="flex-grow-1 p-4">
@@ -75,8 +69,4 @@
         </section>
     </main>
 
-<script>
-    $(function () {
-        new TomSelect("#Bestuursleden_id", { create: false, sortField: { field: "text", direction: "asc" } });
-    });
-</script>
+<script src="/JS/Admin/Nieuwsberichten/edit.js"></script>

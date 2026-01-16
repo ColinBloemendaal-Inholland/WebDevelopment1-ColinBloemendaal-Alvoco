@@ -8,7 +8,7 @@ class Session {
     }
 
     public static function end() {
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() != PHP_SESSION_NONE) {
             session_destroy();
         }
     }

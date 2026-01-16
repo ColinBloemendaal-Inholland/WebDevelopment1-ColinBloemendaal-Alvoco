@@ -56,8 +56,4 @@
             </div>
         </section>
     </main>
-<script>
-    $(function () {
-        new TomSelect("#bestuurslid_id", { create: false, sortField: { field: "text", direction: "asc" } });
-    });
-</script>
+<script src="/JS/Admin/Contact/create.js"></script>
