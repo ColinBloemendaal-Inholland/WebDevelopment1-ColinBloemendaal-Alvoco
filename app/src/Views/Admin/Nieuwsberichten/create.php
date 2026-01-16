@@ -65,4 +65,4 @@
     </main>
 </div>
 
-    <script src="/JS/Admin/Nieuwsberichten/create.js"></script>
+<script src="/JS/Admin/Nieuwsberichten/create.js"></script>
