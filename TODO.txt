@@ -1,6 +1,0 @@
-TODOs:
-
-admin/contact
-> De naam contact vind ik niet passend
-
-WYSIWYG editor kapot door JS migratie
