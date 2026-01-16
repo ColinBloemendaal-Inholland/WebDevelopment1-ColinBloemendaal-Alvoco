@@ -90,7 +90,13 @@ class LedenServices implements IServices
         ];
     }
 
-    public function getAllWithNoSpeler(?array $spelerIds = null)
+    /**
+     * Summary of getAllWithNoSpeler
+     * $spelerIds: array of speler IDs to include in the result
+     * @param array|null $spelerIds
+     * @return array|null
+     */
+    public function getAllWithNoSpeler(?array $spelerIds = [])
     {
         return $this->repository->getAllWithNoSpeler($spelerIds)->map([$this, 'format']) ?? null;
     }

@@ -7,10 +7,10 @@ class SpelersStoreRequest extends BaseRequests
     public function rules(): array
     {
         return [
-            'leden_id' => 'required|integer|min:1',
-            'team_id' => 'required|integer|min:1',
-            'number' => 'required|integer|min:1',
-            'position'=> 'required|alpha',
+            'Leden_id' => 'required|integer|min:0',
+            'team_id' => 'required|integer|min:0',
+            'number' => 'required|integer|min:0',
+            'position'=> 'required',
         ];
     }
 }
