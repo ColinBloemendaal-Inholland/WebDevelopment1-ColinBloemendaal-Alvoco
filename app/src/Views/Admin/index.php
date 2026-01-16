@@ -1,25 +1,24 @@
-<div class="d-flex flex-column">
-    <div class="d-flex flex-grow-1">
-        <?php \View::partial('Layout.NavAdmin'); ?>
-        <div class="flex-grow-1 p-4">
-            <div class="container-fluid">
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h1>Admin Dashboard</h1>
-                        <p class="text-muted">Welkom in het beheerdersportaal</p>
-                    </div>
+<div class="d-flex flex-grow-1">
+    <?php \View::partial('Layout.NavAdmin'); ?>
+    <div class="flex-grow-1 p-4">
+        <div class="container-fluid">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1>Admin Dashboard</h1>
+                    <p class="text-muted">Welkom in het beheerdersportaal</p>
                 </div>
+            </div>
 
-                <!-- Statistics Cards -->
-                <div class="row mb-4">
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                        <h6 class="card-title mb-2 text-muted">Totaal Leden</h6>
-                                        <h2 class="mb-0"><?= e($data['stats']['totalLeden'] ?? 0) ?></h2>
-                                    </div>
+            <!-- Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <h6 class="card-title mb-2 text-muted">Totaal Leden</h6>
+                                    <h2 class="mb-0"><?= e($data['stats']['totalLeden'] ?? 0) ?></h2>
+                                </div>
                                 <div class="text-primary fs-1 opacity-25">
                                     <i class="bi bi-people-fill"></i>
                                 </div>
