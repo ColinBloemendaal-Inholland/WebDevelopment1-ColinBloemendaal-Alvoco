@@ -21,8 +21,8 @@
                     <div class="form-group col-3 d-flex align-items-end">
                         <div class="form-check form-switch float-right">
                             <input class="form-check-input" type="checkbox" id="searchTrashed" name="searchTrashed"
-                                aria-label="Met verwijderde contacten checkbox" value="1">
-                            <label class="form-check-label" for="searchTrashed">Met verwijderde contacten</label>
+                                aria-label="Met verwijderde trainers checkbox" value="1">
+                            <label class="form-check-label" for="searchTrashed">Met verwijderde trainers</label>
                         </div>
                     </div>
                     <div class="form-group col-3 d-flex align-items-end justify-content-end">
