@@ -27,7 +27,6 @@ class WedstrijdenController extends BaseController implements IController
     {
         $wedstrijd = $this->service->getWithTeamsAndDetails((int) $params['id']);
         if (!$wedstrijd) {
-            // Optionally handle not found
             \View::redirect('/wedstrijden');
             return;
         }
