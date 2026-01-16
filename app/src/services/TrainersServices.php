@@ -49,7 +49,7 @@ class TrainersServices implements IServices {
     {
         return [
             'id' => $row['id'],
-            'name' => $row['lid']['fullname'],
+            'name' => isset($row['lid']) ? trim(($row['lid']['firstname'] ?? '') . ' ' . ($row['lid']['middlename'] ?? '') . ' ' . ($row['lid']['lastname'] ?? '')) : 'Onbekend / verwijderd',
             'role' => $row['role'],
             'deleted_at' => $row['deleted_at'],
         ];

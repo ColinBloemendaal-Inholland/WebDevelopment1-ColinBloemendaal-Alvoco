@@ -10,7 +10,7 @@ class NieuwsberichtenRepository extends BaseRepository
     public function filter(array $filter, int $start, int $length)
     {
         $query = Nieuwsberichten::query()
-            ->select('id', 'Title', 'Bestuursleden_id')
+            ->select('id', 'Title', 'Bestuursleden_id','deleted_at')
             ->with([
                 'Authur:id,Leden_id',
                 'Authur.lid:id,firstname,middlename,lastname'

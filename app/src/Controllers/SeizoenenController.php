@@ -83,10 +83,10 @@ class SeizoenenController extends BaseController implements IController
     {
         $post = $this->service->destroy(intval($params["id"]));
         if (!$post) {
-            \View::redirect("/admin/coaches/{$params["id"]}");
+            \View::redirect("/admin/seizoenen/{$params["id"]}");
             return;
         }
-        \View::redirect("/admin/coaches");
+        \View::redirect("/admin/seizoenen");
     }
 
     public function getSeizoenen()

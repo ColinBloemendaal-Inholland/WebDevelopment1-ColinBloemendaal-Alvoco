@@ -50,6 +50,7 @@ class NieuwsberichtenServices implements IServices
     public function format($row)
     {
         $leden = $row->Authur->lid ?? null;
+        error_log('Formatting nieuwsbericht ID: ' . $row->deleted_at);
         return [
             'fullname' => $leden ? trim($leden->firstname . ' ' . $leden->middlename . ' ' . $leden->lastname) : null,
             'title' => $row->Title,

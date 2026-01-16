@@ -40,6 +40,7 @@ class LedenController extends BaseController implements IController
     {
         try {
             $validated = new LedenStoreRequest($_POST)->validate();
+            $validated['password'] = password_hash($validated['password'], PASSWORD_BCRYPT);
             $post = $this->service->create($validated);
         } catch (\Exception $e) {
             $errors = json_decode($e->getMessage(), true);

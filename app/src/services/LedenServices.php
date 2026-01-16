@@ -87,6 +87,7 @@ class LedenServices implements IServices
                 "{$row['streetname']} {$row['streetnumber']}, {$row['postalcode']} {$row['city']}"
             ),
             'id' => $row['id'],
+            'deleted_at' => $row['deleted_at'],
         ];
     }
 

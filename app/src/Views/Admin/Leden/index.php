@@ -5,6 +5,8 @@
             <header>
                 <h1 class="mb-4">Leden</h1>
             </header>
+            <?php \View::partial('Partials.DeleteModal', ['type' => 'lid']); ?>
+            <?php \View::partial('Partials.ForceDeleteModal', ['type' => 'lid']); ?>
             <div class="row">
                 <!-- Name or email search -->
                 <div class="form-group col-4">
@@ -110,16 +112,16 @@
                         let deletedAt;
                         if (row['deleted_at'] !== null) {
                             deletedAt = `
-                                <form method="POST" action="/admin/leden/${row.id}/force" class="d-inline">
+                                <form method="POST" action="/admin/leden/${row.id}/force" class="d-inline force-delete-form">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-sm btn-danger me-1"><i class="bi bi-trash-fill"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger force-delete-link me-1"><i class="bi bi-trash-fill"></i></button>
                                 </form>
                             `;
                         } else {
                             deletedAt = `
-                                <form method="POST" action="/admin/leden/${row.id}" class="d-inline delete-form" data-id="${row.id}">
+                                <form method="POST" action="/admin/leden/${row.id}" class="d-inline delete-form">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger delete-link"><i class="bi bi-trash-fill"></i></button>
                                 </form>
                             `;
                         }
