@@ -17,3 +17,11 @@ admin/trainers/index
 > met deleted filter aan doet de adminnav raar
 
                         <div class="d-flex gap-2">
+
+
+Rollen toewijzen aan lid doet het niet
+Zowel bij create als edit
+
+When retrieving a lid in the datatables only retrieve those who are not (soft)deleted
+
+Check het project op display errors als een relatie van het item gesoftdelete is
