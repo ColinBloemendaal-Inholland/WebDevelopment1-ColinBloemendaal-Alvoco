@@ -1,7 +1,7 @@
 <div class="d-flex flex-grow-1">
     <?php \View::partial('Layout.NavAdmin'); ?>
     <main class="flex-grow-1 p-4">
-        <section class="container-fluid m-0 py-5">
+        <section class="container m-0 py-5">
             <div class="row">
                 <div class="col-12">
                     <header>
@@ -68,5 +68,5 @@
             </div>
         </section>
     </main>
-
+</div>
 <script src="/JS/Admin/Nieuwsberichten/edit.js"></script>
