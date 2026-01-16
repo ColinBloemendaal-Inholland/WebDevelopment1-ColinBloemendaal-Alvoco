@@ -48,5 +48,4 @@
         </section>
     </main>
 </div>
-
 <script src="/JS/Admin/Coaches/index.js"></script>

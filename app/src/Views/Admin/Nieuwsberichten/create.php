@@ -64,5 +64,4 @@
         </section>
     </main>
 </div>
-
 <script src="/JS/Admin/Nieuwsberichten/create.js"></script>

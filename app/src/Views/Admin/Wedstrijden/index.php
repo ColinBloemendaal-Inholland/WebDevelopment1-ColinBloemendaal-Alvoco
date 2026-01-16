@@ -68,5 +68,4 @@
         </section>
     </main>
 </div>
-
 <script src="/JS/Admin/Wedstrijden/index.js"></script>

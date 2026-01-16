@@ -147,5 +147,4 @@
         </section>
     </main>
 </div>
-
-    <script src="/JS/Admin/Leden/edit.js"></script>
+<script src="/JS/Admin/Leden/edit.js"></script>

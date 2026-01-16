@@ -30,8 +30,8 @@ class Teams extends Model
     {
         return $this->belongsToMany(
             Spelers::class,
-            'spelers_teams', 
-            'team_id', 
+            'spelers_teams',
+            'team_id',
             'speler_id')
             ->orderBy('number', 'asc');
     }
