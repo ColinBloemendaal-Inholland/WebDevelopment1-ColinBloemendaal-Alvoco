@@ -4,18 +4,16 @@ use App\Models\View\View as ViewModel;
 
 class View
 {
-    public static function view(string $viewPath, string $title, $data = [])
+    public static function view(string $viewPath, string $title, $data = [], ?int $httpCode = 200)
     {
-        // Set default http code
-        $http = 200;
         $path = self::getNormalizedPath($viewPath);
         if(!file_exists($path)) {
-            $http = 404;
+            $httpCode = 404;
             $path = self::getNormalizedPath('Errors.404');
         }
 
         $title = $title ? "{$title} - Alvoco" : "Alvoco";
-        $view = new ViewModel($http, $title,$data)->toArray();
+        $view = new ViewModel($httpCode, $title,$data)->toArray();
         self::loadView($path, $view);
     }
 

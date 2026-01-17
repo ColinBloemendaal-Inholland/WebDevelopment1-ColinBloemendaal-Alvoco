@@ -23,11 +23,7 @@ class View
         $this->title = $title;
         $this->data = $data;
 
-        if(in_array($http, $this->httpcodes)) {
-            $this->http = $http;
-        } else {
-            $this->http = 500;
-        }
+        $this->http = array_key_exists($http, $this->httpcodes) ? $http : 500;
         http_response_code($this->http);
     }
 

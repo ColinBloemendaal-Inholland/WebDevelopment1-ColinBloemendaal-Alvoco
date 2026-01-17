@@ -129,7 +129,7 @@ class WedstrijdenServices implements IServices
             $wedstrijd->hometeam->trashed() ||
             $wedstrijd->awayTeam->trashed();
         if ($missing) {
-            throw new ModelNotFoundException(); // will surface as 404
+            throw new ModelNotFoundException();
         }
         return $wedstrijd;
     }

@@ -38,13 +38,11 @@ class Router
 
             switch ($routeInfo[0]) {
                 case Dispatcher::NOT_FOUND:
-                    http_response_code(404);
-                    \View::view("errors.404", '404');
+                    \View::view("errors.404", '404', httpCode:404);
                     break;
 
                 case Dispatcher::METHOD_NOT_ALLOWED:
-                    http_response_code(405);
-                    \View::view("errors.405", '405');
+                    \View::view("errors.405", '405', httpCode:405);
                     break;
 
                 case Dispatcher::FOUND:
@@ -54,22 +52,19 @@ class Router
 
                     // Middleware: admin
                     if (strpos($uri, '/admin') === 0 && !RoleMiddleware::handle(['bestuurslid', 'beheerder'])) {
-                        http_response_code(403);
-                        \View::view("errors.403", '403');
+                        \View::view("errors.403", '403', httpCode:403);
                         return;
                     }
 
                     // Middleware: dashboard auth
                     if (strpos($uri, '/profile') === 0 && !\Auth::isLoggedIn()) {
-                        http_response_code(401);
-                        \View::view("errors.401", '401');
+                        \View::view("errors.401", '401', httpCode:401);
                         return;
                     }
 
                     // Middleware: dashboard teams
                     if (strpos($uri, '/profile/teams') === 0 && !RoleMiddleware::handle(['coach'])) {
-                        http_response_code(401);
-                        \View::view("errors.401", '401');
+                        \View::view("errors.401", '401', httpCode:401);
                         return;
                     }
 
@@ -79,10 +74,10 @@ class Router
             }
 
         } catch (ModelNotFoundException $e) {
-            \View::view("errors.404", '404');
+            \View::view("errors.404", '404', httpCode:404);
         }
-        // catch (Throwable $e) {
-        //     \View::view("errors.500", '500');
-        // }
+        catch (Throwable $e) {
+            \View::view("errors.500", '500', httpCode:500);
+        }
     }
 }

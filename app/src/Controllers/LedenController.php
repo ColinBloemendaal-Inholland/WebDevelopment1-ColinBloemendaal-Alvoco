@@ -8,6 +8,7 @@ use App\Services\LedenServices;
 use App\Models\Requests\LedenStoreRequest;
 use App\Models\Requests\LedenUpdateRequest;
 use App\Services\RolesServices;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LedenController extends BaseController implements IController
 {
@@ -200,9 +201,7 @@ class LedenController extends BaseController implements IController
         $userId = \Auth::id();
         $user = $this->service->get($userId);
         if( !$user) {
-            http_response_code(404);
-            \View::view('Errors.404', '404');
-            return;
+            throw new ModelNotFoundException("Lid niet gevonden.");
         }
         \View::view('dashboard.edit', 'Profiel bewerken', [ 'user' => $user ]);
     }
@@ -211,9 +210,7 @@ class LedenController extends BaseController implements IController
         $userId = \Auth::id();
         $user = $this->service->get($userId);
         if (!$user) {
-            http_response_code(404);
-            \View::view('Errors.404', '404');
-            return;
+            throw new ModelNotFoundException("Lid niet gevonden.");
         }
 
         try {
