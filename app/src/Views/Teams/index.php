@@ -11,7 +11,6 @@
                 <form method="GET" action="">
                     <label for="seizoenFilter" class="form-label">Filter op seizoen:</label>
                     <select name="seizoen_id" id="seizoenFilter" class="form-select" onchange="this.form.submit()">
-                        <option value="">Alle seizoenen</option>
                         <?php foreach ($data['seizoenen'] as $seizoen): ?>
                             <option value="<?= e($seizoen['id']) ?>" <?= (isset($_GET['seizoen_id']) ? ($_GET['seizoen_id'] == $seizoen['id']) : (!empty($seizoen['is_current']))) ? 'selected' : '' ?>>
                                 <?= e($seizoen['title']) ?><?= !empty($seizoen['is_current']) ? ' (Huidig)' : '' ?>

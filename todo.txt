@@ -1,1 +1,7 @@
 in de admin nav bij contact een rood bolletje met totaal aantal contacten
+
+Add the team season when creating the game so you do retrieve the right team
+
+when clicking on a wedstrijd on the /teams/post it breaks
+
+add a team picture backup if there is non

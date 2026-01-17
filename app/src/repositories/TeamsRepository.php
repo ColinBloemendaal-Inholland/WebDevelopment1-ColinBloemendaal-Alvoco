@@ -25,7 +25,7 @@ class TeamsRepository extends BaseRepository
 
     public function editWithRelations(int $id, array $data): ?Teams
     {
-        $team = $this->model->find($id);
+        $team = $this->model->findOrFail($id);
         if (!$team) {
             return null;
         }
@@ -57,7 +57,7 @@ class TeamsRepository extends BaseRepository
 
     public function getTeamWithRelations(int $id): ?Teams
     {
-        return $this->model->with(['spelers', 'coaches', 'trainers', 'wedstrijdenHome', 'wedstrijdenAway'])->where('id', $id)->first();
+        return $this->model->with(['spelers', 'coaches', 'trainers', 'wedstrijdenHome', 'wedstrijdenAway'])->findOrFail($id);
     }
 
     public function getFullTeam(int $id)
