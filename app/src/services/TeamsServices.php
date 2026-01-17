@@ -19,7 +19,7 @@ class TeamsServices implements IServices
     }
     public function getAll()
     {
-        return $this->repository->getAll() ?? null;
+        return $this->repository->getAllWithSeason() ?? null;
     }
     public function create(array $data)
     {

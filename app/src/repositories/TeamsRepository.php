@@ -192,4 +192,9 @@ class TeamsRepository extends BaseRepository
         }
         return $query->get();
     }
+
+    public function getAllWithSeason()
+    {
+        return Teams::with(['seizoenen'])->get();
+    }
 }

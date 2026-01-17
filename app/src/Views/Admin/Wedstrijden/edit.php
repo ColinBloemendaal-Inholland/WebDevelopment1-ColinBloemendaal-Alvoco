@@ -23,7 +23,7 @@
                                             <?php foreach ($data['teams'] as $team): ?>
                                                 <option value="<?= e($team->id) ?>"
                                                     <?= ($data['wedstrijd']['hometeam']['id'] ?? $data['wedstrijd']['team_home'] ?? '') == $team->id ? 'selected' : '' ?>>
-                                                    <?= e($team->name) ?>
+                                                    <?= e($team->name) . ' (' . e($team->seizoenen['title'] ?? 'Onbekend') . ')' ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -39,7 +39,7 @@
                                             <?php foreach ($data['teams'] as $team): ?>
                                                 <option value="<?= e($team->id) ?>"
                                                     <?= ($data['wedstrijd']['team_away'] ?? $data['wedstrijd']['awayteam_id'] ?? '') == $team->id ? 'selected' : '' ?>>
-                                                    <?= e($team->name) ?>
+                                                    <?= e($team->name) . ' (' . e($team->seizoenen['title'] ?? 'Onbekend') . ')' ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
