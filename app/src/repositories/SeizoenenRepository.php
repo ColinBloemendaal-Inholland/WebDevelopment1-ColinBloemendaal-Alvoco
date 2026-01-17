@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SeizoenenRepository extends BaseRepository
 {
+    public function getAll(): Collection
+    {
+        return $this->model->orderBy('title', 'desc')->get();
+    }
     public function create(array $data): Seizoenen
     {
         $oldCurrent = Seizoenen::where('is_current', 1)->first();
