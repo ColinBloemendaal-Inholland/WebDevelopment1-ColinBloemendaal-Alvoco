@@ -28,6 +28,7 @@ class View
         } else {
             $this->http = 500;
         }
+        http_response_code($this->http);
     }
 
     public function toArray(): array

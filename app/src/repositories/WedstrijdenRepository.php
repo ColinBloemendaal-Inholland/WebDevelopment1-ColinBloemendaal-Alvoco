@@ -6,7 +6,8 @@ use App\Models\Wedstrijden;
 
 class WedstrijdenRepository extends BaseRepository
 {
-    public function filter(array $filters, ?int $start = null, ?int $limit = null): array {
+    public function filter(array $filters, ?int $start = null, ?int $limit = null): array
+    {
         $query = Wedstrijden::query()->with('homeTeam', 'awayTeam');
 
         if (!empty($filters['homeTeam'])) {
@@ -47,7 +48,9 @@ class WedstrijdenRepository extends BaseRepository
     public function getUpcoming(int $limit = 10)
     {
         $query = Wedstrijden::query()
-            ->with(['homeTeam', 'awayTeam', ])
+            ->whereHas('homeTeam')
+            ->whereHas('awayTeam')
+            ->with(['homeTeam', 'awayTeam',])
             ->select('id', 'team_home', 'team_away', 'date', 'time', 'location')
             ->where('date', '>=', date('Y-m-d'))
             ->orderBy('date', 'asc')

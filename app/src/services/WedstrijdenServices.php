@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Wedstrijden;
 use App\Repositories\WedstrijdenRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class WedstrijdenServices implements IServices
 {
@@ -121,6 +122,15 @@ class WedstrijdenServices implements IServices
             'awayTeam.spelers.lid',
             'awayTeam.coaches.lid',
         ]);
+
+        $missing =
+            !$wedstrijd->hometeam ||
+            !$wedstrijd->awayTeam ||
+            $wedstrijd->hometeam->trashed() ||
+            $wedstrijd->awayTeam->trashed();
+        if ($missing) {
+            throw new ModelNotFoundException(); // will surface as 404
+        }
         return $wedstrijd;
     }
 }

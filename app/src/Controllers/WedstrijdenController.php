@@ -30,7 +30,7 @@ class WedstrijdenController extends BaseController implements IController
             \View::redirect('/wedstrijden');
             return;
         }
-        $title = $wedstrijd->hometeam->name . ' vs ' . $wedstrijd->awayTeam->name;
+        $title = ($wedstrijd->hometeam->name ?? 'Onbekend') . ' vs ' . ($wedstrijd->awayTeam->name ?? 'Onbekend');
         \View::view('wedstrijden.post', $title, ['wedstrijd' => $wedstrijd]);
     }
 
