@@ -32,22 +32,30 @@
 						</div>
 						<div class="card-body">
 							<h6>Spelers</h6>
-							<ul class="list-group mb-3">
-								<?php foreach ($wedstrijd->hometeam->spelers ?? [] as $speler): ?>
-									<li class="list-group-item d-flex justify-content-between align-items-center">
-										#<?= e($speler->number) ?> <?= e($speler->lid->fullname ?? 'Onbekend') ?>
-										<span class="badge bg-light text-dark"><?= e($speler->position ?? '') ?></span>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<?php if (is_countable($wedstrijd->hometeam->spelers ?? []) && count($wedstrijd->hometeam->spelers ?? []) > 0): ?>
+								<ul class="list-group mb-3">
+									<?php foreach ($wedstrijd->hometeam->spelers as $speler): ?>
+										<li class="list-group-item d-flex justify-content-between align-items-center">
+											#<?= e($speler->number) ?> <?= e($speler->lid->fullname ?? 'Onbekend') ?>
+											<span class="badge bg-light text-dark"><?= e($speler->position ?? '') ?></span>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							<?php else: ?>
+								<p class="text-muted">Geen spelers beschikbaar.</p>
+							<?php endif; ?>
 							<h6>Coaches</h6>
-							<ul class="list-group">
-								<?php foreach ($wedstrijd->hometeam->coaches ?? [] as $coach): ?>
-									<li class="list-group-item">
-										<?= e($coach->lid->fullname ?? 'Onbekend') ?>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<?php if (is_countable($wedstrijd->hometeam->coaches ?? []) && count($wedstrijd->hometeam->coaches ?? []) > 0): ?>
+								<ul class="list-group">
+									<?php foreach ($wedstrijd->hometeam->coaches as $coach): ?>
+										<li class="list-group-item">
+											<?= e($coach->lid->fullname ?? 'Onbekend') ?>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							<?php else: ?>
+								<p class="text-muted">Geen coaches beschikbaar.</p>
+							<?php endif; ?>
 						</div>
 					</article>
 				</div>
@@ -60,22 +68,30 @@
 						</div>
 						<div class="card-body">
 							<h6>Spelers</h6>
-							<ul class="list-group mb-3">
-								<?php foreach ($wedstrijd->awayTeam->spelers ?? [] as $speler): ?>
-									<li class="list-group-item d-flex justify-content-between align-items-center">
-										#<?= e($speler->number) ?> <?= e($speler->lid->fullname ?? 'Onbekend') ?>
-										<span class="badge bg-light text-dark"><?= e($speler->position ?? '') ?></span>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<?php if (is_countable($wedstrijd->awayTeam->spelers ?? []) && count($wedstrijd->awayTeam->spelers ?? []) > 0): ?>
+								<ul class="list-group mb-3">
+									<?php foreach ($wedstrijd->awayTeam->spelers as $speler): ?>
+										<li class="list-group-item d-flex justify-content-between align-items-center">
+											#<?= e($speler->number) ?> <?= e($speler->lid->fullname ?? 'Onbekend') ?>
+											<span class="badge bg-light text-dark"><?= e($speler->position ?? '') ?></span>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							<?php else: ?>
+								<p class="text-muted">Geen spelers beschikbaar.</p>
+							<?php endif; ?>
 							<h6>Coaches</h6>
-							<ul class="list-group">
-								<?php foreach ($wedstrijd->awayTeam->coaches ?? [] as $coach): ?>
-									<li class="list-group-item">
-										<?= e($coach->lid->fullname ?? 'Onbekend') ?>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<?php if (is_countable($wedstrijd->awayTeam->coaches ?? []) && count($wedstrijd->awayTeam->coaches ?? []) > 0): ?>
+								<ul class="list-group">
+									<?php foreach ($wedstrijd->awayTeam->coaches as $coach): ?>
+										<li class="list-group-item">
+											<?= e($coach->lid->fullname ?? 'Onbekend') ?>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							<?php else: ?>
+								<p class="text-muted">Geen coaches beschikbaar.</p>
+							<?php endif; ?>
 						</div>
 					</article>
 				</div>

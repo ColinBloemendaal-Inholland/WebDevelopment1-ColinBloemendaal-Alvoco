@@ -94,9 +94,6 @@
                     <a class="nav-link active" href="/admin/contact">
                         <i class="bi bi-envelope-fill"></i> Contact
                     </a>
-                    <a class="nav-link" href="/admin/contact/create">
-                        <i class="bi bi-plus-circle"></i>
-                    </a>
                 </div>
             </li>
             <li class="nav-item">

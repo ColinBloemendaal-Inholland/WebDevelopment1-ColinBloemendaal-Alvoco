@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12">
                     <header class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="h4"><?= e($data['team']['name']) ?></h2>
+                        <h2 class="h4"><?= e($data['team']['name'] ?? 'Onbekend') ?></h2>
                         <div class="d-flex gap-2">
                             <a href="/admin/teams/<?= e($data['team']['id']) ?>/edit"
                                 class="btn btn-primary btn-sm">Bewerken</a>
@@ -115,7 +115,7 @@
                                 <ul class="list-group mb-3">
                                     <?php foreach ($data['team']['wedstrijden'] as $wedstrijd): ?>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <?= e($wedstrijd->hometeam['name']) ?> vs <?= e($wedstrijd->awayTeam['name']) ?>
+                                            <?= e($wedstrijd->hometeam['name'] ?? 'Onbekend') ?> vs <?= e($wedstrijd->awayTeam['name'] ?? 'Onbekend') ?>
                                             <a href="/admin/wedstrijden/<?= e($wedstrijd['id']) ?>"
                                                 class="btn btn-sm btn-outline-primary">Bekijk</a>
                                         </li>

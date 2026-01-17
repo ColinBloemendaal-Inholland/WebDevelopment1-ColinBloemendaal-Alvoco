@@ -30,7 +30,15 @@
                                 <dd class="col-sm-9"><?= e($data['coach']['end_date'] ?? 'Huidig') ?></dd>
 
                                 <dt class="col-sm-3">Team</dt>
-                                <dd class="col-sm-9"><?= e($data['coach']['team']['name'] ?? 'Niet toegewezen') ?></dd>
+                                <dd class="col-sm-9">
+                                    <?php if (!empty($data['coach']['team'])): ?>
+                                        <a href="/admin/teams/<?= e($data['coach']['team']['id']) ?>">
+                                            <?= e($data['coach']['team']['name']) ?>
+                                        </a>
+                                    <?php else: ?>
+                                        Niet toegewezen
+                                    <?php endif; ?>
+                                </dd>
 
                                 <dt class="col-sm-3">Member ID</dt>
                                 <dd class="col-sm-9"><?= e($data['coach']['Leden_id']) ?></dd>

@@ -68,7 +68,7 @@ class AdminController
 
     public function getLid(array $params) {
         $lid = $this->ledenServices->get(intval($params['id']));
-        \View::view('admin.leden.post', $lid->fullname, ['lid'=> $lid]);
+        \View::view('admin.leden.post', $lid->fullname ?? 'Onbekend', ['lid'=> $lid]);
     }
 
     public function nieuwsberichten()
@@ -77,7 +77,7 @@ class AdminController
     }
     public function getNieuwsbericht(array $params) {
         $nieuwsbericht = $this->nieuwsberichtenServices->get(intval($params['id']));
-        \View::view('admin.nieuwsberichten.post', $nieuwsbericht->Title, ['nieuwsbericht'=> $nieuwsbericht]);
+        \View::view('admin.nieuwsberichten.post', $nieuwsbericht->Title ?? 'Onbekend', ['nieuwsbericht'=> $nieuwsbericht]);
     }
 
     public function teams()
@@ -88,7 +88,7 @@ class AdminController
 
     public function getTeam(array $params) {
         $team = $this->teamsServices->getTeamWithRelations(intval($params['id']));
-        \View::view('admin.teams.post', $team->name, ['team'=> $team]);
+        \View::view('admin.teams.post', $team->name ?? 'Onbekend', ['team'=> $team]);
     }
 
     public function coaches()
@@ -98,7 +98,7 @@ class AdminController
 
     public function getCoach(array $params) {
         $coach = $this->coachesServices->getWithTeam(intval($params['id']));
-        \View::view('admin.coaches.post', $coach->lid->fullname, ['coach'=> $coach]);
+        \View::view('admin.coaches.post', $coach->lid->fullname ?? 'Onbekend', ['coach'=> $coach]);
     }
 
     public function trainers()
@@ -107,7 +107,7 @@ class AdminController
     }
     public function getTrainer(array $params) {
         $trainer = $this->trainersServices->get(intval($params['id']));
-        \View::view('admin.trainers.post', $trainer->lid->fullname ?? '', ['trainer'=> $trainer]);
+        \View::view('admin.trainers.post', $trainer->lid->fullname ?? 'Onbekend', ['trainer'=> $trainer]);
     }
 
     public function wedstrijden()
@@ -118,7 +118,7 @@ class AdminController
 
     public function getWedstrijd(array $params) {
         $wedstrijd = $this->wedstrijdenServices->get(intval($params['id']));
-        $title = $wedstrijd->hometeam->name . " vs " . $wedstrijd->awayteam->name;
+        $title = ($wedstrijd->hometeam->name ?? 'Onbekend') . " vs " . ($wedstrijd->awayteam->name ?? 'Onbekend');
         \View::view('admin.wedstrijden.post', $title, ['wedstrijd'=> $wedstrijd]);
     }
 
@@ -129,7 +129,7 @@ class AdminController
     
     public function getBestuurslid(array $params) {
         $bestuurslid = $this->bestuursledenServices->get(intval($params['id']));
-        \View::view('admin.bestuursleden.post', $bestuurslid->lid->fullname, ['bestuurslid'=> $bestuurslid]);
+        \View::view('admin.bestuursleden.post', $bestuurslid->lid->fullname ?? 'Onbekend', ['bestuurslid'=> $bestuurslid]);
     }
 
     public function spelers()
@@ -140,7 +140,7 @@ class AdminController
 
     public function getSpeler(array $params) {
         $speler = $this->spelersServices->get(intval($params['id']));
-        \View::view('admin.spelers.post', $speler->lid->fullname ?? '', ['speler'=> $speler]);
+        \View::view('admin.spelers.post', $speler->lid->fullname ?? 'Onbekend', ['speler'=> $speler]);
     }
 
     public function contact()

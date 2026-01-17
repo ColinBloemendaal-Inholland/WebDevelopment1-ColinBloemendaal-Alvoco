@@ -64,8 +64,8 @@ class WedstrijdenServices implements IServices
     {
         return [
             'id' => $row['id'],
-            'teamHome' => $row['homeTeam']['name'],
-            'teamAway' => $row['awayTeam']['name'],
+            'teamHome' => $row['homeTeam']['name'] ?? 'Onbekend',
+            'teamAway' => $row['awayTeam']['name'] ?? 'Onbekend',
             'date' => $row['date'],
             'time' => $row['time'],
             'location' => $row['location'],

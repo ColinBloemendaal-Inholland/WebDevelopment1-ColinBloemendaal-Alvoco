@@ -57,6 +57,13 @@
 
                     <!-- Teams columns -->
                     <div class="row">
+                        <?php if(empty($data['wedstrijd']['hometeam']) || empty($data['wedstrijd']['awayTeam'])): ?>
+                            <div class="col-12">
+                                <div class="alert alert-warning" role="alert">
+                                    Een of beide teams zijn niet toegewezen aan deze wedstrijd of zijn verwijderd.
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <!-- Home team -->
                         <div class="col-md-6 mb-4">
                             <div class="card shadow-sm">
@@ -79,15 +86,15 @@
 
                                     <!-- Home team players -->
                                     <h6>Spelers</h6>
-                                    <?php if (!empty($data['wedstrijd']['hometeam']['spelers'])): ?>
+                                    <?php if (!empty($data['wedstrijd']['hometeam']['spelers']) && count($data['wedstrijd']['hometeam']['spelers']) > 0): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['hometeam']['spelers'] as $speler): ?>
                                                 <li class="list-group-item d-flex align-items-center justify-content-between">
                                                     <div class="d-flex align-items-center">
                                                         <span class="badge rounded bg-primary me-2 px-2 py-1 fs-6 d-inline-block" style="min-width:32px;">
-                                                            <?= e($speler['number']) ?>
+                                                            <?= e($speler['number'] ?? '-') ?>
                                                         </span>
-                                                        <?= e($speler['lid']['fullname'] ?? 'Onbekend') ?> (Positie: <?= e($speler['position']) ?>)
+                                                        <?= e($speler['lid']['fullname'] ?? 'Onbekend') ?> (Positie: <?= e($speler['position'] ?? '-') ?>)
                                                     </div>
                                                     <a href="/admin/spelers/<?= e($speler['id']) ?>"
                                                         class="btn btn-sm btn-outline-primary">Bekijk</a>
@@ -100,7 +107,7 @@
 
                                     <!-- Home team coaches -->
                                     <h6>Coaches</h6>
-                                    <?php if (!empty($data['wedstrijd']['hometeam']['coaches'])): ?>
+                                    <?php if (!empty($data['wedstrijd']['hometeam']['coaches']) && count($data['wedstrijd']['hometeam']['coaches']) > 0): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['hometeam']['coaches'] as $coach): ?>
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -139,7 +146,7 @@
 
                                     <!-- Away team players -->
                                     <h6>Spelers</h6>
-                                    <?php if (!empty($data['wedstrijd']['awayTeam']['spelers'])): ?>
+                                    <?php if (!empty($data['wedstrijd']['awayTeam']['spelers']) && count($data['wedstrijd']['awayTeam']['spelers']) > 0): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['awayTeam']['spelers'] as $speler): ?>
                                                 <li class="list-group-item d-flex align-items-center justify-content-between">
@@ -160,7 +167,7 @@
 
                                     <!-- Away team coaches -->
                                     <h6>Coaches</h6>
-                                    <?php if (!empty($data['wedstrijd']['awayTeam']['coaches'])): ?>
+                                    <?php if (!empty($data['wedstrijd']['awayTeam']['coaches']) && count($data['wedstrijd']['awayTeam']['coaches']) > 0 ): ?>
                                         <ul class="list-group mb-3">
                                             <?php foreach ($data['wedstrijd']['awayTeam']['coaches'] as $coach): ?>
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">

@@ -45,11 +45,11 @@ class Teams extends Model
     }
     public function wedstrijdenHome(): HasMany
     {
-        return $this->hasMany(Wedstrijden::class, 'team_home');
+        return $this->hasMany(Wedstrijden::class, 'team_home')->orderBy('date', 'asc');
     }
     public function wedstrijdenAway(): HasMany
     {
-        return $this->hasMany(Wedstrijden::class, 'team_away');
+        return $this->hasMany(Wedstrijden::class, 'team_away')->orderBy('date', 'asc');
     }
 
     public function getWedstrijdenAttribute()

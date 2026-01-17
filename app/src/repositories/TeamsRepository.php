@@ -57,7 +57,15 @@ class TeamsRepository extends BaseRepository
 
     public function getTeamWithRelations(int $id): ?Teams
     {
-        return $this->model->with(['spelers', 'coaches', 'trainers', 'wedstrijdenHome', 'wedstrijdenAway'])->findOrFail($id);
+        return $this->model
+            ->with([
+                'spelers',
+                'coaches',
+                'trainers',
+                'wedstrijdenHome' => fn($q) => $q->whereNull('deleted_at'),
+                'wedstrijdenAway' => fn($q) => $q->whereNull('deleted_at'),
+            ])
+            ->findOrFail($id);
     }
 
     public function getFullTeam(int $id)

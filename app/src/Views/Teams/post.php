@@ -103,7 +103,11 @@
 								</thead>
 								<tbody>
 									<?php if (!empty($data['team']->wedstrijden)):
-										foreach ($data['team']->wedstrijden as $wedstrijd): ?>
+										foreach ($data['team']->wedstrijden as $wedstrijd):
+											if (empty($wedstrijd->hometeam) || empty($wedstrijd->awayteam)) {
+												continue;
+											}
+										?>
 											<tr onclick="window.location.href='/wedstrijden/<?= e($wedstrijd->id) ?>'"
 												class="cursor-pointer">
 												<td><?= e($wedstrijd->date ?? '-') ?></td>
