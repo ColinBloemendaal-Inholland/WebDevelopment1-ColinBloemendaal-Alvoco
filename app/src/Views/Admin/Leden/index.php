@@ -46,8 +46,9 @@
                         <label class="form-check-label" for="searchTrashed">Met verwijderde leden</label>
                     </div>
                 </div>
-                <div class="form-group col-3 d-flex align-items-end justify-content-end">
+                <div class="form-group col-3 d-flex align-items-end justify-content-end gap-2">
                     <a href="/admin/leden/create" class="btn btn-primary">Toevoegen</a>
+                    <a href="/admin/leden/avg" class="btn btn-danger">AVG check</a>
                 </div>
             </div>
             <table id="ledenTable" class="table table-striped table-hover">

@@ -99,6 +99,15 @@ class LedenController extends BaseController implements IController
         \View::redirect("/admin/leden");
     }
 
+    public function destroyAll()
+    {
+        $result = $this->service->destroyAll();
+        if($result) {
+            \View::redirect('/admin/leden');
+        }
+        \View::redirect('/admin/leden/avg');
+    }
+
     public function getLeden()
     {
         $filter = [
@@ -218,5 +227,11 @@ class LedenController extends BaseController implements IController
             return;
         }
         \View::redirect('/profile');
+    }
+
+    public function avg()
+    {
+        $result = $this->service->performAvgCheck();
+        \View::view('admin.leden.avg', 'AVG Check Resultaten', ['results' => $result]);
     }
 }

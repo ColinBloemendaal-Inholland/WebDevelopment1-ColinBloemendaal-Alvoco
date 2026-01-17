@@ -79,5 +79,4 @@
         </section>
     </main>
 </div>
-
-        <?php \View::partial('Partials.DeleteModal', ['type' => 'lid']); ?>
+<?php \View::partial('Partials.DeleteModal', ['type' => 'lid']); ?>

@@ -243,4 +243,14 @@ class LedenRepository extends BaseRepository
         $user->save();
         return $user;
     }
+
+    public function destroyAll(): int
+    {
+        return $this->model->onlyTrashed()->forceDelete();
+    }
+
+    public function getTrashed(): Collection
+    {
+        return $this->model->onlyTrashed()->where('deleted_at', '!=', null)->get();
+    }
 }

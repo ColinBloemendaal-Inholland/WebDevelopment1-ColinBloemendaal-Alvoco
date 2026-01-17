@@ -65,6 +65,7 @@ return function (RouteCollector $r) {
 
     // Admin > Leden
     $r->addRoute('GET', '/admin/leden', [AdminController::class, 'leden']);
+    $r->addRoute('GET', '/admin/leden/avg', [LedenController::class, 'avg']);
     $r->addRoute('GET', '/admin/leden/{id:\d+}', [AdminController::class, 'getLid']);
     $r->addRoute('GET', '/admin/leden/create', [LedenController::class, 'create']);
     $r->addRoute('POST', '/admin/leden/create', [LedenController::class, 'store']);
@@ -72,6 +73,7 @@ return function (RouteCollector $r) {
     $r->addRoute('PUT', '/admin/leden/{id:\d+}', [LedenController::class, 'update']);
     $r->addRoute('DELETE', '/admin/leden/{id:\d+}', [LedenController::class, 'delete']);
     $r->addRoute('DELETE', '/admin/leden/{id:\d+}/force', [LedenController::class, 'destroy']);
+    $r->addRoute('DELETE', '/admin/leden/force-all', [LedenController::class, 'destroyAll']);
 
     // Admin > Spelers
     $r->addRoute('GET', '/admin/spelers', [AdminController::class, 'spelers']);

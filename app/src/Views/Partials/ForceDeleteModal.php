@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="forceDeleteModalBody">
-                Weet je zeker dat je dit <span
+                Weet je zeker dat je <?= !empty($data['multiple']) ? 'deze' : 'dit' ?> <span
                     id="forceDeleteModalEntity"><?= isset($data['type']) ? e($data['type']) : 'item' ?></span> permanent
                 wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.
             </div>

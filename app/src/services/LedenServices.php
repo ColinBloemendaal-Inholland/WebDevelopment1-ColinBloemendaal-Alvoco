@@ -43,6 +43,10 @@ class LedenServices implements IServices
     {
         return $this->repository->destroy($id) ?? false;
     }
+    public function destroyAll(): bool
+    {
+        return $this->repository->destroyAll() ?? false;
+    }
     public function filter(array $filters, ?int $start = null, ?int $limit = null): array
     {
         return $this->repository->filter($filters, $start, $limit);
@@ -127,5 +131,10 @@ class LedenServices implements IServices
     public function getRecentNewsForBestuurslid(int $ledenId)
     {
         return $this->repository->getRecentNewsForBestuurslid($ledenId);
+    }
+
+    public function performAvgCheck()
+    {
+        return $this->repository->getTrashed();
     }
 }
