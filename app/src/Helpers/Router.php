@@ -7,7 +7,6 @@ use function FastRoute\simpleDispatcher;
 use FastRoute\Dispatcher;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
 class Router
 {
     public static $dispatcher;
@@ -73,10 +72,13 @@ class Router
                     break;
             }
 
-        } catch (ModelNotFoundException $e) {
+        }
+        catch (ModelNotFoundException $e) {
+            error_log($e->getMessage());
             \View::view("errors.404", '404', httpCode:404);
         }
         catch (Throwable $e) {
+            error_log($e->getMessage());
             \View::view("errors.500", '500', httpCode:500);
         }
     }
