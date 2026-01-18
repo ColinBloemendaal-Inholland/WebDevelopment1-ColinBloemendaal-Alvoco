@@ -231,4 +231,16 @@ class LedenController extends BaseController implements IController
         $result = $this->service->performAvgCheck();
         \View::view('admin.leden.avg', 'AVG Check Resultaten', ['results' => $result]);
     }
+
+    public function deleteProfile() {
+        $userId = \Auth::id();
+        $user = $this->service->get($userId);
+        if (!$user) {
+            throw new ModelNotFoundException("Lid niet gevonden.");
+        }
+
+        $this->service->delete($userId);
+        \Auth::logout();
+        \View::redirect('/');
+    }
 }

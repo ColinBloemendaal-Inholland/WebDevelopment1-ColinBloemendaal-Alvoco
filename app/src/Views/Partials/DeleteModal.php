@@ -7,11 +7,17 @@
                 <h5 class="modal-title" id="deleteModalLabel">Verwijder bevestigen</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="deleteModalBody">
-                Weet je zeker dat je dit <span
-                    id="deleteModalEntity"><?= isset($data['type']) ? e($data['type']) : 'item' ?></span> wilt
-                verwijderen?
-            </div>
+            <?php if (!isset($data['message'])): ?>
+                <div class="modal-body" id="deleteModalBody">
+                    Weet je zeker dat je dit <span
+                        id="deleteModalEntity"><?= isset($data['type']) ? e($data['type']) : 'item' ?></span> wilt
+                    verwijderen?
+                </div>
+            <?php else: ?>
+                <div class="modal-body" id="deleteModalBody">
+                    <?= e($data['message']) ?>
+                </div>
+            <?php endif; ?>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuleren</button>
                 <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Verwijderen</button>

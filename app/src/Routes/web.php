@@ -28,6 +28,7 @@ return function (RouteCollector $r) {
     $r->addRoute('GET', '/profile', [LedenController::class, 'dashboard']);
     $r->addRoute('GET', '/profile/edit', [LedenController::class, 'editProfile']);
     $r->addRoute('POST', '/profile/update', [LedenController::class, 'updateProfile']);
+    $r->addRoute('DELETE', '/profile', [LedenController::class, 'deleteProfile']);
     $r->addRoute('GET', '/profile/teams/{id:\d+}/edit', [TeamsController::class, 'editByCoach']);
     $r->addRoute('POST', '/profile/teams/{id:\d+}/update', [TeamsController::class, 'updateByCoach']);
     // Teams page

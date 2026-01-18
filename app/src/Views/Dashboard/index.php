@@ -8,7 +8,13 @@
                             <h1 class="card-title mb-0 h2">Welkom,
                                 <?= e($data['user']->fullname ?? 'Onbekend') ?>
                             </h1>
-                            <a href="/profile/edit" class="btn btn-outline-primary btn-sm ms-3">Profiel bewerken</a>
+                            <div class="d-flex align-items-center">
+                                <a href="/profile/edit" class="btn btn-outline-primary btn-sm">Profiel bewerken</a>
+                                <form action="/profile" method="POST" class="ms-3">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="button" class="btn btn-outline-danger btn-sm delete-link" aria-label="Profiel soft delete">Profiel verwijderen</button>
+                                </form>
+                            </div>
                         </header>
                         <p class="mb-1"><strong>Email:</strong> <?= e($data['user']->email) ?></p>
                         <?php if (!empty($data['teamsCoached']) && count($data['teamsCoached']) > 0): ?>
@@ -211,3 +217,4 @@
         </div>
     </div>
 </main>
+<?php \View::partial('Partials.DeleteModal', ['message' => 'Weet je zeker dat je je profiel wilt verwijderen? Wij behouden de gegevens voor 3 maanden. Daarna worden ze verwijderd.']); ?>
