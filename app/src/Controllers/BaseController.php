@@ -7,8 +7,8 @@ class BaseController {
 
     private LedenServices $ledenServices;
 
-    public function __construct(?LedenServices $ledenServices = null) {
-        $this->ledenServices = $ledenServices ?? new LedenServices();
+    public function __construct() {
+        $this->ledenServices = new LedenServices();
     }
 
     public function user() {
