@@ -62,8 +62,9 @@ class AdminController
 
     public function leden()
     {
+        $deletedCount = count($this->ledenServices->performAvgCheck());
         $roles = $this->rolenServices->getAll();
-        \View::view("admin.leden.index", 'Manage leden', ['rolen' => $roles]);
+        \View::view("admin.leden.index", 'Manage leden', ['rolen' => $roles, 'deletedCount' => $deletedCount]);
     }
 
     public function getLid(array $params) {
