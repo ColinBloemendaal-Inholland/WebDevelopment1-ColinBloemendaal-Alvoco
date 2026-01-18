@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\LedenRepository;
 use App\Models\Leden;
+use Carbon\Carbon;
 
 class LedenServices implements IServices
 {
@@ -135,6 +136,6 @@ class LedenServices implements IServices
 
     public function performAvgCheck()
     {
-        return $this->repository->getTrashed();
+        return $this->repository->getTrashed(Carbon::now()->subMonths(3)->toDateTimeString());
     }
 }

@@ -249,8 +249,11 @@ class LedenRepository extends BaseRepository
         return $this->model->onlyTrashed()->forceDelete();
     }
 
-    public function getTrashed(): Collection
+    public function getTrashed($fromDate = null): Collection
     {
-        return $this->model->onlyTrashed()->where('deleted_at', '!=', null)->get();
+        if( $fromDate === null ) {
+            return $this->model->onlyTrashed()->get();
+        }
+        return $this->model->onlyTrashed()->where('deleted_at', '<=', $fromDate)->get();
     }
 }

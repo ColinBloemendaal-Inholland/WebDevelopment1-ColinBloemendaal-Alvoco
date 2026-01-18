@@ -7,7 +7,7 @@
                 <a href="/admin/leden" class="btn btn-secondary">Terug naar leden</a>
             </header>
             <div class="alert alert-info" role="alert">
-                Hieronder staan de leden die zijn verwijderd maar mogelijk nog persoonlijke gegevens bevatten. 
+                Hieronder staan de leden die zijn verwijderd maar mogelijk nog persoonlijke gegevens bevatten die langer dan 3 maanden geleden zijn verwijderd.
                 Neem de nodige stappen om te voldoen aan de AVG-richtlijnen.
             </div>
             <?php if (!empty($data['results'])): ?>
