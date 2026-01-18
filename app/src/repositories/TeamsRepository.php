@@ -32,7 +32,6 @@ class TeamsRepository extends BaseRepository
         $spelers = isset($data['spelers']) && is_array($data['spelers']) ? $data['spelers'] : [];
         $coaches = isset($data['coaches']) && is_array($data['coaches']) ? $data['coaches'] : [];
         $trainers = isset($data['trainers']) && is_array($data['trainers']) ? $data['trainers'] : [];
-        error_log(print_r($data, true));
         $team->update($data);
         // Only sync spelers (many-to-many)
         $team->spelers()->sync($spelers);
