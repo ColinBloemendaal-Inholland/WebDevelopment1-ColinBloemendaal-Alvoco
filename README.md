@@ -1,3 +1,6 @@
+Student: Colin Bloemendaal
+Student nr: 700949
+
 URL: localhost
 
 Gebruikersgegvens:
