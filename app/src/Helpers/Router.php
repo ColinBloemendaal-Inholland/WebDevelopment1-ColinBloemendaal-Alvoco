@@ -14,7 +14,7 @@ class Router
     public static function registerRoutes()
     {
         // Using require_once so it fails if file is missing
-        $routes = require_once ROOT . 'src/routes/web.php';
+        $routes = require_once ROOT . 'src/Routes/web.php';
 
         self::$dispatcher = simpleDispatcher(function (RouteCollector $r) use ($routes) {
             $routes($r);
